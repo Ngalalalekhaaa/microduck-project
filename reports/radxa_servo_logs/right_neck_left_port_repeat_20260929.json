@@ -1,0 +1,2734 @@
+{
+  "read_only": true,
+  "config": {
+    "port": "/dev/ttyS2",
+    "baudrate": 1000000,
+    "timeout": 0.015,
+    "discard_echo": false,
+    "register_profile": "hls_2"
+  },
+  "ids": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "cycles": 20,
+  "cycle_interval_s": 0.1,
+  "rows": [
+    {
+      "cycle": 1,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 19.5,
+        "received_at": 3822.965890577
+      },
+      "duration_ms": 2.174
+    },
+    {
+      "cycle": 1,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 32.5,
+        "received_at": 3822.967802602
+      },
+      "duration_ms": 1.78
+    },
+    {
+      "cycle": 1,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 26.0,
+        "received_at": 3822.969336596
+      },
+      "duration_ms": 1.446
+    },
+    {
+      "cycle": 1,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 19.5,
+        "received_at": 3822.970892759
+      },
+      "duration_ms": 1.536
+    },
+    {
+      "cycle": 1,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 32.5,
+        "received_at": 3822.972304244
+      },
+      "duration_ms": 1.343
+    },
+    {
+      "cycle": 1,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 26.0,
+        "received_at": 3822.973840572
+      },
+      "duration_ms": 1.512
+    },
+    {
+      "cycle": 1,
+      "id": 12,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.756
+    },
+    {
+      "cycle": 1,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 26.0,
+        "received_at": 3822.991240429
+      },
+      "duration_ms": 1.58
+    },
+    {
+      "cycle": 1,
+      "id": 14,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.695
+    },
+    {
+      "cycle": 2,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 19.5,
+        "received_at": 3823.065450301
+      },
+      "duration_ms": 1.514
+    },
+    {
+      "cycle": 2,
+      "id": 7,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.794
+    },
+    {
+      "cycle": 2,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 26.0,
+        "received_at": 3823.082848116
+      },
+      "duration_ms": 1.7
+    },
+    {
+      "cycle": 2,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 26.0,
+        "received_at": 3823.084583959
+      },
+      "duration_ms": 1.503
+    },
+    {
+      "cycle": 2,
+      "id": 10,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.681
+    },
+    {
+      "cycle": 2,
+      "id": 11,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.741
+    },
+    {
+      "cycle": 2,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 13.0,
+        "received_at": 3823.117616327
+      },
+      "duration_ms": 1.53
+    },
+    {
+      "cycle": 2,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 26.0,
+        "received_at": 3823.119231412
+      },
+      "duration_ms": 1.561
+    },
+    {
+      "cycle": 2,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 26.0,
+        "received_at": 3823.12076774
+      },
+      "duration_ms": 1.497
+    },
+    {
+      "cycle": 3,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 19.5,
+        "received_at": 3823.165620238
+      },
+      "duration_ms": 1.592
+    },
+    {
+      "cycle": 3,
+      "id": 7,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.702
+    },
+    {
+      "cycle": 3,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 19.5,
+        "received_at": 3823.182947756
+      },
+      "duration_ms": 1.556
+    },
+    {
+      "cycle": 3,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 19.5,
+        "received_at": 3823.184538338
+      },
+      "duration_ms": 1.446
+    },
+    {
+      "cycle": 3,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 3823.18599766
+      },
+      "duration_ms": 1.416
+    },
+    {
+      "cycle": 3,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 26.0,
+        "received_at": 3823.187469234
+      },
+      "duration_ms": 1.443
+    },
+    {
+      "cycle": 3,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.2,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 13.0,
+        "received_at": 3823.188939057
+      },
+      "duration_ms": 1.497
+    },
+    {
+      "cycle": 3,
+      "id": 13,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.719
+    },
+    {
+      "cycle": 3,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 26.0,
+        "received_at": 3823.206374791
+      },
+      "duration_ms": 1.596
+    },
+    {
+      "cycle": 4,
+      "id": 6,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.794
+    },
+    {
+      "cycle": 4,
+      "id": 7,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.84
+    },
+    {
+      "cycle": 4,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 19.5,
+        "received_at": 3823.297515189
+      },
+      "duration_ms": 1.537
+    },
+    {
+      "cycle": 4,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 19.5,
+        "received_at": 3823.299021181
+      },
+      "duration_ms": 1.436
+    },
+    {
+      "cycle": 4,
+      "id": 10,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.674
+    },
+    {
+      "cycle": 4,
+      "id": 11,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.698
+    },
+    {
+      "cycle": 4,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.2,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 19.5,
+        "received_at": 3823.331948538
+      },
+      "duration_ms": 1.47
+    },
+    {
+      "cycle": 4,
+      "id": 13,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.67
+    },
+    {
+      "cycle": 4,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 26.0,
+        "received_at": 3823.349259719
+      },
+      "duration_ms": 1.498
+    },
+    {
+      "cycle": 5,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 26.0,
+        "received_at": 3823.365915475
+      },
+      "duration_ms": 1.458
+    },
+    {
+      "cycle": 5,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 19.5,
+        "received_at": 3823.367400465
+      },
+      "duration_ms": 1.441
+    },
+    {
+      "cycle": 5,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 19.5,
+        "received_at": 3823.368876122
+      },
+      "duration_ms": 1.431
+    },
+    {
+      "cycle": 5,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 19.5,
+        "received_at": 3823.370359071
+      },
+      "duration_ms": 1.445
+    },
+    {
+      "cycle": 5,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 26.0,
+        "received_at": 3823.371832102
+      },
+      "duration_ms": 1.504
+    },
+    {
+      "cycle": 5,
+      "id": 11,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.703
+    },
+    {
+      "cycle": 5,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.2,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 19.5,
+        "received_at": 3823.38914095
+      },
+      "duration_ms": 1.48
+    },
+    {
+      "cycle": 5,
+      "id": 13,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.659
+    },
+    {
+      "cycle": 5,
+      "id": 14,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.686
+    },
+    {
+      "cycle": 6,
+      "id": 6,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.696
+    },
+    {
+      "cycle": 6,
+      "id": 7,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.713
+    },
+    {
+      "cycle": 6,
+      "id": 8,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.752
+    },
+    {
+      "cycle": 6,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 19.5,
+        "received_at": 3823.513409087
+      },
+      "duration_ms": 1.576
+    },
+    {
+      "cycle": 6,
+      "id": 10,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.678
+    },
+    {
+      "cycle": 6,
+      "id": 11,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.823
+    },
+    {
+      "cycle": 6,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.2,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 13.0,
+        "received_at": 3823.546797604
+      },
+      "duration_ms": 1.806
+    },
+    {
+      "cycle": 6,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 19.5,
+        "received_at": 3823.548485027
+      },
+      "duration_ms": 1.592
+    },
+    {
+      "cycle": 6,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 26.0,
+        "received_at": 3823.549968559
+      },
+      "duration_ms": 1.421
+    },
+    {
+      "cycle": 7,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 19.5,
+        "received_at": 3823.566278371
+      },
+      "duration_ms": 1.569
+    },
+    {
+      "cycle": 7,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 19.5,
+        "received_at": 3823.567853493
+      },
+      "duration_ms": 1.457
+    },
+    {
+      "cycle": 7,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 26.0,
+        "received_at": 3823.569323608
+      },
+      "duration_ms": 1.423
+    },
+    {
+      "cycle": 7,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 19.5,
+        "received_at": 3823.570804807
+      },
+      "duration_ms": 1.449
+    },
+    {
+      "cycle": 7,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 3823.572281338
+      },
+      "duration_ms": 1.512
+    },
+    {
+      "cycle": 7,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 26.0,
+        "received_at": 3823.573886797
+      },
+      "duration_ms": 1.502
+    },
+    {
+      "cycle": 7,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 13.0,
+        "received_at": 3823.575353703
+      },
+      "duration_ms": 1.41
+    },
+    {
+      "cycle": 7,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 19.5,
+        "received_at": 3823.576880405
+      },
+      "duration_ms": 1.501
+    },
+    {
+      "cycle": 7,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 26.0,
+        "received_at": 3823.578346144
+      },
+      "duration_ms": 1.416
+    },
+    {
+      "cycle": 8,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 26.0,
+        "received_at": 3823.666472216
+      },
+      "duration_ms": 1.526
+    },
+    {
+      "cycle": 8,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 26.0,
+        "received_at": 3823.667962748
+      },
+      "duration_ms": 1.43
+    },
+    {
+      "cycle": 8,
+      "id": 8,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.692
+    },
+    {
+      "cycle": 8,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 26.0,
+        "received_at": 3823.68522726
+      },
+      "duration_ms": 1.593
+    },
+    {
+      "cycle": 8,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 26.0,
+        "received_at": 3823.686842344
+      },
+      "duration_ms": 1.475
+    },
+    {
+      "cycle": 8,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 19.5,
+        "received_at": 3823.688306624
+      },
+      "duration_ms": 1.419
+    },
+    {
+      "cycle": 8,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 6.5,
+        "received_at": 3823.689882039
+      },
+      "duration_ms": 1.609
+    },
+    {
+      "cycle": 8,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 26.0,
+        "received_at": 3823.691459787
+      },
+      "duration_ms": 1.463
+    },
+    {
+      "cycle": 8,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 26.0,
+        "received_at": 3823.692902191
+      },
+      "duration_ms": 1.491
+    },
+    {
+      "cycle": 9,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 26.0,
+        "received_at": 3823.766689687
+      },
+      "duration_ms": 1.561
+    },
+    {
+      "cycle": 9,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 19.5,
+        "received_at": 3823.76807842
+      },
+      "duration_ms": 1.327
+    },
+    {
+      "cycle": 9,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 19.5,
+        "received_at": 3823.769378772
+      },
+      "duration_ms": 1.253
+    },
+    {
+      "cycle": 9,
+      "id": 9,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.774
+    },
+    {
+      "cycle": 9,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 26.0,
+        "received_at": 3823.786741874
+      },
+      "duration_ms": 1.562
+    },
+    {
+      "cycle": 9,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 32.5,
+        "received_at": 3823.788281702
+      },
+      "duration_ms": 1.462
+    },
+    {
+      "cycle": 9,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 13.0,
+        "received_at": 3823.789843116
+      },
+      "duration_ms": 1.52
+    },
+    {
+      "cycle": 9,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 26.0,
+        "received_at": 3823.791321106
+      },
+      "duration_ms": 1.431
+    },
+    {
+      "cycle": 9,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 26.0,
+        "received_at": 3823.792762051
+      },
+      "duration_ms": 1.545
+    },
+    {
+      "cycle": 10,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 26.0,
+        "received_at": 3823.866870698
+      },
+      "duration_ms": 1.598
+    },
+    {
+      "cycle": 10,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 19.5,
+        "received_at": 3823.868275474
+      },
+      "duration_ms": 1.406
+    },
+    {
+      "cycle": 10,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 26.0,
+        "received_at": 3823.869946854
+      },
+      "duration_ms": 1.566
+    },
+    {
+      "cycle": 10,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 19.5,
+        "received_at": 3823.871516726
+      },
+      "duration_ms": 1.526
+    },
+    {
+      "cycle": 10,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 32.5,
+        "received_at": 3823.872902543
+      },
+      "duration_ms": 1.441
+    },
+    {
+      "cycle": 10,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 19.5,
+        "received_at": 3823.874503917
+      },
+      "duration_ms": 1.456
+    },
+    {
+      "cycle": 10,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.2,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 6.5,
+        "received_at": 3823.875946321
+      },
+      "duration_ms": 1.397
+    },
+    {
+      "cycle": 10,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 19.5,
+        "received_at": 3823.877400685
+      },
+      "duration_ms": 1.437
+    },
+    {
+      "cycle": 10,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 19.5,
+        "received_at": 3823.878841338
+      },
+      "duration_ms": 1.383
+    },
+    {
+      "cycle": 11,
+      "id": 6,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 18.963
+    },
+    {
+      "cycle": 11,
+      "id": 7,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 16.359
+    },
+    {
+      "cycle": 11,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 19.5,
+        "received_at": 3824.002497219
+      },
+      "duration_ms": 1.71
+    },
+    {
+      "cycle": 11,
+      "id": 9,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.824
+    },
+    {
+      "cycle": 11,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 32.5,
+        "received_at": 3824.020105924
+      },
+      "duration_ms": 1.579
+    },
+    {
+      "cycle": 11,
+      "id": 11,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.773
+    },
+    {
+      "cycle": 11,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.2,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 13.0,
+        "received_at": 3824.037444524
+      },
+      "duration_ms": 1.489
+    },
+    {
+      "cycle": 11,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 26.0,
+        "received_at": 3824.03893039
+      },
+      "duration_ms": 1.422
+    },
+    {
+      "cycle": 11,
+      "id": 14,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.763
+    },
+    {
+      "cycle": 12,
+      "id": 6,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.826
+    },
+    {
+      "cycle": 12,
+      "id": 7,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.704
+    },
+    {
+      "cycle": 12,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.4,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 26.0,
+        "received_at": 3824.098692294
+      },
+      "duration_ms": 1.518
+    },
+    {
+      "cycle": 12,
+      "id": 9,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.66
+    },
+    {
+      "cycle": 12,
+      "id": 10,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.699
+    },
+    {
+      "cycle": 12,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 19.5,
+        "received_at": 3824.131653486
+      },
+      "duration_ms": 1.495
+    },
+    {
+      "cycle": 12,
+      "id": 12,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.662
+    },
+    {
+      "cycle": 12,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 19.5,
+        "received_at": 3824.148854409
+      },
+      "duration_ms": 1.456
+    },
+    {
+      "cycle": 12,
+      "id": 14,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.661
+    },
+    {
+      "cycle": 13,
+      "id": 6,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.689
+    },
+    {
+      "cycle": 13,
+      "id": 7,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.676
+    },
+    {
+      "cycle": 13,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 26.0,
+        "received_at": 3824.198577532
+      },
+      "duration_ms": 1.463
+    },
+    {
+      "cycle": 13,
+      "id": 9,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.661
+    },
+    {
+      "cycle": 13,
+      "id": 10,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.679
+    },
+    {
+      "cycle": 13,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 26.0,
+        "received_at": 3824.231467843
+      },
+      "duration_ms": 1.536
+    },
+    {
+      "cycle": 13,
+      "id": 12,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.814
+    },
+    {
+      "cycle": 13,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 26.0,
+        "received_at": 3824.249040378
+      },
+      "duration_ms": 1.603
+    },
+    {
+      "cycle": 13,
+      "id": 14,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.76
+    },
+    {
+      "cycle": 14,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 26.0,
+        "received_at": 3824.2672908
+      },
+      "duration_ms": 1.611
+    },
+    {
+      "cycle": 14,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 19.5,
+        "received_at": 3824.268887507
+      },
+      "duration_ms": 1.463
+    },
+    {
+      "cycle": 14,
+      "id": 8,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.67
+    },
+    {
+      "cycle": 14,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 26.0,
+        "received_at": 3824.286077054
+      },
+      "duration_ms": 1.461
+    },
+    {
+      "cycle": 14,
+      "id": 10,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.893
+    },
+    {
+      "cycle": 14,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 26.0,
+        "received_at": 3824.303715509
+      },
+      "duration_ms": 1.692
+    },
+    {
+      "cycle": 14,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.2,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 19.5,
+        "received_at": 3824.305265255
+      },
+      "duration_ms": 1.47
+    },
+    {
+      "cycle": 14,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 19.5,
+        "received_at": 3824.306834835
+      },
+      "duration_ms": 1.53
+    },
+    {
+      "cycle": 14,
+      "id": 14,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.692
+    },
+    {
+      "cycle": 15,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 19.5,
+        "received_at": 3824.367388961
+      },
+      "duration_ms": 1.489
+    },
+    {
+      "cycle": 15,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 26.0,
+        "received_at": 3824.368851783
+      },
+      "duration_ms": 1.396
+    },
+    {
+      "cycle": 15,
+      "id": 8,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.696
+    },
+    {
+      "cycle": 15,
+      "id": 9,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.752
+    },
+    {
+      "cycle": 15,
+      "id": 10,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.8
+    },
+    {
+      "cycle": 15,
+      "id": 11,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.704
+    },
+    {
+      "cycle": 15,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 19.5,
+        "received_at": 3824.433533605
+      },
+      "duration_ms": 1.509
+    },
+    {
+      "cycle": 15,
+      "id": 13,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.687
+    },
+    {
+      "cycle": 15,
+      "id": 14,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.792
+    },
+    {
+      "cycle": 16,
+      "id": 6,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.712
+    },
+    {
+      "cycle": 16,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 19.5,
+        "received_at": 3824.48325293
+      },
+      "duration_ms": 1.547
+    },
+    {
+      "cycle": 16,
+      "id": 8,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.805
+    },
+    {
+      "cycle": 16,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 19.5,
+        "received_at": 3824.500678452
+      },
+      "duration_ms": 1.617
+    },
+    {
+      "cycle": 16,
+      "id": 10,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.706
+    },
+    {
+      "cycle": 16,
+      "id": 11,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.676
+    },
+    {
+      "cycle": 16,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.2,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 19.5,
+        "received_at": 3824.533746691
+      },
+      "duration_ms": 1.501
+    },
+    {
+      "cycle": 16,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 19.5,
+        "received_at": 3824.535246266
+      },
+      "duration_ms": 1.439
+    },
+    {
+      "cycle": 16,
+      "id": 14,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.664
+    },
+    {
+      "cycle": 17,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 13.0,
+        "received_at": 3824.567740751
+      },
+      "duration_ms": 1.629
+    },
+    {
+      "cycle": 17,
+      "id": 7,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.684
+    },
+    {
+      "cycle": 17,
+      "id": 8,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.763
+    },
+    {
+      "cycle": 17,
+      "id": 9,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.788
+    },
+    {
+      "cycle": 17,
+      "id": 10,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.682
+    },
+    {
+      "cycle": 17,
+      "id": 11,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 15.67
+    },
+    {
+      "cycle": 17,
+      "id": 12,
+      "error": {
+        "type": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      },
+      "duration_ms": 16.091
+    },
+    {
+      "cycle": 17,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 19.5,
+        "received_at": 3824.665653866
+      },
+      "duration_ms": 2.978
+    },
+    {
+      "cycle": 17,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 26.0,
+        "received_at": 3824.668445625
+      },
+      "duration_ms": 2.706
+    },
+    {
+      "cycle": 18,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 26.0,
+        "received_at": 3824.670994698
+      },
+      "duration_ms": 2.31
+    },
+    {
+      "cycle": 18,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 19.5,
+        "received_at": 3824.67342272
+      },
+      "duration_ms": 2.374
+    },
+    {
+      "cycle": 18,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 26.0,
+        "received_at": 3824.675722107
+      },
+      "duration_ms": 2.237
+    },
+    {
+      "cycle": 18,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 19.5,
+        "received_at": 3824.678023244
+      },
+      "duration_ms": 2.261
+    },
+    {
+      "cycle": 18,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 26.0,
+        "received_at": 3824.680439016
+      },
+      "duration_ms": 2.467
+    },
+    {
+      "cycle": 18,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 19.5,
+        "received_at": 3824.682907291
+      },
+      "duration_ms": 2.411
+    },
+    {
+      "cycle": 18,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 19.5,
+        "received_at": 3824.685333271
+      },
+      "duration_ms": 2.256
+    },
+    {
+      "cycle": 18,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 26.0,
+        "received_at": 3824.687643451
+      },
+      "duration_ms": 2.262
+    },
+    {
+      "cycle": 18,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 26.0,
+        "received_at": 3824.690054555
+      },
+      "duration_ms": 2.486
+    },
+    {
+      "cycle": 19,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 19.5,
+        "received_at": 3824.771341085
+      },
+      "duration_ms": 2.419
+    },
+    {
+      "cycle": 19,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 26.0,
+        "received_at": 3824.773814903
+      },
+      "duration_ms": 2.397
+    },
+    {
+      "cycle": 19,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 19.5,
+        "received_at": 3824.776128874
+      },
+      "duration_ms": 2.373
+    },
+    {
+      "cycle": 19,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 19.5,
+        "received_at": 3824.778571481
+      },
+      "duration_ms": 2.266
+    },
+    {
+      "cycle": 19,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 26.0,
+        "received_at": 3824.780769944
+      },
+      "duration_ms": 2.131
+    },
+    {
+      "cycle": 19,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 19.5,
+        "received_at": 3824.783182506
+      },
+      "duration_ms": 2.463
+    },
+    {
+      "cycle": 19,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 19.5,
+        "received_at": 3824.785671783
+      },
+      "duration_ms": 2.342
+    },
+    {
+      "cycle": 19,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 19.5,
+        "received_at": 3824.78802805
+      },
+      "duration_ms": 2.303
+    },
+    {
+      "cycle": 19,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 19.5,
+        "received_at": 3824.790290392
+      },
+      "duration_ms": 2.204
+    },
+    {
+      "cycle": 20,
+      "id": 6,
+      "feedback": {
+        "servo_id": 6,
+        "position_ticks": 2299,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2299,
+        "current_ma": 26.0,
+        "received_at": 3824.871706724
+      },
+      "duration_ms": 2.457
+    },
+    {
+      "cycle": 20,
+      "id": 7,
+      "feedback": {
+        "servo_id": 7,
+        "position_ticks": 4023,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4023,
+        "current_ma": 19.5,
+        "received_at": 3824.874109661
+      },
+      "duration_ms": 2.327
+    },
+    {
+      "cycle": 20,
+      "id": 8,
+      "feedback": {
+        "servo_id": 8,
+        "position_ticks": 67,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 67,
+        "current_ma": 19.5,
+        "received_at": 3824.876578811
+      },
+      "duration_ms": 2.394
+    },
+    {
+      "cycle": 20,
+      "id": 9,
+      "feedback": {
+        "servo_id": 9,
+        "position_ticks": 678,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 678,
+        "current_ma": 19.5,
+        "received_at": 3824.878891616
+      },
+      "duration_ms": 2.24
+    },
+    {
+      "cycle": 20,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 26.0,
+        "received_at": 3824.881209088
+      },
+      "duration_ms": 2.269
+    },
+    {
+      "cycle": 20,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 334,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 334,
+        "current_ma": 26.0,
+        "received_at": 3824.883495641
+      },
+      "duration_ms": 2.225
+    },
+    {
+      "cycle": 20,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2810,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2810,
+        "current_ma": 19.5,
+        "received_at": 3824.885788319
+      },
+      "duration_ms": 2.373
+    },
+    {
+      "cycle": 20,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 4089,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 4089,
+        "current_ma": 26.0,
+        "received_at": 3824.888391647
+      },
+      "duration_ms": 2.427
+    },
+    {
+      "cycle": 20,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3615,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3615,
+        "current_ma": 26.0,
+        "received_at": 3824.890664782
+      },
+      "duration_ms": 2.202
+    }
+  ]
+}

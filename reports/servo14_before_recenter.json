@@ -1,0 +1,508 @@
+{
+  "type": "dump",
+  "id": 14,
+  "rows": [
+    {
+      "addr": 0,
+      "name": "\u56fa\u4ef6\u4e3b\u7248\u672c",
+      "area": "\u53ea\u8bfb",
+      "size": 1,
+      "value": 3
+    },
+    {
+      "addr": 1,
+      "name": "\u56fa\u4ef6\u6b21\u7248\u672c",
+      "area": "\u53ea\u8bfb",
+      "size": 1,
+      "value": 46
+    },
+    {
+      "addr": 2,
+      "name": "END \u5b57\u8282\u5e8f(0=\u5c0f\u7aef)",
+      "area": "\u53ea\u8bfb",
+      "size": 1,
+      "value": 0
+    },
+    {
+      "addr": 3,
+      "name": "\u8235\u673a\u4e3b\u7248\u672c",
+      "area": "\u53ea\u8bfb",
+      "size": 1,
+      "value": 10
+    },
+    {
+      "addr": 4,
+      "name": "\u8235\u673a\u6b21\u7248\u672c",
+      "area": "\u53ea\u8bfb",
+      "size": 1,
+      "value": 31
+    },
+    {
+      "addr": 5,
+      "name": "ID",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 14
+    },
+    {
+      "addr": 6,
+      "name": "\u6ce2\u7279\u7387(0=1M)",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 0
+    },
+    {
+      "addr": 7,
+      "name": "\u9884\u7559\u5730\u5740\uff08STS \u65e0\u5e94\u7b54\u5ef6\u65f6\u5bc4\u5b58\u5668\uff09",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 253
+    },
+    {
+      "addr": 8,
+      "name": "\u5e94\u7b54\u72b6\u6001\u7ea7\u522b",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 1
+    },
+    {
+      "addr": 9,
+      "name": "\u6700\u5c0f\u89d2\u5ea6\u9650\u5236",
+      "area": "EEPROM",
+      "size": 2,
+      "value": 0
+    },
+    {
+      "addr": 11,
+      "name": "\u6700\u5927\u89d2\u5ea6\u9650\u5236",
+      "area": "EEPROM",
+      "size": 2,
+      "value": 4095
+    },
+    {
+      "addr": 13,
+      "name": "\u6700\u9ad8\u6e29\u5ea6\u4e0a\u9650",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 80
+    },
+    {
+      "addr": 14,
+      "name": "\u6700\u9ad8\u8f93\u5165\u7535\u538b",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 100
+    },
+    {
+      "addr": 15,
+      "name": "\u6700\u4f4e\u8f93\u5165\u7535\u538b",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 40
+    },
+    {
+      "addr": 16,
+      "name": "\u6700\u5927\u626d\u77e9",
+      "area": "EEPROM",
+      "size": 2,
+      "value": 1000
+    },
+    {
+      "addr": 18,
+      "name": "\u76f8\u4f4d",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 52
+    },
+    {
+      "addr": 19,
+      "name": "\u5378\u8f7d\u6761\u4ef6",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 4
+    },
+    {
+      "addr": 20,
+      "name": "LED\u62a5\u8b66\u6761\u4ef6",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 4
+    },
+    {
+      "addr": 21,
+      "name": "\u4f4d\u7f6e\u73afP",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 32
+    },
+    {
+      "addr": 22,
+      "name": "\u4f4d\u7f6e\u73afD",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 40
+    },
+    {
+      "addr": 23,
+      "name": "\u4f4d\u7f6e\u73afI",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 0
+    },
+    {
+      "addr": 24,
+      "name": "\u6700\u5c0f\u542f\u52a8\u626d\u77e9",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 12
+    },
+    {
+      "addr": 25,
+      "name": "\u79ef\u5206\u9650\u5236\u503c",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 0
+    },
+    {
+      "addr": 26,
+      "name": "\u6b63\u5411\u4e0d\u7075\u654f\u533a",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 1
+    },
+    {
+      "addr": 27,
+      "name": "\u8d1f\u5411\u4e0d\u7075\u654f\u533a",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 1
+    },
+    {
+      "addr": 28,
+      "name": "\u4fdd\u62a4\u7535\u6d41",
+      "area": "EEPROM",
+      "size": 2,
+      "value": 500
+    },
+    {
+      "addr": 30,
+      "name": "\u89d2\u5ea6\u5206\u8fa8\u7387",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 1
+    },
+    {
+      "addr": 31,
+      "name": "\u4f4d\u7f6e\u504f\u79fb",
+      "area": "EEPROM",
+      "size": 2,
+      "value": 0
+    },
+    {
+      "addr": 33,
+      "name": "\u8fd0\u884c\u6a21\u5f0f",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 4
+    },
+    {
+      "addr": 34,
+      "name": "\u4fdd\u6301\u626d\u77e9",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 200
+    },
+    {
+      "addr": 35,
+      "name": "\u4fdd\u62a4\u65f6\u95f4",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 50
+    },
+    {
+      "addr": 36,
+      "name": "\u8fc7\u8f7d\u626d\u77e9",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 255
+    },
+    {
+      "addr": 37,
+      "name": "\u901f\u5ea6\u73afP",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 60
+    },
+    {
+      "addr": 38,
+      "name": "\u8fc7\u6d41\u4fdd\u62a4\u65f6\u95f4",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 200
+    },
+    {
+      "addr": 39,
+      "name": "\u901f\u5ea6\u73afI",
+      "area": "EEPROM",
+      "size": 1,
+      "value": 20
+    },
+    {
+      "addr": 40,
+      "name": "\u626d\u77e9\u5f00\u5173",
+      "area": "SRAM",
+      "size": 1,
+      "value": 0
+    },
+    {
+      "addr": 41,
+      "name": "\u52a0\u901f\u5ea6",
+      "area": "SRAM",
+      "size": 1,
+      "value": 0
+    },
+    {
+      "addr": 42,
+      "name": "\u76ee\u6807\u4f4d\u7f6e",
+      "area": "SRAM",
+      "size": 2,
+      "value": 4013
+    },
+    {
+      "addr": 44,
+      "name": "PWM\u5f00\u73af\u901f\u5ea6",
+      "area": "SRAM",
+      "size": 2,
+      "value": 500
+    },
+    {
+      "addr": 46,
+      "name": "\u8fd0\u884c\u901f\u5ea6",
+      "area": "SRAM",
+      "size": 2,
+      "value": 0
+    },
+    {
+      "addr": 48,
+      "name": "\u8f6c\u77e9\u9650\u5236",
+      "area": "SRAM",
+      "size": 2,
+      "value": 1000
+    },
+    {
+      "addr": 55,
+      "name": "\u9501\u6807\u5fd7",
+      "area": "SRAM",
+      "size": 1,
+      "value": 1
+    },
+    {
+      "addr": 56,
+      "name": "\u5f53\u524d\u4f4d\u7f6e",
+      "area": "\u53cd\u9988",
+      "size": 2,
+      "value": 4353
+    },
+    {
+      "addr": 58,
+      "name": "\u5f53\u524d\u901f\u5ea6",
+      "area": "\u53cd\u9988",
+      "size": 2,
+      "value": 0
+    },
+    {
+      "addr": 60,
+      "name": "\u5f53\u524d\u8d1f\u8f7d",
+      "area": "\u53cd\u9988",
+      "size": 2,
+      "value": 0
+    },
+    {
+      "addr": 62,
+      "name": "\u5f53\u524d\u7535\u538b(0.1V)",
+      "area": "\u53cd\u9988",
+      "size": 1,
+      "value": 74
+    },
+    {
+      "addr": 63,
+      "name": "\u5f53\u524d\u6e29\u5ea6(\u00b0C)",
+      "area": "\u53cd\u9988",
+      "size": 1,
+      "value": 34
+    },
+    {
+      "addr": 64,
+      "name": "\u5f02\u6b65\u5199\u6807\u5fd7",
+      "area": "\u53cd\u9988",
+      "size": 1,
+      "value": 0
+    },
+    {
+      "addr": 65,
+      "name": "\u8235\u673a\u72b6\u6001\u4f4d",
+      "area": "\u53cd\u9988",
+      "size": 1,
+      "value": 0
+    },
+    {
+      "addr": 66,
+      "name": "\u79fb\u52a8\u6807\u5fd7",
+      "area": "\u53cd\u9988",
+      "size": 1,
+      "value": 0
+    },
+    {
+      "addr": 67,
+      "name": "\u76ee\u6807\u4f4d\u7f6e(\u56de\u8bfb)",
+      "area": "\u53cd\u9988",
+      "size": 2,
+      "value": 4353
+    },
+    {
+      "addr": 69,
+      "name": "\u5f53\u524d\u7535\u6d41(6.5mA)",
+      "area": "\u53cd\u9988",
+      "size": 2,
+      "value": 3
+    },
+    {
+      "addr": 80,
+      "name": "\u79fb\u52a8\u901f\u5ea6\u9600\u503c",
+      "area": "\u51fa\u5382",
+      "size": 1,
+      "value": 1
+    },
+    {
+      "addr": 81,
+      "name": "DTs(ms)",
+      "area": "\u51fa\u5382",
+      "size": 1,
+      "value": 10
+    },
+    {
+      "addr": 82,
+      "name": "\u901f\u5ea6\u5355\u4f4d\u7cfb\u6570",
+      "area": "\u51fa\u5382",
+      "size": 1,
+      "value": 60
+    },
+    {
+      "addr": 83,
+      "name": "\u6700\u5c0f\u901f\u5ea6\u9650\u5236",
+      "area": "\u51fa\u5382",
+      "size": 1,
+      "value": 20
+    },
+    {
+      "addr": 84,
+      "name": "\u6700\u5927\u901f\u5ea6\u9650\u5236",
+      "area": "\u51fa\u5382",
+      "size": 1,
+      "value": 0
+    },
+    {
+      "addr": 85,
+      "name": "\u52a0\u901f\u5ea6\u9650\u5236",
+      "area": "\u51fa\u5382",
+      "size": 1,
+      "value": 0
+    },
+    {
+      "addr": 86,
+      "name": "\u52a0\u901f\u5ea6\u500d\u6570",
+      "area": "\u51fa\u5382",
+      "size": 1,
+      "value": 0
+    }
+  ],
+  "raw": [
+    3,
+    46,
+    0,
+    10,
+    31,
+    14,
+    0,
+    253,
+    1,
+    0,
+    0,
+    255,
+    15,
+    80,
+    100,
+    40,
+    232,
+    3,
+    52,
+    4,
+    4,
+    32,
+    40,
+    0,
+    12,
+    0,
+    1,
+    1,
+    244,
+    1,
+    1,
+    0,
+    0,
+    4,
+    200,
+    50,
+    255,
+    60,
+    200,
+    20,
+    0,
+    0,
+    173,
+    15,
+    244,
+    1,
+    0,
+    0,
+    232,
+    3,
+    32,
+    40,
+    0,
+    0,
+    0,
+    1,
+    1,
+    17,
+    0,
+    0,
+    0,
+    0,
+    74,
+    34,
+    0,
+    0,
+    0,
+    1,
+    17,
+    3,
+    0,
+    0,
+    0,
+    243,
+    7,
+    5,
+    60,
+    60,
+    2,
+    60,
+    1,
+    10,
+    60,
+    20,
+    0,
+    0,
+    0
+  ]
+}

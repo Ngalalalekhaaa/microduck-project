@@ -1,0 +1,224 @@
+{
+  "native/alpha0_vx0.2": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "right_hip_yaw",
+      "right_knee"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 1.4000000000000001
+  },
+  "native/alpha0_vx0.3": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "right_hip_yaw",
+      "right_knee"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 1.1
+  },
+  "native/alpha0.45_vx0.3": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "right_hip_yaw"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 1.18
+  },
+  "native/alpha0_vx0": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "right_hip_yaw",
+      "right_knee"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 0.16
+  },
+  "native/alpha0_vx0.1": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "right_hip_yaw",
+      "right_knee"
+    ],
+    "max_jump_joint": "right_hip_roll",
+    "max_jump_time_s": 5.16
+  },
+  "native/alpha0.45_vx0.1": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "right_hip_yaw"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 2.04
+  },
+  "native/alpha0.45_vx0": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "right_hip_yaw"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 0.18
+  },
+  "native/alpha0.45_vx0.2": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "right_hip_yaw"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 1.42
+  },
+  "microduck/alpha0_vx0.2": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "left_hip_roll",
+      "left_hip_pitch",
+      "left_knee",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_pitch",
+      "right_knee",
+      "right_ankle"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 1.0
+  },
+  "microduck/alpha0_vx0.3": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "left_hip_roll",
+      "left_knee",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_pitch",
+      "right_knee"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 1.06
+  },
+  "microduck/alpha0.45_vx0.3": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "left_hip_pitch",
+      "left_knee",
+      "left_ankle",
+      "neck_pitch",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_pitch",
+      "right_knee",
+      "right_ankle"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 0.92
+  },
+  "microduck/alpha0_vx0": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "left_hip_roll",
+      "left_hip_pitch",
+      "left_knee",
+      "left_ankle",
+      "neck_pitch",
+      "head_pitch",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_roll",
+      "right_hip_pitch",
+      "right_knee",
+      "right_ankle"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 1.46
+  },
+  "microduck/alpha0_vx0.1": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "left_hip_roll",
+      "left_hip_pitch",
+      "left_knee",
+      "left_ankle",
+      "neck_pitch",
+      "head_yaw",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_roll",
+      "right_hip_pitch",
+      "right_knee",
+      "right_ankle"
+    ],
+    "max_jump_joint": "right_knee",
+    "max_jump_time_s": 1.28
+  },
+  "microduck/alpha0.45_vx0.1": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "left_hip_roll",
+      "left_hip_pitch",
+      "left_knee",
+      "left_ankle",
+      "neck_pitch",
+      "head_pitch",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_roll",
+      "right_hip_pitch",
+      "right_knee",
+      "right_ankle"
+    ],
+    "max_jump_joint": "left_knee",
+    "max_jump_time_s": 1.32
+  },
+  "microduck/alpha0.45_vx0": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "left_hip_roll",
+      "left_hip_pitch",
+      "left_knee",
+      "left_ankle",
+      "neck_pitch",
+      "head_pitch",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_roll",
+      "right_hip_pitch",
+      "right_knee",
+      "right_ankle"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 2.72
+  },
+  "microduck/alpha0.45_vx0.2": {
+    "envs_outside_current_target_bounds": 16,
+    "violating_joints": [
+      "left_hip_yaw",
+      "left_hip_pitch",
+      "left_knee",
+      "left_ankle",
+      "neck_pitch",
+      "head_pitch",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_roll",
+      "right_hip_pitch",
+      "right_knee",
+      "right_ankle"
+    ],
+    "max_jump_joint": "right_hip_yaw",
+    "max_jump_time_s": 0.86
+  }
+}

@@ -1,0 +1,1964 @@
+{
+  "read_only": true,
+  "port": "/dev/ttyS2",
+  "baudrate": 1000000,
+  "scan_ids": [
+    0,
+    253
+  ],
+  "found_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "non_timeout_errors": [],
+  "readings": [
+    {
+      "id": 1,
+      "trials": [
+        {
+          "identity": {
+            "id": 1,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 1,
+            "position_ticks": 1252,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1252,
+            "current_ma": 26.0,
+            "received_at": 3012.781093981
+          }
+        },
+        {
+          "identity": {
+            "id": 1,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 1,
+            "position_ticks": 1252,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1252,
+            "current_ma": 26.0,
+            "received_at": 3012.888913433
+          }
+        },
+        {
+          "identity": {
+            "id": 1,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 1,
+            "position_ticks": 1252,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1252,
+            "current_ma": 26.0,
+            "received_at": 3012.99742126
+          }
+        },
+        {
+          "identity": {
+            "id": 1,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 1,
+            "position_ticks": 1252,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1252,
+            "current_ma": 26.0,
+            "received_at": 3013.105327342
+          }
+        },
+        {
+          "identity": {
+            "id": 1,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 1,
+            "position_ticks": 1252,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1252,
+            "current_ma": 19.5,
+            "received_at": 3013.213669785
+          }
+        }
+      ],
+      "configuration": {
+        "id": 1,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1,
+        "register_profile": "hls_2",
+        "position_min": 0,
+        "position_max": 4095,
+        "phase": 52,
+        "angle_resolution": 1,
+        "mode": 4,
+        "eeprom_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "ram_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "motion_profile": {
+          "acceleration_raw": 0,
+          "goal_position_ticks": 0,
+          "goal_current_raw": 500,
+          "register_44_raw": 500,
+          "goal_speed_raw": 0,
+          "torque_limit_raw": 1000,
+          "registers_41_49_hex": "000000f4010000e803",
+          "motion_semantics_confirmed": false
+        },
+        "torque": 0,
+        "lock": 1,
+        "velocity_rpm_per_unit_nominal": 0.732,
+        "velocity_unit_confirmed": false
+      }
+    },
+    {
+      "id": 2,
+      "trials": [
+        {
+          "identity": {
+            "id": 2,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 2,
+            "position_ticks": 3736,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.4,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 3736,
+            "current_ma": 26.0,
+            "received_at": 3013.341651334
+          }
+        },
+        {
+          "identity": {
+            "id": 2,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 2,
+            "position_ticks": 3736,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 3736,
+            "current_ma": 26.0,
+            "received_at": 3013.449925498
+          }
+        },
+        {
+          "identity": {
+            "id": 2,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 2,
+            "position_ticks": 3736,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.4,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 3736,
+            "current_ma": 26.0,
+            "received_at": 3013.557986732
+          }
+        },
+        {
+          "identity": {
+            "id": 2,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 2,
+            "position_ticks": 3736,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.4,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 3736,
+            "current_ma": 26.0,
+            "received_at": 3013.665661484
+          }
+        },
+        {
+          "identity": {
+            "id": 2,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 2,
+            "position_ticks": 3736,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.4,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 3736,
+            "current_ma": 26.0,
+            "received_at": 3013.773813723
+          }
+        }
+      ],
+      "configuration": {
+        "id": 2,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1,
+        "register_profile": "hls_2",
+        "position_min": 0,
+        "position_max": 4095,
+        "phase": 52,
+        "angle_resolution": 1,
+        "mode": 4,
+        "eeprom_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "ram_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "motion_profile": {
+          "acceleration_raw": 0,
+          "goal_position_ticks": 0,
+          "goal_current_raw": 500,
+          "register_44_raw": 500,
+          "goal_speed_raw": 0,
+          "torque_limit_raw": 1000,
+          "registers_41_49_hex": "000000f4010000e803",
+          "motion_semantics_confirmed": false
+        },
+        "torque": 0,
+        "lock": 1,
+        "velocity_rpm_per_unit_nominal": 0.732,
+        "velocity_unit_confirmed": false
+      }
+    },
+    {
+      "id": 3,
+      "trials": [
+        {
+          "identity": {
+            "id": 3,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 3,
+            "position_ticks": 2927,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.4,
+            "temperature_c": 27,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 2927,
+            "current_ma": 19.5,
+            "received_at": 3013.901552286
+          }
+        },
+        {
+          "identity": {
+            "id": 3,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 3,
+            "position_ticks": 2927,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.4,
+            "temperature_c": 27,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 2927,
+            "current_ma": 19.5,
+            "received_at": 3014.009206328
+          }
+        },
+        {
+          "identity": {
+            "id": 3,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 3,
+            "position_ticks": 2927,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.4,
+            "temperature_c": 27,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 2927,
+            "current_ma": 26.0,
+            "received_at": 3014.117254145
+          }
+        },
+        {
+          "identity": {
+            "id": 3,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 3,
+            "position_ticks": 2927,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 27,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 2927,
+            "current_ma": 26.0,
+            "received_at": 3014.225070072
+          }
+        },
+        {
+          "identity": {
+            "id": 3,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 3,
+            "position_ticks": 2927,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.4,
+            "temperature_c": 27,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 2927,
+            "current_ma": 26.0,
+            "received_at": 3014.332695517
+          }
+        }
+      ],
+      "configuration": {
+        "id": 3,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1,
+        "register_profile": "hls_2",
+        "position_min": 0,
+        "position_max": 4095,
+        "phase": 52,
+        "angle_resolution": 1,
+        "mode": 4,
+        "eeprom_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "ram_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "motion_profile": {
+          "acceleration_raw": 0,
+          "goal_position_ticks": 0,
+          "goal_current_raw": 500,
+          "register_44_raw": 500,
+          "goal_speed_raw": 0,
+          "torque_limit_raw": 1000,
+          "registers_41_49_hex": "000000f4010000e803",
+          "motion_semantics_confirmed": false
+        },
+        "torque": 0,
+        "lock": 1,
+        "velocity_rpm_per_unit_nominal": 0.732,
+        "velocity_unit_confirmed": false
+      }
+    },
+    {
+      "id": 4,
+      "trials": [
+        {
+          "identity": {
+            "id": 4,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 4,
+            "position_ticks": 1553,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 26,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1553,
+            "current_ma": 26.0,
+            "received_at": 3014.460239498
+          }
+        },
+        {
+          "identity": {
+            "id": 4,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 4,
+            "position_ticks": 1553,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 26,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1553,
+            "current_ma": 26.0,
+            "received_at": 3014.568245287
+          }
+        },
+        {
+          "identity": {
+            "id": 4,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 4,
+            "position_ticks": 1553,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 26,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1553,
+            "current_ma": 26.0,
+            "received_at": 3014.675536159
+          }
+        },
+        {
+          "identity": {
+            "id": 4,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 4,
+            "position_ticks": 1553,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 26,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1553,
+            "current_ma": 26.0,
+            "received_at": 3014.78371025
+          }
+        },
+        {
+          "identity": {
+            "id": 4,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 4,
+            "position_ticks": 1553,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 26,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1553,
+            "current_ma": 32.5,
+            "received_at": 3014.891637869
+          }
+        }
+      ],
+      "configuration": {
+        "id": 4,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1,
+        "register_profile": "hls_2",
+        "position_min": 0,
+        "position_max": 4095,
+        "phase": 52,
+        "angle_resolution": 1,
+        "mode": 4,
+        "eeprom_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "ram_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "motion_profile": {
+          "acceleration_raw": 0,
+          "goal_position_ticks": 0,
+          "goal_current_raw": 500,
+          "register_44_raw": 500,
+          "goal_speed_raw": 0,
+          "torque_limit_raw": 1000,
+          "registers_41_49_hex": "000000f4010000e803",
+          "motion_semantics_confirmed": false
+        },
+        "torque": 0,
+        "lock": 1,
+        "velocity_rpm_per_unit_nominal": 0.732,
+        "velocity_unit_confirmed": false
+      }
+    },
+    {
+      "id": 5,
+      "trials": [
+        {
+          "identity": {
+            "id": 5,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 5,
+            "position_ticks": 1142,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 27,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1142,
+            "current_ma": 26.0,
+            "received_at": 3015.018387593
+          }
+        },
+        {
+          "identity": {
+            "id": 5,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 5,
+            "position_ticks": 1142,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 27,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1142,
+            "current_ma": 32.5,
+            "received_at": 3015.126010692
+          }
+        },
+        {
+          "identity": {
+            "id": 5,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 5,
+            "position_ticks": 1142,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 27,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1142,
+            "current_ma": 19.5,
+            "received_at": 3015.234539472
+          }
+        },
+        {
+          "identity": {
+            "id": 5,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 5,
+            "position_ticks": 1142,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 27,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1142,
+            "current_ma": 19.5,
+            "received_at": 3015.342248898
+          }
+        },
+        {
+          "identity": {
+            "id": 5,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 5,
+            "position_ticks": 1142,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 27,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1142,
+            "current_ma": 19.5,
+            "received_at": 3015.450360837
+          }
+        }
+      ],
+      "configuration": {
+        "id": 5,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1,
+        "register_profile": "hls_2",
+        "position_min": 0,
+        "position_max": 4095,
+        "phase": 52,
+        "angle_resolution": 1,
+        "mode": 4,
+        "eeprom_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "ram_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "motion_profile": {
+          "acceleration_raw": 0,
+          "goal_position_ticks": 0,
+          "goal_current_raw": 500,
+          "register_44_raw": 500,
+          "goal_speed_raw": 0,
+          "torque_limit_raw": 1000,
+          "registers_41_49_hex": "000000f4010000e803",
+          "motion_semantics_confirmed": false
+        },
+        "torque": 0,
+        "lock": 1,
+        "velocity_rpm_per_unit_nominal": 0.732,
+        "velocity_unit_confirmed": false
+      }
+    },
+    {
+      "id": 10,
+      "trials": [
+        {
+          "identity": {
+            "id": 10,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 10,
+            "position_ticks": 1900,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1900,
+            "current_ma": 26.0,
+            "received_at": 3015.578234393
+          }
+        },
+        {
+          "identity": {
+            "id": 10,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 10,
+            "position_ticks": 1900,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1900,
+            "current_ma": 26.0,
+            "received_at": 3015.685403024
+          }
+        },
+        {
+          "identity": {
+            "id": 10,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 10,
+            "position_ticks": 1900,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1900,
+            "current_ma": 19.5,
+            "received_at": 3015.793471502
+          }
+        },
+        {
+          "identity": {
+            "id": 10,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 10,
+            "position_ticks": 1900,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1900,
+            "current_ma": 26.0,
+            "received_at": 3015.901747076
+          }
+        },
+        {
+          "identity": {
+            "id": 10,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 10,
+            "position_ticks": 1900,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1900,
+            "current_ma": 19.5,
+            "received_at": 3016.009459116
+          }
+        }
+      ],
+      "configuration": {
+        "id": 10,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1,
+        "register_profile": "hls_2",
+        "position_min": 0,
+        "position_max": 4095,
+        "phase": 52,
+        "angle_resolution": 1,
+        "mode": 4,
+        "eeprom_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "ram_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "motion_profile": {
+          "acceleration_raw": 0,
+          "goal_position_ticks": 0,
+          "goal_current_raw": 500,
+          "register_44_raw": 500,
+          "goal_speed_raw": 0,
+          "torque_limit_raw": 1000,
+          "registers_41_49_hex": "000000f4010000e803",
+          "motion_semantics_confirmed": false
+        },
+        "torque": 0,
+        "lock": 1,
+        "velocity_rpm_per_unit_nominal": 0.732,
+        "velocity_unit_confirmed": false
+      }
+    },
+    {
+      "id": 11,
+      "trials": [
+        {
+          "identity": {
+            "id": 11,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 11,
+            "position_ticks": 362,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 362,
+            "current_ma": 13.0,
+            "received_at": 3016.136718676
+          }
+        },
+        {
+          "identity": {
+            "id": 11,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 11,
+            "position_ticks": 362,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 362,
+            "current_ma": 26.0,
+            "received_at": 3016.244762361
+          }
+        },
+        {
+          "identity": {
+            "id": 11,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 11,
+            "position_ticks": 362,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 362,
+            "current_ma": 13.0,
+            "received_at": 3016.352334671
+          }
+        },
+        {
+          "identity": {
+            "id": 11,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 11,
+            "position_ticks": 362,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 362,
+            "current_ma": 19.5,
+            "received_at": 3016.460631514
+          }
+        },
+        {
+          "identity": {
+            "id": 11,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 11,
+            "position_ticks": 362,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 362,
+            "current_ma": 19.5,
+            "received_at": 3016.568773181
+          }
+        }
+      ],
+      "configuration": {
+        "id": 11,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1,
+        "register_profile": "hls_2",
+        "position_min": 0,
+        "position_max": 4095,
+        "phase": 52,
+        "angle_resolution": 1,
+        "mode": 4,
+        "eeprom_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "ram_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "motion_profile": {
+          "acceleration_raw": 0,
+          "goal_position_ticks": 0,
+          "goal_current_raw": 500,
+          "register_44_raw": 500,
+          "goal_speed_raw": 0,
+          "torque_limit_raw": 1000,
+          "registers_41_49_hex": "000000f4010000e803",
+          "motion_semantics_confirmed": false
+        },
+        "torque": 0,
+        "lock": 1,
+        "velocity_rpm_per_unit_nominal": 0.732,
+        "velocity_unit_confirmed": false
+      }
+    },
+    {
+      "id": 12,
+      "trials": [
+        {
+          "identity": {
+            "id": 12,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 12,
+            "position_ticks": 2739,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 2739,
+            "current_ma": 19.5,
+            "received_at": 3016.694980899
+          }
+        },
+        {
+          "identity": {
+            "id": 12,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 12,
+            "position_ticks": 2739,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 2739,
+            "current_ma": 19.5,
+            "received_at": 3016.801967205
+          }
+        },
+        {
+          "identity": {
+            "id": 12,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 12,
+            "position_ticks": 2739,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 28,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 2739,
+            "current_ma": 19.5,
+            "received_at": 3016.908994638
+          }
+        },
+        {
+          "identity": {
+            "id": 12,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 12,
+            "position_ticks": 2739,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.2,
+            "temperature_c": 28,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 2739,
+            "current_ma": 19.5,
+            "received_at": 3017.017626626
+          }
+        },
+        {
+          "identity": {
+            "id": 12,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 12,
+            "position_ticks": 2739,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 2739,
+            "current_ma": 26.0,
+            "received_at": 3017.125438398
+          }
+        }
+      ],
+      "configuration": {
+        "id": 12,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1,
+        "register_profile": "hls_2",
+        "position_min": 0,
+        "position_max": 4095,
+        "phase": 52,
+        "angle_resolution": 1,
+        "mode": 4,
+        "eeprom_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "ram_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "motion_profile": {
+          "acceleration_raw": 0,
+          "goal_position_ticks": 0,
+          "goal_current_raw": 500,
+          "register_44_raw": 500,
+          "goal_speed_raw": 0,
+          "torque_limit_raw": 1000,
+          "registers_41_49_hex": "000000f4010000e803",
+          "motion_semantics_confirmed": false
+        },
+        "torque": 0,
+        "lock": 1,
+        "velocity_rpm_per_unit_nominal": 0.732,
+        "velocity_unit_confirmed": false
+      }
+    },
+    {
+      "id": 13,
+      "trials": [
+        {
+          "identity": {
+            "id": 13,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 13,
+            "position_ticks": 4050,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 4050,
+            "current_ma": 19.5,
+            "received_at": 3017.252881983
+          }
+        },
+        {
+          "identity": {
+            "id": 13,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 13,
+            "position_ticks": 4050,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 4050,
+            "current_ma": 19.5,
+            "received_at": 3017.361299862
+          }
+        },
+        {
+          "identity": {
+            "id": 13,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 13,
+            "position_ticks": 4050,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 4050,
+            "current_ma": 19.5,
+            "received_at": 3017.468783174
+          }
+        },
+        {
+          "identity": {
+            "id": 13,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 13,
+            "position_ticks": 4050,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 4050,
+            "current_ma": 19.5,
+            "received_at": 3017.576585589
+          }
+        },
+        {
+          "identity": {
+            "id": 13,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 13,
+            "position_ticks": 4050,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 4050,
+            "current_ma": 19.5,
+            "received_at": 3017.68403419
+          }
+        }
+      ],
+      "configuration": {
+        "id": 13,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1,
+        "register_profile": "hls_2",
+        "position_min": 0,
+        "position_max": 4095,
+        "phase": 52,
+        "angle_resolution": 1,
+        "mode": 4,
+        "eeprom_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "ram_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "motion_profile": {
+          "acceleration_raw": 0,
+          "goal_position_ticks": 0,
+          "goal_current_raw": 500,
+          "register_44_raw": 500,
+          "goal_speed_raw": 0,
+          "torque_limit_raw": 1000,
+          "registers_41_49_hex": "000000f4010000e803",
+          "motion_semantics_confirmed": false
+        },
+        "torque": 0,
+        "lock": 1,
+        "velocity_rpm_per_unit_nominal": 0.732,
+        "velocity_unit_confirmed": false
+      }
+    },
+    {
+      "id": 14,
+      "trials": [
+        {
+          "identity": {
+            "id": 14,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 14,
+            "position_ticks": 3553,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 3553,
+            "current_ma": 26.0,
+            "received_at": 3017.808672328
+          }
+        },
+        {
+          "identity": {
+            "id": 14,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 14,
+            "position_ticks": 3553,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 3553,
+            "current_ma": 26.0,
+            "received_at": 3017.916328025
+          }
+        },
+        {
+          "identity": {
+            "id": 14,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 14,
+            "position_ticks": 3553,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 3553,
+            "current_ma": 19.5,
+            "received_at": 3018.024078812
+          }
+        },
+        {
+          "identity": {
+            "id": 14,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 14,
+            "position_ticks": 3553,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 3553,
+            "current_ma": 19.5,
+            "received_at": 3018.131704757
+          }
+        },
+        {
+          "identity": {
+            "id": 14,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 14,
+            "position_ticks": 3553,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 29,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 3553,
+            "current_ma": 19.5,
+            "received_at": 3018.238725458
+          }
+        }
+      ],
+      "configuration": {
+        "id": 14,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1,
+        "register_profile": "hls_2",
+        "position_min": 0,
+        "position_max": 4095,
+        "phase": 52,
+        "angle_resolution": 1,
+        "mode": 4,
+        "eeprom_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "ram_gains": {
+          "p": 32,
+          "d": 40,
+          "i": 0
+        },
+        "motion_profile": {
+          "acceleration_raw": 0,
+          "goal_position_ticks": 0,
+          "goal_current_raw": 500,
+          "register_44_raw": 500,
+          "goal_speed_raw": 0,
+          "torque_limit_raw": 1000,
+          "registers_41_49_hex": "000000f4010000e803",
+          "motion_semantics_confirmed": false
+        },
+        "torque": 0,
+        "lock": 1,
+        "velocity_rpm_per_unit_nominal": 0.732,
+        "velocity_unit_confirmed": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-30",
+  "host": "10.128.165.157",
+  "source": "events received from remote bounded-motion program stdout",
+  "result": "completed",
+  "remote_exit_code": 0,
+  "servos": {
+    "5": {
+      "start_tick": 741,
+      "outward_target_tick": 855,
+      "outward_actual_tick": 854,
+      "return_target_tick": 741,
+      "return_actual_tick": 742,
+      "torque_off_verified": true
+    },
+    "14": {
+      "start_tick": 3975,
+      "outward_target_tick": 3861,
+      "outward_actual_tick": 3863,
+      "return_target_tick": 3975,
+      "return_actual_tick": 3972,
+      "torque_off_verified": true
+    }
+  },
+  "writes": "RAM goal position 42 and torque enable 40 only",
+  "full_remote_report": "/tmp/microduck_ankles_motion_20260930.json",
+  "full_report_download": "failed: SSH connection timeout after motion had completed; no local full report available"
+}

@@ -1,0 +1,132 @@
+{
+  "task": "Mjlab-Velocity-Flat-MicroDuck",
+  "checkpoint": "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_backlash_train/2026-09-27_22-26-07_backlash_20260927_201832/model_3999.pt",
+  "seed": 123,
+  "num_envs_per_command": 64,
+  "horizon_seconds": 10.0,
+  "pushes": false,
+  "randomization": "upstream startup/reset ranges; curricula disabled",
+  "metric_scope": "first episode only; tracking excludes first 1 second and failed steps",
+  "results": {
+    "stand": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        -9.87098173936829e-05,
+        -1.3068707858110429e-06,
+        -0.0011594239622354507
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.001157281804954294,
+        0.00027535327715843844,
+        0.006494146794636799
+      ],
+      "tilt_p95_deg": 2.184267520904541,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 28800
+    },
+    "forward": {
+      "command_vx_vy_wz": [
+        0.15,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        3.182312184435432e-06,
+        -1.1704022654157598e-05,
+        -0.0006813418585807085
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.1499968176912289,
+        0.00026259756742778054,
+        0.006087243392952691
+      ],
+      "tilt_p95_deg": 2.4339778423309326,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 28800
+    },
+    "backward": {
+      "command_vx_vy_wz": [
+        -0.15,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        -9.515522833680734e-05,
+        -6.239123990781081e-07,
+        -0.0008677690639160573
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.1499048446006871,
+        0.00036153351341775876,
+        0.005383809429111184
+      ],
+      "tilt_p95_deg": 1.899609088897705,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 28800
+    },
+    "left": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.1,
+        0.0
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        -6.562430644407868e-05,
+        -6.405080966942478e-06,
+        -0.001011595712043345
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.0010964055873200727,
+        0.10000640506817289,
+        0.006218919388844241
+      ],
+      "tilt_p95_deg": 2.0269992351531982,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 28800
+    },
+    "turn": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        -7.997175998752937e-05,
+        -7.969441867317073e-06,
+        0.002583731198683381
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.0006020103743165622,
+        0.0002839177914789304,
+        0.497416264603873
+      ],
+      "tilt_p95_deg": 2.212847948074341,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 28800
+    }
+  },
+  "onnx_input_shape": [
+    1,
+    61
+  ],
+  "onnx_output_shape": [
+    1,
+    14
+  ],
+  "onnx_max_abs_error_vs_checkpoint": 2.2351741790771484e-07,
+  "onnx_parity_pass": true
+}

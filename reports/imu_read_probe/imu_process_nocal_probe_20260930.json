@@ -1,0 +1,15 @@
+{
+  "no_servo_access": true,
+  "path": "ProcessImuReader",
+  "calibrate": false,
+  "purpose": "diagnostic only; no policy and no control changes",
+  "passed": true,
+  "count": 250,
+  "unique_timestamps": 250,
+  "max_sample_age_ms": 12.11287999990418,
+  "gravity_last": [
+    -0.07609367651883771,
+    0.06395985554901462,
+    -0.9950471794201498
+  ]
+}

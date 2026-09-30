@@ -1,0 +1,477 @@
+"""Foreground 50 Hz controller with measured inputs and fail-stop checks."""
+from __future__ import annotations
+
+import dataclasses
+import json
+import math
+import select
+import signal
+import sys
+import threading
+import time
+from datetime import datetime
+from pathlib import Path
+
+import numpy as np
+
+from .config import ROOT, calibration_arrays, require_calibration
+from .policy import (HOME, JOINT_NAMES, JOINT_LIMITS, OnnxPolicy, build_obs61,
+                     ticks_to_q, q_to_ticks, action_to_targets)
+from .servo import ServoBus
+from .imu import ImuConfig, open_imu
+from .homing import (plan_home, check_servo_limits, validate_reference_calibration,
+                     HOME_TRACKING_LIMIT_RAD)
+
+
+class StopRequested(RuntimeError):
+    pass
+
+
+def json_default(value):
+    if isinstance(value, np.ndarray):
+        return value.tolist()
+    if isinstance(value, np.generic):
+        return value.item()
+    if dataclasses.is_dataclass(value):
+        return dataclasses.asdict(value)
+    raise TypeError(type(value).__name__)
+
+
+def log_path(prefix):
+    path = ROOT / "logs" / f"{prefix}_{datetime.now().strftime('%Y%m%d_%H%M%S_%f')}.jsonl"
+    path.parent.mkdir(exist_ok=True)
+    return path
+
+
+class ImuReader:
+    """Continuously integrate the IMU at its ODR; controller consumes latest state."""
+    def __init__(self, cfg, *, calibrate=True):
+        self.imu = open_imu(ImuConfig.from_dict(cfg["imu"]))
+        self.stop = threading.Event()
+        self.lock = threading.Lock()
+        self.state = None
+        self.error = None
+        self.thread = None
+        try:
+            self.imu.initialize()
+            if calibrate:
+                print("保持机身静止约2秒，测量陀螺仪偏置……", flush=True)
+                self.imu.calibrate_gyro(sample_count=240)
+            self.thread = threading.Thread(target=self._loop, name="imu-reader", daemon=True)
+            self.thread.start()
+            deadline = time.monotonic() + 2
+            while self.state is None and self.error is None and time.monotonic() < deadline:
+                time.sleep(0.005)
+            self.latest(0.2)
+        except BaseException:
+            self.close()
+            raise
+
+    def _loop(self):
+        try:
+            while not self.stop.is_set():
+                value = self.imu.read_state(timeout_s=0.05)
+                with self.lock:
+                    self.state = value
+        except Exception as exc:
+            self.error = exc
+
+    def latest(self, max_age):
+        if self.error is not None:
+            raise StopRequested(f"IMU失效: {self.error}")
+        with self.lock:
+            value = self.state
+        if value is None or time.monotonic() - value.timestamp > max_age:
+            raise StopRequested("IMU数据过期；停止发送动作")
+        if not np.all(np.isfinite(value.base_ang_vel)) or not np.all(np.isfinite(value.projected_gravity)):
+            raise StopRequested("IMU输出包含非有限值")
+        return value
+
+    def close(self):
+        self.stop.set()
+        if self.thread is not None:
+            self.thread.join(timeout=0.3)
+        self.imu.close()
+
+
+def check_feedback(feedback, cfg):
+    ids = [j["id"] for j in cfg["joints"]]
+    if set(feedback) != set(ids):
+        raise StopRequested("没有收到完整14颗舵机反馈")
+    lo, hi = cfg["control"]["servo_voltage_range"]
+    now = time.monotonic()
+    for sid, value in feedback.items():
+        if now - value.received_at > cfg["control"]["max_cycle_s"]:
+            raise StopRequested(f"舵机{sid}反馈过期")
+        if value.status:
+            raise StopRequested(f"舵机{sid}报告状态错误0x{value.status:02x}")
+        if not lo <= value.voltage_v <= hi:
+            raise StopRequested(f"舵机{sid}电压{value.voltage_v:.1f}V超出配置范围{lo}..{hi}V")
+        if value.temperature_c >= cfg["control"]["servo_max_temperature_c"]:
+            raise StopRequested(f"舵机{sid}温度{value.temperature_c}°C过高")
+        if not 0 <= value.position_ticks <= 4095:
+            raise StopRequested(f"舵机{sid}不是单圈0..4095读数；拒绝取模")
+
+
+def check_posture(q, state, cfg):
+    q = np.asarray(q, dtype=float)
+    gravity = np.asarray(state.projected_gravity, dtype=float)
+    gyro = np.asarray(state.base_ang_vel, dtype=float)
+    if (q.shape != (14,) or not np.all(np.isfinite(q))
+            or gravity.shape != (3,) or not np.all(np.isfinite(gravity))
+            or gyro.shape != (3,) or not np.all(np.isfinite(gyro))
+            or not 0.95 <= np.linalg.norm(gravity) <= 1.05):
+        raise StopRequested("姿态或关节数据不是有效有限值/单位重力向量")
+    tilt = math.degrees(math.acos(float(np.clip(-gravity[2], -1, 1))))
+    if tilt > cfg["control"]["tilt_limit_deg"]:
+        raise StopRequested(f"机身倾斜{tilt:.1f}°超过阈值")
+    if np.any(q < JOINT_LIMITS[:, 0] - 0.12) or np.any(q > JOINT_LIMITS[:, 1] + 0.12):
+        raise StopRequested("测得关节角超出模型机械范围；检查零位/方向/装配")
+    return tilt
+
+
+def validate_targets(target, previous_target, cfg):
+    target = np.asarray(target, dtype=float)
+    if target.shape != (14,) or not np.all(np.isfinite(target)):
+        raise StopRequested("策略目标不是14个有限角度")
+    # Initial physical trials deliberately reject targets outside the anatomical
+    # model limits. Do not silently clip a policy trained with target overshoot.
+    limits = np.asarray(cfg.get("target_limits_rad", JOINT_LIMITS), dtype=float)
+    if limits.shape != (14, 2) or not np.all(np.isfinite(limits)) or np.any(limits[:, 0] >= limits[:, 1]):
+        raise StopRequested("目标角度限制配置无效")
+    bad = np.flatnonzero((target < limits[:, 0]) | (target > limits[:, 1]))
+    if len(bad):
+        raise StopRequested("策略目标超出首次试机角度范围: " + ", ".join(JOINT_NAMES[i] for i in bad))
+    if np.max(np.abs(target - previous_target)) > cfg["control"]["max_target_jump_rad"]:
+        raise StopRequested("单周期目标变化过大，停止；没有自动缩放/滤波策略")
+    zero, direction = calibration_arrays(cfg)
+    return q_to_ticks(target, zero, direction)
+
+
+class Controller:
+    def __init__(self, cfg, *, bus=None, imu_reader=None, policy=None):
+        self.cfg = cfg
+        self.bus = bus
+        self.imu = imu_reader
+        self.policy = policy
+        self.stop = threading.Event()
+        self.enabled = False
+        self.heartbeat = 0.0
+        self.ids = [j["id"] for j in cfg["joints"]]
+        self.old_gains = {}
+        self.watchdog = None
+        self._signals = {}
+        self.reason = None
+        self.session = {}
+        self.from_pose = None
+        self.move_seconds = None
+
+    def _home_plan(self, q):
+        try:
+            return plan_home(self.cfg, q, from_pose=self.from_pose, move_seconds=self.move_seconds)
+        except ValueError as exc:
+            raise StopRequested(str(exc)) from exc
+
+    def _check_home_feedback(self, q, previous_q, previous_target):
+        if np.max(np.abs(q - previous_q)) > 0.12:
+            raise StopRequested("回HOME反馈角度跳变超过0.12rad；停止，检查跨圈/方向/支撑")
+        error = np.abs(q - previous_target)
+        if np.max(error) > HOME_TRACKING_LIMIT_RAD:
+            index = int(np.argmax(error))
+            raise StopRequested(f"回HOME跟踪误差超过10°：{JOINT_NAMES[index]} "
+                                f"{np.rad2deg(error[index]):.2f}°；检查卡住、方向和速度限制")
+
+    def _watchdog(self):
+        while not self.stop.wait(0.02):
+            if self.enabled and time.monotonic() - self.heartbeat > 0.15:
+                self.reason = "控制循环超过150ms未完成，软件看门狗尝试卸力"
+                self.stop.set()
+                try:
+                    self.bus.set_torque(self.ids, False, verify=False)
+                except Exception:
+                    pass
+                return
+
+    def _install_signals(self):
+        if threading.current_thread() is not threading.main_thread():
+            return
+        def stop(signum, frame):
+            self.reason = f"收到停止信号{signum}"
+            self.stop.set()
+        for sig in (signal.SIGINT, signal.SIGTERM, signal.SIGHUP):
+            self._signals[sig] = signal.signal(sig, stop)
+
+    def _check_stop(self):
+        if self.stop.is_set():
+            raise StopRequested(self.reason or "已停止")
+        if sys.stdin.isatty() and select.select([sys.stdin], [], [], 0)[0]:
+            if sys.stdin.readline().strip().lower() in ("q", "stop", "exit"):
+                raise StopRequested("用户输入停止")
+
+    def _read(self, *, strict=True):
+        values = self.bus.read_feedback_many(self.ids, sync=True)
+        if strict:
+            check_feedback(values, self.cfg)
+        ticks = [values[sid].position_ticks for sid in self.ids]
+        zero, direction = calibration_arrays(self.cfg)
+        q = ticks_to_q(ticks, zero, direction)
+        state = self.imu.latest(self.cfg["control"]["imu_max_age_s"])
+        self.session["last_measurement"] = {"q": q, "gravity": state.projected_gravity,
+                                            "gyro": state.base_ang_vel, "feedback": values}
+        return q, state, values
+
+    def _prepare_motors(self, q):
+        self._check_stop()
+        if self.cfg["serial"]["register_profile"] != "hls_2":
+            raise StopRequested("策略运行要求核实过的HD1910 HLS_2寄存器配置")
+        configs = {sid: self.bus.read_configuration(sid) for sid in self.ids}
+        self.session["servo_configuration_before_motion"] = configs
+        plan = self._home_plan(q)
+        for sid, conf in configs.items():
+            if conf["torque"] != 0:
+                raise StopRequested(f"舵机{sid}已上力；先托住机器人运行 relax")
+            if conf["mode"] != 4 or conf["angle_resolution"] != 1:
+                raise StopRequested(f"舵机{sid}需要mode=4、angle_resolution=1，当前为{conf}")
+        if self.from_pose is not None:
+            check_servo_limits(plan, configs)
+        self.old_gains = {sid: conf["ram_gains"] for sid, conf in configs.items()}
+        p = self.cfg["control"]
+        self.bus.set_pid_ram(self.ids, p["ram_p"], p["ram_d"], p["ram_i"])
+        self._check_stop()
+        q, state, _ = self._read()
+        check_posture(q, state, self.cfg)
+        plan = self._home_plan(q)
+        if self.from_pose is not None:
+            check_servo_limits(plan, configs)
+        self.session["home_plan"] = plan
+        zero, direction = calibration_arrays(self.cfg)
+        preload = dict(zip(self.ids, q_to_ticks(q, zero, direction).tolist()))
+        self._check_stop()
+        # HD firmware may react to goal writes even after torque-off. Treat the
+        # very first goal packet as motion, including partial/broken writes.
+        self.heartbeat = time.monotonic()
+        self.enabled = True
+        self.watchdog = threading.Thread(target=self._watchdog, name="control-watchdog", daemon=True)
+        self.watchdog.start()
+        self.bus.sync_positions(preload)
+        # A broadcast goal has no acknowledgement. Confirm register 42 before
+        # torque-on so a lost preload cannot expose an old stored target.
+        for sid, target in preload.items():
+            actual = int.from_bytes(self.bus.read(sid, 42, 2), 'little')
+            if actual != target:
+                raise StopRequested(f"舵机{sid}当前角预装目标未读回确认，拒绝上力")
+        self._check_stop()
+        self.heartbeat = time.monotonic()
+        self.bus.set_torque(self.ids, True, verify=True)
+        self.heartbeat = time.monotonic()
+        return q
+
+    def _send(self, target, previous_target):
+        self._check_stop()
+        ticks = validate_targets(target, previous_target, self.cfg)
+        self.bus.sync_positions(dict(zip(self.ids, ticks.tolist())))
+        self.heartbeat = time.monotonic()
+
+    def _home(self, start):
+        p = self.cfg["control"]
+        plan = self._home_plan(start)
+        previous = start.copy()
+        previous_q = start.copy()
+        steps = max(1, math.ceil(plan["duration_s"] * 50))
+        self.session["home_samples"] = []
+        print(f"缓慢回HOME：{steps/50:.2f}秒，峰值目标速度约"
+              f"{plan['peak_target_speed_deg_s']:.2f}°/s；保持支撑。", flush=True)
+        next_target_at = time.monotonic() + 0.02
+        for step in range(1, steps + 1):
+            self._check_stop()
+            begun = time.monotonic()
+            q, state, _ = self._read()
+            check_posture(q, state, self.cfg)
+            self._check_home_feedback(q, previous_q, previous)
+            alpha = step / steps
+            alpha = alpha * alpha * (3 - 2 * alpha)
+            target = start + alpha * (HOME - start)
+            # A late read must not trigger a burst of catch-up targets. Keep
+            # each target's send start >=20ms after the preceding send ends; delays
+            # extend the transition instead of compressing its trajectory.
+            self.stop.wait(max(0, next_target_at - time.monotonic()))
+            if time.monotonic() - begun > p["max_cycle_s"]:
+                raise StopRequested("回HOME传感器读取超时；拒绝发送过时目标")
+            self._send(target, previous)
+            next_target_at = time.monotonic() + 0.02
+            self.session["home_samples"].append({"step": step, "q": q, "target": target})
+            previous_q = q.copy()
+            previous = target
+            if step % 50 == 0:
+                print(f"回HOME {step/steps:.0%}，最大跟踪误差"
+                      f"{np.rad2deg(np.max(np.abs(q-target))):.2f}°", flush=True)
+            if time.monotonic() - begun > p["max_cycle_s"]:
+                raise StopRequested("回HOME期间控制周期过长")
+        q, state, _ = self._read()
+        check_posture(q, state, self.cfg)
+        self._check_home_feedback(q, previous_q, previous)
+        if np.max(np.abs(q - HOME)) > p["home_tolerance_rad"]:
+            raise StopRequested("未到达HOME容差；检查支撑、零位、增益、速度限制和装配")
+        return q
+
+    def execute(self, *, seconds=5.0, twist=(0, 0, 0), motion=False, home_only=False,
+                from_pose=None, move_seconds=None):
+        require_calibration(self.cfg, imu=motion)
+        if (from_pose is not None or move_seconds is not None) and not (motion and home_only):
+            raise ValueError("参考姿态与慢移时长选项只用于home；不能用它放宽策略run的启动范围")
+        if from_pose is not None:
+            validate_reference_calibration(self.cfg, from_pose)
+        if move_seconds is not None:
+            minimum = 8 if from_pose is not None else 0
+            if not math.isfinite(move_seconds) or not minimum <= move_seconds <= 30 or move_seconds <= 0:
+                raise ValueError(f"回HOME时长需为{minimum}..30秒内的正数")
+        self.from_pose, self.move_seconds = from_pose, move_seconds
+        if not math.isfinite(seconds) or not 0 < seconds <= 30:
+            raise ValueError("首次试机时长必须在0到30秒之间")
+        twist = np.asarray(twist, dtype=float)
+        if twist.shape != (3,) or not np.all(np.isfinite(twist)) or np.any(np.abs(twist) > [0.3, 0.1, 0.5]):
+            raise ValueError("试机指令范围：|vx|<=0.3、|vy|<=0.1、|wz|<=0.5")
+        path = log_path("motion" if motion else "read_only")
+        session_path = path.with_suffix('.session.json')
+        self.session = {"started": datetime.now().astimezone().isoformat(),
+                        "status": "initializing", "config": self.cfg,
+                        "motion": motion, "twist": twist, "from_pose": from_pose,
+                        "move_seconds": move_seconds, "home_only": home_only}
+        session_path.write_text(json.dumps(self.session, default=json_default, ensure_ascii=False, indent=2)+'\n')
+        print(f"日志: {path}\nCtrl+C 或输入 q 后回车停止。", flush=True)
+        self._install_signals()
+        owned_bus = self.bus is None
+        owned_imu = self.imu is None
+        try:
+            if self.bus is None:
+                self.bus = ServoBus(**self.cfg["serial"])
+            # Never calibrate the gyro while existing torque may make the robot move.
+            if motion:
+                for sid in self.ids:
+                    if self.bus.read_configuration(sid)["torque"] != 0:
+                        raise StopRequested(f"舵机{sid}已上力；请先托住并运行relax")
+            if self.imu is None:
+                self.imu = ImuReader(self.cfg)
+                device = getattr(self.imu, 'imu', None)
+                if device is not None:
+                    self.session['imu_configuration'] = dataclasses.asdict(device.config)
+                    self.session['gyro_bias_rad_s'] = device.gyro_bias_rad_s
+            if self.policy is None and not home_only:
+                model = Path(self.cfg["model"])
+                self.policy = OnnxPolicy(model if model.is_absolute() else ROOT / model)
+            q, state, _ = self._read()
+            if motion:
+                check_posture(q, state, self.cfg)
+                self._home_plan(q)
+                q = self._prepare_motors(q)
+                q = self._home(q)
+            previous_q = q.copy()
+            previous_time = time.monotonic()
+            previous_action = np.zeros(14)
+            previous_target = HOME.copy() if motion else q.copy()
+            started = time.monotonic()
+            deadline = started
+            overruns = 0
+            count = 0
+            self.session['status'] = 'running'
+            with path.open("w", buffering=1) as log:
+                log.write(json.dumps({"kind": "header", "motion": motion, "twist": twist,
+                                      "config": self.cfg, "qd_source": "position_finite_difference"},
+                                     default=json_default, ensure_ascii=False) + "\n")
+                # Obtain a full control-period difference for the first velocity observation.
+                self.stop.wait(0.02)
+                deadline = time.monotonic()
+                while time.monotonic() - started < seconds:
+                    self._check_stop()
+                    begun = time.monotonic()
+                    q, state, feedback = self._read()
+                    stamp = time.monotonic()
+                    elapsed = stamp - previous_time
+                    if not 0.002 <= elapsed <= self.cfg["control"]["max_cycle_s"] + 0.01:
+                        raise StopRequested(f"关节采样间隔异常: {elapsed*1000:.1f}ms")
+                    if np.max(np.abs(q - previous_q)) > 0.45:
+                        raise StopRequested("反馈角度跳变；可能过零、掉包或标定错误")
+                    qd = (q - previous_q) / elapsed
+                    tilt = check_posture(q, state, self.cfg) if motion else None
+                    obs = build_obs61(state.base_ang_vel, state.projected_gravity,
+                                      q, qd, previous_action, twist=twist)
+                    action = np.zeros(14) if home_only else self.policy.infer(obs)
+                    target = HOME.copy() if home_only else action_to_targets(action)
+                    if motion and home_only and np.max(np.abs(q - HOME)) > self.cfg["control"]["home_tolerance_rad"]:
+                        raise StopRequested("HOME保持期间偏离目标；停止并检查支撑、卡滞和增益")
+                    if time.monotonic() - begun > self.cfg["control"]["max_cycle_s"]:
+                        raise StopRequested("传感器读取/推理已超时；拒绝发送过时目标")
+                    target_error = None
+                    try:
+                        validate_targets(target, previous_target, self.cfg)
+                    except StopRequested as exc:
+                        if motion:
+                            raise
+                        target_error = str(exc)
+                    if motion:
+                        self._send(target, previous_target)
+                    computation_s = time.monotonic() - begun
+                    if computation_s > self.cfg["control"]["max_cycle_s"]:
+                        raise StopRequested(f"单周期用时{computation_s*1000:.1f}ms过长")
+                    overruns = overruns + 1 if computation_s > 0.02 else 0
+                    if overruns >= self.cfg["control"]["max_overruns"]:
+                        raise StopRequested("连续控制周期超过20ms；先解决Radxa时序再上力")
+                    log.write(json.dumps({"kind": "sample", "t": stamp - started,
+                              "q": q, "qd": qd, "gyro": state.base_ang_vel,
+                              "gravity": state.projected_gravity, "action": action,
+                              "target": target, "cycle_ms": computation_s*1000,
+                              "tilt_deg": tilt, "target_check": target_error,
+                              "feedback": feedback}, default=json_default) + "\n")
+                    count += 1
+                    if count % 25 == 0:
+                        print(f"{stamp-started:.1f}s 周期{computation_s*1000:.1f}ms "
+                              f"gravity={np.round(state.projected_gravity,3)}"
+                              + (f" 目标检查:{target_error}" if target_error else ""), flush=True)
+                    previous_q, previous_time = q, stamp
+                    # Policy observes its previous raw output, not HOME-relative
+                    # clipped/smoothed motor commands. home_only never uses policy output.
+                    previous_action = np.zeros(14) if home_only else action
+                    previous_target = target
+                    deadline += 0.02
+                    if deadline < time.monotonic():
+                        deadline = time.monotonic()
+                    self.stop.wait(max(0, deadline - time.monotonic()))
+            return {"samples": count, "log": str(path), "motion": motion}
+        finally:
+            failure = sys.exc_info()[1]
+            self.session['status'] = 'stopped' if failure is not None else 'completed'
+            self.session['stop_reason'] = str(failure) if failure is not None else self.reason
+            self.session['finished'] = datetime.now().astimezone().isoformat()
+            self.stop.set()
+            if self.enabled:
+                # Best effort on a broken cable cannot guarantee de-energization.
+                for attempt in range(3):
+                    try:
+                        self.bus.set_torque(self.ids, False, verify=attempt == 0)
+                        break
+                    except Exception as exc:
+                        print(f"卸力尝试{attempt+1}失败: {exc}；必要时断开舵机电源。", file=sys.stderr)
+                self.enabled = False
+            for sid, gains in self.old_gains.items():
+                try:
+                    self.bus.set_pid_ram([sid], gains["p"], gains["d"], gains["i"])
+                except Exception as exc:
+                    print(f"舵机{sid} RAM增益恢复失败: {exc}；断电重启恢复EPROM值。", file=sys.stderr)
+            if self.watchdog is not None:
+                self.watchdog.join(timeout=0.3)
+            if owned_imu and self.imu is not None:
+                try:
+                    self.imu.close()
+                except Exception as exc:
+                    print(f"关闭IMU失败: {exc}", file=sys.stderr)
+            if owned_bus and self.bus is not None:
+                try:
+                    self.bus.close()
+                except Exception as exc:
+                    print(f"关闭串口失败: {exc}", file=sys.stderr)
+            for sig, handler in self._signals.items():
+                signal.signal(sig, handler)
+            try:
+                session_path.write_text(json.dumps(self.session, default=json_default, ensure_ascii=False, indent=2)+'\n')
+            except Exception as exc:
+                print(f"保存会话日志失败: {exc}", file=sys.stderr)

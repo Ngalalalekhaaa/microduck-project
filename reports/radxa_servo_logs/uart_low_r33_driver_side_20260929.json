@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-29",
+  "test": "R33 buffer-side pad voltage under UART BREAK",
+  "found_ids_before_test": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "scan_errors": [],
+  "port": "/dev/ttyS2",
+  "baudrate": 1000000,
+  "measurement_point": "R33 pad 1, net 51, U7 output; left pad in user backside photo with 40-pin header at top",
+  "duration_seconds": 30,
+  "break_enabled_observed": true,
+  "break_disabled_observed": true,
+  "remote_exit_code": 0,
+  "user_reported_voltage_v": 0.03,
+  "prior_external_data_low_voltage_v": 0.74,
+  "comparison_note": "External DATA reading was from an earlier 10-servo test, not simultaneous.",
+  "next_measurement": "R33 pad 2, net 7, intermediate node before TH1; right pad in same photo orientation"
+}

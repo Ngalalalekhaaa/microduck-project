@@ -1,0 +1,52 @@
+{
+  "created": "2026-09-28",
+  "runtime_status": "bench package; not yet tested on this physical robot",
+  "robot": "HD-1910 / Radxa Zero 3W / LSM6DSV16XTR",
+  "training_commit": "7c29a4e627446516c0b437eb52a52149e4cf5cc2",
+  "models": {
+    "flat": {
+      "path": "models/hd1910_flat.onnx",
+      "sha256": "76387e930d97d4ac0a582402908381daac8302779e4c64ee7898dcee02ca3022",
+      "task": "Mjlab-Velocity-Flat-MicroDuck-HD1910",
+      "checkpoint_name": "model_3999.pt",
+      "training_directory": "2026-09-28_01-36-32_flat_20260928_013621",
+      "iterations": 4000,
+      "num_envs": 2048,
+      "seed": 42,
+      "observations": 61,
+      "actions": 14,
+      "frequency_hz": 50,
+      "normalizer_embedded": true
+    },
+    "backlash": {
+      "path": "models/hd1910_backlash.onnx",
+      "sha256": "7e08fbc9b623ab5bf4fa2306b8d7c2e84d1ca817c261fcae5a4e0825aedca5fd",
+      "task": "Mjlab-Velocity-Flat-Backlash-MicroDuck-HD1910",
+      "checkpoint_name": "model_3999.pt",
+      "training_directory": "2026-09-28_03-42-13_backlash_20260928_013621",
+      "iterations": 4000,
+      "num_envs": 2048,
+      "seed": 42,
+      "observations": 61,
+      "actions": 14,
+      "frequency_hz": 50,
+      "normalizer_embedded": true
+    }
+  },
+  "runtime_version": "0.2.2",
+  "runtime_updated": "2026-09-29",
+  "servo_id_profile": {
+    "path": "servo_ids.user.json",
+    "source": "user-provided joint IDs, 2026-09-29",
+    "apply_command": "./run.sh map-ids --profile servo_ids.user.json",
+    "hardware_verified": false,
+    "directions_verified": false
+  },
+  "straight_reference": {
+    "model_xml_sha256": "80fc4424ed71e430ec4919110dfdb5c714dc1c4e1138e1832a16865cf31eb8c8",
+    "geometry_report": "docs/直腿参考几何核对.json",
+    "instructions": "docs/直腿标定到HOME.md",
+    "default_move_seconds": 8,
+    "hardware_verified": false
+  }
+}

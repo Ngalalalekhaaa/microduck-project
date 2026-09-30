@@ -1,0 +1,461 @@
+{
+  "date": "2026-09-29",
+  "external_probe": [
+    {
+      "id": 1,
+      "operation": "ping",
+      "tx_hex": "ffff010201fb",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 201.928
+    },
+    {
+      "id": 1,
+      "operation": "position",
+      "tx_hex": "ffff0104023802be",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.396
+    },
+    {
+      "id": 2,
+      "operation": "ping",
+      "tx_hex": "ffff020201fa",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.344
+    },
+    {
+      "id": 2,
+      "operation": "position",
+      "tx_hex": "ffff0204023802bd",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.308
+    },
+    {
+      "id": 3,
+      "operation": "ping",
+      "tx_hex": "ffff030201f9",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.345
+    },
+    {
+      "id": 3,
+      "operation": "position",
+      "tx_hex": "ffff0304023802bc",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.433
+    },
+    {
+      "id": 4,
+      "operation": "ping",
+      "tx_hex": "ffff040201f8",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.568
+    },
+    {
+      "id": 4,
+      "operation": "position",
+      "tx_hex": "ffff0404023802bb",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.57
+    },
+    {
+      "id": 5,
+      "operation": "ping",
+      "tx_hex": "ffff050201f7",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.424
+    },
+    {
+      "id": 5,
+      "operation": "position",
+      "tx_hex": "ffff0504023802ba",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.569
+    },
+    {
+      "id": 6,
+      "operation": "ping",
+      "tx_hex": "ffff060201f6",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.551
+    },
+    {
+      "id": 6,
+      "operation": "position",
+      "tx_hex": "ffff0604023802b9",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.645
+    },
+    {
+      "id": 7,
+      "operation": "ping",
+      "tx_hex": "ffff070201f5",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.564
+    },
+    {
+      "id": 7,
+      "operation": "position",
+      "tx_hex": "ffff0704023802b8",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.692
+    },
+    {
+      "id": 8,
+      "operation": "ping",
+      "tx_hex": "ffff080201f4",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.557
+    },
+    {
+      "id": 8,
+      "operation": "position",
+      "tx_hex": "ffff0804023802b7",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.63
+    },
+    {
+      "id": 9,
+      "operation": "ping",
+      "tx_hex": "ffff090201f3",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.635
+    },
+    {
+      "id": 9,
+      "operation": "position",
+      "tx_hex": "ffff0904023802b6",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.565
+    },
+    {
+      "id": 10,
+      "operation": "ping",
+      "tx_hex": "ffff0a0201f2",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.697
+    },
+    {
+      "id": 10,
+      "operation": "position",
+      "tx_hex": "ffff0a04023802b5",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.677
+    },
+    {
+      "id": 11,
+      "operation": "ping",
+      "tx_hex": "ffff0b0201f1",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.601
+    },
+    {
+      "id": 11,
+      "operation": "position",
+      "tx_hex": "ffff0b04023802b4",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.672
+    },
+    {
+      "id": 12,
+      "operation": "ping",
+      "tx_hex": "ffff0c0201f0",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.572
+    },
+    {
+      "id": 12,
+      "operation": "position",
+      "tx_hex": "ffff0c04023802b3",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.662
+    },
+    {
+      "id": 13,
+      "operation": "ping",
+      "tx_hex": "ffff0d0201ef",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.58
+    },
+    {
+      "id": 13,
+      "operation": "position",
+      "tx_hex": "ffff0d04023802b2",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.564
+    },
+    {
+      "id": 14,
+      "operation": "ping",
+      "tx_hex": "ffff0e0201ee",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.575
+    },
+    {
+      "id": 14,
+      "operation": "position",
+      "tx_hex": "ffff0e04023802b1",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 200.564
+    }
+  ],
+  "uart_internal_loopback": {
+    "loop_tests": [
+      {
+        "id": 1,
+        "tx": "ffff010201fb",
+        "rx": "ffff010201fb",
+        "ms": 0.669,
+        "echo_matches": true
+      },
+      {
+        "id": 2,
+        "tx": "ffff020201fa",
+        "rx": "ffff020201fa",
+        "ms": 0.469,
+        "echo_matches": true
+      },
+      {
+        "id": 3,
+        "tx": "ffff030201f9",
+        "rx": "ffff030201f9",
+        "ms": 0.378,
+        "echo_matches": true
+      },
+      {
+        "id": 4,
+        "tx": "ffff040201f8",
+        "rx": "ffff040201f8",
+        "ms": 0.363,
+        "echo_matches": true
+      },
+      {
+        "id": 5,
+        "tx": "ffff050201f7",
+        "rx": "ffff050201f7",
+        "ms": 0.363,
+        "echo_matches": true
+      },
+      {
+        "id": 6,
+        "tx": "ffff060201f6",
+        "rx": "ffff060201f6",
+        "ms": 0.404,
+        "echo_matches": true
+      },
+      {
+        "id": 7,
+        "tx": "ffff070201f5",
+        "rx": "ffff070201f5",
+        "ms": 0.338,
+        "echo_matches": true
+      },
+      {
+        "id": 8,
+        "tx": "ffff080201f4",
+        "rx": "ffff080201f4",
+        "ms": 0.314,
+        "echo_matches": true
+      },
+      {
+        "id": 9,
+        "tx": "ffff090201f3",
+        "rx": "ffff090201f3",
+        "ms": 0.259,
+        "echo_matches": true
+      },
+      {
+        "id": 10,
+        "tx": "ffff0a0201f2",
+        "rx": "ffff0a0201f2",
+        "ms": 0.314,
+        "echo_matches": true
+      },
+      {
+        "id": 11,
+        "tx": "ffff0b0201f1",
+        "rx": "ffff0b0201f1",
+        "ms": 0.312,
+        "echo_matches": true
+      },
+      {
+        "id": 12,
+        "tx": "ffff0c0201f0",
+        "rx": "ffff0c0201f0",
+        "ms": 0.311,
+        "echo_matches": true
+      },
+      {
+        "id": 13,
+        "tx": "ffff0d0201ef",
+        "rx": "ffff0d0201ef",
+        "ms": 0.361,
+        "echo_matches": true
+      },
+      {
+        "id": 14,
+        "tx": "ffff0e0201ee",
+        "rx": "ffff0e0201ee",
+        "ms": 0.359,
+        "echo_matches": true
+      }
+    ],
+    "external_after": [
+      {
+        "id": 1,
+        "tx": "ffff010201fb",
+        "rx": "",
+        "ms": 120.251,
+        "echo_matches": false
+      },
+      {
+        "id": 3,
+        "tx": "ffff030201f9",
+        "rx": "",
+        "ms": 120.226,
+        "echo_matches": false
+      },
+      {
+        "id": 7,
+        "tx": "ffff070201f5",
+        "rx": "",
+        "ms": 120.184,
+        "echo_matches": false
+      },
+      {
+        "id": 14,
+        "tx": "ffff0e0201ee",
+        "rx": "",
+        "ms": 120.221,
+        "echo_matches": false
+      }
+    ],
+    "original_modem": 16390,
+    "before": {
+      "cts": 0,
+      "dsr": 0,
+      "rng": 0,
+      "dcd": 0,
+      "rx": 0,
+      "tx": 196,
+      "frame": 0,
+      "overrun": 0,
+      "parity": 0,
+      "brk": 0,
+      "buf_overrun": 0
+    },
+    "loop_enabled_modem": 49510,
+    "during_loop": {
+      "cts": 0,
+      "dsr": 0,
+      "rng": 0,
+      "dcd": 0,
+      "rx": 84,
+      "tx": 280,
+      "frame": 0,
+      "overrun": 0,
+      "parity": 0,
+      "brk": 0,
+      "buf_overrun": 0
+    },
+    "restored_modem": 16390,
+    "loop_disabled": true,
+    "after": {
+      "cts": 0,
+      "dsr": 0,
+      "rng": 0,
+      "dcd": 0,
+      "rx": 84,
+      "tx": 304,
+      "frame": 0,
+      "overrun": 0,
+      "parity": 0,
+      "brk": 0,
+      "buf_overrun": 0
+    }
+  },
+  "baud_probes": [
+    {
+      "baudrate": 500000,
+      "attempts": 14,
+      "rx": []
+    },
+    {
+      "baudrate": 115200,
+      "attempts": 14,
+      "rx": []
+    },
+    {
+      "baudrate": 57600,
+      "attempts": 14,
+      "rx": []
+    },
+    {
+      "baudrate": 38400,
+      "attempts": 14,
+      "rx": []
+    },
+    {
+      "baudrate": 2000000,
+      "attempts": 14,
+      "rx": []
+    },
+    {
+      "baudrate": 1500000,
+      "attempts": 14,
+      "rx": []
+    },
+    {
+      "baudrate": 1000000,
+      "attempts": 14,
+      "rx": [
+        {
+          "id": 12,
+          "operation": "ping",
+          "tx_hex": "ffff0c0201f0",
+          "rx_hex": "ffff0c0200f1",
+          "first_byte_ms": 1.18,
+          "elapsed_ms": 80.42
+        }
+      ]
+    },
+    {
+      "host_baudrate_restored": 1000000,
+      "loopback_disabled": true
+    }
+  ],
+  "skipped_baudrates": [
+    {
+      "baudrate": 250000,
+      "reason": "Not exposed as a standard termios B constant; no 250000 trial was sent"
+    }
+  ],
+  "source": "Linux Rockchip 6.1 drivers/tty/serial/8250/8250.h maps TIOCM_LOOP to UART_MCR_LOOP. Only this volatile bit was temporarily changed, then cleared and read back."
+}

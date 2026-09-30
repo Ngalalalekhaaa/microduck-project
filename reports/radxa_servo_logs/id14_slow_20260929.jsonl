@@ -1,0 +1,22 @@
+{"event": "start", "modem": 16390, "counters": {"cts": 0, "dsr": 0, "rng": 0, "dcd": 0, "rx": 0, "tx": 0, "frame": 0, "overrun": 0, "parity": 0, "brk": 0, "buf_overrun": 0}, "id": 14, "interval_s": 1, "read_only": true}
+{"id": 14, "operation": "ping", "tx_hex": "ffff0e0201ee", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 402.318, "valid_frames": [], "sequence": 1}
+{"id": 14, "operation": "position", "tx_hex": "ffff0e04023802b1", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.541, "valid_frames": [], "sequence": 2}
+{"id": 14, "operation": "ping", "tx_hex": "ffff0e0201ee", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.81, "valid_frames": [], "sequence": 3}
+{"id": 14, "operation": "position", "tx_hex": "ffff0e04023802b1", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.801, "valid_frames": [], "sequence": 4}
+{"id": 14, "operation": "ping", "tx_hex": "ffff0e0201ee", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.785, "valid_frames": [], "sequence": 5}
+{"id": 14, "operation": "position", "tx_hex": "ffff0e04023802b1", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.854, "valid_frames": [], "sequence": 6}
+{"id": 14, "operation": "ping", "tx_hex": "ffff0e0201ee", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.79, "valid_frames": [], "sequence": 7}
+{"id": 14, "operation": "position", "tx_hex": "ffff0e04023802b1", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.782, "valid_frames": [], "sequence": 8}
+{"id": 14, "operation": "ping", "tx_hex": "ffff0e0201ee", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.894, "valid_frames": [], "sequence": 9}
+{"id": 14, "operation": "position", "tx_hex": "ffff0e04023802b1", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.784, "valid_frames": [], "sequence": 10}
+{"id": 14, "operation": "ping", "tx_hex": "ffff0e0201ee", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.788, "valid_frames": [], "sequence": 11}
+{"id": 14, "operation": "position", "tx_hex": "ffff0e04023802b1", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.773, "valid_frames": [], "sequence": 12}
+{"id": 14, "operation": "ping", "tx_hex": "ffff0e0201ee", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.765, "valid_frames": [], "sequence": 13}
+{"id": 14, "operation": "position", "tx_hex": "ffff0e04023802b1", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.761, "valid_frames": [], "sequence": 14}
+{"id": 14, "operation": "ping", "tx_hex": "ffff0e0201ee", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.859, "valid_frames": [], "sequence": 15}
+{"id": 14, "operation": "position", "tx_hex": "ffff0e04023802b1", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.775, "valid_frames": [], "sequence": 16}
+{"id": 14, "operation": "ping", "tx_hex": "ffff0e0201ee", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.768, "valid_frames": [], "sequence": 17}
+{"id": 14, "operation": "position", "tx_hex": "ffff0e04023802b1", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.772, "valid_frames": [], "sequence": 18}
+{"id": 14, "operation": "ping", "tx_hex": "ffff0e0201ee", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.766, "valid_frames": [], "sequence": 19}
+{"id": 14, "operation": "position", "tx_hex": "ffff0e04023802b1", "rx_hex": "", "first_byte_ms": null, "elapsed_ms": 400.767, "valid_frames": [], "sequence": 20}
+{"event": "end", "counters": {"cts": 0, "dsr": 0, "rng": 0, "dcd": 0, "rx": 0, "tx": 140, "frame": 0, "overrun": 0, "parity": 0, "brk": 0, "buf_overrun": 0}}

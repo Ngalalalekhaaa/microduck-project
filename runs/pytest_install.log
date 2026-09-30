@@ -1,0 +1,7 @@
+Using Python 3.12.14 environment at: microduck_rl/.venv
+Resolved 5 packages in 3.10s
+Prepared 3 packages in 983ms
+Installed 3 packages in 4ms
+ + iniconfig==2.3.0
+ + pluggy==1.6.0
+ + pytest==9.1.1

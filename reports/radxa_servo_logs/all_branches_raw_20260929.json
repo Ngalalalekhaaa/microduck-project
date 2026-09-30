@@ -1,0 +1,95 @@
+{
+  "read_only": true,
+  "rows": [
+    {
+      "id": 1,
+      "operation": "ping",
+      "tx_hex": "ffff010201fb",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.629
+    },
+    {
+      "id": 1,
+      "operation": "position",
+      "tx_hex": "ffff0104023802be",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.52
+    },
+    {
+      "id": 7,
+      "operation": "ping",
+      "tx_hex": "ffff070201f5",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.503
+    },
+    {
+      "id": 7,
+      "operation": "position",
+      "tx_hex": "ffff0704023802b8",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.77
+    },
+    {
+      "id": 10,
+      "operation": "ping",
+      "tx_hex": "ffff0a0201f2",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.748
+    },
+    {
+      "id": 10,
+      "operation": "position",
+      "tx_hex": "ffff0a04023802b5",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.754
+    },
+    {
+      "id": 14,
+      "operation": "ping",
+      "tx_hex": "ffff0e0201ee",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.772
+    },
+    {
+      "id": 14,
+      "operation": "position",
+      "tx_hex": "ffff0e04023802b1",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.761
+    }
+  ],
+  "before": {
+    "cts": 0,
+    "dsr": 0,
+    "rng": 0,
+    "dcd": 0,
+    "rx": 19964,
+    "tx": 30370,
+    "frame": 0,
+    "overrun": 0,
+    "parity": 0,
+    "brk": 0,
+    "buf_overrun": 0
+  },
+  "after": {
+    "cts": 0,
+    "dsr": 0,
+    "rng": 0,
+    "dcd": 0,
+    "rx": 19964,
+    "tx": 30426,
+    "frame": 0,
+    "overrun": 0,
+    "parity": 0,
+    "brk": 0,
+    "buf_overrun": 0
+  }
+}

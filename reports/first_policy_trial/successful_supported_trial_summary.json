@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "stop_reason": null,
+  "samples": 99,
+  "first_t_s": 0.031386246999318246,
+  "last_t_s": 1.9932480690004013,
+  "frequency_hz": 49.95254961434583,
+  "cycle_ms_median_p95_max": [
+    14.13209499878576,
+    16.15061070115189,
+    18.769681000776473
+  ],
+  "tilt_deg_min_max": [
+    2.8362166655190113,
+    3.785826918151469
+  ],
+  "voltage_min_max": [
+    7.3,
+    7.5
+  ],
+  "current_ma_abs_max": 1287.0,
+  "temperature_max": 44,
+  "read_retries": 0,
+  "max_action_abs_rad": 0.19641074538230896,
+  "external_support": true,
+  "torque_off_verified_by_trial_script": true
+}

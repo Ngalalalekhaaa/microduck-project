@@ -1,0 +1,83 @@
+{
+  "video": "microduck_hd1910_walking.mp4",
+  "duration_seconds": 20,
+  "fps": 25,
+  "playback_speed": 1,
+  "new_simulation_run": false,
+  "reason": "NVIDIA kernel 580.173.02 / user library 580.178 version mismatch; uses saved final-checkpoint simulation recordings.",
+  "editing": "Original full 10-second recordings paired side by side, first 0.15 m/s then 0.30 m/s; labels added. No cuts within rollouts, frame interpolation, or speed changes.",
+  "metrics_scope": "64 environments; excludes first second. Not the individual displayed environment velocity.",
+  "sources": [
+    {
+      "model": "flat",
+      "source": "runs/20260928_001943_hd1910_train/flat/eval_flat/forward.mp4",
+      "sha256": "e79a1cdf86d2d5da987e4f8c4cecce1020a78d3392b134c869fc51d82190ef70",
+      "evaluation": "runs/20260928_001943_hd1910_train/flat/eval_flat/evaluation.json",
+      "command": "forward",
+      "target_vx_m_s": 0.15,
+      "mean_vx_64_envs_after_1s_m_s": 0.0777803435921669,
+      "survival_fraction_64_envs": 1.0
+    },
+    {
+      "model": "backlash",
+      "source": "runs/20260928_001943_hd1910_train/backlash/eval_backlash/forward.mp4",
+      "sha256": "8db7a136caecd05081f81300824be45b7e740c086448cd59ea693adc13067488",
+      "evaluation": "runs/20260928_001943_hd1910_train/backlash/eval_backlash/evaluation.json",
+      "command": "forward",
+      "target_vx_m_s": 0.15,
+      "mean_vx_64_envs_after_1s_m_s": 0.013905350118875504,
+      "survival_fraction_64_envs": 1.0
+    },
+    {
+      "model": "flat",
+      "source": "runs/20260928_001943_hd1910_train/flat/eval_flat/forward_fast.mp4",
+      "sha256": "bad623d4d2a7a5a2641f49f097fea572390be976256281d3ccacce8d8d0ebe2c",
+      "evaluation": "runs/20260928_001943_hd1910_train/flat/eval_flat/evaluation.json",
+      "command": "forward_fast",
+      "target_vx_m_s": 0.3,
+      "mean_vx_64_envs_after_1s_m_s": 0.20703163743019104,
+      "survival_fraction_64_envs": 1.0
+    },
+    {
+      "model": "backlash",
+      "source": "runs/20260928_001943_hd1910_train/backlash/eval_backlash/forward_fast.mp4",
+      "sha256": "d69e9a5ddd2291ae9a5de4584f71243f83617914c7e4ee6f69671b33bf27e551",
+      "evaluation": "runs/20260928_001943_hd1910_train/backlash/eval_backlash/evaluation.json",
+      "command": "forward_fast",
+      "target_vx_m_s": 0.3,
+      "mean_vx_64_envs_after_1s_m_s": 0.21715714037418365,
+      "survival_fraction_64_envs": 1.0
+    }
+  ],
+  "ffmpeg_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-y",
+    "-i",
+    "/home/luckysir/microduck/runs/20260928_001943_hd1910_train/flat/eval_flat/forward.mp4",
+    "-i",
+    "/home/luckysir/microduck/runs/20260928_001943_hd1910_train/backlash/eval_backlash/forward.mp4",
+    "-i",
+    "/home/luckysir/microduck/runs/20260928_001943_hd1910_train/flat/eval_flat/forward_fast.mp4",
+    "-i",
+    "/home/luckysir/microduck/runs/20260928_001943_hd1910_train/backlash/eval_backlash/forward_fast.mp4",
+    "-filter_complex_script",
+    "/home/luckysir/microduck/videos/hd1910_walk/composition.ffmpeg",
+    "-map",
+    "[output]",
+    "-an",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "medium",
+    "-crf",
+    "19",
+    "-threads",
+    "4",
+    "-movflags",
+    "+faststart",
+    "/home/luckysir/microduck/videos/hd1910_walk/microduck_hd1910_walking.mp4"
+  ]
+}

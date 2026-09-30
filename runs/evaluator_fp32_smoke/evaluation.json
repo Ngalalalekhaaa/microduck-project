@@ -1,0 +1,36 @@
+{
+  "task": "Mjlab-Velocity-Flat-Backlash-MicroDuck",
+  "checkpoint": "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_flat_smoke/2026-09-27_20-12-27_flat_20260927_201209/model_4.pt",
+  "seed": 123,
+  "num_envs_per_command": 16,
+  "horizon_seconds": 2.0,
+  "pushes": false,
+  "randomization": "upstream startup/reset ranges; curricula disabled",
+  "metric_scope": "first episode only; tracking excludes first 1 second and failed steps",
+  "results": {
+    "forward": {
+      "command_vx_vy_wz": [
+        0.15,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 0.0,
+      "mean_first_episode_seconds": 0.87,
+      "mean_actual_vx_vy_wz": null,
+      "mean_abs_error_vx_vy_wz": null,
+      "tilt_p95_deg": null,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 0
+    }
+  },
+  "onnx_input_shape": [
+    1,
+    61
+  ],
+  "onnx_output_shape": [
+    1,
+    14
+  ],
+  "onnx_max_abs_error_vs_checkpoint": 5.960464477539063e-08,
+  "onnx_parity_pass": true
+}

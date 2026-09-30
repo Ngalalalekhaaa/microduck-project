@@ -1,0 +1,224 @@
+{
+  "read_only": true,
+  "servos": [
+    {
+      "id": 10,
+      "trials": [
+        {
+          "identity": {
+            "id": 10,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 10,
+            "position_ticks": 1440,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1440,
+            "current_ma": 19.5,
+            "received_at": 1333.158790083
+          }
+        },
+        {
+          "identity": {
+            "id": 10,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 10,
+            "position_ticks": 1440,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1440,
+            "current_ma": 26.0,
+            "received_at": 1333.362227342
+          }
+        },
+        {
+          "identity": {
+            "id": 10,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 10,
+            "position_ticks": 1440,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 30,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 1440,
+            "current_ma": 26.0,
+            "received_at": 1333.565289736
+          }
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "trials": [
+        {
+          "identity": {
+            "id": 15,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 15,
+            "position_ticks": 363,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 33,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 363,
+            "current_ma": 19.5,
+            "received_at": 1333.768352131
+          }
+        },
+        {
+          "identity": {
+            "id": 15,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 15,
+            "position_ticks": 363,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 33,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 363,
+            "current_ma": 26.0,
+            "received_at": 1333.971646037
+          }
+        },
+        {
+          "identity": {
+            "id": 15,
+            "firmware": [
+              3,
+              46
+            ],
+            "model_version": [
+              10,
+              31
+            ],
+            "endianness": "little",
+            "baud_code": 0,
+            "response_level": 1
+          },
+          "feedback": {
+            "servo_id": 15,
+            "position_ticks": 363,
+            "velocity_raw": 0,
+            "load_raw": 0,
+            "voltage_v": 7.3,
+            "temperature_c": 33,
+            "status": 0,
+            "moving": 0,
+            "goal_ticks": 363,
+            "current_ma": 19.5,
+            "received_at": 1334.174638745
+          }
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "trials": [
+        {
+          "identity": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          },
+          "feedback": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          }
+        },
+        {
+          "identity": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          },
+          "feedback": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          }
+        },
+        {
+          "identity": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          },
+          "feedback": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          }
+        }
+      ]
+    }
+  ]
+}

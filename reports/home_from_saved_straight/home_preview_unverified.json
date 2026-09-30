@@ -1,0 +1,253 @@
+{
+  "status": "PREVIEW_ONLY_REQUIRES_PHYSICAL_DIRECTION_AND_REFERENCE_CONFIRMATION",
+  "source_pose": "笔直状态-2026-09-30-063911-965488340.json",
+  "source_sha256": "4c1c377ae4f4242e3a52f78cb1621098fb17245193e26443242960bf37ded1eb",
+  "proposed_seconds": 12,
+  "imu_verified": false,
+  "rows": [
+    {
+      "id": 1,
+      "joint": "left_hip_yaw",
+      "saved_tick": 2031,
+      "reference_deg": 0.0,
+      "home_deg": 0.0,
+      "move_deg": 0.0,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 2031,
+      "home_tick_by_direction": {
+        "-1": 2031,
+        "1": 2031
+      },
+      "current_tick": 2031,
+      "current_minus_saved_ticks": 0,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 2,
+      "joint": "left_hip_roll",
+      "saved_tick": 1987,
+      "reference_deg": 0.0,
+      "home_deg": -5.001921551492087,
+      "move_deg": -5.001921551492087,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 2044,
+      "home_tick_by_direction": {
+        "-1": 2044,
+        "1": 1930
+      },
+      "current_tick": 1988,
+      "current_minus_saved_ticks": 1,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 3,
+      "joint": "left_hip_pitch",
+      "saved_tick": 2150,
+      "reference_deg": -58.411873326923946,
+      "home_deg": -26.235737439040395,
+      "move_deg": 32.17613588788355,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 1784,
+      "home_tick_by_direction": {
+        "-1": 1784,
+        "1": 2516
+      },
+      "current_tick": 2150,
+      "current_minus_saved_ticks": 0,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 4,
+      "joint": "left_knee",
+      "saved_tick": 2105,
+      "reference_deg": -58.411873326923946,
+      "home_deg": -0.2807493196141034,
+      "move_deg": 58.13112400730984,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 1444,
+      "home_tick_by_direction": {
+        "-1": 1444,
+        "1": 2766
+      },
+      "current_tick": 2108,
+      "current_minus_saved_ticks": 3,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 5,
+      "joint": "left_ankle",
+      "saved_tick": 2100,
+      "reference_deg": 0.0,
+      "home_deg": 25.954988119426293,
+      "move_deg": 25.954988119426293,
+      "web_direction_unverified": null,
+      "home_tick_if_web_direction_confirmed": null,
+      "home_tick_by_direction": {
+        "-1": 1805,
+        "1": 2395
+      },
+      "current_tick": 2101,
+      "current_minus_saved_ticks": 1,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 6,
+      "joint": "neck_pitch",
+      "saved_tick": 2103,
+      "reference_deg": 0.0,
+      "home_deg": 20.00195662801704,
+      "move_deg": 20.00195662801704,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 1875,
+      "home_tick_by_direction": {
+        "-1": 1875,
+        "1": 2331
+      },
+      "current_tick": 2103,
+      "current_minus_saved_ticks": 0,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 7,
+      "joint": "head_pitch",
+      "saved_tick": 1989,
+      "reference_deg": 0.0,
+      "home_deg": 20.00195662801704,
+      "move_deg": 20.00195662801704,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 1761,
+      "home_tick_by_direction": {
+        "-1": 1761,
+        "1": 2217
+      },
+      "current_tick": 1988,
+      "current_minus_saved_ticks": -1,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 8,
+      "joint": "head_yaw",
+      "saved_tick": 2061,
+      "reference_deg": 0.0,
+      "home_deg": 0.0,
+      "move_deg": 0.0,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 2061,
+      "home_tick_by_direction": {
+        "-1": 2061,
+        "1": 2061
+      },
+      "current_tick": 2061,
+      "current_minus_saved_ticks": 0,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 9,
+      "joint": "head_roll",
+      "saved_tick": 2064,
+      "reference_deg": 0.0,
+      "home_deg": 0.0,
+      "move_deg": 0.0,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 2064,
+      "home_tick_by_direction": {
+        "-1": 2064,
+        "1": 2064
+      },
+      "current_tick": 2064,
+      "current_minus_saved_ticks": 0,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 10,
+      "joint": "right_hip_yaw",
+      "saved_tick": 2030,
+      "reference_deg": 0.0,
+      "home_deg": 0.0,
+      "move_deg": 0.0,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 2030,
+      "home_tick_by_direction": {
+        "-1": 2030,
+        "1": 2030
+      },
+      "current_tick": 2030,
+      "current_minus_saved_ticks": 0,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 11,
+      "joint": "right_hip_roll",
+      "saved_tick": 2015,
+      "reference_deg": 0.0,
+      "home_deg": 5.001921551492087,
+      "move_deg": 5.001921551492087,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 1958,
+      "home_tick_by_direction": {
+        "-1": 1958,
+        "1": 2072
+      },
+      "current_tick": 2014,
+      "current_minus_saved_ticks": -1,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 12,
+      "joint": "right_hip_pitch",
+      "saved_tick": 2105,
+      "reference_deg": 58.411873326923946,
+      "home_deg": 26.235737439040395,
+      "move_deg": -32.17613588788355,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 2471,
+      "home_tick_by_direction": {
+        "-1": 2471,
+        "1": 1739
+      },
+      "current_tick": 2106,
+      "current_minus_saved_ticks": 1,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 13,
+      "joint": "right_knee",
+      "saved_tick": 2339,
+      "reference_deg": 58.411873326923946,
+      "home_deg": 0.2807493196141034,
+      "move_deg": -58.13112400730984,
+      "web_direction_unverified": -1,
+      "home_tick_if_web_direction_confirmed": 3000,
+      "home_tick_by_direction": {
+        "-1": 3000,
+        "1": 1678
+      },
+      "current_tick": 2338,
+      "current_minus_saved_ticks": -1,
+      "torque_at_snapshot": 1
+    },
+    {
+      "id": 14,
+      "joint": "right_ankle",
+      "saved_tick": 1885,
+      "reference_deg": 0.0,
+      "home_deg": -25.954988119426293,
+      "move_deg": -25.954988119426293,
+      "web_direction_unverified": null,
+      "home_tick_if_web_direction_confirmed": null,
+      "home_tick_by_direction": {
+        "-1": 2180,
+        "1": 1590
+      },
+      "current_tick": 1883,
+      "current_minus_saved_ticks": -2,
+      "torque_at_snapshot": 1
+    }
+  ],
+  "blocking_information": [
+    "ID5 direction is unset",
+    "ID14 direction is unset",
+    "Web direction values have not been confirmed by the user as measured",
+    "Saved physical reference and external support await confirmation"
+  ]
+}

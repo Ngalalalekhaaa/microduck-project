@@ -1,0 +1,510 @@
+{
+  "started": "2026-09-30T07:36:43.570979+00:00",
+  "status": "completed",
+  "config": {
+    "schema": 1,
+    "model": "models/hd1910_flat.onnx",
+    "serial": {
+      "port": "/dev/ttyS2",
+      "baudrate": 1000000,
+      "timeout": 0.025,
+      "discard_echo": false,
+      "register_profile": "hls_2"
+    },
+    "imu": {
+      "transport": "i2c",
+      "i2c_bus": 3,
+      "i2c_address": 106,
+      "mounting_rotation": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "imu_mount_verified": true,
+    "joints": [
+      {
+        "name": "left_hip_yaw",
+        "id": 1,
+        "direction": -1,
+        "zero_tick": 2031.0,
+        "mapping_verified": true
+      },
+      {
+        "name": "left_hip_roll",
+        "id": 2,
+        "direction": -1,
+        "zero_tick": 1987.0,
+        "mapping_verified": true
+      },
+      {
+        "name": "left_hip_pitch",
+        "id": 3,
+        "direction": -1,
+        "zero_tick": 1485.4026857025542,
+        "mapping_verified": true
+      },
+      {
+        "name": "left_knee",
+        "id": 4,
+        "direction": -1,
+        "zero_tick": 1440.4026857025542,
+        "mapping_verified": true
+      },
+      {
+        "name": "left_ankle",
+        "id": 5,
+        "direction": 1,
+        "zero_tick": 2100.0,
+        "mapping_verified": true
+      },
+      {
+        "name": "neck_pitch",
+        "id": 6,
+        "direction": -1,
+        "zero_tick": 2103.0,
+        "mapping_verified": true
+      },
+      {
+        "name": "head_pitch",
+        "id": 7,
+        "direction": -1,
+        "zero_tick": 1989.0,
+        "mapping_verified": true
+      },
+      {
+        "name": "head_yaw",
+        "id": 8,
+        "direction": -1,
+        "zero_tick": 2061.0,
+        "mapping_verified": true
+      },
+      {
+        "name": "head_roll",
+        "id": 9,
+        "direction": -1,
+        "zero_tick": 2064.0,
+        "mapping_verified": true
+      },
+      {
+        "name": "right_hip_yaw",
+        "id": 10,
+        "direction": -1,
+        "zero_tick": 2030.0,
+        "mapping_verified": true
+      },
+      {
+        "name": "right_hip_roll",
+        "id": 11,
+        "direction": -1,
+        "zero_tick": 2015.0,
+        "mapping_verified": true
+      },
+      {
+        "name": "right_hip_pitch",
+        "id": 12,
+        "direction": -1,
+        "zero_tick": 2769.597314297446,
+        "mapping_verified": true
+      },
+      {
+        "name": "right_knee",
+        "id": 13,
+        "direction": -1,
+        "zero_tick": 3003.597314297446,
+        "mapping_verified": true
+      },
+      {
+        "name": "right_ankle",
+        "id": 14,
+        "direction": 1,
+        "zero_tick": 1885.0,
+        "mapping_verified": true
+      }
+    ],
+    "calibration": {
+      "pose": "straight",
+      "captured_ticks": [
+        2031.0,
+        1987.0,
+        2150.0,
+        2105.0,
+        2100.0,
+        2103.0,
+        1989.0,
+        2061.0,
+        2064.0,
+        2030.0,
+        2015.0,
+        2105.0,
+        2339.0,
+        1885.0
+      ],
+      "reference_q_rad": [
+        0.0,
+        0.0,
+        -1.019479511812677,
+        -1.019479511812677,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.019479511812677,
+        1.019479511812677,
+        0.0
+      ],
+      "joint_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "directions": [
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      "home_ticks": [
+        2031,
+        2044,
+        1784,
+        1444,
+        2395,
+        1875,
+        1761,
+        2061,
+        2064,
+        2030,
+        1958,
+        2471,
+        3000,
+        1590
+      ],
+      "utc": "2026-09-30T06:44:58.967955+00:00",
+      "source_web_pose": "笔直状态-2026-09-30-063911-965488340.json",
+      "source_sha256": "4c1c377ae4f4242e3a52f78cb1621098fb17245193e26443242960bf37ded1eb"
+    },
+    "control": {
+      "frequency_hz": 50,
+      "home_duration_s": 3.0,
+      "max_start_distance_rad": 0.6,
+      "home_tolerance_rad": 0.15,
+      "tilt_limit_deg": 35.0,
+      "imu_max_age_s": 0.06,
+      "max_cycle_s": 0.04,
+      "max_overruns": 5,
+      "servo_voltage_range": [
+        7.0,
+        8.4
+      ],
+      "servo_max_temperature_c": 60,
+      "max_target_jump_rad": 0.6,
+      "ram_p": 5,
+      "ram_d": 0,
+      "ram_i": 0
+    },
+    "imu_process": true
+  },
+  "motion": false,
+  "twist": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "from_pose": null,
+  "move_seconds": null,
+  "home_only": false,
+  "imu_configuration": {
+    "transport": "i2c",
+    "i2c_bus": 3,
+    "i2c_address": 106,
+    "spi_bus": null,
+    "spi_device": null,
+    "spi_max_speed_hz": 1000000,
+    "spi_mode": 0,
+    "odr_hz": 120,
+    "accel_range_g": 4,
+    "gyro_range_dps": 500,
+    "mounting_rotation": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "mount_verified": false,
+    "gyro_bias_rad_s": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "complementary_tau_s": 0.5,
+    "accel_rejection_fraction": 0.2,
+    "max_sample_gap_s": 0.1
+  },
+  "gyro_bias_rad_s": [
+    -0.005991569877992212,
+    -0.0010053823712008992,
+    0.01114956323302669
+  ],
+  "last_measurement": {
+    "q": [
+      0.006135923151542565,
+      -0.08283496254582462,
+      -0.45957652423441797,
+      0.05277305891938619,
+      0.42337869745643697,
+      0.34821363885004053,
+      0.3528155812136975,
+      -0.0015339807878856412,
+      0.0015339807878856412,
+      0.0030679615757712823,
+      0.018407769454627694,
+      0.4565085626586467,
+      -0.04050121261630106,
+      -0.44638840927472156
+    ],
+    "gravity": [
+      0.12401214430167233,
+      -0.0980013588491485,
+      -0.9874293502471059
+    ],
+    "gyro": [
+      -0.00011708250398794005,
+      8.908451390387618e-05,
+      0.0001514436736365938
+    ],
+    "feedback": {
+      "1": {
+        "servo_id": 1,
+        "position_ticks": 2027,
+        "velocity_raw": 0,
+        "load_raw": -15,
+        "voltage_v": 7.4,
+        "temperature_c": 40,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2031,
+        "current_ma": -143.0,
+        "received_at": 10232.884259628
+      },
+      "2": {
+        "servo_id": 2,
+        "position_ticks": 2041,
+        "velocity_raw": 0,
+        "load_raw": -14,
+        "voltage_v": 7.5,
+        "temperature_c": 38,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2044,
+        "current_ma": -149.5,
+        "received_at": 10232.884747888
+      },
+      "3": {
+        "servo_id": 3,
+        "position_ticks": 1785,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.4,
+        "temperature_c": 32,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1784,
+        "current_ma": -6.5,
+        "received_at": 10232.885199398
+      },
+      "4": {
+        "servo_id": 4,
+        "position_ticks": 1406,
+        "velocity_raw": 0,
+        "load_raw": -58,
+        "voltage_v": 7.4,
+        "temperature_c": 38,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1444,
+        "current_ma": -572.0,
+        "received_at": 10232.885741034
+      },
+      "5": {
+        "servo_id": 5,
+        "position_ticks": 2376,
+        "velocity_raw": 0,
+        "load_raw": -34,
+        "voltage_v": 7.4,
+        "temperature_c": 37,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2395,
+        "current_ma": -357.5,
+        "received_at": 10232.886296379
+      },
+      "6": {
+        "servo_id": 6,
+        "position_ticks": 1876,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.4,
+        "temperature_c": 35,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1875,
+        "current_ma": -13.0,
+        "received_at": 10232.88681264
+      },
+      "7": {
+        "servo_id": 7,
+        "position_ticks": 1759,
+        "velocity_raw": 0,
+        "load_raw": -13,
+        "voltage_v": 7.4,
+        "temperature_c": 38,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1761,
+        "current_ma": -117.0,
+        "received_at": 10232.887337943
+      },
+      "8": {
+        "servo_id": 8,
+        "position_ticks": 2062,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.5,
+        "temperature_c": 43,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2061,
+        "current_ma": -6.5,
+        "received_at": 10232.887760577
+      },
+      "9": {
+        "servo_id": 9,
+        "position_ticks": 2063,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.4,
+        "temperature_c": 37,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2064,
+        "current_ma": -13.0,
+        "received_at": 10232.88814121
+      },
+      "10": {
+        "servo_id": 10,
+        "position_ticks": 2028,
+        "velocity_raw": 0,
+        "load_raw": -13,
+        "voltage_v": 7.4,
+        "temperature_c": 42,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2030,
+        "current_ma": -130.0,
+        "received_at": 10232.888528551
+      },
+      "11": {
+        "servo_id": 11,
+        "position_ticks": 2003,
+        "velocity_raw": 0,
+        "load_raw": 67,
+        "voltage_v": 7.4,
+        "temperature_c": 40,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1958,
+        "current_ma": 669.5,
+        "received_at": 10232.888911518
+      },
+      "12": {
+        "servo_id": 12,
+        "position_ticks": 2472,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.4,
+        "temperature_c": 33,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2471,
+        "current_ma": -13.0,
+        "received_at": 10232.889545615
+      },
+      "13": {
+        "servo_id": 13,
+        "position_ticks": 3030,
+        "velocity_raw": 0,
+        "load_raw": 48,
+        "voltage_v": 7.4,
+        "temperature_c": 39,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3000,
+        "current_ma": 416.0,
+        "received_at": 10232.889939081
+      },
+      "14": {
+        "servo_id": 14,
+        "position_ticks": 1594,
+        "velocity_raw": 0,
+        "load_raw": 15,
+        "voltage_v": 7.4,
+        "temperature_c": 38,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1590,
+        "current_ma": 162.5,
+        "received_at": 10232.890299005
+      }
+    }
+  },
+  "stop_reason": null,
+  "finished": "2026-09-30T07:36:52.219389+00:00"
+}

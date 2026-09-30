@@ -1,0 +1,76 @@
+{
+  "started": "2026-09-27T20:12:09.706641+08:00",
+  "pid": 35794,
+  "args": {
+    "phase": "smoke",
+    "variant": "both",
+    "num_envs": 64,
+    "iterations": 5
+  },
+  "runs": [
+    {
+      "variant": "flat",
+      "task": "Mjlab-Velocity-Flat-MicroDuck",
+      "command": [
+        "/home/luckysir/microduck/microduck_rl/.venv/bin/train",
+        "Mjlab-Velocity-Flat-MicroDuck",
+        "--env.scene.num-envs",
+        "64",
+        "--agent.max-iterations",
+        "5",
+        "--agent.logger",
+        "tensorboard",
+        "--agent.experiment-name",
+        "local_flat_smoke",
+        "--agent.run-name",
+        "flat_20260927_201209",
+        "--agent.save-interval",
+        "250"
+      ],
+      "stdout": "/home/luckysir/microduck/runs/20260927_201209_smoke/flat.log",
+      "experiment": "local_flat_smoke",
+      "run_name": "flat_20260927_201209",
+      "status": "completed",
+      "pid": 35798,
+      "disk_free_gib": 5.453647613525391,
+      "elapsed_seconds": 90.02567977499984,
+      "returncode": 0,
+      "training_dirs": [
+        "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_flat_smoke/2026-09-27_20-12-27_flat_20260927_201209"
+      ]
+    },
+    {
+      "variant": "backlash",
+      "task": "Mjlab-Velocity-Flat-Backlash-MicroDuck",
+      "command": [
+        "/home/luckysir/microduck/microduck_rl/.venv/bin/train",
+        "Mjlab-Velocity-Flat-Backlash-MicroDuck",
+        "--env.scene.num-envs",
+        "64",
+        "--agent.max-iterations",
+        "5",
+        "--agent.logger",
+        "tensorboard",
+        "--agent.experiment-name",
+        "local_backlash_smoke",
+        "--agent.run-name",
+        "backlash_20260927_201209",
+        "--agent.save-interval",
+        "250"
+      ],
+      "stdout": "/home/luckysir/microduck/runs/20260927_201209_smoke/backlash.log",
+      "experiment": "local_backlash_smoke",
+      "run_name": "backlash_20260927_201209",
+      "status": "completed",
+      "pid": 36682,
+      "disk_free_gib": 5.530826568603516,
+      "elapsed_seconds": 60.00306963000003,
+      "returncode": 0,
+      "training_dirs": [
+        "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_backlash_smoke/2026-09-27_20-13-50_backlash_20260927_201209"
+      ]
+    }
+  ],
+  "status": "completed",
+  "finished": "2026-09-27T20:14:39.875963+08:00"
+}

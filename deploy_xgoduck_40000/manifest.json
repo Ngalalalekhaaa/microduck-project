@@ -1,0 +1,8 @@
+{
+  "model_sha256": "73e32117f0aafc5681e0f55704433c655f4682123b76c4159fb1386e280b15cf",
+  "source_robot_config_sha256": "431c0e49a27825136d8983f99636bb238d51634a82948f794e36aaea18610962",
+  "home_source": "Public XgoDuck HOME: hips/ankles +/-24 degrees; consistent with rounded ONNX metadata, full user training config unavailable",
+  "preserved": "Physical joint zeros, directions, IDs, IMU mounting, RAM P5/D0/I0, 50Hz, raw action history, limits; no action filter",
+  "stop_behavior": "Completion/error/Ctrl+C turns torque OFF as in existing deployment",
+  "deployment_status": "Offline validated; no real motion started"
+}

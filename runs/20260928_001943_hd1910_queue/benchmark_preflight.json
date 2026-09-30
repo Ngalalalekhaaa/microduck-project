@@ -1,0 +1,9 @@
+{
+  "time": "2026-09-28T01:35:01.979344+08:00",
+  "workspace": "/home/luckysir/microduck",
+  "disk_total_gib": 146.1283950805664,
+  "disk_free_gib": 4.991924285888672,
+  "reserve_gib": 3.0,
+  "gpu_name_totalMiB_usedMiB_freeMiB_tempC": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141, 893, 4856, 48",
+  "ok": true
+}

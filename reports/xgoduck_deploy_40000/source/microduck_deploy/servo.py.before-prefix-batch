@@ -1,0 +1,416 @@
+"""Small FT-SCS driver for an HD1910 deployment; no EEPROM-write API.
+
+SPDX-License-Identifier: Apache-2.0
+Protocol/register references: fanhao375/microduck-replica (Apache-2.0 tools),
+tools/servo-web/feetech.py and tools/FeeTech_HD1910M_Servo/src/{servo,registers}.rs;
+Feetech SCS protocol v1.0 (2026-06-09), STS table v1.1 (2026-08-27), and
+HD-1910-C001 specification (2026-09-07). This is a stricter implementation:
+bad replies and missing acknowledgements are never reported as success.
+
+The HLS_2 RAM gains 50/51/52 are documented in the replica's HD1910 Rust
+tool/tutorial. The generic STS table does not define them. Selecting hls_2 is
+an explicit hardware-profile choice, not automatic identification. Model bytes
+are returned unchanged. Velocity conversion requires an explicit measured or
+confirmed unit because STS phase-bit units and the HLS_2 table differ.
+
+Only torque (40), single-turn goals (42), and HLS_2 RAM P/D/I (50/51/52) can be
+written. IDs, EEPROM gains, mode, phase, hardware offset, lock and calibration
+instructions are deliberately absent. Opening/closing never changes torque.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+import math
+import numbers
+import struct
+import threading
+import time
+from collections.abc import Iterable, Mapping
+
+PING, READ, SYNC_READ, SYNC_WRITE = 0x01, 0x02, 0x82, 0x83
+BROADCAST = 0xFE
+TICKS_PER_TURN = 4096
+STATUS_NAMES = {0: "voltage", 1: "encoder", 2: "temperature", 3: "current", 5: "load"}
+
+
+class ServoError(RuntimeError):
+    """Base error for transport, reply, device-status and configuration failures."""
+
+
+class ServoTimeout(ServoError):
+    pass
+
+
+class ServoProtocolError(ServoError):
+    pass
+
+
+class ServoConfigurationError(ServoError):
+    pass
+
+
+class ServoStatusError(ServoError):
+    def __init__(self, servo_id: int, status: int, *, params: bytes = b"", source="reply"):
+        self.servo_id, self.status, self.params, self.source = servo_id, status, params, source
+        names = [name for bit, name in STATUS_NAMES.items() if status & (1 << bit)]
+        super().__init__(f"Servo {servo_id} {source} status 0x{status:02x}: {', '.join(names) or 'unknown status bit'}")
+
+
+def _integer(value, low: int, high: int, name: str) -> int:
+    if isinstance(value, bool) or not isinstance(value, numbers.Integral) or not low <= value <= high:
+        raise ValueError(f"{name} must be an integer in [{low}, {high}]")
+    return int(value)
+
+
+def _ids(values: Iterable[int]) -> list[int]:
+    result = [_integer(x, 0, 253, "servo ID") for x in values]
+    if not result or len(set(result)) != len(result):
+        raise ValueError("Servo IDs must be nonempty and unique")
+    return result
+
+
+def build_packet(servo_id: int, instruction: int, params: bytes = b"") -> bytes:
+    servo_id = _integer(servo_id, 0, BROADCAST, "packet ID")
+    instruction = _integer(instruction, 0, 255, "instruction")
+    params = bytes(params)
+    if len(params) > 253:
+        raise ValueError("Packet parameters exceed the one-byte length field")
+    body = bytes((servo_id, len(params) + 2, instruction)) + params
+    return b"\xff\xff" + body + bytes(((~sum(body)) & 255,))
+
+
+def decode_sign_magnitude(value: int, sign_bit: int = 15) -> int:
+    value = _integer(value, 0, (1 << (sign_bit + 1)) - 1, "encoded value")
+    magnitude = value & ((1 << sign_bit) - 1)
+    return -magnitude if value & (1 << sign_bit) else magnitude
+
+
+def ticks_to_radians(ticks: int, zero_ticks: float, direction: int) -> float:
+    """Software joint zero: q = direction * (ticks - zero_ticks) * 2*pi/4096.
+
+    No wrapping is applied. A calibrated zero need not be an integer. The
+    caller must validate encoder range and joint limits for its mechanism.
+    """
+    _integer(ticks, -32767, 32767, "position ticks")
+    _direction(direction)
+    if not math.isfinite(zero_ticks):
+        raise ValueError("zero_ticks must be finite")
+    return direction * (ticks - zero_ticks) * math.tau / TICKS_PER_TURN
+
+
+def _direction(direction: int) -> None:
+    if isinstance(direction, bool) or direction not in (-1, 1):
+        raise ValueError("direction must be explicitly +1 or -1")
+
+
+def radians_to_ticks(angle: float, zero_ticks: float, direction: int) -> int:
+    """Convert software joint angle to a single-turn goal; never silently wrap."""
+    _direction(direction)
+    if not math.isfinite(angle) or not math.isfinite(zero_ticks):
+        raise ValueError("angle and zero_ticks must be finite")
+    target = round(zero_ticks + direction * angle * TICKS_PER_TURN / math.tau)
+    return _integer(target, 0, 4095, "single-turn goal")
+
+
+def velocity_to_rad_s(raw: int, rpm_per_unit: float) -> float:
+    _integer(raw, -32767, 32767, "velocity")
+    if not math.isfinite(rpm_per_unit) or rpm_per_unit <= 0:
+        raise ValueError("rpm_per_unit must be explicitly positive and finite")
+    return raw * rpm_per_unit * math.tau / 60.0
+
+
+@dataclass(frozen=True)
+class ServoFeedback:
+    servo_id: int
+    position_ticks: int
+    velocity_raw: int
+    load_raw: int
+    voltage_v: float
+    temperature_c: int
+    status: int
+    moving: int
+    goal_ticks: int
+    current_ma: float
+    received_at: float  # time.monotonic(), for freshness checks by the controller
+
+    def velocity_rad_s(self, rpm_per_unit: float) -> float:
+        return velocity_to_rad_s(self.velocity_raw, rpm_per_unit)
+
+
+class ServoBus:
+    def __init__(self, port: str | None, baudrate: int = 1_000_000,
+                 timeout: float = 0.02, *, transport=None, discard_echo: bool = False,
+                 register_profile: str = "hls_2"):
+        if not math.isfinite(timeout) or timeout <= 0:
+            raise ValueError("timeout must be positive and finite")
+        _integer(baudrate, 1, 10_000_000, "baudrate")
+        if register_profile not in ("hls_2", "sts"):
+            raise ValueError("register_profile must be hls_2 or sts")
+        self.timeout = float(timeout)
+        self.register_profile = register_profile
+        self.discard_echo = bool(discard_echo)
+        self._io = threading.RLock()
+        self._closed = False
+        if transport is None:
+            if not port:
+                raise ValueError("A serial device path is required")
+            import serial  # Optional for CPU tests; installed on the Radxa.
+            try:
+                transport = serial.Serial(port=port, baudrate=baudrate, bytesize=8,
+                                          parity="N", stopbits=1, timeout=timeout,
+                                          write_timeout=timeout, exclusive=True)
+            except (OSError, serial.SerialException) as exc:
+                raise ServoError(f"Cannot open serial port {port}: {exc}") from exc
+        self._serial = transport
+
+    def __enter__(self):
+        if self._closed:
+            raise ServoError("Serial bus is closed")
+        return self
+
+    def __exit__(self, *_):
+        self.close()
+
+    def close(self) -> None:
+        with self._io:
+            if not self._closed:
+                self._closed = True
+                self._serial.close()
+
+    def _read_exact(self, size: int, deadline: float) -> bytes:
+        data = bytearray()
+        while len(data) < size:
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise ServoTimeout(f"Reply incomplete: wanted {size} bytes, received {len(data)}")
+            self._serial.timeout = min(self.timeout, remaining)
+            try:
+                chunk = self._serial.read(size - len(data))
+            except OSError as exc:
+                raise ServoError(f"Serial read failed: {exc}") from exc
+            if chunk:
+                data.extend(chunk)
+            else:
+                time.sleep(min(0.0001, remaining))
+        return bytes(data)
+
+    def _send(self, packet: bytes) -> float:
+        if self._closed:
+            raise ServoError("Serial bus is closed")
+        try:
+            self._serial.reset_input_buffer()
+            written = self._serial.write(packet)
+        except OSError as exc:
+            raise ServoError(f"Serial write failed: {exc}") from exc
+        if written != len(packet):
+            raise ServoProtocolError(f"Short serial write: {written}/{len(packet)} bytes")
+        deadline = time.monotonic() + self.timeout
+        if self.discard_echo and self._read_exact(len(packet), deadline) != packet:
+            raise ServoProtocolError("Serial adapter echo differs from the transmitted packet")
+        return deadline
+
+    def _read_status(self, deadline: float, expected_id: int | None, count: int) -> tuple[int, bytes]:
+        header = b""
+        for _ in range(64):
+            header = (header + self._read_exact(1, deadline))[-2:]
+            if header == b"\xff\xff":
+                break
+        else:
+            raise ServoProtocolError("No packet header within 64 received bytes")
+        sid, length = self._read_exact(2, deadline)
+        if sid > 253 or length < 2:
+            raise ServoProtocolError(f"Invalid reply ID/length: {sid}/{length}")
+        if length not in (2, count + 2):
+            raise ServoProtocolError(f"Servo {sid} reply length {length - 2}, expected {count}")
+        body = self._read_exact(length, deadline)
+        if (sid + length + sum(body)) & 255 != 255:
+            raise ServoProtocolError(f"Servo {sid} reply checksum mismatch")
+        if expected_id is not None and sid != expected_id:
+            raise ServoProtocolError(f"Expected servo {expected_id}, received {sid}")
+        status, params = body[0], body[1:-1]
+        if status:
+            raise ServoStatusError(sid, status, params=params)
+        if len(params) != count:
+            raise ServoProtocolError(f"Servo {sid} reply length {len(params)}, expected {count}")
+        return sid, params
+
+    def ping(self, servo_id: int) -> bool:
+        servo_id = _integer(servo_id, 0, 253, "servo ID")
+        with self._io:
+            deadline = self._send(build_packet(servo_id, PING))
+            self._read_status(deadline, servo_id, 0)
+        return True
+
+    def read(self, servo_id: int, address: int, count: int) -> bytes:
+        servo_id = _integer(servo_id, 0, 253, "servo ID")
+        address = _integer(address, 0, 86, "register address")
+        count = _integer(count, 1, 87 - address, "register read length")
+        with self._io:
+            deadline = self._send(build_packet(servo_id, READ, bytes((address, count))))
+            return self._read_status(deadline, servo_id, count)[1]
+
+    def read_identity(self, servo_id: int) -> dict:
+        raw = self.read(servo_id, 0, 9)
+        if raw[2] != 0:
+            raise ServoConfigurationError(f"Servo {servo_id}: expected little-endian END=0, got {raw[2]}")
+        if raw[5] != servo_id:
+            raise ServoConfigurationError(f"Requested ID {servo_id}, stored primary ID is {raw[5]}")
+        return {"id": raw[5], "firmware": [raw[0], raw[1]],
+                "model_version": [raw[3], raw[4]], "endianness": "little",
+                "baud_code": raw[6], "response_level": raw[8]}
+
+    def read_motion_profile(self, servo_id: int) -> dict:
+        """Read SRAM 41..49 without assuming mode-specific motion semantics.
+
+        HLS_2 calls 44 a current target/limit; STS uses it for open-loop PWM.
+        The HLS_2 table says speed zero stops, but published HD1910 Arduino
+        firmware writes zero at both 44 and 46 while commanding position.
+        These fields are evidence for hardware checks, not a portable preset.
+        Values with a direction flag are decoded as sign/magnitude; the
+        original bytes remain available in registers_41_49_hex.
+        """
+        raw = self.read(servo_id, 41, 9)
+        position, current_or_pwm, speed, torque_limit = struct.unpack_from("<HHHH", raw, 1)
+        return {"acceleration_raw": raw[0],
+                "goal_position_ticks": decode_sign_magnitude(position),
+                "goal_current_raw": (decode_sign_magnitude(current_or_pwm)
+                                     if self.register_profile == "hls_2" else None),
+                "register_44_raw": current_or_pwm,
+                "goal_speed_raw": decode_sign_magnitude(speed),
+                "torque_limit_raw": torque_limit,
+                "registers_41_49_hex": raw.hex(),
+                "motion_semantics_confirmed": False}
+
+    def read_configuration(self, servo_id: int) -> dict:
+        with self._io:
+            identity = self.read_identity(servo_id)
+            raw = self.read(servo_id, 9, 25)
+            torque = self.read(servo_id, 40, 1)[0]
+            lock = self.read(servo_id, 55, 1)[0]
+            ram = self.read(servo_id, 50, 3) if self.register_profile == "hls_2" else None
+            motion_profile = self.read_motion_profile(servo_id)
+        phase = raw[9]
+        return {**identity, "register_profile": self.register_profile,
+                "position_min": struct.unpack_from("<H", raw, 0)[0],
+                "position_max": struct.unpack_from("<H", raw, 2)[0],
+                "phase": phase, "angle_resolution": raw[21], "mode": raw[24],
+                "eeprom_gains": dict(zip(("p", "d", "i"), raw[12:15])),
+                "ram_gains": dict(zip(("p", "d", "i"), ram)) if ram is not None else None,
+                "motion_profile": motion_profile,
+                "torque": torque, "lock": lock,
+                "velocity_rpm_per_unit_nominal": (0.732 if self.register_profile == "hls_2"
+                                                   else (0.0146 if phase & 4 else 0.732)),
+                "velocity_unit_confirmed": False}
+
+    @staticmethod
+    def _feedback(servo_id: int, raw: bytes) -> ServoFeedback:
+        if len(raw) != 15:
+            raise ServoProtocolError("Feedback must contain exactly registers 56..70 (15 bytes)")
+        if raw[9]:
+            raise ServoStatusError(servo_id, raw[9], params=raw, source="feedback")
+        pos, vel, load = struct.unpack_from("<HHH", raw)
+        goal, current = struct.unpack_from("<HH", raw, 11)
+        return ServoFeedback(servo_id, decode_sign_magnitude(pos), decode_sign_magnitude(vel),
+                             decode_sign_magnitude(load, 10), raw[6] / 10.0, raw[7], raw[9], raw[10],
+                             decode_sign_magnitude(goal), decode_sign_magnitude(current) * 6.5,
+                             time.monotonic())
+
+    def read_feedback(self, servo_id: int) -> ServoFeedback:
+        return self._feedback(servo_id, self.read(servo_id, 56, 15))
+
+    def read_feedback_many(self, ids: Iterable[int], *, sync: bool = False) -> dict[int, ServoFeedback]:
+        ids = _ids(ids)
+        with self._io:
+            if not sync:
+                return {sid: self.read_feedback(sid) for sid in ids}
+            packet = build_packet(BROADCAST, SYNC_READ, bytes((56, 15, *ids)))
+            deadline = self._send(packet)
+            out = {}
+            for _ in ids:
+                sid, raw = self._read_status(deadline, None, 15)
+                if sid not in ids or sid in out:
+                    raise ServoProtocolError(f"Unexpected or duplicate SYNC_READ reply ID {sid}")
+                out[sid] = self._feedback(sid, raw)
+            return {sid: out[sid] for sid in ids}
+
+    def _sync_ram(self, address: int, size: int, values: Mapping[int, bytes]) -> None:
+        # Keep the write boundary explicit; even private callers cannot target EEPROM.
+        if (address, size) not in ((40, 1), (42, 2), (50, 2), (50, 3)):
+            raise ServoConfigurationError("This driver only writes torque, position, and RAM gains")
+        ids = _ids(values)
+        params = bytearray((address, size))
+        for sid in ids:
+            value = bytes(values[sid])
+            if len(value) != size:
+                raise ValueError("Incorrect per-servo payload length")
+            params.extend((sid,))
+            params.extend(value)
+        packet = build_packet(BROADCAST, SYNC_WRITE, params)
+        with self._io:
+            self._send(packet)  # Broadcast writes have no acknowledgement.
+
+    def sync_positions(self, targets: Mapping[int, int]) -> None:
+        """Send single-turn ticks only; caller enforces joint limits and slew rate.
+
+        Broadcast delivery is unacknowledged. Use fresh feedback to detect faults;
+        a successful serial write alone does not prove any servo moved.
+        """
+        encoded = {sid: struct.pack("<H", _integer(value, 0, 4095, "position target"))
+                   for sid, value in targets.items()}
+        self._sync_ram(42, 2, encoded)
+
+    def set_torque(self, ids: Iterable[int], enabled: bool, *, verify: bool = True) -> None:
+        ids = _ids(ids)
+        if not isinstance(enabled, bool):
+            raise ValueError("enabled must be a bool")
+        with self._io:
+            self._sync_ram(40, 1, {sid: bytes((int(enabled),)) for sid in ids})
+            if verify:
+                for sid in ids:
+                    actual = self.read(sid, 40, 1)[0]
+                    if actual != int(enabled):
+                        raise ServoConfigurationError(f"Servo {sid}: torque readback {actual}, expected {int(enabled)}")
+
+    def set_pd_ram(self, ids: Iterable[int], p: int, d: int, *, verify: bool = True) -> None:
+        """Set HLS_2 running gains, after checking every servo; never write 21/22.
+
+        Requires pure-position mode 4, torque off, angle_resolution=1 and Ki=0.
+        Nonzero Ki is refused rather than silently changing the integral setting.
+        The higher-level startup must also confirm the actual register profile.
+        """
+        self._set_ram_gains(ids, p, d, None, verify)
+
+    def set_pid_ram(self, ids: Iterable[int], p: int, d: int, i: int, *, verify: bool = True) -> None:
+        """Explicitly set all HLS_2 running gains 50..52; no persistent writes.
+
+        Startup can set (5, 0, 0), and shutdown can restore the saved original
+        values after switching torque off. Read originals with read_configuration.
+        No change is allowed unless every requested servo passes the mode,
+        torque and angle-resolution checks.
+        """
+        self._set_ram_gains(ids, p, d, _integer(i, 0, 254, "I"), verify)
+
+    def _set_ram_gains(self, ids, p, d, i, verify):
+        ids = _ids(ids)
+        p, d = _integer(p, 0, 254, "P"), _integer(d, 0, 254, "D")
+        if self.register_profile != "hls_2":
+            raise ServoConfigurationError("RAM P/D registers 50/51 require the HLS_2 profile")
+        with self._io:
+            for sid in ids:
+                cfg = self.read_configuration(sid)
+                if cfg["torque"] != 0 or cfg["mode"] != 4 or cfg["angle_resolution"] != 1:
+                    raise ServoConfigurationError(
+                        f"Servo {sid}: RAM P/D requires torque=0, mode=4, angle_resolution=1; "
+                        f"read torque={cfg['torque']}, mode={cfg['mode']}, "
+                        f"angle_resolution={cfg['angle_resolution']}, phase={cfg['phase']}")
+                if i is None and cfg["ram_gains"]["i"] != 0:
+                    raise ServoConfigurationError(f"Servo {sid}: nonzero RAM Ki; confirm firmware configuration first")
+            gains = bytes((p, d)) if i is None else bytes((p, d, i))
+            self._sync_ram(50, len(gains), {sid: gains for sid in ids})
+            if verify:
+                for sid in ids:
+                    actual = self.read(sid, 50, 3)
+                    expected = bytes((p, d, 0 if i is None else i))
+                    if actual != expected:
+                        raise ServoConfigurationError(f"Servo {sid}: RAM gain readback {list(actual)}, expected {list(expected)}")

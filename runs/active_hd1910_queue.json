@@ -1,0 +1,20 @@
+{
+  "started": "2026-09-28T00:19:43.648989+08:00",
+  "supervisor_pid": 141182,
+  "command": [
+    "systemd-inhibit",
+    "--what=idle:sleep",
+    "--who=MicroduckHD1910Training",
+    "--why=Sequential HD1910 PPO training after the original pair",
+    "--mode=block",
+    "/usr/bin/python3",
+    "/home/luckysir/microduck/scripts/queue_hd1910.py",
+    "--after",
+    "/home/luckysir/microduck/runs/20260927_201832_train/status.json",
+    "--num-envs",
+    "2048",
+    "--iterations",
+    "4000"
+  ],
+  "log": "/home/luckysir/microduck/runs/hd1910_queue.log"
+}

@@ -1,0 +1,22 @@
+{"event": "preflight", "body_tilt_deg": 16.896907662861455, "torque_states": [0], "joint_home_errors_deg": [{"id": 1, "name": "left_hip_yaw", "ticks": 2088, "error_deg": -5.009765625}, {"id": 2, "name": "left_hip_roll", "ticks": 1978, "error_deg": 5.792937176492087}, {"id": 3, "name": "left_hip_pitch", "ticks": 1784, "error_deg": -0.00816713788355303}, {"id": 4, "name": "left_knee", "ticks": 1782, "error_deg": -29.742452132309843}, {"id": 5, "name": "left_ankle", "ticks": 2210, "error_deg": -16.28701936942629}, {"id": 6, "name": "neck_pitch", "ticks": 2160, "error_deg": -25.011722253017037}, {"id": 7, "name": "head_pitch", "ticks": 1884, "error_deg": -10.773441003017039}, {"id": 8, "name": "head_yaw", "ticks": 2035, "error_deg": 2.28515625}, {"id": 9, "name": "head_roll", "ticks": 2157, "error_deg": -8.173828125}, {"id": 10, "name": "right_hip_yaw", "ticks": 2018, "error_deg": 1.0546875}, {"id": 11, "name": "right_hip_roll", "ticks": 1832, "error_deg": 11.082062823507913}, {"id": 12, "name": "right_hip_pitch", "ticks": 2402, "error_deg": 6.072620262883552}, {"id": 13, "name": "right_knee", "ticks": 2587, "error_deg": 36.33424900730984}, {"id": 14, "name": "right_ankle", "ticks": 1721, "error_deg": 11.540925619426295}]}
+trial_exit: 1
+web_restarted: 3052
+[0;93m2026-09-30 07:46:56.849478250 [W:onnxruntime:Default, device_discovery.cc:325 DiscoverDevicesForPlatform] GPU device discovery failed: device_discovery.cc:92 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+Traceback (most recent call last):
+  File "/home/wmh/deploy_hd1910/microduck_deploy/runtime.py", line 172, in _home_plan
+    return plan_home(self.cfg, q, from_pose=self.from_pose, move_seconds=self.move_seconds)
+  File "/home/wmh/deploy_hd1910/microduck_deploy/homing.py", line 55, in plan_home
+    raise ValueError("启动姿态离HOME太远；摆到接近HOME，或使用已标定的 --from-pose straight")
+ValueError: 启动姿态离HOME太远；摆到接近HOME，或使用已标定的 --from-pose straight
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/wmh/deploy_hd1910/scripts/policy_trial.py", line 66, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/home/wmh/deploy_hd1910/scripts/policy_trial.py", line 55, in main
+    plan=ctl._home_plan(q)
+  File "/home/wmh/deploy_hd1910/microduck_deploy/runtime.py", line 174, in _home_plan
+    raise StopRequested(str(exc)) from exc
+microduck_deploy.runtime.StopRequested: 启动姿态离HOME太远；摆到接近HOME，或使用已标定的 --from-pose straight

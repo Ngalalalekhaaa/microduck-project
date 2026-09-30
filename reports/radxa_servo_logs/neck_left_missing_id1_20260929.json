@@ -1,0 +1,258 @@
+{
+  "read_only": true,
+  "id1_extended": [
+    {
+      "id": 1,
+      "operation": "ping",
+      "tx_hex": "ffff010201fb",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.634
+    },
+    {
+      "id": 1,
+      "operation": "position",
+      "tx_hex": "ffff0104023802be",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.505
+    },
+    {
+      "id": 1,
+      "operation": "ping",
+      "tx_hex": "ffff010201fb",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.749
+    },
+    {
+      "id": 1,
+      "operation": "position",
+      "tx_hex": "ffff0104023802be",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.743
+    },
+    {
+      "id": 1,
+      "operation": "ping",
+      "tx_hex": "ffff010201fb",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.747
+    },
+    {
+      "id": 1,
+      "operation": "position",
+      "tx_hex": "ffff0104023802be",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.829
+    },
+    {
+      "id": 1,
+      "operation": "ping",
+      "tx_hex": "ffff010201fb",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.774
+    },
+    {
+      "id": 1,
+      "operation": "position",
+      "tx_hex": "ffff0104023802be",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.767
+    },
+    {
+      "id": 1,
+      "operation": "ping",
+      "tx_hex": "ffff010201fb",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.744
+    },
+    {
+      "id": 1,
+      "operation": "position",
+      "tx_hex": "ffff0104023802be",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.746
+    }
+  ],
+  "unicast_scan_ids_0_253": [
+    {
+      "id": 2,
+      "identity": {
+        "id": 2,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      }
+    },
+    {
+      "id": 3,
+      "identity": {
+        "id": 3,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      }
+    },
+    {
+      "id": 4,
+      "identity": {
+        "id": 4,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      }
+    },
+    {
+      "id": 5,
+      "identity": {
+        "id": 5,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      }
+    },
+    {
+      "id": 6,
+      "identity": {
+        "id": 6,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      }
+    },
+    {
+      "id": 7,
+      "identity": {
+        "id": 7,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      }
+    },
+    {
+      "id": 8,
+      "identity": {
+        "id": 8,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      }
+    },
+    {
+      "id": 9,
+      "identity": {
+        "id": 9,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      }
+    },
+    {
+      "id": 10,
+      "identity": {
+        "id": 10,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      }
+    },
+    {
+      "id": 15,
+      "identity": {
+        "id": 15,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      }
+    }
+  ],
+  "scan_non_timeout_errors": []
+}

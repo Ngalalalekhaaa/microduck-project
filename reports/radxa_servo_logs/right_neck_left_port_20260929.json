@@ -1,0 +1,74 @@
+{
+  "read_only": true,
+  "port": "/dev/ttyS2",
+  "baudrate": 1000000,
+  "scan_ids": [
+    0,
+    253
+  ],
+  "found_ids": [
+    6
+  ],
+  "non_timeout_errors": [],
+  "readings": [
+    {
+      "id": 6,
+      "trials": [
+        {
+          "identity": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          },
+          "feedback": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          }
+        },
+        {
+          "identity": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          },
+          "feedback": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          }
+        },
+        {
+          "identity": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          },
+          "feedback": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          }
+        },
+        {
+          "identity": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          },
+          "feedback": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          }
+        },
+        {
+          "identity": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          },
+          "feedback": {
+            "error": "ServoTimeout",
+            "message": "Reply incomplete: wanted 1 bytes, received 0"
+          }
+        }
+      ],
+      "configuration": {
+        "error": "ServoTimeout",
+        "message": "Reply incomplete: wanted 1 bytes, received 0"
+      }
+    }
+  ]
+}

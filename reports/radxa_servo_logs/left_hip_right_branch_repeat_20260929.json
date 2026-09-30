@@ -1,0 +1,2182 @@
+{
+  "read_only": true,
+  "config": {
+    "port": "/dev/ttyS2",
+    "baudrate": 1000000,
+    "timeout": 0.015,
+    "discard_echo": false,
+    "register_profile": "hls_2"
+  },
+  "ids": [
+    1,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "cycles": 20,
+  "cycle_interval_s": 0.1,
+  "rows": [
+    {
+      "cycle": 1,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 19.5,
+        "received_at": 2597.611862597
+      },
+      "duration_ms": 2.156
+    },
+    {
+      "cycle": 1,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 26.0,
+        "received_at": 2597.613618331
+      },
+      "duration_ms": 1.612
+    },
+    {
+      "cycle": 1,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2597.615343734
+      },
+      "duration_ms": 1.645
+    },
+    {
+      "cycle": 1,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 26.0,
+        "received_at": 2597.616930894
+      },
+      "duration_ms": 1.528
+    },
+    {
+      "cycle": 1,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 19.5,
+        "received_at": 2597.61847664
+      },
+      "duration_ms": 1.503
+    },
+    {
+      "cycle": 1,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2597.619932558
+      },
+      "duration_ms": 1.407
+    },
+    {
+      "cycle": 2,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 19.5,
+        "received_at": 2597.711599388
+      },
+      "duration_ms": 1.634
+    },
+    {
+      "cycle": 2,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 13.0,
+        "received_at": 2597.713211339
+      },
+      "duration_ms": 1.54
+    },
+    {
+      "cycle": 2,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 26.0,
+        "received_at": 2597.714715963
+      },
+      "duration_ms": 1.529
+    },
+    {
+      "cycle": 2,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 19.5,
+        "received_at": 2597.716297582
+      },
+      "duration_ms": 1.449
+    },
+    {
+      "cycle": 2,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 19.5,
+        "received_at": 2597.717867827
+      },
+      "duration_ms": 1.433
+    },
+    {
+      "cycle": 2,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2597.719339202
+      },
+      "duration_ms": 1.423
+    },
+    {
+      "cycle": 3,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 19.5,
+        "received_at": 2597.811666328
+      },
+      "duration_ms": 1.529
+    },
+    {
+      "cycle": 3,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2597.813332817
+      },
+      "duration_ms": 1.618
+    },
+    {
+      "cycle": 3,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2597.814849107
+      },
+      "duration_ms": 1.449
+    },
+    {
+      "cycle": 3,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 13.0,
+        "received_at": 2597.816177574
+      },
+      "duration_ms": 1.27
+    },
+    {
+      "cycle": 3,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 26.0,
+        "received_at": 2597.817607826
+      },
+      "duration_ms": 1.42
+    },
+    {
+      "cycle": 3,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 26.0,
+        "received_at": 2597.819075702
+      },
+      "duration_ms": 1.412
+    },
+    {
+      "cycle": 4,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 32.5,
+        "received_at": 2597.91182368
+      },
+      "duration_ms": 1.613
+    },
+    {
+      "cycle": 4,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 13.0,
+        "received_at": 2597.913363301
+      },
+      "duration_ms": 1.387
+    },
+    {
+      "cycle": 4,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 13.0,
+        "received_at": 2597.914876966
+      },
+      "duration_ms": 1.461
+    },
+    {
+      "cycle": 4,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 26.0,
+        "received_at": 2597.916349216
+      },
+      "duration_ms": 1.518
+    },
+    {
+      "cycle": 4,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 19.5,
+        "received_at": 2597.91796175
+      },
+      "duration_ms": 1.479
+    },
+    {
+      "cycle": 4,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2597.919414168
+      },
+      "duration_ms": 1.401
+    },
+    {
+      "cycle": 5,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 19.5,
+        "received_at": 2598.012064443
+      },
+      "duration_ms": 1.61
+    },
+    {
+      "cycle": 5,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2598.013610772
+      },
+      "duration_ms": 1.471
+    },
+    {
+      "cycle": 5,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2598.015139603
+      },
+      "duration_ms": 1.479
+    },
+    {
+      "cycle": 5,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.2,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 19.5,
+        "received_at": 2598.016576855
+      },
+      "duration_ms": 1.386
+    },
+    {
+      "cycle": 5,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 26.0,
+        "received_at": 2598.018055813
+      },
+      "duration_ms": 1.522
+    },
+    {
+      "cycle": 5,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 26.0,
+        "received_at": 2598.019660181
+      },
+      "duration_ms": 1.592
+    },
+    {
+      "cycle": 6,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2598.112141882
+      },
+      "duration_ms": 1.477
+    },
+    {
+      "cycle": 6,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2598.113628423
+      },
+      "duration_ms": 1.438
+    },
+    {
+      "cycle": 6,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2598.115127505
+      },
+      "duration_ms": 1.454
+    },
+    {
+      "cycle": 6,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 26.0,
+        "received_at": 2598.116537051
+      },
+      "duration_ms": 1.358
+    },
+    {
+      "cycle": 6,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 26.0,
+        "received_at": 2598.118031758
+      },
+      "duration_ms": 1.544
+    },
+    {
+      "cycle": 6,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2598.119616877
+      },
+      "duration_ms": 1.45
+    },
+    {
+      "cycle": 7,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2598.212368938
+      },
+      "duration_ms": 1.554
+    },
+    {
+      "cycle": 7,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2598.21391935
+      },
+      "duration_ms": 1.49
+    },
+    {
+      "cycle": 7,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2598.215388101
+      },
+      "duration_ms": 1.494
+    },
+    {
+      "cycle": 7,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 19.5,
+        "received_at": 2598.216980511
+      },
+      "duration_ms": 1.468
+    },
+    {
+      "cycle": 7,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 19.5,
+        "received_at": 2598.218428555
+      },
+      "duration_ms": 1.406
+    },
+    {
+      "cycle": 7,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2598.21983635
+      },
+      "duration_ms": 1.375
+    },
+    {
+      "cycle": 8,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2598.31251054
+      },
+      "duration_ms": 1.509
+    },
+    {
+      "cycle": 8,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2598.314024496
+      },
+      "duration_ms": 1.458
+    },
+    {
+      "cycle": 8,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2598.315463499
+      },
+      "duration_ms": 1.398
+    },
+    {
+      "cycle": 8,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.2,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 19.5,
+        "received_at": 2598.317008078
+      },
+      "duration_ms": 1.509
+    },
+    {
+      "cycle": 8,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 19.5,
+        "received_at": 2598.318497536
+      },
+      "duration_ms": 1.445
+    },
+    {
+      "cycle": 8,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2598.319945871
+      },
+      "duration_ms": 1.405
+    },
+    {
+      "cycle": 9,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2598.412699683
+      },
+      "duration_ms": 1.617
+    },
+    {
+      "cycle": 9,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2598.414336132
+      },
+      "duration_ms": 1.505
+    },
+    {
+      "cycle": 9,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2598.415848338
+      },
+      "duration_ms": 1.505
+    },
+    {
+      "cycle": 9,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 19.5,
+        "received_at": 2598.417397876
+      },
+      "duration_ms": 1.463
+    },
+    {
+      "cycle": 9,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 19.5,
+        "received_at": 2598.4189025
+      },
+      "duration_ms": 1.444
+    },
+    {
+      "cycle": 9,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2598.42045437
+      },
+      "duration_ms": 1.505
+    },
+    {
+      "cycle": 10,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 19.5,
+        "received_at": 2598.512863743
+      },
+      "duration_ms": 1.545
+    },
+    {
+      "cycle": 10,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 26.0,
+        "received_at": 2598.514454695
+      },
+      "duration_ms": 1.525
+    },
+    {
+      "cycle": 10,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 26.0,
+        "received_at": 2598.515915863
+      },
+      "duration_ms": 1.408
+    },
+    {
+      "cycle": 10,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 13.0,
+        "received_at": 2598.517399779
+      },
+      "duration_ms": 1.445
+    },
+    {
+      "cycle": 10,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 26.0,
+        "received_at": 2598.518848989
+      },
+      "duration_ms": 1.492
+    },
+    {
+      "cycle": 10,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 26.0,
+        "received_at": 2598.520361195
+      },
+      "duration_ms": 1.39
+    },
+    {
+      "cycle": 11,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2598.613021971
+      },
+      "duration_ms": 1.605
+    },
+    {
+      "cycle": 11,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2598.61463888
+      },
+      "duration_ms": 1.471
+    },
+    {
+      "cycle": 11,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 26.0,
+        "received_at": 2598.615974929
+      },
+      "duration_ms": 1.267
+    },
+    {
+      "cycle": 11,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 26.0,
+        "received_at": 2598.617460012
+      },
+      "duration_ms": 1.482
+    },
+    {
+      "cycle": 11,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 26.0,
+        "received_at": 2598.618935762
+      },
+      "duration_ms": 1.413
+    },
+    {
+      "cycle": 11,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2598.620282311
+      },
+      "duration_ms": 1.299
+    },
+    {
+      "cycle": 12,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2598.713188073
+      },
+      "duration_ms": 1.556
+    },
+    {
+      "cycle": 12,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2598.714795649
+      },
+      "duration_ms": 1.46
+    },
+    {
+      "cycle": 12,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2598.716247192
+      },
+      "duration_ms": 1.574
+    },
+    {
+      "cycle": 12,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 26.0,
+        "received_at": 2598.717968512
+      },
+      "duration_ms": 1.52
+    },
+    {
+      "cycle": 12,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 19.5,
+        "received_at": 2598.719456803
+      },
+      "duration_ms": 1.418
+    },
+    {
+      "cycle": 12,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2598.720936928
+      },
+      "duration_ms": 1.459
+    },
+    {
+      "cycle": 13,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2598.813488334
+      },
+      "duration_ms": 1.609
+    },
+    {
+      "cycle": 13,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2598.814974875
+      },
+      "duration_ms": 1.407
+    },
+    {
+      "cycle": 13,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2598.816405128
+      },
+      "duration_ms": 1.479
+    },
+    {
+      "cycle": 13,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 26.0,
+        "received_at": 2598.817948249
+      },
+      "duration_ms": 1.412
+    },
+    {
+      "cycle": 13,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 19.5,
+        "received_at": 2598.819384627
+      },
+      "duration_ms": 1.389
+    },
+    {
+      "cycle": 13,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 26.0,
+        "received_at": 2598.820957204
+      },
+      "duration_ms": 1.547
+    },
+    {
+      "cycle": 14,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2598.913658227
+      },
+      "duration_ms": 1.71
+    },
+    {
+      "cycle": 14,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 13.0,
+        "received_at": 2598.915310718
+      },
+      "duration_ms": 1.494
+    },
+    {
+      "cycle": 14,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2598.916720263
+      },
+      "duration_ms": 1.351
+    },
+    {
+      "cycle": 14,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 19.5,
+        "received_at": 2598.918171223
+      },
+      "duration_ms": 1.415
+    },
+    {
+      "cycle": 14,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 19.5,
+        "received_at": 2598.919615475
+      },
+      "duration_ms": 1.524
+    },
+    {
+      "cycle": 14,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2598.921291297
+      },
+      "duration_ms": 1.526
+    },
+    {
+      "cycle": 15,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2599.013757542
+      },
+      "duration_ms": 1.559
+    },
+    {
+      "cycle": 15,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 26.0,
+        "received_at": 2599.015282581
+      },
+      "duration_ms": 4.586
+    },
+    {
+      "cycle": 15,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2599.020664986
+      },
+      "duration_ms": 2.213
+    },
+    {
+      "cycle": 15,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 19.5,
+        "received_at": 2599.022172817
+      },
+      "duration_ms": 1.394
+    },
+    {
+      "cycle": 15,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 19.5,
+        "received_at": 2599.023580904
+      },
+      "duration_ms": 1.454
+    },
+    {
+      "cycle": 15,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 26.0,
+        "received_at": 2599.025103319
+      },
+      "duration_ms": 1.395
+    },
+    {
+      "cycle": 16,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2599.113787151
+      },
+      "duration_ms": 1.393
+    },
+    {
+      "cycle": 16,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2599.115191447
+      },
+      "duration_ms": 1.352
+    },
+    {
+      "cycle": 16,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2599.116563953
+      },
+      "duration_ms": 1.337
+    },
+    {
+      "cycle": 16,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 26.0,
+        "received_at": 2599.118012288
+      },
+      "duration_ms": 1.401
+    },
+    {
+      "cycle": 16,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 26.0,
+        "received_at": 2599.119337547
+      },
+      "duration_ms": 1.274
+    },
+    {
+      "cycle": 16,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2599.120671847
+      },
+      "duration_ms": 1.309
+    },
+    {
+      "cycle": 17,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 19.5,
+        "received_at": 2599.21402325
+      },
+      "duration_ms": 1.482
+    },
+    {
+      "cycle": 17,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2599.215471876
+      },
+      "duration_ms": 1.374
+    },
+    {
+      "cycle": 17,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2599.216955209
+      },
+      "duration_ms": 1.54
+    },
+    {
+      "cycle": 17,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 19.5,
+        "received_at": 2599.218500372
+      },
+      "duration_ms": 1.397
+    },
+    {
+      "cycle": 17,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 26.0,
+        "received_at": 2599.219881919
+      },
+      "duration_ms": 1.336
+    },
+    {
+      "cycle": 17,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 26.0,
+        "received_at": 2599.22129409
+      },
+      "duration_ms": 1.375
+    },
+    {
+      "cycle": 18,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2599.31416427
+      },
+      "duration_ms": 1.446
+    },
+    {
+      "cycle": 18,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2599.31560648
+      },
+      "duration_ms": 1.37
+    },
+    {
+      "cycle": 18,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 19.5,
+        "received_at": 2599.317137061
+      },
+      "duration_ms": 1.506
+    },
+    {
+      "cycle": 18,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 19.5,
+        "received_at": 2599.318536982
+      },
+      "duration_ms": 1.342
+    },
+    {
+      "cycle": 18,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 19.5,
+        "received_at": 2599.319842991
+      },
+      "duration_ms": 1.266
+    },
+    {
+      "cycle": 18,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 19.5,
+        "received_at": 2599.32122133
+      },
+      "duration_ms": 1.344
+    },
+    {
+      "cycle": 19,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 19.5,
+        "received_at": 2599.415471017
+      },
+      "duration_ms": 2.52
+    },
+    {
+      "cycle": 19,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 19.5,
+        "received_at": 2599.418045997
+      },
+      "duration_ms": 2.354
+    },
+    {
+      "cycle": 19,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 13.0,
+        "received_at": 2599.420255539
+      },
+      "duration_ms": 2.123
+    },
+    {
+      "cycle": 19,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 26.0,
+        "received_at": 2599.422446124
+      },
+      "duration_ms": 2.14
+    },
+    {
+      "cycle": 19,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 26.0,
+        "received_at": 2599.424663832
+      },
+      "duration_ms": 2.166
+    },
+    {
+      "cycle": 19,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 26.0,
+        "received_at": 2599.427007533
+      },
+      "duration_ms": 2.386
+    },
+    {
+      "cycle": 20,
+      "id": 1,
+      "feedback": {
+        "servo_id": 1,
+        "position_ticks": 1252,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 30,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1252,
+        "current_ma": 26.0,
+        "received_at": 2599.515702158
+      },
+      "duration_ms": 2.398
+    },
+    {
+      "cycle": 20,
+      "id": 10,
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1900,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1900,
+        "current_ma": 32.5,
+        "received_at": 2599.518064525
+      },
+      "duration_ms": 2.284
+    },
+    {
+      "cycle": 20,
+      "id": 11,
+      "feedback": {
+        "servo_id": 11,
+        "position_ticks": 564,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 28,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 564,
+        "current_ma": 13.0,
+        "received_at": 2599.520333856
+      },
+      "duration_ms": 2.192
+    },
+    {
+      "cycle": 20,
+      "id": 12,
+      "feedback": {
+        "servo_id": 12,
+        "position_ticks": 2546,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 2546,
+        "current_ma": 19.5,
+        "received_at": 2599.522651308
+      },
+      "duration_ms": 2.268
+    },
+    {
+      "cycle": 20,
+      "id": 13,
+      "feedback": {
+        "servo_id": 13,
+        "position_ticks": 3924,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3924,
+        "current_ma": 26.0,
+        "received_at": 2599.52496147
+      },
+      "duration_ms": 2.35
+    },
+    {
+      "cycle": 20,
+      "id": 14,
+      "feedback": {
+        "servo_id": 14,
+        "position_ticks": 3553,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.3,
+        "temperature_c": 27,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 3553,
+        "current_ma": 26.0,
+        "received_at": 2599.527379833
+      },
+      "duration_ms": 2.255
+    }
+  ]
+}

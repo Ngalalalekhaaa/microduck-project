@@ -1,0 +1,154 @@
+{
+  "task": "Mjlab-Velocity-Flat-MicroDuck-HD1910",
+  "checkpoint": "/home/luckysir/microduck/microduck_rl_hd1910/logs/rsl_rl/local_hd1910_backlash_train/2026-09-28_03-42-13_backlash_20260928_013621/model_3999.pt",
+  "seed": 123,
+  "num_envs_per_command": 64,
+  "horizon_seconds": 10.0,
+  "pushes": false,
+  "randomization": "upstream startup/reset ranges; curricula disabled",
+  "metric_scope": "first episode only; tracking excludes first 1 second and failed steps",
+  "results": {
+    "stand": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        -0.000151035375893116,
+        6.703939106955659e-06,
+        -0.00033578654984012246
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.0005922723501665554,
+        0.00018223498529601823,
+        0.003102484540620524
+      ],
+      "tilt_p95_deg": 2.557736873626709,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 28800
+    },
+    "forward": {
+      "command_vx_vy_wz": [
+        0.15,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        0.0008172631496563554,
+        8.043041452765465e-05,
+        0.0008708584937267005
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.14918273933894535,
+        0.0018315743201186708,
+        0.008599908022808503
+      ],
+      "tilt_p95_deg": 3.5663418769836426,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 28800
+    },
+    "forward_fast": {
+      "command_vx_vy_wz": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        0.19644606113433838,
+        0.00871009286493063,
+        -0.03521982952952385
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.10357033947954478,
+        0.11305383415014553,
+        0.3421275379234865
+      ],
+      "tilt_p95_deg": 5.858857154846191,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 28800
+    },
+    "backward": {
+      "command_vx_vy_wz": [
+        -0.15,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        -0.0007014248985797167,
+        -1.3582804967882112e-05,
+        -0.0010190861066803336
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.1493018219154602,
+        0.0008249574077086348,
+        0.006634055769908951
+      ],
+      "tilt_p95_deg": 2.908390522003174,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 28800
+    },
+    "left": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.1,
+        0.0
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        -0.00013776181731373072,
+        6.72158130328171e-05,
+        8.137863187585026e-05
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.0004936755078231444,
+        0.09993278442772614,
+        0.0028240796206882124
+      ],
+      "tilt_p95_deg": 2.6507785320281982,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 28800
+    },
+    "turn": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        0.0027807021979242563,
+        0.000114730246423278,
+        0.03415463864803314
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.0035833977489453874,
+        0.009089552542719035,
+        0.47816647495095344
+      ],
+      "tilt_p95_deg": 3.7475709915161133,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 28800
+    }
+  },
+  "onnx_input_shape": [
+    1,
+    61
+  ],
+  "onnx_output_shape": [
+    1,
+    14
+  ],
+  "onnx_max_abs_error_vs_checkpoint": 3.8743019104003906e-07,
+  "onnx_parity_pass": true
+}

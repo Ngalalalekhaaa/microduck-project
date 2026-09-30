@@ -1,0 +1,812 @@
+{
+  "created_utc": "2026-09-27T16:30:25.328907+00:00",
+  "upstream_commit": "cb70b792312d559a4da09064d92009079671815f",
+  "upstream_infer_path": "/home/luckysir/microduck/microduck_rl/scripts/infer_policy.py",
+  "upstream_infer_sha256": "03bfd0642a880cd379e057536ee819bd1377d4af7b5206a57907d10afd1d4270",
+  "scene": "/home/luckysir/microduck/microduck_rl/src/mjlab_microduck/robot/microduck/scene_walk.xml",
+  "scene_sha256": "6e23146c1a5025473b55ec94cbe37b08104ca388b7eb005ea277f8230736c8be",
+  "versions": {
+    "mujoco": "3.10.0",
+    "onnxruntime": "1.24.4"
+  },
+  "policies": {
+    "local_3999": {
+      "path": "/home/luckysir/microduck/runs/20260927_201832_train/flat/policy.onnx",
+      "sha256": "529c66297a8b78deee1a0bd5dca6806d235307532eac4936f71bd534c60e3305",
+      "onnx_metadata": {
+        "action_scale": "1.0",
+        "command_names": "twist,head_pose,body_pose",
+        "joint_damping": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+        "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+        "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+        "default_joint_pos": "0.000,-0.087,-0.458,-0.005,0.453,0.349,0.349,0.000,0.000,0.000,0.087,0.458,0.005,-0.453",
+        "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+        "run_path": "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_flat_train/2026-09-27_20-18-42_flat_20260927_201832/model_3999.pt"
+      }
+    },
+    "official_alpha": {
+      "path": "/tmp/microduck-official-policy-review/alpha_walking.onnx",
+      "sha256": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c",
+      "onnx_metadata": {
+        "action_scale": "1.0",
+        "command_names": "twist,head_pose,body_pose",
+        "joint_damping": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+        "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+        "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+        "default_joint_pos": "0.000,-0.087,-0.458,-0.005,0.453,0.349,0.349,0.000,0.000,0.000,0.087,0.458,0.005,-0.453",
+        "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+        "run_path": "None"
+      }
+    }
+  },
+  "settings": {
+    "seconds_per_trial": 10.0,
+    "samples": 1,
+    "physics_dt": 0.005,
+    "control_hz": 50,
+    "decimation": 4,
+    "vin": 7.4,
+    "vin_drop_gain": 0.1,
+    "vin_min": 6.0,
+    "kp_fw": 200.0,
+    "action_scale": 1.0,
+    "current_limit": null,
+    "new_cmd_obs": true,
+    "projected_gravity": true,
+    "actuator_delay": 0,
+    "fall_tilt_deg": 70.0,
+    "initial_root_z_m": 0.125,
+    "tracking_warmup_excluded_s": 1.0,
+    "providers": [
+      "CPUExecutionProvider"
+    ]
+  },
+  "limitations": [
+    "CPU MuJoCo solver and BAM implementation differ from MuJoCo Warp training.",
+    "Fixed nominal voltage/friction/gains; no training startup/reset domain randomization, pushes or curricula.",
+    "Upstream CPU default has no actuator delay or IMU/joint-velocity observation lag; training uses them.",
+    "Small initial pose perturbations are diagnostic samples, not the training reset distribution.",
+    "First tilt above 70 degrees stops a trial; motion after a fall is excluded.",
+    "Official alpha model's exact training commit/config is unavailable; comparison is behavioral.",
+    "Upstream scene_walk XML/contact defaults retained; training EntityCfg collision overrides are not applied."
+  ],
+  "trials": [
+    {
+      "policy": "local_3999",
+      "command": "forward_020",
+      "sample": 0,
+      "command_vx_vy_wz": [
+        0.20000000298023224,
+        0.0,
+        0.0
+      ],
+      "seconds_completed": 10.000000000000163,
+      "failure": null,
+      "initial_joint_delta_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "initial_root_quat_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "initial_obs_61": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.20000000298023224,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_slots_48_61": [
+        0.20000000298023224,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_actual_vx_vy_wz_after_1s": [
+        7.028485783606997e-05,
+        9.690423108100602e-05,
+        0.0012619559960938497
+      ],
+      "mean_abs_error_after_1s": [
+        0.19992971812239618,
+        0.0015027573305769623,
+        0.012077582732582654
+      ],
+      "displacement_xyz_m": [
+        0.009117264294117864,
+        0.0007634128688626267,
+        -0.009207059021126923
+      ],
+      "yaw_delta_rad": 0.01665913462823911,
+      "max_tilt_deg": 1.5285211923277864,
+      "p95_tilt_deg_after_1s": 1.2276109380279516,
+      "max_joint_speed_rad_s": 1.0826395801342008,
+      "mean_abs_action": 0.07694517076015472,
+      "trace": "/home/luckysir/microduck/runs/cpu_walk_diagnosis/nominal_mid_speeds/local_3999_forward_020_sample0.npz"
+    },
+    {
+      "policy": "local_3999",
+      "command": "forward_025",
+      "sample": 0,
+      "command_vx_vy_wz": [
+        0.25,
+        0.0,
+        0.0
+      ],
+      "seconds_completed": 10.000000000000163,
+      "failure": null,
+      "initial_joint_delta_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "initial_root_quat_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "initial_obs_61": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.25,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_slots_48_61": [
+        0.25,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_actual_vx_vy_wz_after_1s": [
+        0.10350086251446163,
+        0.003873207587320608,
+        0.04367141487474166
+      ],
+      "mean_abs_error_after_1s": [
+        0.1464991374855385,
+        0.10306338172135752,
+        0.6014895708913235
+      ],
+      "displacement_xyz_m": [
+        0.934806103051697,
+        0.1731022666754911,
+        -0.007136178570202281
+      ],
+      "yaw_delta_rad": 0.3477609475999442,
+      "max_tilt_deg": 3.642398973978365,
+      "p95_tilt_deg_after_1s": 3.0367971585046076,
+      "max_joint_speed_rad_s": 4.862908147113663,
+      "mean_abs_action": 0.15599383413791656,
+      "trace": "/home/luckysir/microduck/runs/cpu_walk_diagnosis/nominal_mid_speeds/local_3999_forward_025_sample0.npz"
+    },
+    {
+      "policy": "official_alpha",
+      "command": "forward_020",
+      "sample": 0,
+      "command_vx_vy_wz": [
+        0.20000000298023224,
+        0.0,
+        0.0
+      ],
+      "seconds_completed": 10.000000000000163,
+      "failure": null,
+      "initial_joint_delta_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "initial_root_quat_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "initial_obs_61": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.20000000298023224,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_slots_48_61": [
+        0.20000000298023224,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_actual_vx_vy_wz_after_1s": [
+        -4.132731864710748e-05,
+        0.0002833628494520784,
+        0.0007023143635335699
+      ],
+      "mean_abs_error_after_1s": [
+        0.20004133029887924,
+        0.0011607583852461583,
+        0.006998425092037223
+      ],
+      "displacement_xyz_m": [
+        0.009664953023565303,
+        0.004396808052698628,
+        -0.01051372655834934
+      ],
+      "yaw_delta_rad": -0.026172423927255318,
+      "max_tilt_deg": 1.1795512014939444,
+      "p95_tilt_deg_after_1s": 1.1599095049872155,
+      "max_joint_speed_rad_s": 1.0695711237583638,
+      "mean_abs_action": 0.07870466262102127,
+      "trace": "/home/luckysir/microduck/runs/cpu_walk_diagnosis/nominal_mid_speeds/official_alpha_forward_020_sample0.npz"
+    },
+    {
+      "policy": "official_alpha",
+      "command": "forward_025",
+      "sample": 0,
+      "command_vx_vy_wz": [
+        0.25,
+        0.0,
+        0.0
+      ],
+      "seconds_completed": 10.000000000000163,
+      "failure": null,
+      "initial_joint_delta_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "initial_root_quat_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "initial_obs_61": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.25,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_slots_48_61": [
+        0.25,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_actual_vx_vy_wz_after_1s": [
+        0.08552020660886413,
+        0.0037737966286757883,
+        -0.07606442537886633
+      ],
+      "mean_abs_error_after_1s": [
+        0.16447979339113578,
+        0.10553853816861407,
+        0.612626770940798
+      ],
+      "displacement_xyz_m": [
+        0.67886845706866,
+        -0.26358908868363506,
+        -0.007753260000610676
+      ],
+      "yaw_delta_rad": -0.7318486461507118,
+      "max_tilt_deg": 3.5602379039417,
+      "p95_tilt_deg_after_1s": 3.3778164663272783,
+      "max_joint_speed_rad_s": 4.901786842185779,
+      "mean_abs_action": 0.148263618350029,
+      "trace": "/home/luckysir/microduck/runs/cpu_walk_diagnosis/nominal_mid_speeds/official_alpha_forward_025_sample0.npz"
+    }
+  ],
+  "summary": {
+    "local_3999": {
+      "forward_020": {
+        "samples": 1,
+        "failures": 0,
+        "mean_actual_vx_vy_wz_after_1s": [
+          7.028485783606997e-05,
+          9.690423108100602e-05,
+          0.0012619559960938497
+        ],
+        "individual_actual_vx_vy_wz_after_1s": [
+          [
+            7.028485783606997e-05,
+            9.690423108100602e-05,
+            0.0012619559960938497
+          ]
+        ],
+        "mean_displacement_xyz_m": [
+          0.009117264294117864,
+          0.0007634128688626267,
+          -0.009207059021126923
+        ],
+        "max_tilt_deg": 1.5285211923277864
+      },
+      "forward_025": {
+        "samples": 1,
+        "failures": 0,
+        "mean_actual_vx_vy_wz_after_1s": [
+          0.10350086251446163,
+          0.003873207587320608,
+          0.04367141487474166
+        ],
+        "individual_actual_vx_vy_wz_after_1s": [
+          [
+            0.10350086251446163,
+            0.003873207587320608,
+            0.04367141487474166
+          ]
+        ],
+        "mean_displacement_xyz_m": [
+          0.934806103051697,
+          0.1731022666754911,
+          -0.007136178570202281
+        ],
+        "max_tilt_deg": 3.642398973978365
+      }
+    },
+    "official_alpha": {
+      "forward_020": {
+        "samples": 1,
+        "failures": 0,
+        "mean_actual_vx_vy_wz_after_1s": [
+          -4.132731864710748e-05,
+          0.0002833628494520784,
+          0.0007023143635335699
+        ],
+        "individual_actual_vx_vy_wz_after_1s": [
+          [
+            -4.132731864710748e-05,
+            0.0002833628494520784,
+            0.0007023143635335699
+          ]
+        ],
+        "mean_displacement_xyz_m": [
+          0.009664953023565303,
+          0.004396808052698628,
+          -0.01051372655834934
+        ],
+        "max_tilt_deg": 1.1795512014939444
+      },
+      "forward_025": {
+        "samples": 1,
+        "failures": 0,
+        "mean_actual_vx_vy_wz_after_1s": [
+          0.08552020660886413,
+          0.0037737966286757883,
+          -0.07606442537886633
+        ],
+        "individual_actual_vx_vy_wz_after_1s": [
+          [
+            0.08552020660886413,
+            0.0037737966286757883,
+            -0.07606442537886633
+          ]
+        ],
+        "mean_displacement_xyz_m": [
+          0.67886845706866,
+          -0.26358908868363506,
+          -0.007753260000610676
+        ],
+        "max_tilt_deg": 3.5602379039417
+      }
+    }
+  },
+  "physics": {
+    "ctrlrange_enabled": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "forcerange_nm": [
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ]
+    ],
+    "floor_and_feet_contact": {
+      "floor": {
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "condim": 3,
+        "contype": 1,
+        "conaffinity": 1
+      },
+      "left_foot_collision": {
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "condim": 3,
+        "contype": 1,
+        "conaffinity": 1
+      },
+      "right_foot_collision": {
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "condim": 3,
+        "contype": 1,
+        "conaffinity": 1
+      }
+    },
+    "bam_actuator_class": "XL330Actuator",
+    "bam_max_current": null
+  },
+  "elapsed_wall_seconds": 2.6688525039971864
+}

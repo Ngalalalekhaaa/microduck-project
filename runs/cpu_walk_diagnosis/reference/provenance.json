@@ -1,0 +1,6 @@
+{
+  "url": "https://huggingface.co/pollen-robotics/microduck-policies/resolve/99e9e7bd11b0b1f8744434a3e255993776fd3888/alpha_walking.onnx",
+  "sha256": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c",
+  "role": "official historical walking reference; exact training commit is not recorded",
+  "path": "/home/luckysir/microduck/runs/cpu_walk_diagnosis/reference/alpha_walking.onnx"
+}

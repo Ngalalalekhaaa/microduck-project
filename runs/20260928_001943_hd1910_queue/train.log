@@ -1,0 +1,21 @@
+{
+  "time": "2026-09-28T01:36:21.716743+08:00",
+  "workspace": "/home/luckysir/microduck",
+  "disk_total_gib": 146.1283950805664,
+  "disk_free_gib": 4.980873107910156,
+  "reserve_gib": 3.0,
+  "gpu_name_totalMiB_usedMiB_freeMiB_tempC": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141, 893, 4856, 50",
+  "ok": true
+}
+Starting flat: /home/luckysir/microduck/runs/20260928_001943_hd1910_train/flat.log
+{
+  "time": "2026-09-28T03:42:03.590564+08:00",
+  "workspace": "/home/luckysir/microduck",
+  "disk_total_gib": 146.1283950805664,
+  "disk_free_gib": 4.227359771728516,
+  "reserve_gib": 3.0,
+  "gpu_name_totalMiB_usedMiB_freeMiB_tempC": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141, 893, 4856, 49",
+  "ok": true
+}
+Starting backlash: /home/luckysir/microduck/runs/20260928_001943_hd1910_train/backlash.log
+Completed: /home/luckysir/microduck/runs/20260928_001943_hd1910_train/status.json

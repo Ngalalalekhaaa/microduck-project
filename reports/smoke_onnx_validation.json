@@ -1,0 +1,46 @@
+[
+  {
+    "path": "microduck_rl/logs/rsl_rl/local_backlash_smoke/2026-09-27_20-13-50_backlash_20260927_201209/2026-09-27_20-13-50_backlash_20260927_201209.onnx",
+    "input": [
+      1,
+      61
+    ],
+    "output": [
+      1,
+      14
+    ],
+    "finite": true,
+    "metadata_keys": [
+      "run_path",
+      "joint_names",
+      "joint_stiffness",
+      "joint_damping",
+      "default_joint_pos",
+      "command_names",
+      "observation_names",
+      "action_scale"
+    ]
+  },
+  {
+    "path": "microduck_rl/logs/rsl_rl/local_flat_smoke/2026-09-27_20-12-27_flat_20260927_201209/2026-09-27_20-12-27_flat_20260927_201209.onnx",
+    "input": [
+      1,
+      61
+    ],
+    "output": [
+      1,
+      14
+    ],
+    "finite": true,
+    "metadata_keys": [
+      "run_path",
+      "joint_names",
+      "joint_stiffness",
+      "joint_damping",
+      "default_joint_pos",
+      "command_names",
+      "observation_names",
+      "action_scale"
+    ]
+  }
+]

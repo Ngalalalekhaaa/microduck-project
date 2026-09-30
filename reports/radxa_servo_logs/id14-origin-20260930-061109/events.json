@@ -1,0 +1,28 @@
+[
+  {
+    "event": "calibration_sent",
+    "ack": 0
+  },
+  {
+    "event": "calibration_readback",
+    "positions": [
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048
+    ],
+    "offset_raw": 34554
+  },
+  {
+    "event": "failed",
+    "error": "AssertionError('Torque must remain off')"
+  }
+]

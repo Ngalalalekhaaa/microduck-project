@@ -1,0 +1,18 @@
+{
+  "samples": 248,
+  "effective_hz": 49.68320857779018,
+  "cycle_p50_ms": 14.684121999380295,
+  "cycle_p95_ms": 17.238753350011393,
+  "cycle_max_ms": 29.069655000057537,
+  "target_errors": 0,
+  "serial_retries": 0,
+  "gyro_bias": [
+    -0.005991569877992212,
+    -0.0010053823712008992,
+    0.01114956323302669
+  ],
+  "status": "completed",
+  "motion": false,
+  "source": "logs/read_only_20260930_073643_569983.jsonl",
+  "imu_process": true
+}

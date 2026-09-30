@@ -1,0 +1,300 @@
+{
+  "operation": "isolated_right_hip_id_1_to_10",
+  "events": [
+    {
+      "write_hex": "ffff0104033700c0",
+      "id": 1,
+      "address": 55,
+      "value": 0
+    },
+    {
+      "write_hex": "ffff010403050ae8",
+      "id": 1,
+      "address": 5,
+      "value": 10
+    },
+    {
+      "write_hex": "ffff0a04033701b6",
+      "id": 10,
+      "address": 55,
+      "value": 1
+    }
+  ],
+  "success": true,
+  "before_scan": [
+    1
+  ],
+  "before_registers_0_39_hex": "032e000a1f0100fd010000ff0f506428e8033404042028000c000101f40101000004c832ff3cc814",
+  "before_configuration": {
+    "id": 1,
+    "firmware": [
+      3,
+      46
+    ],
+    "model_version": [
+      10,
+      31
+    ],
+    "endianness": "little",
+    "baud_code": 0,
+    "response_level": 1,
+    "register_profile": "hls_2",
+    "position_min": 0,
+    "position_max": 4095,
+    "phase": 52,
+    "angle_resolution": 1,
+    "mode": 4,
+    "eeprom_gains": {
+      "p": 32,
+      "d": 40,
+      "i": 0
+    },
+    "ram_gains": {
+      "p": 32,
+      "d": 40,
+      "i": 0
+    },
+    "motion_profile": {
+      "acceleration_raw": 0,
+      "goal_position_ticks": 0,
+      "goal_current_raw": 500,
+      "register_44_raw": 500,
+      "goal_speed_raw": 0,
+      "torque_limit_raw": 1000,
+      "registers_41_49_hex": "000000f4010000e803",
+      "motion_semantics_confirmed": false
+    },
+    "torque": 0,
+    "lock": 1,
+    "velocity_rpm_per_unit_nominal": 0.732,
+    "velocity_unit_confirmed": false
+  },
+  "before_feedback": {
+    "servo_id": 1,
+    "position_ticks": 1902,
+    "velocity_raw": 0,
+    "load_raw": 0,
+    "voltage_v": 7.4,
+    "temperature_c": 29,
+    "status": 0,
+    "moving": 0,
+    "goal_ticks": 1902,
+    "current_ma": 19.5,
+    "received_at": 2148.251878558
+  },
+  "new_identity": {
+    "id": 10,
+    "firmware": [
+      3,
+      46
+    ],
+    "model_version": [
+      10,
+      31
+    ],
+    "endianness": "little",
+    "baud_code": 0,
+    "response_level": 1
+  },
+  "relocked_ids": [
+    10
+  ],
+  "after_registers_0_39_hex": "032e000a1f0a00fd010000ff0f506428e8033404042028000c000101f40101000004c832ff3cc814",
+  "changed_registers_0_39": [
+    5
+  ],
+  "after_configuration": {
+    "id": 10,
+    "firmware": [
+      3,
+      46
+    ],
+    "model_version": [
+      10,
+      31
+    ],
+    "endianness": "little",
+    "baud_code": 0,
+    "response_level": 1,
+    "register_profile": "hls_2",
+    "position_min": 0,
+    "position_max": 4095,
+    "phase": 52,
+    "angle_resolution": 1,
+    "mode": 4,
+    "eeprom_gains": {
+      "p": 32,
+      "d": 40,
+      "i": 0
+    },
+    "ram_gains": {
+      "p": 32,
+      "d": 40,
+      "i": 0
+    },
+    "motion_profile": {
+      "acceleration_raw": 0,
+      "goal_position_ticks": 0,
+      "goal_current_raw": 500,
+      "register_44_raw": 500,
+      "goal_speed_raw": 0,
+      "torque_limit_raw": 1000,
+      "registers_41_49_hex": "000000f4010000e803",
+      "motion_semantics_confirmed": false
+    },
+    "torque": 0,
+    "lock": 1,
+    "velocity_rpm_per_unit_nominal": 0.732,
+    "velocity_unit_confirmed": false
+  },
+  "verification": [
+    {
+      "identity": {
+        "id": 10,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      },
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1902,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.4,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1902,
+        "current_ma": 19.5,
+        "received_at": 2148.699603899
+      }
+    },
+    {
+      "identity": {
+        "id": 10,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      },
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1902,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.4,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1902,
+        "current_ma": 26.0,
+        "received_at": 2148.756593615
+      }
+    },
+    {
+      "identity": {
+        "id": 10,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      },
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1902,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.4,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1902,
+        "current_ma": 19.5,
+        "received_at": 2148.810874642
+      }
+    },
+    {
+      "identity": {
+        "id": 10,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      },
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1902,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.4,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1902,
+        "current_ma": 19.5,
+        "received_at": 2148.865318764
+      }
+    },
+    {
+      "identity": {
+        "id": 10,
+        "firmware": [
+          3,
+          46
+        ],
+        "model_version": [
+          10,
+          31
+        ],
+        "endianness": "little",
+        "baud_code": 0,
+        "response_level": 1
+      },
+      "feedback": {
+        "servo_id": 10,
+        "position_ticks": 1902,
+        "velocity_raw": 0,
+        "load_raw": 0,
+        "voltage_v": 7.4,
+        "temperature_c": 29,
+        "status": 0,
+        "moving": 0,
+        "goal_ticks": 1902,
+        "current_ma": 19.5,
+        "received_at": 2148.919490144
+      }
+    }
+  ],
+  "after_scan": [
+    10
+  ]
+}

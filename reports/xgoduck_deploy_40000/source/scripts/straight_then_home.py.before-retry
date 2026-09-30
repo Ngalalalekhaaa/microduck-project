@@ -1,0 +1,109 @@
+"""Run the supported straight -> HOME sequence. Explicit --move required."""
+import argparse
+import fcntl
+import os
+from pathlib import Path
+import signal
+import subprocess
+import sys
+import time
+
+DEPLOY = Path(__file__).resolve().parents[1]
+WEB = Path.home() / 'servo_web_hd1910'
+sys.path.insert(0, str(DEPLOY))
+
+
+def run_sequence(run, python, motion, *, log_only=False):
+    options = ['--log-only-feedback'] if log_only else []
+    first = run([python, str(motion), '--target', 'straight', '--soft-gains', '--move', *options])
+    if first != 0:
+        return first
+    print('笔直目标插值已完成，继续从实际位置缓慢移动到 HOME。', flush=True)
+    return run([python, str(motion), '--target', 'home', '--move', *options])
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--move', action='store_true')
+    parser.add_argument('--log-only-feedback', action='store_true', help='电流、温度、电压及跟踪偏差只记录，不因额外软件阈值中断')
+    args = parser.parse_args()
+    if not args.move:
+        print('不发送动作。执行：.venv/bin/python scripts/straight_then_home.py --move')
+        return 0
+    from microduck_deploy.config import load_config
+    from microduck_deploy.servo import ServoBus
+    cfg = load_config(DEPLOY / 'robot.json')
+    ids = [joint['id'] for joint in cfg['joints']]
+    motion = Path(__file__).with_name('supported_home.py')
+    if not motion.is_file():
+        raise FileNotFoundError(motion)
+    lock = open(DEPLOY / 'logs' / 'supported_sequence.lock', 'a')
+    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    child = None
+    stopped = False
+    exclusive = False
+    cancelled = False
+    result = 1
+
+    def interrupt(sig, frame):
+        nonlocal cancelled
+        cancelled = True
+        if child is not None and child.poll() is None:
+            child.send_signal(sig)
+
+    for sig in (signal.SIGINT, signal.SIGTERM, signal.SIGHUP):
+        signal.signal(sig, interrupt)
+
+    def run(command):
+        nonlocal child
+        if cancelled:
+            return 130
+        child = subprocess.Popen(command)
+        code = child.wait()
+        child = None
+        return code
+
+    try:
+        pidfile = WEB / 'server.pid'
+        if pidfile.exists():
+            pid = int(pidfile.read_text().strip())
+            proc = Path('/proc') / str(pid)
+            if proc.exists():
+                cmd = (proc / 'cmdline').read_bytes()
+                if b'server.py' not in cmd or (proc / 'cwd').resolve() != WEB:
+                    raise RuntimeError('server.pid 指向其他程序，未停止它')
+                os.kill(pid, signal.SIGTERM)
+                stopped = True
+                for _ in range(50):
+                    if not proc.exists():
+                        break
+                    time.sleep(.1)
+        check = subprocess.run(['fuser', cfg['serial']['port']], capture_output=True, text=True)
+        if check.returncode != 1:
+            raise RuntimeError('串口仍被占用，未启动动作：' + check.stdout + check.stderr)
+        exclusive = True
+        print('开始：回保存的笔直姿态 → HOME。请始终保持外部支撑。Ctrl+C 停止并卸力。', flush=True)
+        result = run_sequence(run, sys.executable, motion, log_only=args.log_only_feedback)
+        if cancelled:
+            result = 130
+        if result == 0:
+            print('HOME 目标插值完成，保持柔和上力。实际是否到位见 target_reached 和 errors_ticks；网页可关闭全部扭矩。', flush=True)
+        return result
+    finally:
+        if exclusive and result != 0:
+            try:
+                with ServoBus(**cfg['serial']) as bus:
+                    bus.set_torque(ids, False, verify=True)
+                print('流程停止，已确认全部卸力；不会跳过失败步骤继续 HOME。', flush=True)
+            except Exception as exc:
+                print(f'未能确认卸力，请断开舵机电源：{exc}', flush=True)
+        if stopped or exclusive:
+            with open(WEB / 'logs' / 'console.log', 'ab', buffering=0) as output:
+                web = subprocess.Popen(['bash', 'run.sh'], cwd=WEB, stdin=subprocess.DEVNULL,
+                                       stdout=output, stderr=output, start_new_session=True)
+            (WEB / 'server.pid').write_text(str(web.pid) + '\n')
+            print('网页调试台已重新启动。', flush=True)
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

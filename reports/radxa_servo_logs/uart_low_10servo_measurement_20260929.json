@@ -1,0 +1,35 @@
+{
+  "test": "UART2 timed BREAK for manual DATA low voltage measurement",
+  "duration_s": 30,
+  "port": "/dev/ttyS2",
+  "preflight_found_ids": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "events": [
+    {
+      "event": "break_enabled",
+      "duration_s": 30.0,
+      "voltage_requires_meter": true
+    },
+    {
+      "event": "break_disabled"
+    }
+  ],
+  "remote_exit_code": 0,
+  "servo_packets_during_break": 0,
+  "meter_reading_v": 0.74,
+  "idle_after_v": 3.3,
+  "meter_reading_source": "User reports approximately 0.74 V and confirms idle returns to approximately 3.3 V. Only right leg plus neck and mouth connected.",
+  "specified_low_max_v": 0.45,
+  "comparison_all15_low_v": 1.03,
+  "note": "Out-of-spec low level grows with attached load. Component-level cause remains unmeasured; no board modification performed."
+}

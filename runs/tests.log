@@ -1,0 +1,22 @@
+.....s....................................F............................. [ 31%]
+........................................................................ [ 63%]
+........................................................................ [ 95%]
+..........                                                               [100%]
+=================================== FAILURES ===================================
+____________________ test_train_on_path_is_a_mjlab_trainer _____________________
+
+    def test_train_on_path_is_a_mjlab_trainer():
+        """Catches the vanished-script failure directly: `train` must be ours or
+        mjlab's, never whatever else is installed on the machine."""
+        exe = shutil.which("train")
+>       assert exe is not None, (
+            "no `train` on PATH — the venv script was uninstalled and not recreated; "
+            "run `uv sync --reinstall-package mjlab-microduck`."
+        )
+E       AssertionError: no `train` on PATH — the venv script was uninstalled and not recreated; run `uv sync --reinstall-package mjlab-microduck`.
+E       assert None is not None
+
+tests/test_hf_jobs_flag.py:75: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_hf_jobs_flag.py::test_train_on_path_is_a_mjlab_trainer - As...
+1 failed, 224 passed, 1 skipped in 11.75s

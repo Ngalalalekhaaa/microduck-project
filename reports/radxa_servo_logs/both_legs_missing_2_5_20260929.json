@@ -1,0 +1,85 @@
+{
+  "read_only": true,
+  "rows": [
+    {
+      "id": 2,
+      "operation": "ping",
+      "tx_hex": "ffff020201fa",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.641
+    },
+    {
+      "id": 3,
+      "operation": "ping",
+      "tx_hex": "ffff030201f9",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.529
+    },
+    {
+      "id": 4,
+      "operation": "ping",
+      "tx_hex": "ffff040201f8",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.509
+    },
+    {
+      "id": 5,
+      "operation": "ping",
+      "tx_hex": "ffff050201f7",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.642
+    },
+    {
+      "id": 1,
+      "operation": "ping",
+      "tx_hex": "ffff010201fb",
+      "rx_hex": "ffff010200fc",
+      "first_byte_ms": 1.284,
+      "elapsed_ms": 400.771
+    },
+    {
+      "id": 2,
+      "operation": "position",
+      "tx_hex": "ffff0204023802bd",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.752
+    },
+    {
+      "id": 3,
+      "operation": "position",
+      "tx_hex": "ffff0304023802bc",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.749
+    },
+    {
+      "id": 4,
+      "operation": "position",
+      "tx_hex": "ffff0404023802bb",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.759
+    },
+    {
+      "id": 5,
+      "operation": "position",
+      "tx_hex": "ffff0504023802ba",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.899
+    },
+    {
+      "id": 1,
+      "operation": "position",
+      "tx_hex": "ffff0104023802be",
+      "rx_hex": "ffff010400e40412",
+      "first_byte_ms": 1.41,
+      "elapsed_ms": 400.779
+    }
+  ]
+}

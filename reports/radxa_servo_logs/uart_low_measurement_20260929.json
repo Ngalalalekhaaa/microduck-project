@@ -1,0 +1,23 @@
+{
+  "test": "UART2 timed BREAK for manual DATA low voltage measurement",
+  "duration_s": 30,
+  "port": "/dev/ttyS2",
+  "external_timeout_s": 40,
+  "events": [
+    {
+      "event": "break_enabled",
+      "duration_s": 30.0,
+      "voltage_requires_meter": true
+    },
+    {
+      "event": "break_disabled"
+    }
+  ],
+  "remote_exit_code": 0,
+  "servo_packets_sent": 0,
+  "meter_reading_v": 1.03,
+  "idle_after_v": null,
+  "note": "BREAK enabled and cleared successfully; no servo packets sent. User reported approximately 1.03 V during hold. Post-test idle voltage has not yet been reported. Identifies an out-of-spec driven-low measurement; component-level cause remains unconfirmed.",
+  "meter_reading_source": "User-reported approximate stable DATA-to-GND voltage during 30-second UART BREAK, all 15 servos connected.",
+  "specified_low_max_v": 0.45
+}

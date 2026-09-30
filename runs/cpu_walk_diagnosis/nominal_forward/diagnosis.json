@@ -1,0 +1,1122 @@
+{
+  "created_utc": "2026-09-27T16:28:53.425776+00:00",
+  "upstream_commit": "cb70b792312d559a4da09064d92009079671815f",
+  "upstream_infer_path": "/home/luckysir/microduck/microduck_rl/scripts/infer_policy.py",
+  "upstream_infer_sha256": "03bfd0642a880cd379e057536ee819bd1377d4af7b5206a57907d10afd1d4270",
+  "scene": "/home/luckysir/microduck/microduck_rl/src/mjlab_microduck/robot/microduck/scene_walk.xml",
+  "scene_sha256": "6e23146c1a5025473b55ec94cbe37b08104ca388b7eb005ea277f8230736c8be",
+  "versions": {
+    "mujoco": "3.10.0",
+    "onnxruntime": "1.24.4"
+  },
+  "policies": {
+    "local_3999": {
+      "path": "/home/luckysir/microduck/runs/20260927_201832_train/flat/policy.onnx",
+      "sha256": "529c66297a8b78deee1a0bd5dca6806d235307532eac4936f71bd534c60e3305",
+      "onnx_metadata": {
+        "action_scale": "1.0",
+        "command_names": "twist,head_pose,body_pose",
+        "joint_damping": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+        "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+        "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+        "default_joint_pos": "0.000,-0.087,-0.458,-0.005,0.453,0.349,0.349,0.000,0.000,0.000,0.087,0.458,0.005,-0.453",
+        "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+        "run_path": "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_flat_train/2026-09-27_20-18-42_flat_20260927_201832/model_3999.pt"
+      }
+    },
+    "official_alpha": {
+      "path": "/tmp/microduck-official-policy-review/alpha_walking.onnx",
+      "sha256": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c",
+      "onnx_metadata": {
+        "action_scale": "1.0",
+        "command_names": "twist,head_pose,body_pose",
+        "joint_damping": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+        "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+        "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+        "default_joint_pos": "0.000,-0.087,-0.458,-0.005,0.453,0.349,0.349,0.000,0.000,0.000,0.087,0.458,0.005,-0.453",
+        "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+        "run_path": "None"
+      }
+    }
+  },
+  "settings": {
+    "seconds_per_trial": 10.0,
+    "samples": 1,
+    "physics_dt": 0.005,
+    "control_hz": 50,
+    "decimation": 4,
+    "vin": 7.4,
+    "vin_drop_gain": 0.1,
+    "vin_min": 6.0,
+    "kp_fw": 200.0,
+    "action_scale": 1.0,
+    "current_limit": null,
+    "new_cmd_obs": true,
+    "projected_gravity": true,
+    "actuator_delay": 0,
+    "fall_tilt_deg": 70.0,
+    "initial_root_z_m": 0.125,
+    "tracking_warmup_excluded_s": 1.0,
+    "providers": [
+      "CPUExecutionProvider"
+    ]
+  },
+  "limitations": [
+    "CPU MuJoCo solver and BAM implementation differ from MuJoCo Warp training.",
+    "Fixed nominal voltage/friction/gains; no training startup/reset domain randomization, pushes or curricula.",
+    "Upstream CPU default has no actuator delay or IMU/joint-velocity observation lag; training uses them.",
+    "Small initial pose perturbations are diagnostic samples, not the training reset distribution.",
+    "First tilt above 70 degrees stops a trial; motion after a fall is excluded.",
+    "Official alpha model's exact training commit/config is unavailable; comparison is behavioral.",
+    "Upstream scene_walk XML/contact defaults retained; training EntityCfg collision overrides are not applied."
+  ],
+  "trials": [
+    {
+      "policy": "local_3999",
+      "command": "forward_015",
+      "sample": 0,
+      "command_vx_vy_wz": [
+        0.15000000596046448,
+        0.0,
+        0.0
+      ],
+      "seconds_completed": 10.000000000000163,
+      "failure": null,
+      "initial_joint_delta_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "initial_root_quat_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "initial_obs_61": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.15000000596046448,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_slots_48_61": [
+        0.15000000596046448,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_actual_vx_vy_wz_after_1s": [
+        1.066853674941568e-05,
+        1.270286953849424e-05,
+        0.0005447232117151016
+      ],
+      "mean_abs_error_after_1s": [
+        0.14998933742371515,
+        8.417068551330621e-05,
+        0.0016393111408408406
+      ],
+      "displacement_xyz_m": [
+        0.006887572533470655,
+        0.0005795449164202356,
+        -0.008695181454184325
+      ],
+      "yaw_delta_rad": 0.0042229317341386215,
+      "max_tilt_deg": 1.4992812663722987,
+      "p95_tilt_deg_after_1s": 1.2135248555668912,
+      "max_joint_speed_rad_s": 0.933683101611476,
+      "mean_abs_action": 0.07878857105970383,
+      "trace": "/home/luckysir/microduck/runs/cpu_walk_diagnosis/nominal_forward/local_3999_forward_015_sample0.npz"
+    },
+    {
+      "policy": "local_3999",
+      "command": "forward_030",
+      "sample": 0,
+      "command_vx_vy_wz": [
+        0.30000001192092896,
+        0.0,
+        0.0
+      ],
+      "seconds_completed": 10.000000000000163,
+      "failure": null,
+      "initial_joint_delta_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "initial_root_quat_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "initial_obs_61": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.30000001192092896,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_slots_48_61": [
+        0.30000001192092896,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_actual_vx_vy_wz_after_1s": [
+        0.13375564034197687,
+        0.006288287127919865,
+        0.053702073076715894
+      ],
+      "mean_abs_error_after_1s": [
+        0.16624437157895203,
+        0.1018185323809676,
+        0.6789844269868509
+      ],
+      "displacement_xyz_m": [
+        1.205203469314185,
+        0.3771559778866818,
+        -0.007488002173387673
+      ],
+      "yaw_delta_rad": 0.5062590032165721,
+      "max_tilt_deg": 4.219027258960358,
+      "p95_tilt_deg_after_1s": 3.192541136678929,
+      "max_joint_speed_rad_s": 5.401833346142747,
+      "mean_abs_action": 0.1756036877632141,
+      "trace": "/home/luckysir/microduck/runs/cpu_walk_diagnosis/nominal_forward/local_3999_forward_030_sample0.npz"
+    },
+    {
+      "policy": "local_3999",
+      "command": "forward_040",
+      "sample": 0,
+      "command_vx_vy_wz": [
+        0.4000000059604645,
+        0.0,
+        0.0
+      ],
+      "seconds_completed": 10.000000000000163,
+      "failure": null,
+      "initial_joint_delta_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "initial_root_quat_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "initial_obs_61": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4000000059604645,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_slots_48_61": [
+        0.4000000059604645,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_actual_vx_vy_wz_after_1s": [
+        0.19392954290852615,
+        0.008634769790224593,
+        0.172301214300372
+      ],
+      "mean_abs_error_after_1s": [
+        0.20607046305193827,
+        0.09257708061947134,
+        0.7658191416264789
+      ],
+      "displacement_xyz_m": [
+        1.4682924254741492,
+        0.7222265317024535,
+        -0.0038869380021115396
+      ],
+      "yaw_delta_rad": 1.295480034062364,
+      "max_tilt_deg": 4.159705520091723,
+      "p95_tilt_deg_after_1s": 3.5516826549559934,
+      "max_joint_speed_rad_s": 6.458978491827214,
+      "mean_abs_action": 0.21220244467258453,
+      "trace": "/home/luckysir/microduck/runs/cpu_walk_diagnosis/nominal_forward/local_3999_forward_040_sample0.npz"
+    },
+    {
+      "policy": "official_alpha",
+      "command": "forward_015",
+      "sample": 0,
+      "command_vx_vy_wz": [
+        0.15000000596046448,
+        0.0,
+        0.0
+      ],
+      "seconds_completed": 10.000000000000163,
+      "failure": null,
+      "initial_joint_delta_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "initial_root_quat_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "initial_obs_61": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.15000000596046448,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_slots_48_61": [
+        0.15000000596046448,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_actual_vx_vy_wz_after_1s": [
+        1.943548006040838e-05,
+        0.00031435223772900147,
+        0.0007895288017150052
+      ],
+      "mean_abs_error_after_1s": [
+        0.14998057048040406,
+        0.0014799954085463096,
+        0.008488837594164736
+      ],
+      "displacement_xyz_m": [
+        0.008036602371904723,
+        0.003706762816613694,
+        -0.009800495601902909
+      ],
+      "yaw_delta_rad": -0.011140453738106803,
+      "max_tilt_deg": 0.9183967986710083,
+      "p95_tilt_deg_after_1s": 0.9025370418595016,
+      "max_joint_speed_rad_s": 0.9475654014740671,
+      "mean_abs_action": 0.07062356919050217,
+      "trace": "/home/luckysir/microduck/runs/cpu_walk_diagnosis/nominal_forward/official_alpha_forward_015_sample0.npz"
+    },
+    {
+      "policy": "official_alpha",
+      "command": "forward_030",
+      "sample": 0,
+      "command_vx_vy_wz": [
+        0.30000001192092896,
+        0.0,
+        0.0
+      ],
+      "seconds_completed": 10.000000000000163,
+      "failure": null,
+      "initial_joint_delta_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "initial_root_quat_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "initial_obs_61": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.30000001192092896,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_slots_48_61": [
+        0.30000001192092896,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_actual_vx_vy_wz_after_1s": [
+        0.11176972728229516,
+        0.004029227243681202,
+        -0.0702001275806193
+      ],
+      "mean_abs_error_after_1s": [
+        0.18823028463863378,
+        0.10431120686264954,
+        0.6192028965525079
+      ],
+      "displacement_xyz_m": [
+        0.9341927272814794,
+        -0.36811059718841604,
+        -0.0051547812768556606
+      ],
+      "yaw_delta_rad": -0.7075846088094018,
+      "max_tilt_deg": 4.117306357264901,
+      "p95_tilt_deg_after_1s": 3.347145934042411,
+      "max_joint_speed_rad_s": 5.0908044245277555,
+      "mean_abs_action": 0.16193906962871552,
+      "trace": "/home/luckysir/microduck/runs/cpu_walk_diagnosis/nominal_forward/official_alpha_forward_030_sample0.npz"
+    },
+    {
+      "policy": "official_alpha",
+      "command": "forward_040",
+      "sample": 0,
+      "command_vx_vy_wz": [
+        0.4000000059604645,
+        0.0,
+        0.0
+      ],
+      "seconds_completed": 10.000000000000163,
+      "failure": null,
+      "initial_joint_delta_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "initial_root_quat_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "initial_obs_61": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4000000059604645,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_slots_48_61": [
+        0.4000000059604645,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_actual_vx_vy_wz_after_1s": [
+        0.17085934328913585,
+        0.01001056106431792,
+        0.03482254599114356
+      ],
+      "mean_abs_error_after_1s": [
+        0.22914066267132863,
+        0.09430532884932373,
+        0.7499757338959254
+      ],
+      "displacement_xyz_m": [
+        1.583077349635064,
+        0.36094411557155864,
+        -0.005166545922633284
+      ],
+      "yaw_delta_rad": 0.39209521593184793,
+      "max_tilt_deg": 4.42129860459264,
+      "p95_tilt_deg_after_1s": 3.976078114689601,
+      "max_joint_speed_rad_s": 6.361768198288832,
+      "mean_abs_action": 0.1988406777381897,
+      "trace": "/home/luckysir/microduck/runs/cpu_walk_diagnosis/nominal_forward/official_alpha_forward_040_sample0.npz"
+    }
+  ],
+  "summary": {
+    "local_3999": {
+      "forward_015": {
+        "samples": 1,
+        "failures": 0,
+        "mean_actual_vx_vy_wz_after_1s": [
+          1.066853674941568e-05,
+          1.270286953849424e-05,
+          0.0005447232117151016
+        ],
+        "individual_actual_vx_vy_wz_after_1s": [
+          [
+            1.066853674941568e-05,
+            1.270286953849424e-05,
+            0.0005447232117151016
+          ]
+        ],
+        "mean_displacement_xyz_m": [
+          0.006887572533470655,
+          0.0005795449164202356,
+          -0.008695181454184325
+        ],
+        "max_tilt_deg": 1.4992812663722987
+      },
+      "forward_030": {
+        "samples": 1,
+        "failures": 0,
+        "mean_actual_vx_vy_wz_after_1s": [
+          0.13375564034197687,
+          0.006288287127919865,
+          0.053702073076715894
+        ],
+        "individual_actual_vx_vy_wz_after_1s": [
+          [
+            0.13375564034197687,
+            0.006288287127919865,
+            0.053702073076715894
+          ]
+        ],
+        "mean_displacement_xyz_m": [
+          1.205203469314185,
+          0.3771559778866818,
+          -0.007488002173387673
+        ],
+        "max_tilt_deg": 4.219027258960358
+      },
+      "forward_040": {
+        "samples": 1,
+        "failures": 0,
+        "mean_actual_vx_vy_wz_after_1s": [
+          0.19392954290852615,
+          0.008634769790224593,
+          0.172301214300372
+        ],
+        "individual_actual_vx_vy_wz_after_1s": [
+          [
+            0.19392954290852615,
+            0.008634769790224593,
+            0.172301214300372
+          ]
+        ],
+        "mean_displacement_xyz_m": [
+          1.4682924254741492,
+          0.7222265317024535,
+          -0.0038869380021115396
+        ],
+        "max_tilt_deg": 4.159705520091723
+      }
+    },
+    "official_alpha": {
+      "forward_015": {
+        "samples": 1,
+        "failures": 0,
+        "mean_actual_vx_vy_wz_after_1s": [
+          1.943548006040838e-05,
+          0.00031435223772900147,
+          0.0007895288017150052
+        ],
+        "individual_actual_vx_vy_wz_after_1s": [
+          [
+            1.943548006040838e-05,
+            0.00031435223772900147,
+            0.0007895288017150052
+          ]
+        ],
+        "mean_displacement_xyz_m": [
+          0.008036602371904723,
+          0.003706762816613694,
+          -0.009800495601902909
+        ],
+        "max_tilt_deg": 0.9183967986710083
+      },
+      "forward_030": {
+        "samples": 1,
+        "failures": 0,
+        "mean_actual_vx_vy_wz_after_1s": [
+          0.11176972728229516,
+          0.004029227243681202,
+          -0.0702001275806193
+        ],
+        "individual_actual_vx_vy_wz_after_1s": [
+          [
+            0.11176972728229516,
+            0.004029227243681202,
+            -0.0702001275806193
+          ]
+        ],
+        "mean_displacement_xyz_m": [
+          0.9341927272814794,
+          -0.36811059718841604,
+          -0.0051547812768556606
+        ],
+        "max_tilt_deg": 4.117306357264901
+      },
+      "forward_040": {
+        "samples": 1,
+        "failures": 0,
+        "mean_actual_vx_vy_wz_after_1s": [
+          0.17085934328913585,
+          0.01001056106431792,
+          0.03482254599114356
+        ],
+        "individual_actual_vx_vy_wz_after_1s": [
+          [
+            0.17085934328913585,
+            0.01001056106431792,
+            0.03482254599114356
+          ]
+        ],
+        "mean_displacement_xyz_m": [
+          1.583077349635064,
+          0.36094411557155864,
+          -0.005166545922633284
+        ],
+        "max_tilt_deg": 4.42129860459264
+      }
+    }
+  },
+  "physics": {
+    "ctrlrange_enabled": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "forcerange_nm": [
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ],
+      [
+        -0.9634015946604082,
+        0.9634015946604082
+      ]
+    ],
+    "floor_and_feet_contact": {
+      "floor": {
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "condim": 3,
+        "contype": 1,
+        "conaffinity": 1
+      },
+      "left_foot_collision": {
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "condim": 3,
+        "contype": 1,
+        "conaffinity": 1
+      },
+      "right_foot_collision": {
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "condim": 3,
+        "contype": 1,
+        "conaffinity": 1
+      }
+    },
+    "bam_actuator_class": "XL330Actuator",
+    "bam_max_current": null
+  },
+  "elapsed_wall_seconds": 3.6944685779999418
+}

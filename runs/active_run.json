@@ -1,0 +1,21 @@
+{
+  "started": "2026-09-27T20:18:32.668734+08:00",
+  "supervisor_pid": 38865,
+  "command": [
+    "systemd-inhibit",
+    "--what=idle:sleep",
+    "--who=MicroduckTraining",
+    "--why=Microduck local PPO training",
+    "--mode=block",
+    "python3",
+    "/home/luckysir/microduck/scripts/train_pair.py",
+    "--phase",
+    "train",
+    "--num-envs",
+    "2048",
+    "--iterations",
+    "4000",
+    "--finalize"
+  ],
+  "log": "/home/luckysir/microduck/runs/train_supervisor.log"
+}

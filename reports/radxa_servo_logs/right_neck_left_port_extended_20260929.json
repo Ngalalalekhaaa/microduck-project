@@ -1,0 +1,167 @@
+{
+  "read_only": true,
+  "rows": [
+    {
+      "id": 6,
+      "operation": "position",
+      "tx_hex": "ffff0604023802b9",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.632,
+      "valid_status_zero": false
+    },
+    {
+      "id": 7,
+      "operation": "position",
+      "tx_hex": "ffff0704023802b8",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.519,
+      "valid_status_zero": false
+    },
+    {
+      "id": 8,
+      "operation": "position",
+      "tx_hex": "ffff0804023802b7",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.51,
+      "valid_status_zero": false
+    },
+    {
+      "id": 9,
+      "operation": "position",
+      "tx_hex": "ffff0904023802b6",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.776,
+      "valid_status_zero": false
+    },
+    {
+      "id": 10,
+      "operation": "position",
+      "tx_hex": "ffff0a04023802b5",
+      "rx_hex": "ffff0a04006c077e",
+      "first_byte_ms": 1.196,
+      "elapsed_ms": 400.754,
+      "valid_status_zero": true
+    },
+    {
+      "id": 11,
+      "operation": "position",
+      "tx_hex": "ffff0b04023802b4",
+      "rx_hex": "ffff0b04004e01a1",
+      "first_byte_ms": 1.106,
+      "elapsed_ms": 400.762,
+      "valid_status_zero": true
+    },
+    {
+      "id": 12,
+      "operation": "position",
+      "tx_hex": "ffff0c04023802b3",
+      "rx_hex": "ffff0c0400fa0aeb",
+      "first_byte_ms": 1.193,
+      "elapsed_ms": 400.751,
+      "valid_status_zero": true
+    },
+    {
+      "id": 13,
+      "operation": "position",
+      "tx_hex": "ffff0d04023802b2",
+      "rx_hex": "ffff0d0400f90fe6",
+      "first_byte_ms": 1.085,
+      "elapsed_ms": 400.749,
+      "valid_status_zero": true
+    },
+    {
+      "id": 14,
+      "operation": "position",
+      "tx_hex": "ffff0e04023802b1",
+      "rx_hex": "ffff0e04001f0ec0",
+      "first_byte_ms": 1.208,
+      "elapsed_ms": 400.764,
+      "valid_status_zero": true
+    },
+    {
+      "id": 6,
+      "operation": "position",
+      "tx_hex": "ffff0604023802b9",
+      "rx_hex": "ffff060400fb08f2",
+      "first_byte_ms": 1.198,
+      "elapsed_ms": 400.753,
+      "valid_status_zero": true
+    },
+    {
+      "id": 7,
+      "operation": "position",
+      "tx_hex": "ffff0704023802b8",
+      "rx_hex": "ffff070400b70f2e",
+      "first_byte_ms": 1.1,
+      "elapsed_ms": 400.759,
+      "valid_status_zero": true
+    },
+    {
+      "id": 8,
+      "operation": "position",
+      "tx_hex": "ffff0804023802b7",
+      "rx_hex": "ffff0804004300b0",
+      "first_byte_ms": 0.97,
+      "elapsed_ms": 400.855,
+      "valid_status_zero": true
+    },
+    {
+      "id": 9,
+      "operation": "position",
+      "tx_hex": "ffff0904023802b6",
+      "rx_hex": "ffff090400a6024a",
+      "first_byte_ms": 1.112,
+      "elapsed_ms": 400.756,
+      "valid_status_zero": true
+    },
+    {
+      "id": 10,
+      "operation": "position",
+      "tx_hex": "ffff0a04023802b5",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.754,
+      "valid_status_zero": false
+    },
+    {
+      "id": 11,
+      "operation": "position",
+      "tx_hex": "ffff0b04023802b4",
+      "rx_hex": "",
+      "first_byte_ms": null,
+      "elapsed_ms": 400.751,
+      "valid_status_zero": false
+    },
+    {
+      "id": 12,
+      "operation": "position",
+      "tx_hex": "ffff0c04023802b3",
+      "rx_hex": "ffff0c0400fa0aeb",
+      "first_byte_ms": 1.213,
+      "elapsed_ms": 400.76,
+      "valid_status_zero": true
+    },
+    {
+      "id": 13,
+      "operation": "position",
+      "tx_hex": "ffff0d04023802b2",
+      "rx_hex": "ffff0d0400f90fe6",
+      "first_byte_ms": 1.23,
+      "elapsed_ms": 400.893,
+      "valid_status_zero": true
+    },
+    {
+      "id": 14,
+      "operation": "position",
+      "tx_hex": "ffff0e04023802b1",
+      "rx_hex": "ffff0e04001f0ec0",
+      "first_byte_ms": 1.22,
+      "elapsed_ms": 400.779,
+      "valid_status_zero": true
+    }
+  ]
+}

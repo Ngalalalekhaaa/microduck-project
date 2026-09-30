@@ -1,0 +1,7 @@
+{
+  "no_servo_access": true,
+  "path": "ProcessImuReader",
+  "calibrate": true,
+  "passed": false,
+  "error": "ImuError(\"IMU process: ImuError('gyro calibration rejected motion or acceleration away from 1 g; hold robot still')\")"
+}

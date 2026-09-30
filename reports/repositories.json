@@ -1,0 +1,52 @@
+{
+  "recorded_at": "2026-09-27T20:06:33.290569+08:00",
+  "repositories": [
+    {
+      "directory": "/home/luckysir/microduck/elec_RPI_Robot_HAT",
+      "url": "https://github.com/pollen-robotics/elec_RPI_Robot_HAT.git",
+      "commit": "88d51faf7f5fcc845d2e3b42d4f05ebb98b963b9",
+      "branch": "main",
+      "shallow": true
+    },
+    {
+      "directory": "/home/luckysir/microduck/microduck",
+      "url": "https://github.com/pollen-robotics/microduck.git",
+      "commit": "a9ec4b2079ef8ee7904014089c885bb07d57d63c",
+      "branch": "main",
+      "shallow": true
+    },
+    {
+      "directory": "/home/luckysir/microduck/microduck-replica",
+      "url": "https://github.com/fanhao375/microduck-replica.git",
+      "commit": "a23f4c18a4741a3cde5257e639960ea37bbadd8d",
+      "branch": "master",
+      "shallow": true
+    },
+    {
+      "directory": "/home/luckysir/microduck/microduck-replica-cad",
+      "url": "https://github.com/fanhao375/microduck-replica-cad.git",
+      "commit": "749fcefb404a0750777d7cc8badfe30700df2f9b",
+      "branch": "master",
+      "shallow": true
+    },
+    {
+      "directory": "/home/luckysir/microduck/microduck_rl",
+      "url": "https://github.com/pollen-robotics/microduck_rl.git",
+      "commit": "cb70b792312d559a4da09064d92009079671815f",
+      "branch": "develop",
+      "shallow": true
+    },
+    {
+      "directory": "/home/luckysir/microduck/xgoduck_hardware",
+      "url": "https://github.com/LuwuDynamics/xgoduck_hardware.git",
+      "commit": "6cecc602873c2ad7502948a955ae1e38ec36da4c",
+      "branch": "master",
+      "shallow": true
+    }
+  ],
+  "disk": {
+    "total": 156904169472,
+    "used": 138460880896,
+    "free": 10398404608
+  }
+}

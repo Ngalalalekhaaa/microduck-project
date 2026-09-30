@@ -1,0 +1,154 @@
+{
+  "task": "Mjlab-Velocity-Flat-Backlash-MicroDuck-HD1910",
+  "checkpoint": "/home/luckysir/microduck/microduck_rl_hd1910/logs/rsl_rl/local_hd1910_backlash_smoke/2026-09-28_01-32-19_backlash_20260928_012907/model_4.pt",
+  "seed": 123,
+  "num_envs_per_command": 64,
+  "horizon_seconds": 10.0,
+  "pushes": false,
+  "randomization": "upstream startup/reset ranges; curricula disabled",
+  "metric_scope": "first episode only; tracking excludes first 1 second and failed steps",
+  "results": {
+    "stand": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 0.96875,
+      "mean_first_episode_seconds": 9.7259375,
+      "mean_actual_vx_vy_wz": [
+        0.00037179896025918424,
+        -9.596345626050606e-05,
+        0.0014279370661824942
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.0005502794887869011,
+        0.00012783650949257187,
+        0.003476719327127806
+      ],
+      "tilt_p95_deg": 10.493268966674805,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 27921
+    },
+    "forward": {
+      "command_vx_vy_wz": [
+        0.15,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 0.75,
+      "mean_first_episode_seconds": 8.01875,
+      "mean_actual_vx_vy_wz": [
+        0.003786492859944701,
+        -0.0005442982073873281,
+        -0.0010157584911212325
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.15030413821260905,
+        0.0005892144908323341,
+        0.0037794791546317268
+      ],
+      "tilt_p95_deg": 11.422507286071777,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 22444
+    },
+    "forward_fast": {
+      "command_vx_vy_wz": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 0.375,
+      "mean_first_episode_seconds": 4.62125,
+      "mean_actual_vx_vy_wz": [
+        0.014650939963757992,
+        -0.001915925880894065,
+        -0.006399321369826794
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.2947481122917363,
+        0.001962689134758915,
+        0.009728688351015587
+      ],
+      "tilt_p95_deg": 11.750109672546387,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 11559
+    },
+    "backward": {
+      "command_vx_vy_wz": [
+        -0.15,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 0.921875,
+      "mean_first_episode_seconds": 9.46,
+      "mean_actual_vx_vy_wz": [
+        0.001175604877062142,
+        -0.00013813047553412616,
+        0.0005126867326907814
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.15117560224983045,
+        0.00021305966932770904,
+        0.005218662244106675
+      ],
+      "tilt_p95_deg": 8.850123405456543,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 27067
+    },
+    "left": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.1,
+        0.0
+      ],
+      "survival_fraction": 0.265625,
+      "mean_first_episode_seconds": 4.136875,
+      "mean_actual_vx_vy_wz": [
+        0.018276359885931015,
+        -0.0025285142473876476,
+        -0.016317667439579964
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.018400818757099372,
+        0.10252851604563172,
+        0.021233174356458388
+      ],
+      "tilt_p95_deg": 16.883338928222656,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 10008
+    },
+    "turn": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "survival_fraction": 0.921875,
+      "mean_first_episode_seconds": 9.4440625,
+      "mean_actual_vx_vy_wz": [
+        0.0010864909272640944,
+        -0.00019289871852379292,
+        0.0009493238758295774
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.0013704665723511592,
+        0.0002686152195606514,
+        0.49905067459062435
+      ],
+      "tilt_p95_deg": 10.423507690429688,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 27016
+    }
+  },
+  "onnx_input_shape": [
+    1,
+    61
+  ],
+  "onnx_output_shape": [
+    1,
+    14
+  ],
+  "onnx_max_abs_error_vs_checkpoint": 8.195638656616211e-08,
+  "onnx_parity_pass": true
+}

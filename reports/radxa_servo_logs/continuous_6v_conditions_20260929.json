@@ -1,0 +1,12 @@
+{
+  "user_confirmed_supply_setpoint_v": 6,
+  "user_confirmed_connected_count": 14,
+  "user_confirmed_r33": "original; not bypassed",
+  "last_cycle": 17,
+  "ping_responses": 27,
+  "feedback_successes": 0,
+  "feedback_failures": 27,
+  "scan_still_running": true,
+  "remote_pid": 1466,
+  "exec_session": 44121
+}

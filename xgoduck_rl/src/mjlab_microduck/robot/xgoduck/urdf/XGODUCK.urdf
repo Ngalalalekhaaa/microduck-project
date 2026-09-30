@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="xgoduck_v2">
+  <link
+    name="trunk_base">
+    <inertial>
+      <origin
+        xyz="-0.013982 -1.3e-05 -0.023873"
+        rpy="0 0 0" />
+      <mass
+        value="0.23786514" />
+      <inertia
+        ixx="0.00010191741"
+        ixy="-2.3844364e-08"
+        ixz="-1.4681453e-06"
+        iyy="9.1379909e-05"
+        iyz="-9.201477e-08"
+        izz="5.3093945e-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/trunk_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/trunk_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="left_hip_yaw">
+    <inertial>
+      <origin
+        xyz="-1.0689E-10 -0.00010485 0.018887"
+        rpy="0 0 0" />
+      <mass
+        value="0.030933135" />
+      <inertia
+        ixx="4.3068049e-06"
+        ixy="2.1338088e-14"
+        ixz="1.0540369e-14"
+        iyy="3.811553e-06"
+        iyz="1.7341857e-07"
+        izz="2.7207414e-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/left_hip_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/left_hip_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_hip_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="0.02 0.0175 -0.026"
+      rpy="3.1416 0 -1.5708" />
+    <parent
+      link="trunk_base" />
+    <child
+      link="left_hip_yaw" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_hip_roll">
+    <inertial>
+      <origin
+        xyz="8.6736E-18 0.012268 -0.0041364"
+        rpy="0 0 0" />
+      <mass
+        value="0.010666598" />
+      <inertia
+        ixx="1.6417233e-06"
+        ixy="1.6054459e-22"
+        ixz="-2.7540294e-22"
+        iyy="1.1904713e-06"
+        iyz="-5.2159152e-07"
+        izz="1.0745399e-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/left_hip_roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/left_hip_roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_hip_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.0145 0.0145"
+      rpy="1.5708 -1.5708 0" />
+    <parent
+      link="left_hip_yaw" />
+    <child
+      link="left_hip_roll" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_hip_pitch">
+    <inertial>
+      <origin
+        xyz="0.022799 0.0061554 0.015683"
+        rpy="0 0 0" />
+      <mass
+        value="0.056532972" />
+      <inertia
+        ixx="7.3116013e-06"
+        ixy="3.5979497e-07"
+        ixz="-1.0854292e-07"
+        iyy="8.8465627e-06"
+        iyz="-4.8132298e-07"
+        izz="1.0403628e-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/left_hip_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/left_hip_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_hip_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.0225 -0.0165"
+      rpy="-1.5708 1.0191 0" />
+    <parent
+      link="left_hip_roll" />
+    <child
+      link="left_hip_pitch" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_knee">
+    <inertial>
+      <origin
+        xyz="0.030928 7.8063E-18 -0.0067903"
+        rpy="0 0 0" />
+      <mass
+        value="0.026666496" />
+      <inertia
+        ixx="1.8489345e-06"
+        ixy="-1.8019244e-22"
+        ixz="-4.3467394e-08"
+        iyy="4.2290835e-06"
+        iyz="-1.2167266e-22"
+        izz="4.0560601e-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/left_knee.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/left_knee.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_knee_joint"
+    type="revolute">
+    <origin
+      xyz="0.041977 0 0"
+      rpy="3.1416 0 -1.0191" />
+    <parent
+      link="left_hip_pitch" />
+    <child
+      link="left_knee" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_ankle">
+    <inertial>
+      <origin
+        xyz="0.01477 -0.0075922 -0.01564"
+        rpy="0 0 0" />
+      <mass
+        value="0.030933135" />
+      <inertia
+        ixx="1.2152529e-05"
+        ixy="-1.9451229e-08"
+        ixz="-3.0445218e-07"
+        iyy="5.2700389e-06"
+        iyz="3.1188711e-08"
+        izz="8.6874692e-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/left_ankle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/left_ankle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_ankle_joint"
+    type="revolute">
+    <origin
+      xyz="0.042 0 -0.024"
+      rpy="-3.1416 0 0" />
+    <parent
+      link="left_knee" />
+    <child
+      link="left_ankle" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="neck_pitch">
+    <inertial>
+      <origin
+        xyz="0.025 5.1348E-16 0.014348"
+        rpy="0 0 0" />
+      <mass
+        value="0.043733053" />
+      <inertia
+        ixx="3.6457377e-06"
+        ixy="-5.8722842e-22"
+        ixz="-9.5505426e-23"
+        iyy="6.3130906e-06"
+        iyz="5.35801e-23"
+        izz="5.4418791e-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/neck_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/neck_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="neck_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0.041 0.0145 0.0095"
+      rpy="1.5708 -1.5708 0" />
+    <parent
+      link="trunk_base" />
+    <child
+      link="neck_pitch" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="head_pitch">
+    <inertial>
+      <origin
+        xyz="1.9859E-10 -0.0093372 -0.0145"
+        rpy="0 0 0" />
+      <mass
+        value="0.0042717593" />
+      <inertia
+        ixx="9.265434e-07"
+        ixy="-1.400951e-13"
+        ixz="9.3916199e-14"
+        iyy="8.1702944e-07"
+        iyz="-2.5255305e-15"
+        izz="3.5772571e-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/head_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/head_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="head_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0.05 0 0"
+      rpy="3.1416 0 -1.5708" />
+    <parent
+      link="neck_pitch" />
+    <child
+      link="head_pitch" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="head_yaw">
+    <inertial>
+      <origin
+        xyz="0.0059166 -0.00040642 0.01546"
+        rpy="0 0 0" />
+      <mass
+        value="0.035199775" />
+      <inertia
+        ixx="3.6089899e-06"
+        ixy="7.8711715e-08"
+        ixz="1.4264607e-07"
+        iyy="4.9127696e-06"
+        iyz="5.6367482e-08"
+        izz="4.9127696e-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/head_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/head_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="head_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.01925 -0.0145"
+      rpy="1.5708 1.5708 0" />
+    <parent
+      link="head_pitch" />
+    <child
+      link="head_yaw" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="head_roll">
+    <inertial>
+      <origin
+        xyz="-0.0012631 0.0023517 -0.02251"
+        rpy="0 0 0" />
+      <mass
+        value="0.16746559" />
+      <inertia
+        ixx="0.00014709831"
+        ixy="9.2488596e-07"
+        ixz="3.383014e-06"
+        iyy="0.0002267026"
+        iyz="-8.432146e-06"
+        izz="0.00010319013" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/head_roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/head_roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="head_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.0179 0.0145"
+      rpy="1.5708 0 0" />
+    <parent
+      link="head_yaw" />
+    <child
+      link="head_roll" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_hip_yaw">
+    <inertial>
+      <origin
+        xyz="-1.0689E-10 -0.00010485 0.018887"
+        rpy="0 0 0" />
+      <mass
+        value="0.030933135" />
+      <inertia
+        ixx="4.3068049e-06"
+        ixy="2.1338088e-14"
+        ixz="1.0540369e-14"
+        iyy="3.811553e-06"
+        iyz="1.7341857e-07"
+        izz="2.7207414e-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/right_hip_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/right_hip_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_hip_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="0.02 -0.0175 -0.026"
+      rpy="3.1416 0 -1.5708" />
+    <parent
+      link="trunk_base" />
+    <child
+      link="right_hip_yaw" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_hip_roll">
+    <inertial>
+      <origin
+        xyz="-1.7347E-18 0.012268 -0.0041364"
+        rpy="0 0 0" />
+      <mass
+        value="0.010666598" />
+      <inertia
+        ixx="1.6417233e-06"
+        ixy="1.3341464e-22"
+        ixz="-7.5283703e-23"
+        iyy="1.1904713e-06"
+        iyz="-5.2159152e-07"
+        izz="1.0745399e-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/right_hip_roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/right_hip_roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_hip_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.0145 0.0145"
+      rpy="1.5708 1.5708 0" />
+    <parent
+      link="right_hip_yaw" />
+    <child
+      link="right_hip_roll" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_hip_pitch">
+    <inertial>
+      <origin
+        xyz="0.022799 -0.0061554 0.015683"
+        rpy="0 0 0" />
+      <mass
+        value="0.056532972" />
+      <inertia
+        ixx="7.3116013e-06"
+        ixy="-3.5979497e-07"
+        ixz="-1.0854292e-07"
+        iyy="8.8465627e-06"
+        iyz="4.8132298e-07"
+        izz="1.0403628e-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/right_hip_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/right_hip_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_hip_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.0225 -0.0165"
+      rpy="1.5708 1.0191 -3.1416" />
+    <parent
+      link="right_hip_roll" />
+    <child
+      link="right_hip_pitch" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_knee">
+    <inertial>
+      <origin
+        xyz="0.030928 9.541E-18 -0.0067903"
+        rpy="0 0 0" />
+      <mass
+        value="0.026666496" />
+      <inertia
+        ixx="1.8489345e-06"
+        ixy="2.491798e-22"
+        ixz="-4.3467394e-08"
+        iyy="4.2290835e-06"
+        iyz="-3.7299926e-23"
+        izz="4.0560601e-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/right_knee.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/right_knee.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_knee_joint"
+    type="revolute">
+    <origin
+      xyz="0.041977 0 0"
+      rpy="3.1416 0 1.0191" />
+    <parent
+      link="right_hip_pitch" />
+    <child
+      link="right_knee" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_ankle">
+    <inertial>
+      <origin
+        xyz="0.01477 0.007592 -0.01564"
+        rpy="0 0 0" />
+      <mass
+        value="0.030933135" />
+      <inertia
+        ixx="1.2152529e-05"
+        ixy="1.9470238e-08"
+        ixz="-3.0445218e-07"
+        iyy="5.2700389e-06"
+        iyz="-3.1104223e-08"
+        izz="8.6874692e-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/right_ankle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://XGODUCK/meshes/right_ankle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_ankle_joint"
+    type="revolute">
+    <origin
+      xyz="0.042 0 -0.024"
+      rpy="-3.1416 0 0" />
+    <parent
+      link="right_knee" />
+    <child
+      link="right_ankle" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

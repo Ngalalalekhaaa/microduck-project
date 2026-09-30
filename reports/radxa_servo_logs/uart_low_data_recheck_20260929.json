@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-29",
+  "test": "External servo DATA low-voltage recheck after R33 measurements",
+  "port": "/dev/ttyS2",
+  "duration_seconds": 30,
+  "break_enabled_observed": true,
+  "break_disabled_observed": true,
+  "remote_exit_code": 0,
+  "user_reported_voltage_v": 0.67,
+  "idle_voltage_after_test_v": 3.24,
+  "status": "completed; user readings received",
+  "configuration_note": "User instructed to keep preceding 10-servo connection unchanged; no fresh ID scan in this test.",
+  "comparison": {
+    "r33_left_v": 0.03,
+    "r33_right_v": 0.41,
+    "data_v": 0.67,
+    "r33_drop_v": 0.38,
+    "th1_drop_v": 0.26,
+    "r33_current_estimate_ma": 2.533333333333333,
+    "th1_current_estimate_ma": 2.6,
+    "caveat": "Separate test windows; nominal resistor values; DC only, not waveform or protection validation."
+  }
+}

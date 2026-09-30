@@ -1,0 +1,28 @@
+{
+  "frames": 100,
+  "complete14": 100,
+  "min_valid": 14,
+  "registers_after_start": {
+    "5": [
+      0,
+      0,
+      0,
+      0,
+      244,
+      1,
+      0,
+      0
+    ],
+    "14": [
+      0,
+      0,
+      0,
+      0,
+      244,
+      1,
+      0,
+      0
+    ]
+  },
+  "motion_commands_sent": false
+}

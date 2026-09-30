@@ -1,0 +1,39 @@
+{
+  "time": "2026-09-28T00:16:33.584900+08:00",
+  "source": "/home/luckysir/microduck/microduck_rl_hd1910",
+  "cpu_config_and_actuator": {
+    "passed": 29,
+    "gpu_tests_skipped": 4
+  },
+  "queue_dependency_cleanup_and_disk_guard": {
+    "passed": 10
+  },
+  "original_velocity_bam_regression_agent_report": {
+    "passed": 29
+  },
+  "gpu_validation": "pending: original XL330 pair still owns GPU",
+  "estimated_incremental_disk_gib": [
+    0.3,
+    0.5
+  ],
+  "shared_python": "/home/luckysir/microduck/microduck_rl/.venv/bin/python",
+  "training": {
+    "models": 2,
+    "iterations_each": 4000,
+    "num_envs": 2048,
+    "seed": 42,
+    "initialization": "random"
+  },
+  "assumptions": {
+    "actuator": "LuwuDynamics public 1910 M6",
+    "kp_fw": 5,
+    "voltage_v": [
+      7.4,
+      8.0
+    ],
+    "backlash_half_width_deg": 1.0,
+    "mass_inertia": "upstream Microduck, not measured on user robot"
+  },
+  "source_commit": "7c29a4e627446516c0b437eb52a52149e4cf5cc2",
+  "independent_review": "No remaining deterministic blocker; GPU gates pending predecessor completion."
+}

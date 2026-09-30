@@ -1,0 +1,13 @@
+{
+  "sent_policy_frames": 3,
+  "rejected_frame": 4,
+  "fault_time_s": 0.09070668700042006,
+  "reason": "策略目标超出首次试机角度范围: right_hip_yaw 目标29.30°，允许[-30.00, 25.00]°",
+  "fault_sent": false,
+  "right_hip_yaw_target_deg": 29.296283029545055,
+  "right_hip_yaw_actual_deg": -0.3515625,
+  "command_vx_at_fault": 0.00026872856379904454,
+  "replay_max_error": 5.960464477539063e-08,
+  "fault_voltage_min": 6.8,
+  "fault_tilt_deg": 3.52685412372003
+}

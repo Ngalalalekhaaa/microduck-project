@@ -1,0 +1,805 @@
+[mdp] Patches 1-2 active: NaN-safe reward/advantage
+[mdp] Patch 4 active: ONNX export filters passive_* joints
+[mdp] Patch 5 active: MICRODUCK_WARM_START=1 restarts curricula after checkpoint load
+/home/luckysir/microduck/microduck_rl/.venv/lib/python3.12/site-packages/tyro/_parsers.py:353: UserWarning: The field `env.scene.entities.robot.collisions.0.geom-names-expr` is annotated with type `tuple[str, ...]`, but the default value `['.*_collision']` has type `<class 'list'>`. We'll try to handle this gracefully, but it may cause unexpected behavior.
+  warnings.warn(message)
+/home/luckysir/microduck/microduck_rl/.venv/lib/python3.12/site-packages/tyro/_resolver.py:600: TyroWarning: <class 'list'> does not match any type in Union: [<class 'str'>, <class 'tuple'>, <class 'NoneType'>]
+  warnings.warn(
+[INFO] Training with: device=cuda:0, seed=42, rank=0
+[INFO] Logging experiment in directory: logs/rsl_rl/local_flat_benchmark/2026-09-27_20-15-40_flat_20260927_201530
+Setting seed: 42
+Warp 1.12.0 initialized:
+   CUDA Toolkit 12.9, Driver 13.0
+   Devices:
+     "cpu"      : "x86_64"
+     "cuda:0"   : "NVIDIA GeForce RTX 4050 Laptop GPU" (6 GiB, sm_89, mempool enabled)
+   Kernel cache:
+     /home/luckysir/.cache/warp/1.12.0
+/home/luckysir/microduck/microduck_rl/.venv/lib/python3.12/site-packages/mjlab/entity/entity.py:149: UserWarning: Actuator config matched 14 joint(s) but the same expressions also match 7 site(s): imu, left_foot, head_camera, tof, head_imu, mouth_tip, right_foot. Add a separate config with transmission_type=TransmissionType.SITE if those should be actuated too.
+  self._add_actuators()
+Warp DeprecationWarning: The symbol `warp.context.runtime` will soon be removed from the public API. It can still be accessed from `warp._src.context.runtime` but might be changed or removed without notice.
+Module mujoco_warp._src.smooth 95a0b8b load on device 'cuda:0' took 2.39 ms  (cached)
+Module mujoco_warp._src.collision_driver 88f7770 load on device 'cuda:0' took 0.30 ms  (cached)
+Module _nxn_broadphase__locals__kernel_e73b1315 e73b131 load on device 'cuda:0' took 0.33 ms  (cached)
+Module ccd_kernel_builder__locals__ccd_kernel_079dfa94 079dfa9 load on device 'cuda:0' took 1.68 ms  (cached)
+Module _primitive_narrowphase__locals__primitive_narrowphase_b282a07a b282a07 load on device 'cuda:0' took 0.68 ms  (cached)
+Module mujoco_warp._src.constraint 27c5750 load on device 'cuda:0' took 1.60 ms  (cached)
+Module _efc_contact_init__locals__kernel_fda71e14 fda71e1 load on device 'cuda:0' took 0.86 ms  (cached)
+Module _efc_contact_jac_dense__locals__kernel_7974b597 cc0fc30 load on device 'cuda:0' took 0.43 ms  (cached)
+Module _efc_contact_update__locals__kernel_90315d53 90315d5 load on device 'cuda:0' took 0.35 ms  (cached)
+Module mujoco_warp._src.sensor 7fc0378 load on device 'cuda:0' took 1.95 ms  (cached)
+Module mujoco_warp._src.forward f60f76d load on device 'cuda:0' took 1.01 ms  (cached)
+Module mujoco_warp._src.passive 1a5e55c load on device 'cuda:0' took 0.80 ms  (cached)
+Module mujoco_warp._src.forward 8ebfcb1 load on device 'cuda:0' took 1.04 ms  (cached)
+Module mujoco_warp._src.support dd3f924 load on device 'cuda:0' took 0.35 ms  (cached)
+Module _tile_cholesky_factorize_solve__locals__cholesky_factorize_solve_b16bf393 b7e5d5f load on device 'cuda:0' took 24.73 ms  (cached)
+Module mujoco_warp._src.solver b116efb load on device 'cuda:0' took 1.24 ms  (cached)
+Module solve_init_jaref__locals__kernel_5208712d 5208712 load on device 'cuda:0' took 0.33 ms  (cached)
+Module mul_m_dense__locals___mul_m_dense_b66df345 b66df34 load on device 'cuda:0' took 0.29 ms  (cached)
+Module update_constraint_efc__locals__kernel_32935e9d 32935e9 load on device 'cuda:0' took 0.32 ms  (cached)
+Module update_constraint_gauss_cost__locals__kernel_baf8e129 baf8e12 load on device 'cuda:0' took 0.33 ms  (cached)
+Module update_gradient_JTDAJ_dense_tiled__locals__kernel_9404d42c b63011f load on device 'cuda:0' took 0.58 ms  (cached)
+Module update_gradient_cholesky__locals__kernel_5ee47d83 324a2ff load on device 'cuda:0' took 30.43 ms  (cached)
+Module linesearch_jv_fused__locals__kernel_7bf09094 7bf0909 load on device 'cuda:0' took 0.36 ms  (cached)
+Module linesearch_prepare_gauss__locals__kernel_97347d38 97347d3 load on device 'cuda:0' took 0.35 ms  (cached)
+Module update_constraint_efc__locals__kernel_3c1a9816 3c1a981 load on device 'cuda:0' took 0.39 ms  (cached)
+Module _contact_sort__locals__contact_sort_304c86df 6c97b35 load on device 'cuda:0' took 0.35 ms  (cached)
+Module mujoco_warp._src.derivative d0e2fd7 load on device 'cuda:0' took 0.65 ms  (cached)
+Module reset_data__locals__reset_xfrc_applied_e7898c5c e7898c5 load on device 'cuda:0' took 0.33 ms  (cached)
+Module reset_data__locals__reset_qM_10d3c793 10d3c79 load on device 'cuda:0' took 0.30 ms  (cached)
+Module reset_data__locals__reset_mocap_ff71f630 ff71f63 load on device 'cuda:0' took 0.31 ms  (cached)
+Module reset_data__locals__reset_contact_df686d47 df686d4 load on device 'cuda:0' took 0.31 ms  (cached)
+Module reset_data__locals__reset_nworld_6e0d904e 6e0d904 load on device 'cuda:0' took 0.36 ms  (cached)
+[BamActuator] model='m6' joints=14 kt=0.3660 R=2.8114 vin=range=(6.5, 8.2) drop_gain_range=(0.0, 0.2) force_limit=±1.07Nm friction_base=0.0048 friction_viscous=0.0054 envs=2048 device=cuda:0
+Module mujoco_warp._src.render_util 94fd13e load on device 'cuda:0' took 0.48 ms  (cached)
+Module mujoco_warp._src.bvh 08f985a load on device 'cuda:0' took 0.80 ms  (cached)
+Module mujoco_warp._src.ray c8f2bb3 load on device 'cuda:0' took 0.87 ms  (cached)
+
++---------------------------------+
+|         Base Environment        |
++------------------------+--------+
+| Property               | Value  |
++------------------------+--------+
+| Number of environments | 2048   |
+| Environment device     | cuda:0 |
+| Environment seed       | 42     |
+| Physics step-size      | 0.005  |
+| Environment step-size  | 0.02   |
++------------------------+--------+
+
+[INFO] <EventManager> contains 3 active terms.
++-------------------------------------+
+| Active Event Terms in Mode: 'reset' |
++-------+-----------------------------+
+| Index | Name                        |
++-------+-----------------------------+
+|   0   | reset_base                  |
+|   1   | reset_robot_joints          |
+|   2   | reset_action_history        |
+|   3   | randomize_com               |
+|   4   | randomize_head_com          |
+|   5   | randomize_joint_friction    |
+|   6   | randomize_armature          |
++-------+-----------------------------+
++----------------------------------------------+
+|    Active Event Terms in Mode: 'interval'    |
++-------+------------+-------------------------+
+| Index | Name       | Interval time range (s) |
++-------+------------+-------------------------+
+|   0   | push_robot |        (3.0, 6.0)       |
++-------+------------+-------------------------+
++---------------------------------------+
+| Active Event Terms in Mode: 'startup' |
++-------+-------------------------------+
+| Index | Name                          |
++-------+-------------------------------+
+|   0   | foot_friction                 |
+|   1   | encoder_bias                  |
+|   2   | base_com                      |
+|   3   | expand_bam_friction_fields    |
+|   4   | randomize_mass_inertia        |
++-------+-------------------------------+
++-----------------------------+
+| Domain Randomization Fields |
++-------+---------------------+
+| Index | Field Name          |
++-------+---------------------+
+|   0   | geom_friction       |
+|   1   | body_ipos           |
+|   2   | body_subtreemass    |
+|   3   | dof_invweight0      |
+|   4   | body_invweight0     |
+|   5   | tendon_length0      |
+|   6   | tendon_invweight0   |
+|   7   | dof_frictionloss    |
+|   8   | dof_damping         |
+|   9   | body_mass           |
+|   10  | body_inertia        |
+|   11  | body_iquat          |
+|   12  | dof_armature        |
++-------+---------------------+
+
+Module repeat_array_kernel_39317a34 b712927 load on device 'cuda:0' took 0.35 ms  (cached)
+Module repeat_array_kernel_39317a34 18fcc7e load on device 'cuda:0' took 0.31 ms  (cached)
+Module repeat_array_kernel_39317a34 5cde7e8 load on device 'cuda:0' took 0.34 ms  (cached)
+Module repeat_array_kernel_39317a34 0fe3117 load on device 'cuda:0' took 0.36 ms  (cached)
+[INFO] <CommandManager> contains 3 active terms.
++------------------------------------------------+
+|              Active Command Terms              |
++-------+-----------+----------------------------+
+| Index | Name      |            Type            |
++-------+-----------+----------------------------+
+|   0   | twist     | VelocityCommandCommandOnly |
+|   1   | head_pose |     UniformPoseCommand     |
+|   2   | body_pose |     UniformPoseCommand     |
++-------+-----------+----------------------------+
+
+[INFO] <ActionManager> contains 1 active terms.
++---------------------------------+
+| Active Action Terms (shape: 14) |
++-------+-----------+-------------+
+| Index | Name      |   Dimension |
++-------+-----------+-------------+
+|   0   | joint_pos |          14 |
++-------+-----------+-------------+
+
+[INFO] <ObservationManager> contains 2 groups.
++-----------------------------------------------------------+
+| Active Observation Terms in Group: 'actor' (shape: (61,)) |
++-----------+----------------------------------+------------+
+|   Index   | Name                             |   Shape    |
++-----------+----------------------------------+------------+
+|     0     | base_ang_vel                     |    (3,)    |
+|     1     | projected_gravity                |    (3,)    |
+|     2     | joint_pos                        |   (14,)    |
+|     3     | joint_vel                        |   (14,)    |
+|     4     | actions                          |   (14,)    |
+|     5     | command                          |    (3,)    |
+|     6     | head_command                     |    (4,)    |
+|     7     | body_command                     |    (6,)    |
++-----------+----------------------------------+------------+
++------------------------------------------------------------+
+| Active Observation Terms in Group: 'critic' (shape: (76,)) |
++----------+------------------------------------+------------+
+|  Index   | Name                               |   Shape    |
++----------+------------------------------------+------------+
+|    0     | base_lin_vel                       |    (3,)    |
+|    1     | base_ang_vel                       |    (3,)    |
+|    2     | projected_gravity                  |    (3,)    |
+|    3     | joint_pos                          |   (14,)    |
+|    4     | joint_vel                          |   (14,)    |
+|    5     | actions                            |   (14,)    |
+|    6     | command                            |    (3,)    |
+|    7     | foot_height                        |    (2,)    |
+|    8     | foot_air_time                      |    (2,)    |
+|    9     | foot_contact                       |    (2,)    |
+|    10    | foot_contact_forces                |    (6,)    |
+|    11    | head_command                       |    (4,)    |
+|    12    | body_command                       |    (6,)    |
++----------+------------------------------------+------------+
+
+[INFO] <TerminationManager> contains 4 active terms.
++------------------------------------------+
+|         Active Termination Terms         |
++-------+-----------------------+----------+
+| Index | Name                  | Time Out |
++-------+-----------------------+----------+
+|   0   | time_out              |   True   |
+|   1   | fell_over             |  False   |
+|   2   | out_of_terrain_bounds |   True   |
+|   3   | nan_state             |  False   |
++-------+-----------------------+----------+
+
+[INFO] <RewardManager> contains 16 active terms.
++-----------------------------------------+
+|           Active Reward Terms           |
++-------+------------------------+--------+
+| Index | Name                   | Weight |
++-------+------------------------+--------+
+|   0   | track_linear_velocity  |    2.0 |
+|   1   | track_angular_velocity |    2.0 |
+|   2   | upright                |    2.0 |
+|   3   | pose                   |    1.0 |
+|   4   | body_ang_vel           |  -0.05 |
+|   5   | angular_momentum       |  -0.02 |
+|   6   | dof_pos_limits         |   -1.0 |
+|   7   | action_rate_l2         |   -0.1 |
+|   8   | air_time               |    3.0 |
+|   9   | foot_clearance         |   -2.0 |
+|   10  | foot_swing_height      |  -0.25 |
+|   11  | foot_slip              |   -0.1 |
+|   12  | self_collisions        |   -1.0 |
+|   13  | head_pose_tracking     |    2.0 |
+|   14  | body_pose_tracking     |    0.0 |
+|   15  | head_pose_bias         |    0.0 |
++-------+------------------------+--------+
+
+[INFO] <CurriculumManager> contains 7 active terms.
++-------------------------------+
+|    Active Curriculum Terms    |
++-------+-----------------------+
+| Index | Name                  |
++-------+-----------------------+
+|   0   | action_rate_weight    |
+|   1   | standing_envs         |
+|   2   | head_pose_range       |
+|   3   | body_pose_range       |
+|   4   | com_range             |
+|   5   | head_com_range        |
+|   6   | head_pose_bias_weight |
++-------+-----------------------+
+
+[INFO] <MetricsManager> contains 1 active terms.
++-------------------------+
+|   Active Metrics Terms  |
++-------+-----------------+
+| Index | Name            |
++-------+-----------------+
+|   0   | mean_action_acc |
++-------+-----------------+
+
+[INFO] <NullRecorderManager> (inactive)
+Module mujoco_warp._src.io 4b387a0 load on device 'cuda:0' took 1.55 ms  (cached)
+Module _tile_cholesky_factorize__locals__cholesky_factorize_a02b7349 3d3b894 load on device 'cuda:0' took 23.14 ms  (cached)
+Module _tile_cholesky_solve__locals__cholesky_solve_8c82e9f1 95f6085 load on device 'cuda:0' took 22.24 ms  (cached)
+--------------------------------------------------------------------------------
+Resolved observation sets: 
+	 actor :  ('actor',)
+	 critic :  ('critic',)
+--------------------------------------------------------------------------------
+Actor Model: MLPModel(
+  (obs_normalizer): EmpiricalNormalization()
+  (distribution): GaussianDistribution()
+  (mlp): MLP(
+    (0): Linear(in_features=61, out_features=512, bias=True)
+    (1): ELU(alpha=1.0)
+    (2): Linear(in_features=512, out_features=256, bias=True)
+    (3): ELU(alpha=1.0)
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ELU(alpha=1.0)
+    (6): Linear(in_features=128, out_features=14, bias=True)
+  )
+)
+Critic Model: MLPModel(
+  (obs_normalizer): EmpiricalNormalization()
+  (mlp): MLP(
+    (0): Linear(in_features=76, out_features=512, bias=True)
+    (1): ELU(alpha=1.0)
+    (2): Linear(in_features=512, out_features=256, bias=True)
+    (3): ELU(alpha=1.0)
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ELU(alpha=1.0)
+    (6): Linear(in_features=128, out_features=1, bias=True)
+  )
+)
+Storing git diff for 'microduck_rl' in: logs/rsl_rl/local_flat_benchmark/2026-09-27_20-15-40_flat_20260927_201530/git/microduck_rl.diff
+################################################################################
+[1m                            Learning iteration 0/10                             [0m 
+
+                               Run name: flat_20260927_201530
+                            Total steps: 49152 
+                       Steps per second: 15261 
+                        Collection time: 2.998s 
+                          Learning time: 0.223s 
+                        Mean value loss: 0.0383
+                    Mean surrogate loss: -0.0012
+                      Mean entropy loss: 19.8174
+                            Mean reward: -0.06
+                    Mean episode length: 23.58
+                        Mean action std: 1.00
+   Episode_Reward/track_linear_velocity: 0.0109
+  Episode_Reward/track_angular_velocity: 0.0015
+                 Episode_Reward/upright: 0.0147
+                    Episode_Reward/pose: 0.0050
+            Episode_Reward/body_ang_vel: -0.0066
+        Episode_Reward/angular_momentum: -0.0000
+          Episode_Reward/dof_pos_limits: -0.0001
+          Episode_Reward/action_rate_l2: -0.0337
+                Episode_Reward/air_time: 0.0022
+          Episode_Reward/foot_clearance: -0.0001
+       Episode_Reward/foot_swing_height: -0.0006
+               Episode_Reward/foot_slip: -0.0000
+         Episode_Reward/self_collisions: -0.0001
+      Episode_Reward/head_pose_tracking: 0.0216
+      Episode_Reward/body_pose_tracking: 0.0000
+          Episode_Reward/head_pose_bias: 0.0000
+        Episode_Metrics/mean_action_acc: 1.7754
+          Curriculum/action_rate_weight: -0.1000
+               Curriculum/standing_envs: 0.0200
+             Curriculum/head_pose_range: 0.0700
+             Curriculum/body_pose_range: 0.0500
+                   Curriculum/com_range: 0.0030
+              Curriculum/head_com_range: 0.0030
+       Curriculum/head_pose_bias_weight: 0.0000
+             Metrics/twist/error_vel_xy: 0.0088
+            Metrics/twist/error_vel_yaw: 0.0531
+           Episode_Termination/time_out: 1.9167
+          Episode_Termination/fell_over: 5.7500
+Episode_Termination/out_of_terrain_bounds: 0.0000
+          Episode_Termination/nan_state: 0.0000
+          Metrics/angular_momentum_mean: 0.0086
+                  Metrics/air_time_mean: 0.0514
+               Metrics/peak_height_mean: 0.0062
+             Metrics/slip_velocity_mean: 0.0876
+--------------------------------------------------------------------------------
+                         Iteration time: 3.22s
+                           Time elapsed: 00:00:03
+                                    ETA: 00:00:28
+
+################################################################################
+[1m                            Learning iteration 1/10                             [0m 
+
+                               Run name: flat_20260927_201530
+                            Total steps: 98304 
+                       Steps per second: 24083 
+                        Collection time: 1.876s 
+                          Learning time: 0.165s 
+                        Mean value loss: 0.0501
+                    Mean surrogate loss: -0.0063
+                      Mean entropy loss: 19.7877
+                            Mean reward: 0.20
+                    Mean episode length: 41.06
+                        Mean action std: 0.99
+   Episode_Reward/track_linear_velocity: 0.0257
+  Episode_Reward/track_angular_velocity: 0.0020
+                 Episode_Reward/upright: 0.0275
+                    Episode_Reward/pose: 0.0078
+            Episode_Reward/body_ang_vel: -0.0245
+        Episode_Reward/angular_momentum: -0.0000
+          Episode_Reward/dof_pos_limits: -0.0006
+          Episode_Reward/action_rate_l2: -0.0976
+                Episode_Reward/air_time: 0.0112
+          Episode_Reward/foot_clearance: -0.0003
+       Episode_Reward/foot_swing_height: -0.0016
+               Episode_Reward/foot_slip: -0.0001
+         Episode_Reward/self_collisions: -0.0003
+      Episode_Reward/head_pose_tracking: 0.0583
+      Episode_Reward/body_pose_tracking: 0.0000
+          Episode_Reward/head_pose_bias: 0.0000
+        Episode_Metrics/mean_action_acc: 1.9085
+          Curriculum/action_rate_weight: -0.1000
+               Curriculum/standing_envs: 0.0200
+             Curriculum/head_pose_range: 0.0700
+             Curriculum/body_pose_range: 0.0500
+                   Curriculum/com_range: 0.0030
+              Curriculum/head_com_range: 0.0030
+       Curriculum/head_pose_bias_weight: 0.0000
+             Metrics/twist/error_vel_xy: 0.0310
+            Metrics/twist/error_vel_yaw: 0.1776
+           Episode_Termination/time_out: 0.8333
+          Episode_Termination/fell_over: 73.7917
+Episode_Termination/out_of_terrain_bounds: 0.0000
+          Episode_Termination/nan_state: 0.0000
+          Metrics/angular_momentum_mean: 0.0115
+                  Metrics/air_time_mean: 0.0572
+               Metrics/peak_height_mean: 0.0114
+             Metrics/slip_velocity_mean: 0.1019
+--------------------------------------------------------------------------------
+                         Iteration time: 2.04s
+                           Time elapsed: 00:00:05
+                                    ETA: 00:00:21
+
+################################################################################
+[1m                            Learning iteration 2/10                             [0m 
+
+                               Run name: flat_20260927_201530
+                            Total steps: 147456 
+                       Steps per second: 24207 
+                        Collection time: 1.869s 
+                          Learning time: 0.162s 
+                        Mean value loss: 0.0554
+                    Mean surrogate loss: -0.0097
+                      Mean entropy loss: 19.7068
+                            Mean reward: 0.19
+                    Mean episode length: 37.07
+                        Mean action std: 0.99
+   Episode_Reward/track_linear_velocity: 0.0244
+  Episode_Reward/track_angular_velocity: 0.0018
+                 Episode_Reward/upright: 0.0260
+                    Episode_Reward/pose: 0.0076
+            Episode_Reward/body_ang_vel: -0.0239
+        Episode_Reward/angular_momentum: -0.0000
+          Episode_Reward/dof_pos_limits: -0.0006
+          Episode_Reward/action_rate_l2: -0.0903
+                Episode_Reward/air_time: 0.0104
+          Episode_Reward/foot_clearance: -0.0003
+       Episode_Reward/foot_swing_height: -0.0017
+               Episode_Reward/foot_slip: -0.0001
+         Episode_Reward/self_collisions: -0.0004
+      Episode_Reward/head_pose_tracking: 0.0553
+      Episode_Reward/body_pose_tracking: 0.0000
+          Episode_Reward/head_pose_bias: 0.0000
+        Episode_Metrics/mean_action_acc: 1.8814
+          Curriculum/action_rate_weight: -0.1000
+               Curriculum/standing_envs: 0.0200
+             Curriculum/head_pose_range: 0.0700
+             Curriculum/body_pose_range: 0.0500
+                   Curriculum/com_range: 0.0030
+              Curriculum/head_com_range: 0.0030
+       Curriculum/head_pose_bias_weight: 0.0000
+             Metrics/twist/error_vel_xy: 0.0292
+            Metrics/twist/error_vel_yaw: 0.1677
+           Episode_Termination/time_out: 0.0000
+          Episode_Termination/fell_over: 60.4583
+Episode_Termination/out_of_terrain_bounds: 0.0000
+          Episode_Termination/nan_state: 0.0000
+          Metrics/angular_momentum_mean: 0.0119
+                  Metrics/air_time_mean: 0.0610
+               Metrics/peak_height_mean: 0.0110
+             Metrics/slip_velocity_mean: 0.1045
+--------------------------------------------------------------------------------
+                         Iteration time: 2.03s
+                           Time elapsed: 00:00:07
+                                    ETA: 00:00:17
+
+################################################################################
+[1m                            Learning iteration 3/10                             [0m 
+
+                               Run name: flat_20260927_201530
+                            Total steps: 196608 
+                       Steps per second: 24216 
+                        Collection time: 1.873s 
+                          Learning time: 0.157s 
+                        Mean value loss: 0.0487
+                    Mean surrogate loss: -0.0090
+                      Mean entropy loss: 19.6382
+                            Mean reward: 0.28
+                    Mean episode length: 34.87
+                        Mean action std: 0.98
+   Episode_Reward/track_linear_velocity: 0.0258
+  Episode_Reward/track_angular_velocity: 0.0020
+                 Episode_Reward/upright: 0.0281
+                    Episode_Reward/pose: 0.0080
+            Episode_Reward/body_ang_vel: -0.0240
+        Episode_Reward/angular_momentum: -0.0000
+          Episode_Reward/dof_pos_limits: -0.0006
+          Episode_Reward/action_rate_l2: -0.0941
+                Episode_Reward/air_time: 0.0115
+          Episode_Reward/foot_clearance: -0.0003
+       Episode_Reward/foot_swing_height: -0.0018
+               Episode_Reward/foot_slip: -0.0001
+         Episode_Reward/self_collisions: -0.0004
+      Episode_Reward/head_pose_tracking: 0.0584
+      Episode_Reward/body_pose_tracking: 0.0000
+          Episode_Reward/head_pose_bias: 0.0000
+        Episode_Metrics/mean_action_acc: 1.8699
+          Curriculum/action_rate_weight: -0.1000
+               Curriculum/standing_envs: 0.0200
+             Curriculum/head_pose_range: 0.0700
+             Curriculum/body_pose_range: 0.0500
+                   Curriculum/com_range: 0.0030
+              Curriculum/head_com_range: 0.0030
+       Curriculum/head_pose_bias_weight: 0.0000
+             Metrics/twist/error_vel_xy: 0.0308
+            Metrics/twist/error_vel_yaw: 0.1772
+           Episode_Termination/time_out: 0.0000
+          Episode_Termination/fell_over: 55.2500
+Episode_Termination/out_of_terrain_bounds: 0.0000
+          Episode_Termination/nan_state: 0.0000
+          Metrics/angular_momentum_mean: 0.0113
+                  Metrics/air_time_mean: 0.0606
+               Metrics/peak_height_mean: 0.0106
+             Metrics/slip_velocity_mean: 0.1020
+--------------------------------------------------------------------------------
+                         Iteration time: 2.03s
+                           Time elapsed: 00:00:09
+                                    ETA: 00:00:13
+
+################################################################################
+[1m                            Learning iteration 4/10                             [0m 
+
+                               Run name: flat_20260927_201530
+                            Total steps: 245760 
+                       Steps per second: 24276 
+                        Collection time: 1.866s 
+                          Learning time: 0.159s 
+                        Mean value loss: 0.0452
+                    Mean surrogate loss: -0.0079
+                      Mean entropy loss: 19.5783
+                            Mean reward: 0.34
+                    Mean episode length: 34.80
+                        Mean action std: 0.98
+   Episode_Reward/track_linear_velocity: 0.0257
+  Episode_Reward/track_angular_velocity: 0.0019
+                 Episode_Reward/upright: 0.0286
+                    Episode_Reward/pose: 0.0081
+            Episode_Reward/body_ang_vel: -0.0241
+        Episode_Reward/angular_momentum: -0.0000
+          Episode_Reward/dof_pos_limits: -0.0006
+          Episode_Reward/action_rate_l2: -0.0930
+                Episode_Reward/air_time: 0.0122
+          Episode_Reward/foot_clearance: -0.0004
+       Episode_Reward/foot_swing_height: -0.0018
+               Episode_Reward/foot_slip: -0.0001
+         Episode_Reward/self_collisions: -0.0005
+      Episode_Reward/head_pose_tracking: 0.0590
+      Episode_Reward/body_pose_tracking: 0.0000
+          Episode_Reward/head_pose_bias: 0.0000
+        Episode_Metrics/mean_action_acc: 1.8530
+          Curriculum/action_rate_weight: -0.1000
+               Curriculum/standing_envs: 0.0200
+             Curriculum/head_pose_range: 0.0700
+             Curriculum/body_pose_range: 0.0500
+                   Curriculum/com_range: 0.0030
+              Curriculum/head_com_range: 0.0030
+       Curriculum/head_pose_bias_weight: 0.0000
+             Metrics/twist/error_vel_xy: 0.0312
+            Metrics/twist/error_vel_yaw: 0.1779
+           Episode_Termination/time_out: 0.0000
+          Episode_Termination/fell_over: 58.2917
+Episode_Termination/out_of_terrain_bounds: 0.0000
+          Episode_Termination/nan_state: 0.0000
+          Metrics/angular_momentum_mean: 0.0115
+                  Metrics/air_time_mean: 0.0607
+               Metrics/peak_height_mean: 0.0110
+             Metrics/slip_velocity_mean: 0.1033
+--------------------------------------------------------------------------------
+                         Iteration time: 2.02s
+                           Time elapsed: 00:00:11
+                                    ETA: 00:00:11
+
+################################################################################
+[1m                            Learning iteration 5/10                             [0m 
+
+                               Run name: flat_20260927_201530
+                            Total steps: 294912 
+                       Steps per second: 24103 
+                        Collection time: 1.881s 
+                          Learning time: 0.158s 
+                        Mean value loss: 0.0420
+                    Mean surrogate loss: -0.0072
+                      Mean entropy loss: 19.5170
+                            Mean reward: 0.35
+                    Mean episode length: 35.53
+                        Mean action std: 0.97
+   Episode_Reward/track_linear_velocity: 0.0257
+  Episode_Reward/track_angular_velocity: 0.0019
+                 Episode_Reward/upright: 0.0285
+                    Episode_Reward/pose: 0.0083
+            Episode_Reward/body_ang_vel: -0.0240
+        Episode_Reward/angular_momentum: -0.0000
+          Episode_Reward/dof_pos_limits: -0.0006
+          Episode_Reward/action_rate_l2: -0.0905
+                Episode_Reward/air_time: 0.0118
+          Episode_Reward/foot_clearance: -0.0004
+       Episode_Reward/foot_swing_height: -0.0019
+               Episode_Reward/foot_slip: -0.0001
+         Episode_Reward/self_collisions: -0.0004
+      Episode_Reward/head_pose_tracking: 0.0585
+      Episode_Reward/body_pose_tracking: 0.0000
+          Episode_Reward/head_pose_bias: 0.0000
+        Episode_Metrics/mean_action_acc: 1.8344
+          Curriculum/action_rate_weight: -0.1000
+               Curriculum/standing_envs: 0.0200
+             Curriculum/head_pose_range: 0.0700
+             Curriculum/body_pose_range: 0.0500
+                   Curriculum/com_range: 0.0030
+              Curriculum/head_com_range: 0.0030
+       Curriculum/head_pose_bias_weight: 0.0000
+             Metrics/twist/error_vel_xy: 0.0311
+            Metrics/twist/error_vel_yaw: 0.1798
+           Episode_Termination/time_out: 0.0000
+          Episode_Termination/fell_over: 57.6250
+Episode_Termination/out_of_terrain_bounds: 0.0000
+          Episode_Termination/nan_state: 0.0000
+          Metrics/angular_momentum_mean: 0.0115
+                  Metrics/air_time_mean: 0.0634
+               Metrics/peak_height_mean: 0.0111
+             Metrics/slip_velocity_mean: 0.1048
+--------------------------------------------------------------------------------
+                         Iteration time: 2.04s
+                           Time elapsed: 00:00:13
+                                    ETA: 00:00:08
+
+################################################################################
+[1m                            Learning iteration 6/10                             [0m 
+
+                               Run name: flat_20260927_201530
+                            Total steps: 344064 
+                       Steps per second: 23944 
+                        Collection time: 1.880s 
+                          Learning time: 0.172s 
+                        Mean value loss: 0.0387
+                    Mean surrogate loss: -0.0095
+                      Mean entropy loss: 19.4326
+                            Mean reward: 0.41
+                    Mean episode length: 35.47
+                        Mean action std: 0.97
+   Episode_Reward/track_linear_velocity: 0.0269
+  Episode_Reward/track_angular_velocity: 0.0020
+                 Episode_Reward/upright: 0.0299
+                    Episode_Reward/pose: 0.0086
+            Episode_Reward/body_ang_vel: -0.0240
+        Episode_Reward/angular_momentum: -0.0000
+          Episode_Reward/dof_pos_limits: -0.0006
+          Episode_Reward/action_rate_l2: -0.0915
+                Episode_Reward/air_time: 0.0127
+          Episode_Reward/foot_clearance: -0.0004
+       Episode_Reward/foot_swing_height: -0.0019
+               Episode_Reward/foot_slip: -0.0001
+         Episode_Reward/self_collisions: -0.0006
+      Episode_Reward/head_pose_tracking: 0.0599
+      Episode_Reward/body_pose_tracking: 0.0000
+          Episode_Reward/head_pose_bias: 0.0000
+        Episode_Metrics/mean_action_acc: 1.8212
+          Curriculum/action_rate_weight: -0.1000
+               Curriculum/standing_envs: 0.0200
+             Curriculum/head_pose_range: 0.0700
+             Curriculum/body_pose_range: 0.0500
+                   Curriculum/com_range: 0.0030
+              Curriculum/head_com_range: 0.0030
+       Curriculum/head_pose_bias_weight: 0.0000
+             Metrics/twist/error_vel_xy: 0.0315
+            Metrics/twist/error_vel_yaw: 0.1837
+           Episode_Termination/time_out: 0.0000
+          Episode_Termination/fell_over: 55.9583
+Episode_Termination/out_of_terrain_bounds: 0.0000
+          Episode_Termination/nan_state: 0.0000
+          Metrics/angular_momentum_mean: 0.0116
+                  Metrics/air_time_mean: 0.0632
+               Metrics/peak_height_mean: 0.0112
+             Metrics/slip_velocity_mean: 0.1055
+--------------------------------------------------------------------------------
+                         Iteration time: 2.05s
+                           Time elapsed: 00:00:15
+                                    ETA: 00:00:06
+
+################################################################################
+[1m                            Learning iteration 7/10                             [0m 
+
+                               Run name: flat_20260927_201530
+                            Total steps: 393216 
+                       Steps per second: 23893 
+                        Collection time: 1.891s 
+                          Learning time: 0.166s 
+                        Mean value loss: 0.0377
+                    Mean surrogate loss: -0.0127
+                      Mean entropy loss: 19.2814
+                            Mean reward: 0.48
+                    Mean episode length: 36.03
+                        Mean action std: 0.95
+   Episode_Reward/track_linear_velocity: 0.0268
+  Episode_Reward/track_angular_velocity: 0.0020
+                 Episode_Reward/upright: 0.0305
+                    Episode_Reward/pose: 0.0087
+            Episode_Reward/body_ang_vel: -0.0236
+        Episode_Reward/angular_momentum: -0.0000
+          Episode_Reward/dof_pos_limits: -0.0006
+          Episode_Reward/action_rate_l2: -0.0908
+                Episode_Reward/air_time: 0.0131
+          Episode_Reward/foot_clearance: -0.0004
+       Episode_Reward/foot_swing_height: -0.0019
+               Episode_Reward/foot_slip: -0.0001
+         Episode_Reward/self_collisions: -0.0007
+      Episode_Reward/head_pose_tracking: 0.0604
+      Episode_Reward/body_pose_tracking: 0.0000
+          Episode_Reward/head_pose_bias: 0.0000
+        Episode_Metrics/mean_action_acc: 1.8085
+          Curriculum/action_rate_weight: -0.1000
+               Curriculum/standing_envs: 0.0200
+             Curriculum/head_pose_range: 0.0700
+             Curriculum/body_pose_range: 0.0500
+                   Curriculum/com_range: 0.0030
+              Curriculum/head_com_range: 0.0030
+       Curriculum/head_pose_bias_weight: 0.0000
+             Metrics/twist/error_vel_xy: 0.0316
+            Metrics/twist/error_vel_yaw: 0.1831
+           Episode_Termination/time_out: 0.0000
+          Episode_Termination/fell_over: 56.9583
+Episode_Termination/out_of_terrain_bounds: 0.0000
+          Episode_Termination/nan_state: 0.0000
+          Metrics/angular_momentum_mean: 0.0116
+                  Metrics/air_time_mean: 0.0643
+               Metrics/peak_height_mean: 0.0112
+             Metrics/slip_velocity_mean: 0.1036
+--------------------------------------------------------------------------------
+                         Iteration time: 2.06s
+                           Time elapsed: 00:00:17
+                                    ETA: 00:00:04
+
+################################################################################
+[1m                            Learning iteration 8/10                             [0m 
+
+                               Run name: flat_20260927_201530
+                            Total steps: 442368 
+                       Steps per second: 23942 
+                        Collection time: 1.894s 
+                          Learning time: 0.159s 
+                        Mean value loss: 0.0357
+                    Mean surrogate loss: -0.0154
+                      Mean entropy loss: 19.0880
+                            Mean reward: 0.56
+                    Mean episode length: 35.46
+                        Mean action std: 0.94
+   Episode_Reward/track_linear_velocity: 0.0264
+  Episode_Reward/track_angular_velocity: 0.0020
+                 Episode_Reward/upright: 0.0304
+                    Episode_Reward/pose: 0.0091
+            Episode_Reward/body_ang_vel: -0.0234
+        Episode_Reward/angular_momentum: -0.0000
+          Episode_Reward/dof_pos_limits: -0.0006
+          Episode_Reward/action_rate_l2: -0.0889
+                Episode_Reward/air_time: 0.0131
+          Episode_Reward/foot_clearance: -0.0004
+       Episode_Reward/foot_swing_height: -0.0020
+               Episode_Reward/foot_slip: -0.0001
+         Episode_Reward/self_collisions: -0.0007
+      Episode_Reward/head_pose_tracking: 0.0609
+      Episode_Reward/body_pose_tracking: 0.0000
+          Episode_Reward/head_pose_bias: 0.0000
+        Episode_Metrics/mean_action_acc: 1.7854
+          Curriculum/action_rate_weight: -0.1000
+               Curriculum/standing_envs: 0.0200
+             Curriculum/head_pose_range: 0.0700
+             Curriculum/body_pose_range: 0.0500
+                   Curriculum/com_range: 0.0030
+              Curriculum/head_com_range: 0.0030
+       Curriculum/head_pose_bias_weight: 0.0000
+             Metrics/twist/error_vel_xy: 0.0320
+            Metrics/twist/error_vel_yaw: 0.1809
+           Episode_Termination/time_out: 0.0000
+          Episode_Termination/fell_over: 57.2917
+Episode_Termination/out_of_terrain_bounds: 0.0000
+          Episode_Termination/nan_state: 0.0000
+          Metrics/angular_momentum_mean: 0.0116
+                  Metrics/air_time_mean: 0.0647
+               Metrics/peak_height_mean: 0.0114
+             Metrics/slip_velocity_mean: 0.1038
+--------------------------------------------------------------------------------
+                         Iteration time: 2.05s
+                           Time elapsed: 00:00:19
+                                    ETA: 00:00:02
+
+################################################################################
+[1m                            Learning iteration 9/10                             [0m 
+
+                               Run name: flat_20260927_201530
+                            Total steps: 491520 
+                       Steps per second: 24073 
+                        Collection time: 1.883s 
+                          Learning time: 0.159s 
+                        Mean value loss: 0.0374
+                    Mean surrogate loss: -0.0142
+                      Mean entropy loss: 18.9060
+                            Mean reward: 0.59
+                    Mean episode length: 35.87
+                        Mean action std: 0.93
+   Episode_Reward/track_linear_velocity: 0.0269
+  Episode_Reward/track_angular_velocity: 0.0021
+                 Episode_Reward/upright: 0.0317
+                    Episode_Reward/pose: 0.0094
+            Episode_Reward/body_ang_vel: -0.0232
+        Episode_Reward/angular_momentum: -0.0000
+          Episode_Reward/dof_pos_limits: -0.0006
+          Episode_Reward/action_rate_l2: -0.0873
+                Episode_Reward/air_time: 0.0129
+          Episode_Reward/foot_clearance: -0.0004
+       Episode_Reward/foot_swing_height: -0.0021
+               Episode_Reward/foot_slip: -0.0001
+         Episode_Reward/self_collisions: -0.0007
+      Episode_Reward/head_pose_tracking: 0.0620
+      Episode_Reward/body_pose_tracking: 0.0000
+          Episode_Reward/head_pose_bias: 0.0000
+        Episode_Metrics/mean_action_acc: 1.7606
+          Curriculum/action_rate_weight: -0.1000
+               Curriculum/standing_envs: 0.0200
+             Curriculum/head_pose_range: 0.0700
+             Curriculum/body_pose_range: 0.0500
+                   Curriculum/com_range: 0.0030
+              Curriculum/head_com_range: 0.0030
+       Curriculum/head_pose_bias_weight: 0.0000
+             Metrics/twist/error_vel_xy: 0.0324
+            Metrics/twist/error_vel_yaw: 0.1811
+           Episode_Termination/time_out: 0.0000
+          Episode_Termination/fell_over: 54.4167
+Episode_Termination/out_of_terrain_bounds: 0.0000
+          Episode_Termination/nan_state: 0.0000
+          Metrics/angular_momentum_mean: 0.0115
+                  Metrics/air_time_mean: 0.0645
+               Metrics/peak_height_mean: 0.0115
+             Metrics/slip_velocity_mean: 0.1039
+--------------------------------------------------------------------------------
+                         Iteration time: 2.04s
+                           Time elapsed: 00:00:21
+                                    ETA: 00:00:00
+

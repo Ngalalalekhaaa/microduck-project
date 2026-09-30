@@ -1,0 +1,99 @@
+{
+ "name": "笔直状态",
+ "time": "2026-09-30 06:39",
+ "rows": [
+  {
+   "id": 1,
+   "joint": "left_hip_yaw",
+   "pos": 2031,
+   "deg": null
+  },
+  {
+   "id": 2,
+   "joint": "left_hip_roll",
+   "pos": 1987,
+   "deg": null
+  },
+  {
+   "id": 3,
+   "joint": "left_hip_pitch",
+   "pos": 2150,
+   "deg": null
+  },
+  {
+   "id": 4,
+   "joint": "left_knee",
+   "pos": 2105,
+   "deg": null
+  },
+  {
+   "id": 5,
+   "joint": "left_ankle",
+   "pos": 2100,
+   "deg": null
+  },
+  {
+   "id": 6,
+   "joint": "neck_pitch",
+   "pos": 2103,
+   "deg": null
+  },
+  {
+   "id": 7,
+   "joint": "head_pitch",
+   "pos": 1989,
+   "deg": null
+  },
+  {
+   "id": 8,
+   "joint": "head_yaw",
+   "pos": 2061,
+   "deg": null
+  },
+  {
+   "id": 9,
+   "joint": "head_roll",
+   "pos": 2064,
+   "deg": null
+  },
+  {
+   "id": 10,
+   "joint": "right_hip_yaw",
+   "pos": 2030,
+   "deg": null
+  },
+  {
+   "id": 11,
+   "joint": "right_hip_roll",
+   "pos": 2015,
+   "deg": null
+  },
+  {
+   "id": 12,
+   "joint": "right_hip_pitch",
+   "pos": 2105,
+   "deg": null
+  },
+  {
+   "id": 13,
+   "joint": "right_knee",
+   "pos": 2339,
+   "deg": null
+  },
+  {
+   "id": 14,
+   "joint": "right_ankle",
+   "pos": 1885,
+   "deg": null
+  }
+ ],
+ "profile": "wmh-1-15",
+ "fake": false,
+ "calibration": {
+  "ready_ids": [],
+  "zero_ticks": {},
+  "message": "编号已适配；标定 0/14。可保存实际刻度；未标定的 3D 关节仅显示相对变化，不代表实物姿态。",
+  "fake": false,
+  "source": "/home/wmh/deploy_hd1910/robot.json"
+ }
+}

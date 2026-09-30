@@ -1,0 +1,551 @@
+{
+  "dump": {
+    "type": "dump",
+    "id": 14,
+    "rows": [
+      {
+        "addr": 0,
+        "name": "固件主版本",
+        "area": "只读",
+        "size": 1,
+        "value": 3
+      },
+      {
+        "addr": 1,
+        "name": "固件次版本",
+        "area": "只读",
+        "size": 1,
+        "value": 46
+      },
+      {
+        "addr": 2,
+        "name": "END 字节序(0=小端)",
+        "area": "只读",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "addr": 3,
+        "name": "舵机主版本",
+        "area": "只读",
+        "size": 1,
+        "value": 10
+      },
+      {
+        "addr": 4,
+        "name": "舵机次版本",
+        "area": "只读",
+        "size": 1,
+        "value": 31
+      },
+      {
+        "addr": 5,
+        "name": "ID",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 14
+      },
+      {
+        "addr": 6,
+        "name": "波特率(0=1M)",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "addr": 7,
+        "name": "预留地址（STS 无应答延时寄存器）",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 253
+      },
+      {
+        "addr": 8,
+        "name": "应答状态级别",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 1
+      },
+      {
+        "addr": 9,
+        "name": "最小角度限制",
+        "area": "EEPROM",
+        "size": 2,
+        "value": 0
+      },
+      {
+        "addr": 11,
+        "name": "最大角度限制",
+        "area": "EEPROM",
+        "size": 2,
+        "value": 4095
+      },
+      {
+        "addr": 13,
+        "name": "最高温度上限",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 80
+      },
+      {
+        "addr": 14,
+        "name": "最高输入电压",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 100
+      },
+      {
+        "addr": 15,
+        "name": "最低输入电压",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 40
+      },
+      {
+        "addr": 16,
+        "name": "最大扭矩",
+        "area": "EEPROM",
+        "size": 2,
+        "value": 1000
+      },
+      {
+        "addr": 18,
+        "name": "相位",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 52
+      },
+      {
+        "addr": 19,
+        "name": "卸载条件",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 4
+      },
+      {
+        "addr": 20,
+        "name": "LED报警条件",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 4
+      },
+      {
+        "addr": 21,
+        "name": "位置环P",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 32
+      },
+      {
+        "addr": 22,
+        "name": "位置环D",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 40
+      },
+      {
+        "addr": 23,
+        "name": "位置环I",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "addr": 24,
+        "name": "最小启动扭矩",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 12
+      },
+      {
+        "addr": 25,
+        "name": "积分限制值",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "addr": 26,
+        "name": "正向不灵敏区",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 1
+      },
+      {
+        "addr": 27,
+        "name": "负向不灵敏区",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 1
+      },
+      {
+        "addr": 28,
+        "name": "保护电流",
+        "area": "EEPROM",
+        "size": 2,
+        "value": 500
+      },
+      {
+        "addr": 30,
+        "name": "角度分辨率",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 1
+      },
+      {
+        "addr": 31,
+        "name": "位置偏移",
+        "area": "EEPROM",
+        "size": 2,
+        "value": 0
+      },
+      {
+        "addr": 33,
+        "name": "运行模式",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 4
+      },
+      {
+        "addr": 34,
+        "name": "保持扭矩",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 200
+      },
+      {
+        "addr": 35,
+        "name": "保护时间",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 50
+      },
+      {
+        "addr": 36,
+        "name": "过载扭矩",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 255
+      },
+      {
+        "addr": 37,
+        "name": "速度环P",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 60
+      },
+      {
+        "addr": 38,
+        "name": "过流保护时间",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 200
+      },
+      {
+        "addr": 39,
+        "name": "速度环I",
+        "area": "EEPROM",
+        "size": 1,
+        "value": 20
+      },
+      {
+        "addr": 40,
+        "name": "扭矩开关",
+        "area": "SRAM",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "addr": 41,
+        "name": "加速度",
+        "area": "SRAM",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "addr": 42,
+        "name": "目标位置",
+        "area": "SRAM",
+        "size": 2,
+        "value": 4013
+      },
+      {
+        "addr": 44,
+        "name": "PWM开环速度",
+        "area": "SRAM",
+        "size": 2,
+        "value": 500
+      },
+      {
+        "addr": 46,
+        "name": "运行速度",
+        "area": "SRAM",
+        "size": 2,
+        "value": 0
+      },
+      {
+        "addr": 48,
+        "name": "转矩限制",
+        "area": "SRAM",
+        "size": 2,
+        "value": 1000
+      },
+      {
+        "addr": 55,
+        "name": "锁标志",
+        "area": "SRAM",
+        "size": 1,
+        "value": 1
+      },
+      {
+        "addr": 56,
+        "name": "当前位置",
+        "area": "反馈",
+        "size": 2,
+        "value": 4012
+      },
+      {
+        "addr": 58,
+        "name": "当前速度",
+        "area": "反馈",
+        "size": 2,
+        "value": 0
+      },
+      {
+        "addr": 60,
+        "name": "当前负载",
+        "area": "反馈",
+        "size": 2,
+        "value": 0
+      },
+      {
+        "addr": 62,
+        "name": "当前电压(0.1V)",
+        "area": "反馈",
+        "size": 1,
+        "value": 75
+      },
+      {
+        "addr": 63,
+        "name": "当前温度(°C)",
+        "area": "反馈",
+        "size": 1,
+        "value": 35
+      },
+      {
+        "addr": 64,
+        "name": "异步写标志",
+        "area": "反馈",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "addr": 65,
+        "name": "舵机状态位",
+        "area": "反馈",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "addr": 66,
+        "name": "移动标志",
+        "area": "反馈",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "addr": 67,
+        "name": "目标位置(回读)",
+        "area": "反馈",
+        "size": 2,
+        "value": 4012
+      },
+      {
+        "addr": 69,
+        "name": "当前电流(6.5mA)",
+        "area": "反馈",
+        "size": 2,
+        "value": 4
+      },
+      {
+        "addr": 80,
+        "name": "移动速度阀值",
+        "area": "出厂",
+        "size": 1,
+        "value": 1
+      },
+      {
+        "addr": 81,
+        "name": "DTs(ms)",
+        "area": "出厂",
+        "size": 1,
+        "value": 10
+      },
+      {
+        "addr": 82,
+        "name": "速度单位系数",
+        "area": "出厂",
+        "size": 1,
+        "value": 60
+      },
+      {
+        "addr": 83,
+        "name": "最小速度限制",
+        "area": "出厂",
+        "size": 1,
+        "value": 20
+      },
+      {
+        "addr": 84,
+        "name": "最大速度限制",
+        "area": "出厂",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "addr": 85,
+        "name": "加速度限制",
+        "area": "出厂",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "addr": 86,
+        "name": "加速度倍数",
+        "area": "出厂",
+        "size": 1,
+        "value": 0
+      }
+    ],
+    "raw": [
+      3,
+      46,
+      0,
+      10,
+      31,
+      14,
+      0,
+      253,
+      1,
+      0,
+      0,
+      255,
+      15,
+      80,
+      100,
+      40,
+      232,
+      3,
+      52,
+      4,
+      4,
+      32,
+      40,
+      0,
+      12,
+      0,
+      1,
+      1,
+      244,
+      1,
+      1,
+      0,
+      0,
+      4,
+      200,
+      50,
+      255,
+      60,
+      200,
+      20,
+      0,
+      0,
+      173,
+      15,
+      244,
+      1,
+      0,
+      0,
+      232,
+      3,
+      32,
+      40,
+      0,
+      0,
+      0,
+      1,
+      172,
+      15,
+      0,
+      0,
+      0,
+      0,
+      75,
+      35,
+      0,
+      0,
+      0,
+      172,
+      15,
+      4,
+      0,
+      0,
+      0,
+      243,
+      7,
+      5,
+      60,
+      60,
+      2,
+      60,
+      1,
+      10,
+      60,
+      20,
+      0,
+      0,
+      0
+    ]
+  },
+  "samples": [
+    {
+      "err": 0,
+      "pos": 4012,
+      "speed": 0,
+      "load": 0,
+      "volt": 7.4,
+      "temp": 35,
+      "status": 0,
+      "moving": 0,
+      "goal": 4012,
+      "current_ma": 26.0,
+      "status_text": ""
+    },
+    {
+      "err": 0,
+      "pos": 4012,
+      "speed": 0,
+      "load": 0,
+      "volt": 7.4,
+      "temp": 35,
+      "status": 0,
+      "moving": 0,
+      "goal": 4012,
+      "current_ma": 13.0,
+      "status_text": ""
+    },
+    {
+      "err": 0,
+      "pos": 4012,
+      "speed": 0,
+      "load": 0,
+      "volt": 7.5,
+      "temp": 35,
+      "status": 0,
+      "moving": 0,
+      "goal": 4012,
+      "current_ma": 13.0,
+      "status_text": ""
+    }
+  ]
+}

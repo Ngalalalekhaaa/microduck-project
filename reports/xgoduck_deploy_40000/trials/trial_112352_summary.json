@@ -1,0 +1,13 @@
+{
+  "sent_policy_frames": 10,
+  "last_sent_t": 0.2111107760001687,
+  "last_vx": 0.0014158976629722482,
+  "last_right_yaw_target_deg": 142.31207301795817,
+  "fault_right_yaw_measured_deg": 37.44140625,
+  "right_yaw_feedback_tick": 1604,
+  "replay_max_error": 5.960464477539063e-08,
+  "goal_register_matches": 140,
+  "goal_register_total": 140,
+  "stop_reason": "测得关节角超出模型机械范围；检查零位/方向/装配",
+  "note": "Progressive right yaw target growth with matching goal writes; exact sim-to-real mismatch not identified. No further hardware action."
+}

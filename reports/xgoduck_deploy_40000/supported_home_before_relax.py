@@ -1,0 +1,261 @@
+"""One supported, suspended transition to a saved straight reference or HOME.
+
+The operator must support the trunk with the feet clear. No balance controller,
+IMU, RL policy, EEPROM writes, or automatic calibration. Optional soft RAM gains
+are restored after failure and retained for holding after success. Success leaves
+the requested pose held; any failure attempts torque-OFF. Default: preview.
+"""
+import argparse
+import dataclasses
+import json
+import math
+import signal
+import sys
+import threading
+import time
+from pathlib import Path
+
+DEPLOY = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(DEPLOY))
+import numpy as np
+from microduck_deploy.config import load_config, calibration_arrays, require_calibration
+from microduck_deploy.homing import plan_home, validate_reference_calibration
+from microduck_deploy.policy import ticks_to_q, q_to_ticks, HOME, STRAIGHT_REFERENCE, JOINT_LIMITS
+from microduck_deploy.servo import ServoBus, ServoTimeout, ServoProtocolError
+
+
+class PositionOnlyBus(ServoBus):
+    soft_gain_write_allowed = False
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.communication_retries = []
+
+    def _retry_read(self, operation, label):
+        # Repeat complete read transactions only. Never replay a position/torque
+        # write and never reuse partial feedback from a failed transaction.
+        for attempt in range(1, 4):
+            try:
+                return operation()
+            except (ServoTimeout, ServoProtocolError) as exc:
+                self.communication_retries.append({'operation':label,'attempt':attempt,'error':str(exc)})
+                if attempt == 3:
+                    raise type(exc)(f'{label} failed after 3 attempts: {exc}') from exc
+                print(json.dumps({'event':'read_retry','operation':label,'attempt':attempt,'error':str(exc)}),flush=True)
+                time.sleep(.005)
+
+    def read(self, servo_id, address, count):
+        return self._retry_read(lambda: ServoBus.read(self,servo_id,address,count),
+                                f'READ ID{servo_id} address{address}')
+
+    def read_feedback_many(self, ids, *, sync=False):
+        ids = list(ids)
+        if not sync:
+            return ServoBus.read_feedback_many(self,ids,sync=False)
+        return self._retry_read(lambda: ServoBus.read_feedback_many(self,ids,sync=True),
+                                'SYNC_READ ' + ','.join(map(str,ids)))
+
+    def _sync_ram(self, address, size, values):
+        soft = (self.soft_gain_write_allowed and (address,size)==(50,3)
+                and all(v == bytes((5,0,0)) for v in values.values()))
+        if (address, size) not in ((40, 1), (42, 2)) and not soft:
+            raise ValueError('Only position and torque RAM writes are allowed')
+        return super()._sync_ram(address, size, values)
+
+
+def path_ticks(start, end, steps=600):
+    start, end = np.asarray(start), np.asarray(end)
+    for k in range(1, steps + 1):
+        t = k / steps
+        s = t * t * (3 - 2 * t)
+        yield np.rint(start + s * (end - start)).astype(int)
+
+
+def plan_straight_recovery(cfg, start, *, target='straight'):
+    """Supported recovery to an already verified pose, not an RL startup.
+
+    A relaxed joint may lie outside training limits. Accept only a bounded,
+    monotonic return toward the saved valid reference, never further outward.
+    Hardware range checks and live fault checks remain mandatory in main().
+    """
+    validate_reference_calibration(cfg, 'straight')
+    zero, direction = calibration_arrays(cfg)
+    start = np.asarray(start, dtype=int)
+    end_raw = np.asarray(cfg['calibration']['captured_ticks'])
+    if end_raw.shape != (14,) or not np.all(end_raw == np.rint(end_raw)):
+        raise ValueError('Saved reference must contain 14 exact encoder readings')
+    end = end_raw.astype(int) if target == 'straight' else q_to_ticks(HOME, zero, direction)
+    if start.shape != (14,) or np.any(start < 0) or np.any(start > 4095):
+        raise ValueError('Recovery start must be within single-turn range')
+    if np.max(np.abs(end-start)) > 910:
+        raise ValueError('Recovery displacement exceeds 80 degrees')
+    q = ticks_to_q(start, zero, direction)
+    if np.any(STRAIGHT_REFERENCE < JOINT_LIMITS[:,0]) or np.any(STRAIGHT_REFERENCE > JOINT_LIMITS[:,1]):
+        raise ValueError('Saved recovery destination outside model limits')
+    path = np.stack([start, *path_ticks(start, end)])
+    angles = np.stack([ticks_to_q(row, zero, direction) for row in path])
+    violation = np.maximum(JOINT_LIMITS[:,0]-angles, 0) + np.maximum(angles-JOINT_LIMITS[:,1], 0)
+    if np.any(np.diff(violation, axis=0) > 1e-10):
+        raise ValueError('Recovery path would increase model-limit violation')
+    return {'target': target, 'home_ticks': end.tolist(),
+            'start_ticks': start.tolist(), 'start_q_rad': q.tolist(),
+            'duration_s': 12, 'peak_target_speed_deg_s': float(np.max(np.abs(end-start))*360/4096*1.5/12)}
+
+
+def verify_feedback(feedback, ids, last, start, end, now, *, log_only=False):
+    for idx, sid in enumerate(ids):
+        f = feedback[sid]
+        if now - f.received_at > .1 or f.status:
+            raise ValueError(f'ID{sid}: stale/error feedback')
+        if log_only:
+            continue
+        if not 7.0 <= f.voltage_v <= 8.4 or f.temperature_c >= 55 or abs(f.current_ma) > 800:
+            raise ValueError(f'ID{sid}: voltage/temperature/current outside supported-test bounds: {f.voltage_v}V, {f.temperature_c}C, {f.current_ma}mA; actual={f.position_ticks}, commanded={int(last[idx])}')
+        if abs(f.position_ticks - int(last[idx])) > 57:
+            raise ValueError(f'ID{sid}: tracking error >5 degrees')
+        if not min(start[idx], end[idx]) - 57 <= f.position_ticks <= max(start[idx], end[idx]) + 57:
+            raise ValueError(f'ID{sid}: outside planned path')
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--move', action='store_true')
+    parser.add_argument('--target', choices=('home', 'straight'), default='home')
+    parser.add_argument('--soft-gains', action='store_true', help='Use verified volatile P=5,D=0,I=0; requires all joints relaxed')
+    parser.add_argument('--log-only-feedback', action='store_true', help='Record current/voltage/temperature/tracking without added software thresholds; serial/device errors still stop')
+    a = parser.parse_args()
+    cfg = load_config(DEPLOY/'robot.json')
+    require_calibration(cfg, imu=False)
+    ids = [j['id'] for j in cfg['joints']]
+    assert ids == list(range(1,15))
+    zero, direction = calibration_arrays(cfg)
+    stop = threading.Event()
+    for sig in (signal.SIGINT, signal.SIGTERM, signal.SIGHUP):
+        signal.signal(sig, lambda *_: stop.set())
+    report = {'task': f'supported move to {a.target}; not free standing', 'samples': [],
+              'gains_changed': False, 'eeprom_writes': False, 'uses_imu': False,
+              'software_current_stop_ma': None if a.log_only_feedback else 800,
+              'log_only_feedback': a.log_only_feedback}
+    log = DEPLOY/'logs'/('supported_home_'+time.strftime('%Y%m%d_%H%M%S')+'.json')
+    log.parent.mkdir(exist_ok=True)
+    serial_options = dict(cfg['serial'])
+    serial_options['timeout'] = max(.05, serial_options['timeout'])
+    report['serial_timeout_s'] = serial_options['timeout']
+    with PositionOnlyBus(**serial_options) as bus:
+        configs = {sid: bus.read_configuration(sid) for sid in ids}
+        for sid, c in configs.items():
+            assert c['mode'] == 4 and c['angle_resolution'] == 1 and c['torque'] in (0,1), f'ID{sid}: mode/resolution/torque'
+            assert 0 <= c['position_min'] < c['position_max'] <= 4095
+            if a.soft_gains:
+                assert c['torque']==0 and c['ram_gains']['i']==0, 'Soft start requires torque OFF and I=0'
+        feedback = bus.read_feedback_many(ids, sync=True)
+        start = np.array([feedback[sid].position_ticks for sid in ids],dtype=int)
+        plan = (plan_straight_recovery(cfg, start, target=a.target) if a.target == 'straight' or a.log_only_feedback else
+                plan_home(cfg, ticks_to_q(start, zero, direction), from_pose='straight', move_seconds=12))
+        end = np.array(plan['home_ticks'],dtype=int)
+        for i,sid in enumerate(ids):
+            assert configs[sid]['position_min'] <= min(start[i],end[i]) <= max(start[i],end[i]) <= configs[sid]['position_max']
+        # Planning may take >100ms on the SBC: validate a new sample, not its old input.
+        feedback = bus.read_feedback_many(ids, sync=True)
+        if max(abs(feedback[sid].position_ticks-start[i]) for i,sid in enumerate(ids)) > 8:
+            raise ValueError('Reference moved during planning')
+        verify_feedback(feedback, ids, start, start, end, time.monotonic(), log_only=a.log_only_feedback)
+        report.update(plan=plan, configuration_before=configs, start_feedback={sid:dataclasses.asdict(f) for sid,f in feedback.items()})
+        log.write_text(json.dumps(report,ensure_ascii=False,indent=2))
+        print(json.dumps({'event':'plan','target':a.target,'move':a.move,'start':start.tolist(),'end':end.tolist(),'seconds':12,'peak_deg_s':plan['peak_target_speed_deg_s'],'log':str(log)}),flush=True)
+        if not a.move:
+            return
+        success = False
+        started = time.monotonic()
+        last = start.copy()
+        try:
+            if stop.is_set():
+                raise ValueError('Stopped before motion')
+            fresh = bus.read_feedback_many(ids,sync=True)
+            if max(abs(fresh[sid].position_ticks-start[i]) for i,sid in enumerate(ids)) > 8:
+                raise ValueError('Reference moved during planning')
+            if a.soft_gains:
+                # Save the original settings before the first write.
+                report['gains_changed'] = True
+                log.write_text(json.dumps(report,ensure_ascii=False,indent=2))
+                bus.soft_gain_write_allowed = True
+                bus.set_pid_ram(ids,5,0,0,verify=True)
+                bus.soft_gain_write_allowed = False
+                fresh=bus.read_feedback_many(ids,sync=True)
+                if max(abs(fresh[sid].position_ticks-start[i]) for i,sid in enumerate(ids)) > 8:
+                    raise ValueError('Reference moved while preparing soft gains')
+            bus.sync_positions(dict(zip(ids,map(int,start))))
+            bus.set_torque(ids,True,verify=True)
+            for k,goal in enumerate(path_ticks(start,end),1):
+                cycle = time.monotonic()
+                if stop.is_set() or cycle-started > 40:
+                    raise ValueError('Stopped or overall deadline exceeded')
+                feedback = bus.read_feedback_many(ids,sync=True)
+                verify_feedback(feedback,ids,last,start,end,time.monotonic(), log_only=a.log_only_feedback)
+                if np.max(np.abs(goal-last)) > 4:
+                    raise ValueError('Target step exceeded limit')
+                bus.sync_positions(dict(zip(ids,map(int,goal))))
+                last=goal
+                if k%10==0:
+                    report['samples'].append({'step':k,'elapsed':time.monotonic()-started,
+                        'command':goal.tolist(),'actual':[feedback[sid].position_ticks for sid in ids],
+                        'current_ma':[feedback[sid].current_ma for sid in ids],
+                        'voltage_v':[feedback[sid].voltage_v for sid in ids],
+                        'temperature_c':[feedback[sid].temperature_c for sid in ids]})
+                if k%100==0:
+                    print(json.dumps({'event':'progress','step':k,'of':600}),flush=True)
+                if time.monotonic()-cycle > .2:
+                    raise ValueError('Control cycle exceeded 200ms')
+                # Never catch up by sending a burst after a delay.
+                time.sleep(.02)
+            # Allow 2 s to settle at the last target, maintaining feedback checks.
+            for _ in range(100):
+                if stop.is_set():raise ValueError('Stopped during settle')
+                feedback=bus.read_feedback_many(ids,sync=True)
+                verify_feedback(feedback,ids,end,start,end,time.monotonic(), log_only=a.log_only_feedback)
+                time.sleep(.02)
+            errors=[feedback[sid].position_ticks-int(end[i]) for i,sid in enumerate(ids)]
+            reached = max(map(abs,errors)) <= 23
+            if not reached and not a.log_only_feedback:
+                raise ValueError(f'Target error exceeds 2 degrees: {errors}')
+            after={sid:bus.read_configuration(sid) for sid in ids}
+            for sid,c in after.items():
+                assert c['torque']==1
+                for key in ('mode','angle_resolution','phase','eeprom_gains','ram_gains','position_min','position_max'):
+                    expected = {'p':5,'d':0,'i':0} if key=='ram_gains' and a.soft_gains else configs[sid][key]
+                    assert c[key]==expected,f'ID{sid}: configuration changed'
+            if stop.is_set(): raise ValueError('Stopped during final verification')
+            success=True
+            report.update(result=f'{a.target} interpolation complete; torque remains ON',target_reached=reached,final_errors_ticks=errors,configuration_after=after)
+            print(json.dumps({'event':'complete','target':a.target,'target_reached':reached,'target_ticks':end.tolist(),'actual_ticks':[feedback[sid].position_ticks for sid in ids],'errors_ticks':errors,'holding':True}),flush=True)
+        except BaseException as exc:
+            report.update(result='aborted',error=repr(exc),last_command_ticks=last.tolist(),
+                          fault_feedback={sid:dataclasses.asdict(f) for sid,f in feedback.items()})
+            raise
+        finally:
+            if not success:
+                failures=[]
+                for attempt in range(3):
+                    try:
+                        bus.set_torque(ids,False,verify=True)
+                        report['failure_cleanup']='torque OFF verified'
+                        if report['gains_changed']:
+                            # Restore only the captured RAM gains, with torque confirmed OFF.
+                            for sid in ids:
+                                original=configs[sid]['ram_gains']
+                                values=bytes(original[k] for k in ('p','d','i'))
+                                ServoBus._sync_ram(bus,50,3,{sid:values})
+                                assert bus.read(sid,50,3)==values
+                            report['failure_gain_cleanup']='original RAM gains restored'
+                        break
+                    except Exception as exc:
+                        failures.append(repr(exc))
+                else:
+                    report['failure_cleanup_errors']=failures
+                    print('TORQUE-OFF NOT VERIFIED: disconnect servo power',flush=True)
+            report['communication_retries'] = bus.communication_retries
+            log.write_text(json.dumps(report,ensure_ascii=False,indent=2))
+
+
+if __name__ == '__main__':
+    main()

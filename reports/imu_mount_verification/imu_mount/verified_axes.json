@@ -1,0 +1,53 @@
+{
+  "rotation_sensor_to_body": [
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "files": [
+    {
+      "path": "logs/imu_mount/20260930_072118_upright.json",
+      "sha256": "ece4aae23a24c315057b33ad458d990d3ceb06530b292e75e0f6ac0b69d2678d"
+    },
+    {
+      "path": "logs/imu_mount/20260930_072206_forward.json",
+      "sha256": "732713d248dc5b536b95228ab8be05b7cf8f826c40af8abdfd69f813bd201fa6"
+    },
+    {
+      "path": "logs/imu_mount/20260930_072239_left.json",
+      "sha256": "696d9980fc0f4485cd1d2026d54a29ded956e9c9954901eb07c9bb9c3b746167"
+    }
+  ],
+  "accel_unit_body": {
+    "upright": [
+      0.025338778939267705,
+      0.052758109100843394,
+      0.9982857948533428
+    ],
+    "forward": [
+      -0.5231737250656814,
+      0.08731067085886267,
+      0.8477417650175518
+    ],
+    "left": [
+      -0.11693893192741808,
+      -0.38418085982890837,
+      0.9158222279136903
+    ]
+  },
+  "candidate_count": 1,
+  "method": "User-confirmed upright, forward tilt, left tilt; unique right-handed signed axis mapping",
+  "gyro_bias_calibrated": false
+}

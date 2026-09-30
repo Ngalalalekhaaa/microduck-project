@@ -1,0 +1,91 @@
+{
+  "started": "2026-09-27T20:18:32.724060+08:00",
+  "pid": 38866,
+  "args": {
+    "phase": "train",
+    "variant": "both",
+    "num_envs": 2048,
+    "iterations": 4000,
+    "finalize": true
+  },
+  "runs": [
+    {
+      "variant": "flat",
+      "task": "Mjlab-Velocity-Flat-MicroDuck",
+      "command": [
+        "/home/luckysir/microduck/microduck_rl/.venv/bin/train",
+        "Mjlab-Velocity-Flat-MicroDuck",
+        "--env.scene.num-envs",
+        "2048",
+        "--agent.max-iterations",
+        "4000",
+        "--agent.logger",
+        "tensorboard",
+        "--agent.experiment-name",
+        "local_flat_train",
+        "--agent.run-name",
+        "flat_20260927_201832",
+        "--agent.save-interval",
+        "250",
+        "--agent.seed",
+        "42",
+        "--agent.upload-model",
+        "False"
+      ],
+      "stdout": "/home/luckysir/microduck/runs/20260927_201832_train/flat.log",
+      "experiment": "local_flat_train",
+      "run_name": "flat_20260927_201832",
+      "status": "completed",
+      "pid": 38872,
+      "disk_free_gib": 5.208324432373047,
+      "elapsed_seconds": 7511.904567906,
+      "gpu_memory_used_MiB_utilization_percent_temp_C": "3446, 80, 59",
+      "returncode": 0,
+      "training_dirs": [
+        "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_flat_train/2026-09-27_20-18-42_flat_20260927_201832"
+      ],
+      "checkpoint": "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_flat_train/2026-09-27_20-18-42_flat_20260927_201832/model_3999.pt",
+      "artifacts": "/home/luckysir/microduck/runs/20260927_201832_train/flat"
+    },
+    {
+      "variant": "backlash",
+      "task": "Mjlab-Velocity-Flat-Backlash-MicroDuck",
+      "command": [
+        "/home/luckysir/microduck/microduck_rl/.venv/bin/train",
+        "Mjlab-Velocity-Flat-Backlash-MicroDuck",
+        "--env.scene.num-envs",
+        "2048",
+        "--agent.max-iterations",
+        "4000",
+        "--agent.logger",
+        "tensorboard",
+        "--agent.experiment-name",
+        "local_backlash_train",
+        "--agent.run-name",
+        "backlash_20260927_201832",
+        "--agent.save-interval",
+        "250",
+        "--agent.seed",
+        "42",
+        "--agent.upload-model",
+        "False"
+      ],
+      "stdout": "/home/luckysir/microduck/runs/20260927_201832_train/backlash.log",
+      "experiment": "local_backlash_train",
+      "run_name": "backlash_20260927_201832",
+      "status": "completed",
+      "pid": 95262,
+      "disk_free_gib": 5.026069641113281,
+      "elapsed_seconds": 10817.121792908,
+      "gpu_memory_used_MiB_utilization_percent_temp_C": "3742, 83, 60",
+      "returncode": 0,
+      "training_dirs": [
+        "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_backlash_train/2026-09-27_22-26-07_backlash_20260927_201832"
+      ],
+      "checkpoint": "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_backlash_train/2026-09-27_22-26-07_backlash_20260927_201832/model_3999.pt",
+      "artifacts": "/home/luckysir/microduck/runs/20260927_201832_train/backlash"
+    }
+  ],
+  "status": "completed",
+  "finished": "2026-09-28T01:28:26.043836+08:00"
+}

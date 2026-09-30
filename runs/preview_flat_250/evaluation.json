@@ -1,0 +1,56 @@
+{
+  "task": "Mjlab-Velocity-Flat-MicroDuck",
+  "checkpoint": "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_flat_train/2026-09-27_20-18-42_flat_20260927_201832/model_250.pt",
+  "seed": 123,
+  "num_envs_per_command": 16,
+  "horizon_seconds": 10.0,
+  "pushes": false,
+  "randomization": "upstream startup/reset ranges; curricula disabled",
+  "metric_scope": "first episode only; tracking excludes first 1 second and failed steps",
+  "results": {
+    "stand": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        0.0004546743293758482,
+        -0.0002889738534577191,
+        -0.018053242936730385
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.02595933309355132,
+        0.10150443418701292,
+        0.3659006707359448
+      ],
+      "tilt_p95_deg": 5.680150508880615,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 7200
+    },
+    "forward": {
+      "command_vx_vy_wz": [
+        0.15,
+        0.0,
+        0.0
+      ],
+      "survival_fraction": 1.0,
+      "mean_first_episode_seconds": 10.0,
+      "mean_actual_vx_vy_wz": [
+        0.060177579522132874,
+        -0.001611317042261362,
+        -0.08719586580991745
+      ],
+      "mean_abs_error_vx_vy_wz": [
+        0.09042554322957579,
+        0.09702360092376087,
+        0.4526909482098644
+      ],
+      "tilt_p95_deg": 5.626071929931641,
+      "nonfinite_first_episode_states": 0,
+      "valid_tracking_samples": 7200
+    }
+  }
+}

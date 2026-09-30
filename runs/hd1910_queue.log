@@ -1,0 +1,52 @@
+2026-09-28T00:19:43.826879+08:00 Waiting for /home/luckysir/microduck/runs/20260927_201832_train/status.json
+{
+  "time": "2026-09-28T01:28:47.961849+08:00",
+  "workspace": "/home/luckysir/microduck",
+  "disk_total_gib": 146.1283950805664,
+  "disk_free_gib": 5.018680572509766,
+  "reserve_gib": 3.0,
+  "gpu_name_totalMiB_usedMiB_freeMiB_tempC": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141, 893, 4856, 45",
+  "ok": true
+}
+2026-09-28T01:28:47.970286+08:00 Starting gpu_validation; /home/luckysir/microduck/runs/20260928_001943_hd1910_queue/gpu_validation.log
+{
+  "time": "2026-09-28T01:29:07.672825+08:00",
+  "workspace": "/home/luckysir/microduck",
+  "disk_total_gib": 146.1283950805664,
+  "disk_free_gib": 5.017932891845703,
+  "reserve_gib": 3.0,
+  "gpu_name_totalMiB_usedMiB_freeMiB_tempC": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141, 893, 4856, 47",
+  "ok": true
+}
+2026-09-28T01:29:07.678555+08:00 Starting smoke; /home/luckysir/microduck/runs/20260928_001943_hd1910_queue/smoke.log
+{
+  "time": "2026-09-28T01:35:01.979344+08:00",
+  "workspace": "/home/luckysir/microduck",
+  "disk_total_gib": 146.1283950805664,
+  "disk_free_gib": 4.991924285888672,
+  "reserve_gib": 3.0,
+  "gpu_name_totalMiB_usedMiB_freeMiB_tempC": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141, 893, 4856, 48",
+  "ok": true
+}
+2026-09-28T01:35:01.984524+08:00 Starting benchmark; /home/luckysir/microduck/runs/20260928_001943_hd1910_queue/benchmark.log
+{
+  "time": "2026-09-28T01:36:21.642613+08:00",
+  "workspace": "/home/luckysir/microduck",
+  "disk_total_gib": 146.1283950805664,
+  "disk_free_gib": 4.980884552001953,
+  "reserve_gib": 3.0,
+  "gpu_name_totalMiB_usedMiB_freeMiB_tempC": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141, 893, 4856, 50",
+  "ok": true
+}
+2026-09-28T01:36:21.648608+08:00 Starting train; /home/luckysir/microduck/runs/20260928_001943_hd1910_queue/train.log
+{
+  "time": "2026-09-28T06:35:44.236843+08:00",
+  "workspace": "/home/luckysir/microduck",
+  "disk_total_gib": 146.1283950805664,
+  "disk_free_gib": 4.119731903076172,
+  "reserve_gib": 3.0,
+  "gpu_name_totalMiB_usedMiB_freeMiB_tempC": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141, 905, 4844, 48",
+  "ok": true
+}
+2026-09-28T06:35:44.243752+08:00 Starting reporting; /home/luckysir/microduck/runs/20260928_001943_hd1910_queue/reporting.log
+2026-09-28T06:35:50.875538+08:00 Completed HD1910 pair

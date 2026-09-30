@@ -1,0 +1,14 @@
+{
+  "flat": {
+    "steady_iteration_seconds": 2.048,
+    "iterations_measured": 10,
+    "environments": 2048,
+    "estimated_4000_iterations_hours": 2.2755555555555556
+  },
+  "backlash": {
+    "steady_iteration_seconds": 2.9579999999999997,
+    "iterations_measured": 10,
+    "environments": 2048,
+    "estimated_4000_iterations_hours": 3.286666666666666
+  }
+}

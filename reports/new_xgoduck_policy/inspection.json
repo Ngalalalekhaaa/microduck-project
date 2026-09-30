@@ -1,0 +1,46 @@
+{
+  "model": "2026-09-24_20-26-30_xgoduck.onnx",
+  "sha256": "73e32117f0aafc5681e0f55704433c655f4682123b76c4159fb1386e280b15cf",
+  "metadata": {
+    "action_scale": "1.0",
+    "command_names": "twist,head_pose,body_pose",
+    "joint_damping": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+    "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+    "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+    "default_joint_pos": "0.000,-0.087,-0.419,-0.005,0.419,0.349,0.349,0.000,0.000,0.000,0.087,0.419,0.005,-0.419",
+    "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+    "run_path": "logs/rsl_rl/xgoduck_velocity/2026-09-24_20-26-30_xgoduck/model_40000.pt"
+  },
+  "onnx_checker": "passed",
+  "input_shape": [
+    1,
+    61
+  ],
+  "output_shape": [
+    1,
+    14
+  ],
+  "graph_has_normalizer": true,
+  "current_deployment_contract": "ONNX HOME differs from the trained HOME pose",
+  "home_difference_deg": [
+    0.0,
+    0.01718873385392519,
+    2.228805823058902,
+    -0.005729577951308247,
+    -1.9480565034448007,
+    -0.0057295779513107815,
+    -0.0057295779513107815,
+    0.0,
+    0.0,
+    0.0,
+    -0.01718873385392519,
+    -2.228805823058902,
+    0.005729577951308247,
+    1.9480565034448007
+  ],
+  "local_x86_inference_ms_p50_p95": [
+    0.019531998987076804,
+    0.024853050672390953
+  ],
+  "provenance_note": "User self-trained; full training configuration not provided; run_path from unverified model metadata"
+}

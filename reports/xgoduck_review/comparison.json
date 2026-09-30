@@ -1,0 +1,80 @@
+{
+  "date": "2026-09-30",
+  "rl_commit": "326d77a1122870bdefa2c36403937502c958e69c",
+  "runtime_commit": "8cdbbd84710d856581982c9eaf0d5e2970666232",
+  "xgoduck_issue_api_all_states": [],
+  "relevant_issues": [
+    "https://github.com/pollen-robotics/microduck_rl/issues/59",
+    "https://github.com/pollen-robotics/microduck_rl/issues/46"
+  ],
+  "parameter_file_identical": true,
+  "parameter_sha256": "ef2d51adfb1cc0831b9b02ca19aa9176fceecdf725148d084378d7d9a64afceb",
+  "base_velocity_recipe_identical": true,
+  "shared_actuator_cfg": {
+    "kp_fw": 5,
+    "vin_range": [
+      7.4,
+      8.0
+    ],
+    "vin_min": 7.0,
+    "delay_lag": [
+      3,
+      6
+    ]
+  },
+  "training_comparison": {
+    "local": {
+      "pose_weight": 1.0,
+      "foot_friction": [
+        0.7,
+        1.3
+      ],
+      "gyro_noise": 0.03,
+      "gravity_noise": 0.01,
+      "q_noise": 0.001,
+      "xml_mass_kg": 0.73724318
+    },
+    "xgoduck": {
+      "pose_weight": 1.3,
+      "foot_friction": [
+        0.4,
+        1.5
+      ],
+      "gyro_noise": 0.06,
+      "gravity_noise": 0.03,
+      "q_noise": 0.01,
+      "xml_mass_kg": 0.7999999893
+    }
+  },
+  "deployment_comparison": {
+    "local": {
+      "p": 5,
+      "d": 0,
+      "action_filter": false,
+      "qd": "position finite difference at control rate"
+    },
+    "xgoduck": {
+      "p": 6,
+      "d": 20,
+      "action_filter_old_weight": 0.45,
+      "gyro_filter_old_weight": 0.5,
+      "velocity_filter_old_weight": 0.4,
+      "feedback_period": 0.01,
+      "qd": "servo present-speed register"
+    }
+  },
+  "stationary_reward_fraction_analytic": {
+    "0.05": 0.9753099120283326,
+    "0.1": 0.9048374180359595,
+    "0.2": 0.6703200460356392
+  },
+  "analytic_assumptions": "all actual linear velocity components zero; only linear-velocity reward, not total reward",
+  "limitations": [
+    "No real robot accessed or commanded",
+    "No XgoDuck policy tested on this robot",
+    "Real total mass, inertia and actuator step response not measured",
+    "Issue reports are community evidence, not confirmed causal fix",
+    "No reward, model, gain or filter changes made"
+  ],
+  "simulation_evidence": "reports/policy_target_diagnosis/summary.json"
+}

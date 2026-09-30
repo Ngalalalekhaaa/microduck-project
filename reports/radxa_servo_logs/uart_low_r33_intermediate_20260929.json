@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-29",
+  "test": "R33 intermediate node voltage under UART BREAK",
+  "found_ids_before_test": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "scan_errors": [],
+  "port": "/dev/ttyS2",
+  "baudrate": 1000000,
+  "measurement_point": "R33 pad 2/net 7, D4 cathode, TH1 input; right pad in user backside photo",
+  "duration_seconds": 30,
+  "break_enabled_observed": true,
+  "break_disabled_observed": true,
+  "remote_exit_code": 0,
+  "user_reported_voltage_v": 0.41,
+  "prior_r33_buffer_side_voltage_v": 0.03,
+  "prior_external_data_voltage_v": 0.74,
+  "comparison_note": "Three nodes measured in separate test windows, with 10 servos. Board rebooted before current test. Differences are indicative, not simultaneous measurements.",
+  "interrupted_attempt": "Previous SSH session exited 255 with broken master connection/authentication failure; no break_enabled observed. Reauthenticated, observed freshly booted board and unoccupied serial port, repeated read-only scan before successful test."
+}

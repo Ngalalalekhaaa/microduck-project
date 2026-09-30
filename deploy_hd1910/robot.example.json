@@ -1,0 +1,154 @@
+{
+  "schema": 1,
+  "model": "models/hd1910_flat.onnx",
+  "serial": {
+    "port": "/dev/ttyS2",
+    "baudrate": 1000000,
+    "timeout": 0.015,
+    "discard_echo": false,
+    "register_profile": "hls_2"
+  },
+  "imu": {
+    "transport": "i2c",
+    "i2c_bus": null,
+    "i2c_address": null,
+    "mounting_rotation": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ]
+  },
+  "imu_mount_verified": false,
+  "joints": [
+    {
+      "name": "left_hip_yaw",
+      "id": 20,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "left_hip_roll",
+      "id": 21,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "left_hip_pitch",
+      "id": 22,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "left_knee",
+      "id": 23,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "left_ankle",
+      "id": 24,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "neck_pitch",
+      "id": 30,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "head_pitch",
+      "id": 31,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "head_yaw",
+      "id": 32,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "head_roll",
+      "id": 33,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "right_hip_yaw",
+      "id": 10,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "right_hip_roll",
+      "id": 11,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "right_hip_pitch",
+      "id": 12,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "right_knee",
+      "id": 13,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    },
+    {
+      "name": "right_ankle",
+      "id": 14,
+      "direction": null,
+      "zero_tick": null,
+      "mapping_verified": false
+    }
+  ],
+  "calibration": null,
+  "control": {
+    "frequency_hz": 50,
+    "home_duration_s": 3.0,
+    "max_start_distance_rad": 0.6,
+    "home_tolerance_rad": 0.15,
+    "tilt_limit_deg": 35.0,
+    "imu_max_age_s": 0.06,
+    "max_cycle_s": 0.04,
+    "max_overruns": 5,
+    "servo_voltage_range": [
+      7.0,
+      8.4
+    ],
+    "servo_max_temperature_c": 60,
+    "max_target_jump_rad": 0.6,
+    "ram_p": 5,
+    "ram_d": 0,
+    "ram_i": 0
+  }
+}

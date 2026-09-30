@@ -1,0 +1,98 @@
+{
+  "sample_count": 168,
+  "fault_time": 3.3995420520000152,
+  "command": [
+    0.1,
+    0.0,
+    0.0
+  ],
+  "model": "models/hd1910_flat.onnx",
+  "replay_max_error": 5.960464477539063e-08,
+  "left_knee_deg": {
+    "previous_target": -20.703919938017258,
+    "rejected_target": 36.30866285660341,
+    "actual": -13.236092076923947,
+    "jump": 57.01258279462067
+  },
+  "sensitivity": {
+    "unchanged": {
+      "left_knee_jump_deg": 57.01258279462067,
+      "max_jump_deg": 57.01258279462067
+    },
+    "gyro": {
+      "left_knee_jump_deg": 52.14134993517552,
+      "max_jump_deg": 52.14134993517552
+    },
+    "gravity": {
+      "left_knee_jump_deg": 50.590862842636774,
+      "max_jump_deg": 50.590862842636774
+    },
+    "q": {
+      "left_knee_jump_deg": 55.35457827926217,
+      "max_jump_deg": 55.35457827926217
+    },
+    "qd": {
+      "left_knee_jump_deg": 46.54056066481922,
+      "max_jump_deg": 46.54056066481922
+    },
+    "previous_action": {
+      "left_knee_jump_deg": 29.026089283715816,
+      "max_jump_deg": 29.026089283715816
+    }
+  },
+  "sensitivity_note": "replace one block with preceding frame; does not identify causal fault or justify freezing inputs",
+  "goal_feedback_exact_matches": 2338,
+  "goal_feedback_comparisons": 2338,
+  "lowest_voltage_samples": [
+    [
+      6.5,
+      3.359753039999987,
+      "4"
+    ],
+    [
+      6.5,
+      3.359753039999987,
+      "5"
+    ],
+    [
+      6.6,
+      3.3394841410001845,
+      "5"
+    ],
+    [
+      6.7,
+      3.319868606,
+      "5"
+    ],
+    [
+      6.7,
+      3.3394841410001845,
+      "4"
+    ],
+    [
+      6.7,
+      3.359753039999987,
+      "3"
+    ],
+    [
+      6.8,
+      3.319868606,
+      "3"
+    ],
+    [
+      6.8,
+      3.319868606,
+      "4"
+    ],
+    [
+      6.8,
+      3.3394841410001845,
+      "3"
+    ],
+    [
+      6.8,
+      3.380031277000171,
+      "4"
+    ]
+  ]
+}

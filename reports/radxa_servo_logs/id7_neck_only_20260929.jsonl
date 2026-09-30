@@ -1,0 +1,22 @@
+{"event": "start", "modem": 16390, "counters": {"cts": 0, "dsr": 0, "rng": 0, "dcd": 0, "rx": 0, "tx": 140, "frame": 0, "overrun": 0, "parity": 0, "brk": 0, "buf_overrun": 0}, "id": 7, "interval_s": 1, "read_only": true}
+{"id": 7, "operation": "ping", "tx_hex": "ffff070201f5", "rx_hex": "ffff070200f6", "first_byte_ms": 0.836, "elapsed_ms": 400.715, "valid_frames": [{"status": 0, "position": null}], "sequence": 1}
+{"id": 7, "operation": "position", "tx_hex": "ffff0704023802b8", "rx_hex": "ffff070400690f7c", "first_byte_ms": 0.703, "elapsed_ms": 400.558, "valid_frames": [{"status": 0, "position": 3945}], "sequence": 2}
+{"id": 7, "operation": "ping", "tx_hex": "ffff070201f5", "rx_hex": "ffff070200f6", "first_byte_ms": 1.335, "elapsed_ms": 400.767, "valid_frames": [{"status": 0, "position": null}], "sequence": 3}
+{"id": 7, "operation": "position", "tx_hex": "ffff0704023802b8", "rx_hex": "ffff070400690f7c", "first_byte_ms": 1.364, "elapsed_ms": 400.769, "valid_frames": [{"status": 0, "position": 3945}], "sequence": 4}
+{"id": 7, "operation": "ping", "tx_hex": "ffff070201f5", "rx_hex": "ffff070200f6", "first_byte_ms": 1.321, "elapsed_ms": 400.775, "valid_frames": [{"status": 0, "position": null}], "sequence": 5}
+{"id": 7, "operation": "position", "tx_hex": "ffff0704023802b8", "rx_hex": "ffff070400690f7c", "first_byte_ms": 1.388, "elapsed_ms": 400.907, "valid_frames": [{"status": 0, "position": 3945}], "sequence": 6}
+{"id": 7, "operation": "ping", "tx_hex": "ffff070201f5", "rx_hex": "ffff070200f6", "first_byte_ms": 1.035, "elapsed_ms": 400.792, "valid_frames": [{"status": 0, "position": null}], "sequence": 7}
+{"id": 7, "operation": "position", "tx_hex": "ffff0704023802b8", "rx_hex": "ffff070400690f7c", "first_byte_ms": 1.291, "elapsed_ms": 400.785, "valid_frames": [{"status": 0, "position": 3945}], "sequence": 8}
+{"id": 7, "operation": "ping", "tx_hex": "ffff070201f5", "rx_hex": "ffff070200f6", "first_byte_ms": 1.512, "elapsed_ms": 400.791, "valid_frames": [{"status": 0, "position": null}], "sequence": 9}
+{"id": 7, "operation": "position", "tx_hex": "ffff0704023802b8", "rx_hex": "ffff070400690f7c", "first_byte_ms": 1.39, "elapsed_ms": 400.772, "valid_frames": [{"status": 0, "position": 3945}], "sequence": 10}
+{"id": 7, "operation": "ping", "tx_hex": "ffff070201f5", "rx_hex": "ffff070200f6", "first_byte_ms": 1.329, "elapsed_ms": 400.782, "valid_frames": [{"status": 0, "position": null}], "sequence": 11}
+{"id": 7, "operation": "position", "tx_hex": "ffff0704023802b8", "rx_hex": "ffff070400690f7c", "first_byte_ms": 1.286, "elapsed_ms": 400.795, "valid_frames": [{"status": 0, "position": 3945}], "sequence": 12}
+{"id": 7, "operation": "ping", "tx_hex": "ffff070201f5", "rx_hex": "ffff070200f6", "first_byte_ms": 1.468, "elapsed_ms": 400.914, "valid_frames": [{"status": 0, "position": null}], "sequence": 13}
+{"id": 7, "operation": "position", "tx_hex": "ffff0704023802b8", "rx_hex": "ffff070400690f7c", "first_byte_ms": 1.093, "elapsed_ms": 400.808, "valid_frames": [{"status": 0, "position": 3945}], "sequence": 14}
+{"id": 7, "operation": "ping", "tx_hex": "ffff070201f5", "rx_hex": "ffff070200f6", "first_byte_ms": 1.367, "elapsed_ms": 401.042, "valid_frames": [{"status": 0, "position": null}], "sequence": 15}
+{"id": 7, "operation": "position", "tx_hex": "ffff0704023802b8", "rx_hex": "ffff070400690f7c", "first_byte_ms": 1.396, "elapsed_ms": 400.776, "valid_frames": [{"status": 0, "position": 3945}], "sequence": 16}
+{"id": 7, "operation": "ping", "tx_hex": "ffff070201f5", "rx_hex": "ffff070200f6", "first_byte_ms": 1.23, "elapsed_ms": 400.783, "valid_frames": [{"status": 0, "position": null}], "sequence": 17}
+{"id": 7, "operation": "position", "tx_hex": "ffff0704023802b8", "rx_hex": "ffff070400690f7c", "first_byte_ms": 1.281, "elapsed_ms": 400.786, "valid_frames": [{"status": 0, "position": 3945}], "sequence": 18}
+{"id": 7, "operation": "ping", "tx_hex": "ffff070201f5", "rx_hex": "ffff070200f6", "first_byte_ms": 1.258, "elapsed_ms": 400.799, "valid_frames": [{"status": 0, "position": null}], "sequence": 19}
+{"id": 7, "operation": "position", "tx_hex": "ffff0704023802b8", "rx_hex": "ffff070400690f7c", "first_byte_ms": 1.283, "elapsed_ms": 400.783, "valid_frames": [{"status": 0, "position": 3945}], "sequence": 20}
+{"event": "end", "counters": {"cts": 0, "dsr": 0, "rng": 0, "dcd": 0, "rx": 140, "tx": 280, "frame": 0, "overrun": 0, "parity": 0, "brk": 0, "buf_overrun": 0}}

@@ -1,0 +1,770 @@
+{
+  "audit_date": "2026-09-28",
+  "upstream_commit": "cb70b792312d559a4da09064d92009079671815f",
+  "hd1910_commit": "7c29a4e627446516c0b437eb52a52149e4cf5cc2",
+  "method": "Read completed runs from status.json; recursively compare env.yaml and agent.yaml while retaining Python function tags. YAML scalar values are represented as strings. Source review complements dataclasses.asdict snapshots, which do not encode actuator subclass identity. No training or source edits performed.",
+  "runs": [
+    {
+      "robot": "xl330",
+      "variant": "flat",
+      "task": "Mjlab-Velocity-Flat-MicroDuck",
+      "status_path": "/home/luckysir/microduck/runs/20260927_201832_train/status.json",
+      "params": {
+        "env": "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_flat_train/2026-09-27_20-18-42_flat_20260927_201832/params/env.yaml",
+        "agent": "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_flat_train/2026-09-27_20-18-42_flat_20260927_201832/params/agent.yaml"
+      },
+      "saved_config_sha256": {
+        "env": "ce94c895470630c7643416ed3dd17c0cdf891ee1ccc5333564ca97f484d29120",
+        "agent": "b459c0032741c1013dd8b89e3e63be889d896d7014c198603d0688e79a8565e5"
+      }
+    },
+    {
+      "robot": "xl330",
+      "variant": "backlash",
+      "task": "Mjlab-Velocity-Flat-Backlash-MicroDuck",
+      "status_path": "/home/luckysir/microduck/runs/20260927_201832_train/status.json",
+      "params": {
+        "env": "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_backlash_train/2026-09-27_22-26-07_backlash_20260927_201832/params/env.yaml",
+        "agent": "/home/luckysir/microduck/microduck_rl/logs/rsl_rl/local_backlash_train/2026-09-27_22-26-07_backlash_20260927_201832/params/agent.yaml"
+      },
+      "saved_config_sha256": {
+        "env": "20afd4865fa20632f89117f13e54a98325ac3b609de95fa358c89a16b6c3a363",
+        "agent": "5c2db95f39428c0f4e481fbb6854f577e1cf1e9ea474d7cbf59f83ad93dd5e48"
+      }
+    },
+    {
+      "robot": "hd1910",
+      "variant": "flat",
+      "task": "Mjlab-Velocity-Flat-MicroDuck-HD1910",
+      "status_path": "/home/luckysir/microduck/runs/20260928_001943_hd1910_train/status.json",
+      "params": {
+        "env": "/home/luckysir/microduck/microduck_rl_hd1910/logs/rsl_rl/local_hd1910_flat_train/2026-09-28_01-36-32_flat_20260928_013621/params/env.yaml",
+        "agent": "/home/luckysir/microduck/microduck_rl_hd1910/logs/rsl_rl/local_hd1910_flat_train/2026-09-28_01-36-32_flat_20260928_013621/params/agent.yaml"
+      },
+      "saved_config_sha256": {
+        "env": "c74b552824f57f4bab1db82d12fdc624e3dfc35b630e83203cd9f5ad0cbe1c9a",
+        "agent": "929e0464e8538e8616f13097772bfbb57e09c180935c9fac0e762f2b4b461f42"
+      }
+    },
+    {
+      "robot": "hd1910",
+      "variant": "backlash",
+      "task": "Mjlab-Velocity-Flat-Backlash-MicroDuck-HD1910",
+      "status_path": "/home/luckysir/microduck/runs/20260928_001943_hd1910_train/status.json",
+      "params": {
+        "env": "/home/luckysir/microduck/microduck_rl_hd1910/logs/rsl_rl/local_hd1910_backlash_train/2026-09-28_03-42-13_backlash_20260928_013621/params/env.yaml",
+        "agent": "/home/luckysir/microduck/microduck_rl_hd1910/logs/rsl_rl/local_hd1910_backlash_train/2026-09-28_03-42-13_backlash_20260928_013621/params/agent.yaml"
+      },
+      "saved_config_sha256": {
+        "env": "19ddf3dea468022ea4821e20b4bb1fce89669e6ed40d071248df0942352e174e",
+        "agent": "a03030aa7695d516e6299371e0b0ef7fa565de151f3b0ad7b7f090e943d4febc"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "comparison": "hd1910_vs_xl330",
+      "variant": "flat",
+      "config": "env",
+      "left": "xl330",
+      "right": "hd1910",
+      "difference_count": 7,
+      "differences": [
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].json_path",
+          "left": "null",
+          "right": "/home/luckysir/microduck/microduck_rl_hd1910/src/mjlab_microduck/robot/hd1910/1910_m6.json"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].kp_fw",
+          "left": "200.0",
+          "right": "5.0"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].model",
+          "left": "m6",
+          "right": "null"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].motor_name",
+          "left": "xl330",
+          "right": "null"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].vin_min",
+          "left": "6.0",
+          "right": "7.0"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].vin_range[0]",
+          "left": "6.5",
+          "right": "7.4"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].vin_range[1]",
+          "left": "8.2",
+          "right": "8.0"
+        }
+      ]
+    },
+    {
+      "comparison": "hd1910_vs_xl330",
+      "variant": "flat",
+      "config": "agent",
+      "left": "xl330",
+      "right": "hd1910",
+      "difference_count": 2,
+      "differences": [
+        {
+          "path": "experiment_name",
+          "left": "local_flat_train",
+          "right": "local_hd1910_flat_train"
+        },
+        {
+          "path": "run_name",
+          "left": "flat_20260927_201832",
+          "right": "flat_20260928_013621"
+        }
+      ]
+    },
+    {
+      "comparison": "hd1910_vs_xl330",
+      "variant": "backlash",
+      "config": "env",
+      "left": "xl330",
+      "right": "hd1910",
+      "difference_count": 7,
+      "differences": [
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].json_path",
+          "left": "null",
+          "right": "/home/luckysir/microduck/microduck_rl_hd1910/src/mjlab_microduck/robot/hd1910/1910_m6.json"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].kp_fw",
+          "left": "200.0",
+          "right": "5.0"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].model",
+          "left": "m6",
+          "right": "null"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].motor_name",
+          "left": "xl330",
+          "right": "null"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].vin_min",
+          "left": "6.0",
+          "right": "7.0"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].vin_range[0]",
+          "left": "6.5",
+          "right": "7.4"
+        },
+        {
+          "path": "scene.entities.robot.articulation.actuators[0].vin_range[1]",
+          "left": "8.2",
+          "right": "8.0"
+        }
+      ]
+    },
+    {
+      "comparison": "hd1910_vs_xl330",
+      "variant": "backlash",
+      "config": "agent",
+      "left": "xl330",
+      "right": "hd1910",
+      "difference_count": 2,
+      "differences": [
+        {
+          "path": "experiment_name",
+          "left": "local_backlash_train",
+          "right": "local_hd1910_backlash_train"
+        },
+        {
+          "path": "run_name",
+          "left": "backlash_20260927_201832",
+          "right": "backlash_20260928_013621"
+        }
+      ]
+    },
+    {
+      "comparison": "backlash_vs_flat",
+      "robot": "xl330",
+      "config": "env",
+      "left": "flat",
+      "right": "backlash",
+      "difference_count": 8,
+      "differences": [
+        {
+          "path": "observations.actor.terms.joint_pos.func.yaml_tag",
+          "left": "tag:yaml.org,2002:python/name:mjlab.envs.mdp.observations.joint_pos_rel",
+          "right": "tag:yaml.org,2002:python/name:mjlab_microduck.tasks.mdp.joint_pos_rel_backlash"
+        },
+        {
+          "path": "observations.actor.terms.joint_vel.func.yaml_tag",
+          "left": "tag:yaml.org,2002:python/name:mjlab.envs.mdp.observations.joint_vel_rel",
+          "right": "tag:yaml.org,2002:python/name:mjlab_microduck.tasks.mdp.joint_vel_rel_backlash"
+        },
+        {
+          "path": "observations.critic.terms.joint_pos.func.yaml_tag",
+          "left": "tag:yaml.org,2002:python/name:mjlab.envs.mdp.observations.joint_pos_rel",
+          "right": "tag:yaml.org,2002:python/name:mjlab_microduck.tasks.mdp.joint_pos_rel_backlash"
+        },
+        {
+          "path": "observations.critic.terms.joint_vel.func.yaml_tag",
+          "left": "tag:yaml.org,2002:python/name:mjlab.envs.mdp.observations.joint_vel_rel",
+          "right": "tag:yaml.org,2002:python/name:mjlab_microduck.tasks.mdp.joint_vel_rel_backlash"
+        },
+        {
+          "path": "rewards.dof_pos_limits.params.asset_cfg",
+          "left": null,
+          "right": {
+            "name": "robot",
+            "joint_names": [
+              "^(?!passive_).*"
+            ],
+            "joint_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "body_names": "null",
+            "body_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "geom_names": "null",
+            "geom_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "site_names": "null",
+            "site_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "actuator_names": "null",
+            "actuator_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "tendon_names": "null",
+            "tendon_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "camera_names": "null",
+            "camera_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "light_names": "null",
+            "light_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "material_names": "null",
+            "material_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "pair_names": "null",
+            "pair_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "preserve_order": "false"
+          }
+        },
+        {
+          "path": "rewards.pose.params.asset_cfg.joint_names[0]",
+          "left": "^(?!passive_|.*neck.*|.*head.*).*",
+          "right": "^(?!passive_.*_backlash)(?!passive_|.*neck.*|.*head.*).*"
+        },
+        {
+          "path": "scene.entities.robot.init_state.joint_pos..*_backlash$",
+          "left": null,
+          "right": "0.0"
+        },
+        {
+          "path": "scene.entities.robot.spec_fn.yaml_tag",
+          "left": "tag:yaml.org,2002:python/name:mjlab_microduck.robot.microduck_constants.get_walk_spec",
+          "right": "tag:yaml.org,2002:python/name:mjlab_microduck.robot.microduck_constants.get_walk_backlash_spec"
+        }
+      ]
+    },
+    {
+      "comparison": "backlash_vs_flat",
+      "robot": "xl330",
+      "config": "agent",
+      "left": "flat",
+      "right": "backlash",
+      "difference_count": 2,
+      "differences": [
+        {
+          "path": "experiment_name",
+          "left": "local_flat_train",
+          "right": "local_backlash_train"
+        },
+        {
+          "path": "run_name",
+          "left": "flat_20260927_201832",
+          "right": "backlash_20260927_201832"
+        }
+      ]
+    },
+    {
+      "comparison": "backlash_vs_flat",
+      "robot": "hd1910",
+      "config": "env",
+      "left": "flat",
+      "right": "backlash",
+      "difference_count": 8,
+      "differences": [
+        {
+          "path": "observations.actor.terms.joint_pos.func.yaml_tag",
+          "left": "tag:yaml.org,2002:python/name:mjlab.envs.mdp.observations.joint_pos_rel",
+          "right": "tag:yaml.org,2002:python/name:mjlab_microduck.tasks.mdp.joint_pos_rel_backlash"
+        },
+        {
+          "path": "observations.actor.terms.joint_vel.func.yaml_tag",
+          "left": "tag:yaml.org,2002:python/name:mjlab.envs.mdp.observations.joint_vel_rel",
+          "right": "tag:yaml.org,2002:python/name:mjlab_microduck.tasks.mdp.joint_vel_rel_backlash"
+        },
+        {
+          "path": "observations.critic.terms.joint_pos.func.yaml_tag",
+          "left": "tag:yaml.org,2002:python/name:mjlab.envs.mdp.observations.joint_pos_rel",
+          "right": "tag:yaml.org,2002:python/name:mjlab_microduck.tasks.mdp.joint_pos_rel_backlash"
+        },
+        {
+          "path": "observations.critic.terms.joint_vel.func.yaml_tag",
+          "left": "tag:yaml.org,2002:python/name:mjlab.envs.mdp.observations.joint_vel_rel",
+          "right": "tag:yaml.org,2002:python/name:mjlab_microduck.tasks.mdp.joint_vel_rel_backlash"
+        },
+        {
+          "path": "rewards.dof_pos_limits.params.asset_cfg",
+          "left": null,
+          "right": {
+            "name": "robot",
+            "joint_names": [
+              "^(?!passive_).*"
+            ],
+            "joint_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "body_names": "null",
+            "body_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "geom_names": "null",
+            "geom_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "site_names": "null",
+            "site_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "actuator_names": "null",
+            "actuator_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "tendon_names": "null",
+            "tendon_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "camera_names": "null",
+            "camera_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "light_names": "null",
+            "light_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "material_names": "null",
+            "material_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "pair_names": "null",
+            "pair_ids": [
+              "null",
+              "null",
+              "null"
+            ],
+            "preserve_order": "false"
+          }
+        },
+        {
+          "path": "rewards.pose.params.asset_cfg.joint_names[0]",
+          "left": "^(?!passive_|.*neck.*|.*head.*).*",
+          "right": "^(?!passive_.*_backlash)(?!passive_|.*neck.*|.*head.*).*"
+        },
+        {
+          "path": "scene.entities.robot.init_state.joint_pos..*_backlash$",
+          "left": null,
+          "right": "0.0"
+        },
+        {
+          "path": "scene.entities.robot.spec_fn.yaml_tag",
+          "left": "tag:yaml.org,2002:python/name:mjlab_microduck.robot.microduck_constants.get_walk_spec",
+          "right": "tag:yaml.org,2002:python/name:mjlab_microduck.robot.microduck_constants.get_walk_backlash_spec"
+        }
+      ]
+    },
+    {
+      "comparison": "backlash_vs_flat",
+      "robot": "hd1910",
+      "config": "agent",
+      "left": "flat",
+      "right": "backlash",
+      "difference_count": 2,
+      "differences": [
+        {
+          "path": "experiment_name",
+          "left": "local_hd1910_flat_train",
+          "right": "local_hd1910_backlash_train"
+        },
+        {
+          "path": "run_name",
+          "left": "flat_20260928_013621",
+          "right": "backlash_20260928_013621"
+        }
+      ]
+    },
+    {
+      "comparison": "actual_xl330_vs_upstream_default",
+      "variant": "flat",
+      "config": "env",
+      "left": "upstream_default",
+      "right": "actual_xl330",
+      "difference_count": 3,
+      "differences": [
+        {
+          "path": "scene.num_envs",
+          "left": "1",
+          "right": "2048"
+        },
+        {
+          "path": "scene.terrain.num_envs",
+          "left": "1",
+          "right": "2048"
+        },
+        {
+          "path": "seed",
+          "left": "null",
+          "right": "42"
+        }
+      ]
+    },
+    {
+      "comparison": "actual_xl330_vs_upstream_default",
+      "variant": "flat",
+      "config": "agent",
+      "left": "upstream_default",
+      "right": "actual_xl330",
+      "difference_count": 5,
+      "differences": [
+        {
+          "path": "experiment_name",
+          "left": "velocity",
+          "right": "local_flat_train"
+        },
+        {
+          "path": "logger",
+          "left": "wandb",
+          "right": "tensorboard"
+        },
+        {
+          "path": "max_iterations",
+          "left": "50000",
+          "right": "4000"
+        },
+        {
+          "path": "run_name",
+          "left": "velocity",
+          "right": "flat_20260927_201832"
+        },
+        {
+          "path": "upload_model",
+          "left": "true",
+          "right": "false"
+        }
+      ]
+    },
+    {
+      "comparison": "actual_xl330_vs_upstream_default",
+      "variant": "backlash",
+      "config": "env",
+      "left": "upstream_default",
+      "right": "actual_xl330",
+      "difference_count": 3,
+      "differences": [
+        {
+          "path": "scene.num_envs",
+          "left": "1",
+          "right": "2048"
+        },
+        {
+          "path": "scene.terrain.num_envs",
+          "left": "1",
+          "right": "2048"
+        },
+        {
+          "path": "seed",
+          "left": "null",
+          "right": "42"
+        }
+      ]
+    },
+    {
+      "comparison": "actual_xl330_vs_upstream_default",
+      "variant": "backlash",
+      "config": "agent",
+      "left": "upstream_default",
+      "right": "actual_xl330",
+      "difference_count": 5,
+      "differences": [
+        {
+          "path": "experiment_name",
+          "left": "velocity",
+          "right": "local_backlash_train"
+        },
+        {
+          "path": "logger",
+          "left": "wandb",
+          "right": "tensorboard"
+        },
+        {
+          "path": "max_iterations",
+          "left": "50000",
+          "right": "4000"
+        },
+        {
+          "path": "run_name",
+          "left": "velocity",
+          "right": "backlash_20260927_201832"
+        },
+        {
+          "path": "upload_model",
+          "left": "true",
+          "right": "false"
+        }
+      ]
+    }
+  ],
+  "geometry_xml_sha256": {
+    "robot_walk.xml": {
+      "microduck_rl": "80fc4424ed71e430ec4919110dfdb5c714dc1c4e1138e1832a16865cf31eb8c8",
+      "microduck_rl_hd1910": "80fc4424ed71e430ec4919110dfdb5c714dc1c4e1138e1832a16865cf31eb8c8"
+    },
+    "robot_walk_backlash.xml": {
+      "microduck_rl": "8c2f271948cf06a3c5720c48abaac35b909c53fcfc6f5c3d2cef15f732da74e9",
+      "microduck_rl_hd1910": "8c2f271948cf06a3c5720c48abaac35b909c53fcfc6f5c3d2cef15f732da74e9"
+    }
+  },
+  "source_only_actuator_class_difference": {
+    "xl330_flat": "FrictionDRBamActuator",
+    "xl330_backlash": "BacklashEncoderBamActuator",
+    "hd1910_flat": "FeetechBamActuator",
+    "hd1910_backlash": "FeetechBacklashBamActuator",
+    "additional_hd_behavior": "Initialize Feetech q_target_smooth and reset selected worlds lazily from measured position. Backlash variant additionally retains output-side position feedback."
+  },
+  "same_between_hd1910_and_matching_xl330": [
+    "rewards and reward weights",
+    "commands and command sampling",
+    "curriculum thresholds",
+    "PPO and network configuration",
+    "event randomization except actuator voltage fields",
+    "observation and action configuration",
+    "HOME and matching walk geometry",
+    "50 Hz policy; 5 ms physics; 61 actor observations; 14 actions",
+    "load-dependent sag gain 0.0-0.2; command delay 3-6 physics steps"
+  ],
+  "actual_training_all_four": {
+    "num_envs": 2048,
+    "iterations": 4000,
+    "num_steps_per_env": 24,
+    "seed": 42,
+    "resume": false,
+    "save_interval": 250,
+    "logger": "tensorboard",
+    "samples_per_iteration": 49152,
+    "samples_per_model": 196608000
+  },
+  "relative_to_upstream": {
+    "readme_recommended_num_envs": 4096,
+    "bare_factory_num_envs": 1,
+    "default_max_iterations": 50000,
+    "note": "50000 is the configured upper training budget, not a proven number required for a successful gait. AGENTS gives a practical gait budget of 4000-6000 iterations. seed42, 24 rollout steps, and save_interval250 were already defaults. Logging and run names are administrative changes."
+  },
+  "curriculum_sample_counts": [
+    {
+      "approx_iteration": 500,
+      "common_step_threshold": 12000,
+      "samples_at_2048": 24576000,
+      "samples_at_4096": 49152000
+    },
+    {
+      "approx_iteration": 600,
+      "common_step_threshold": 14400,
+      "samples_at_2048": 29491200,
+      "samples_at_4096": 58982400
+    },
+    {
+      "approx_iteration": 750,
+      "common_step_threshold": 18000,
+      "samples_at_2048": 36864000,
+      "samples_at_4096": 73728000
+    },
+    {
+      "approx_iteration": 1000,
+      "common_step_threshold": 24000,
+      "samples_at_2048": 49152000,
+      "samples_at_4096": 98304000
+    },
+    {
+      "approx_iteration": 1250,
+      "common_step_threshold": 30000,
+      "samples_at_2048": 61440000,
+      "samples_at_4096": 122880000
+    },
+    {
+      "approx_iteration": 1500,
+      "common_step_threshold": 36000,
+      "samples_at_2048": 73728000,
+      "samples_at_4096": 147456000
+    },
+    {
+      "approx_iteration": 2000,
+      "common_step_threshold": 48000,
+      "samples_at_2048": 98304000,
+      "samples_at_4096": 196608000
+    },
+    {
+      "approx_iteration": 4000,
+      "common_step_threshold": 96000,
+      "samples_at_2048": 196608000,
+      "samples_at_4096": 393216000
+    }
+  ],
+  "curriculum_note": "Schedules were not stretched. At the same iteration threshold, 2048 environments provide half the samples of 4096. Schedules use common_step_counter and apply after thresholds during resets. This does not establish that environment count caused weak low-speed tracking.",
+  "not_implemented_low_speed_proposals": [
+    "extra pure low-speed forward/backward/lateral command coverage",
+    "changing the pure-forward sampling lower bound",
+    "retuning velocity tracking reward",
+    "delaying action-rate penalties",
+    "stretching curriculum thresholds by 2",
+    "4096-environment retraining",
+    "8000-iteration retraining"
+  ],
+  "assumptions": [
+    "Public HD1910 dynamics were not identified on this physical robot.",
+    "Both backlash models assume +/-1 degree; the HD1910 gap and output-side encoder model have not been measured on the user robot.",
+    "Rigid-body mass/inertia and geometry retain the upstream Microduck baseline; motor reflected inertia (armature) comes from each motor JSON and is different. IMU/bus randomization settings also remain upstream values.",
+    "Firmware P=200 versus P=5 belongs to different control implementations and is not a 40x physical stiffness comparison."
+  ],
+  "effective_bam_defaults_not_explicit_in_saved_config": {
+    "xl330_current_limit_A": 1.75,
+    "hd1910_current_limit_A": null,
+    "explanation": "The factory selects different BAM implementations. XL330 inherits max_current=1.75 A from its constructor; Feetech has no equivalent current limiter in this model. Commenting out max_current in robot constants does not disable the XL330 constructor default.",
+    "xl330_source": "/home/luckysir/microduck/microduck_rl/.venv/lib/python3.12/site-packages/bam/dynamixel/actuator.py:98",
+    "bridge_source": "/home/luckysir/microduck/microduck_rl/.venv/lib/python3.12/site-packages/bam/mjlab.py:184",
+    "feetech_source": "/home/luckysir/microduck/microduck_rl/.venv/lib/python3.12/site-packages/bam/feetech/actuator.py:27",
+    "cpu_infer_caveat": "The upstream scripts/infer_policy.py:55 explicitly sets max_current=None when no positive current limit is passed. Prior CPU policy comparisons use that same CPU path for both policies, but it differs from the XL330 training model current limit.",
+    "xl330_max_pwm": 1.0,
+    "hd1910_max_pwm": 0.97
+  },
+  "parameter_interpretation": {
+    "json_command_delay": "The HD1910 file retains command_delay=0.006005265953265889 for provenance. Current BAM Model has no such Parameter, so load_parameters_from_dict ignores it. The applied mjlab command delay is the configured 3-6 physics steps, not a sum with the JSON value.",
+    "q_offset": "Both JSON files retain q_offset identification parameters. The mjlab bridge passes cmd.pos directly to compute_control and does not add this offset. These values are not physical joint calibration zeros.",
+    "source_loader": "/home/luckysir/microduck/microduck_rl/.venv/lib/python3.12/site-packages/bam/model.py:229",
+    "source_control_call": "/home/luckysir/microduck/microduck_rl/.venv/lib/python3.12/site-packages/bam/mjlab.py:625"
+  },
+  "motor_parameter_files": {
+    "xl330": {
+      "path": "/home/luckysir/microduck/microduck_rl/.venv/lib/python3.12/site-packages/bam/params/xl330/m6.json",
+      "sha256": "61c699362fb3fabdde93eeba5e1ad3bf4ef9ca2f71d03e316b1924ff005b20d3",
+      "values": {
+        "kt": 0.36601349688984386,
+        "R": 2.8113923539223227,
+        "armature": 0.0018077432831600838,
+        "q_offset": 0.0271132870444849,
+        "friction_base": 0.004771183165566,
+        "friction_stribeck": 0.004676345799486616,
+        "load_friction_motor": 0.2667860954283698,
+        "load_friction_external": 8.515871897059342e-06,
+        "load_friction_motor_stribeck": 1.0722918395099123e-05,
+        "load_friction_external_stribeck": 0.08077928978935671,
+        "load_friction_motor_quad": 0.009972471242139415,
+        "load_friction_external_quad": 0.004902565732332559,
+        "dtheta_stribeck": 2.890372094130307,
+        "alpha": 8.683259907618984,
+        "friction_viscous": 0.005359668274599504,
+        "model": "m6",
+        "actuator": "xl330"
+      }
+    },
+    "hd1910": {
+      "path": "/home/luckysir/microduck/microduck_rl_hd1910/src/mjlab_microduck/robot/hd1910/1910_m6.json",
+      "sha256": "ef2d51adfb1cc0831b9b02ca19aa9176fceecdf725148d084378d7d9a64afceb",
+      "values": {
+        "kt": 0.6237611235393989,
+        "error_gain_ratio": 1.321738701681577,
+        "R": 4.910191564179625,
+        "armature": 0.0017819049974475338,
+        "q_offset": 0.032748109622048015,
+        "command_delay": 0.006005265953265889,
+        "friction_base": 0.015803365327573492,
+        "friction_stribeck": 0.009590058942953754,
+        "load_friction_motor": 0.06851344455161522,
+        "load_friction_external": 0.15822186020023804,
+        "load_friction_motor_stribeck": 0.12202539397513879,
+        "load_friction_external_stribeck": 0.07862542939514451,
+        "load_friction_motor_quad": 0.001967982142115035,
+        "load_friction_external_quad": 0.0008854091803780388,
+        "dtheta_stribeck": 0.946465692532126,
+        "alpha": 1.5220506664931566,
+        "friction_viscous": 0.0003101648214055195,
+        "max_velocity": 100.0,
+        "model": "m6",
+        "actuator": "sts3215"
+      }
+    }
+  },
+  "motor_parameter_difference_note": "Selecting a different JSON changes nominal electrical, reflected-inertia and friction coefficients beyond the seven configuration leaf fields. Robot rigid-body inertia is unchanged; motor armature is not.",
+  "bam_version": {
+    "package_version": "1.0.1",
+    "git_commit": "62bd8ce12154340be97e06f7f41a0ca8f116d967"
+  }
+}

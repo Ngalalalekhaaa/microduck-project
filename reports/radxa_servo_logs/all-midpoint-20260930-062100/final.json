@@ -1,0 +1,86 @@
+{
+  "1": {
+    "pos": 2048,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 33450
+  },
+  "2": {
+    "pos": 2047,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 1987
+  },
+  "3": {
+    "pos": 2048,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 1403
+  },
+  "4": {
+    "pos": 2049,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 33799
+  },
+  "5": {
+    "pos": 2044,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 34613
+  },
+  "6": {
+    "pos": 2047,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 328
+  },
+  "7": {
+    "pos": 2048,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 34607
+  },
+  "8": {
+    "pos": 2048,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 34066
+  },
+  "9": {
+    "pos": 2048,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 34232
+  },
+  "10": {
+    "pos": 2048,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 33792
+  },
+  "11": {
+    "pos": 2049,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 34467
+  },
+  "12": {
+    "pos": 2048,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 55
+  },
+  "13": {
+    "pos": 2048,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 34768
+  },
+  "14": {
+    "pos": 2049,
+    "torque": 0,
+    "lock": 1,
+    "offset_raw": 34389
+  }
+}
