@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "type": "microduck_assembly_geometry",
+  "geometry_source": null,
+  "hole_pitch_deg": 45,
+  "joints": [
+    {
+      "name": "left_hip_yaw",
+      "id": 1,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "left_hip_roll",
+      "id": 2,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "left_hip_pitch",
+      "id": 3,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "left_knee",
+      "id": 4,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "left_ankle",
+      "id": 5,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "neck_pitch",
+      "id": 6,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "head_pitch",
+      "id": 7,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "head_yaw",
+      "id": 8,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "head_roll",
+      "id": 9,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "right_hip_yaw",
+      "id": 10,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "right_hip_roll",
+      "id": 11,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "right_hip_pitch",
+      "id": 12,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "right_knee",
+      "id": 13,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    },
+    {
+      "name": "right_ankle",
+      "id": 14,
+      "direction": null,
+      "center_tick": 2048,
+      "base_q_deg": null,
+      "hole_steps": null,
+      "datum": null,
+      "verified": false
+    }
+  ]
+}

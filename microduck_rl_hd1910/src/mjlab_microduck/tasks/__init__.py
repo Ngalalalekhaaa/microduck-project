@@ -47,6 +47,12 @@ from .microduck_sitstand_env_cfg import (
     make_microduck_sitstand_env_cfg,
     MicroduckSitStandRlCfg,
 )
+from .microduck_hd1910_sitstand_robust_env_cfg import (
+    TASK_ID as HD1910_SITSTAND_ROBUST_TASK_ID,
+    make_microduck_hd1910_sitstand_robust_env_cfg,
+    MicroduckHD1910SitStandRobustRlCfg,
+)
+from .sitstand_warm_start import HD1910SitStandRobustRunner
 from .microduck_velocity_rollers_env_cfg import (
     make_microduck_velocity_rollers_env_cfg,
     MicroduckRollersRlCfg,
@@ -81,6 +87,60 @@ from .microduck_hd1910_env_cfg import (
     MicroduckHD1910RlCfg,
     make_microduck_hd1910_velocity_env_cfg,
 )
+from .microduck_hd1910_robust_env_cfg import (
+    MicroduckHD1910RobustBacklashRlCfg,
+    MicroduckHD1910RobustRlCfg,
+    make_microduck_hd1910_robust_velocity_env_cfg,
+)
+from .microduck_home_calibration_env_cfg import (
+    TASK_ID as HOME_CALIBRATION_TASK_ID,
+    NO_CURRENT_TASK_ID as HOME_CALIBRATION_NO_CURRENT_TASK_ID,
+    MicroduckHomeCalibrationRlCfg,
+    MicroduckHomeCalibrationNoCurrentRlCfg,
+    make_microduck_home_calibration_env_cfg,
+)
+from .home_calibration_runner import HomeCalibrationOnPolicyRunner
+from .microduck_home_force_ratio_env_cfg import (
+    TASK_ID as HOME_FORCE_RATIO_TASK_ID,
+    MicroduckHomeForceRatioRlCfg,
+    make_microduck_home_force_ratio_env_cfg,
+)
+
+register_mjlab_task(
+    task_id=HOME_CALIBRATION_TASK_ID,
+    env_cfg=make_microduck_home_calibration_env_cfg(),
+    play_env_cfg=make_microduck_home_calibration_env_cfg(play=True),
+    rl_cfg=MicroduckHomeCalibrationRlCfg,
+    runner_cls=HomeCalibrationOnPolicyRunner,
+)
+
+register_mjlab_task(
+    task_id=HOME_CALIBRATION_NO_CURRENT_TASK_ID,
+    env_cfg=make_microduck_home_calibration_env_cfg(include_current=False),
+    play_env_cfg=make_microduck_home_calibration_env_cfg(play=True, include_current=False),
+    rl_cfg=MicroduckHomeCalibrationNoCurrentRlCfg,
+    runner_cls=HomeCalibrationOnPolicyRunner,
+)
+
+register_mjlab_task(
+    task_id=HOME_FORCE_RATIO_TASK_ID,
+    env_cfg=make_microduck_home_force_ratio_env_cfg(),
+    play_env_cfg=make_microduck_home_force_ratio_env_cfg(play=True),
+    rl_cfg=MicroduckHomeForceRatioRlCfg,
+    runner_cls=HomeCalibrationOnPolicyRunner,
+)
+
+for _hd_task, _hd_backlash, _hd_rl in (
+    ("Mjlab-Velocity-Flat-MicroDuck-HD1910-Robust", False, MicroduckHD1910RobustRlCfg),
+    ("Mjlab-Velocity-Flat-Backlash-MicroDuck-HD1910-Robust", True, MicroduckHD1910RobustBacklashRlCfg),
+):
+    register_mjlab_task(
+        task_id=_hd_task,
+        env_cfg=make_microduck_hd1910_robust_velocity_env_cfg(backlash=_hd_backlash),
+        play_env_cfg=make_microduck_hd1910_robust_velocity_env_cfg(play=True, backlash=_hd_backlash),
+        rl_cfg=_hd_rl,
+        runner_cls=MicroduckOnPolicyRunner,
+    )
 
 # Separate IDs preserve the XL330 baseline and keep the two 1910 logs distinct.
 for _hd_task, _hd_backlash, _hd_rl in (
@@ -147,6 +207,14 @@ register_mjlab_task(
 )
 
 # SitStand task — commanded sit ↔ stand in one policy, gently, head commandable
+register_mjlab_task(
+    task_id=HD1910_SITSTAND_ROBUST_TASK_ID,
+    env_cfg=make_microduck_hd1910_sitstand_robust_env_cfg(),
+    play_env_cfg=make_microduck_hd1910_sitstand_robust_env_cfg(play=True),
+    rl_cfg=MicroduckHD1910SitStandRobustRlCfg,
+    runner_cls=HD1910SitStandRobustRunner,
+)
+
 register_mjlab_task(
     task_id="Mjlab-SitStand-Flat-MicroDuck",
     env_cfg=make_microduck_sitstand_env_cfg(),

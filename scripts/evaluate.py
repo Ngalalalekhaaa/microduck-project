@@ -40,9 +40,21 @@ def main():
     parser.add_argument('--seconds', type=float, default=10.0)
     parser.add_argument('--commands', nargs='+', choices=list(COMMANDS),
                         default=['stand', 'forward', 'backward', 'left', 'turn'])
+    parser.add_argument('--speeds', nargs='+', type=float,
+                        help='Evaluate these forward vx commands (m/s) instead of --commands')
+    parser.add_argument('--trace', action='store_true',
+                        help='Save per-step mean vx and first-episode survival as CSV')
     parser.add_argument('--video', action='store_true')
     parser.add_argument('--onnx', type=Path)
     args = parser.parse_args()
+    commands = COMMANDS
+    if args.speeds is not None:
+        if not args.speeds or any(not np.isfinite(s) or abs(s) > 1.0 for s in args.speeds):
+            parser.error('--speeds must be finite values within [-1, 1] m/s')
+        commands = {f'vx_{s:+.2f}'.replace('.', 'p'): (s, 0.0, 0.0)
+                    for s in args.speeds}
+        if len(commands) != len(args.speeds):
+            parser.error('--speeds must be distinct at 0.01 m/s resolution')
     args.output.mkdir(parents=True, exist_ok=True)
     # Compare ONNX CPU FP32 with checkpoint FP32, avoiding TF32 roundoff in
     # the validation itself. Training keeps the upstream fast TF32 setting.
@@ -99,8 +111,8 @@ def main():
         assert report['onnx_output_shape'] == [1, 14]
     parity_errors = []
     try:
-        for index, name in enumerate(args.commands):
-            command = torch.tensor(COMMANDS[name], device='cuda:0')
+        for index, name in enumerate(commands if args.speeds is not None else args.commands):
+            command = torch.tensor(commands[name], device='cuda:0')
             live = env.command_manager.get_term('twist')
             live.cfg.ranges.lin_vel_x = (float(command[0]),) * 2
             live.cfg.ranges.lin_vel_y = (float(command[1]),) * 2
@@ -109,9 +121,10 @@ def main():
             alive = torch.ones(args.num_envs, dtype=torch.bool, device='cuda:0')
             survived_steps = torch.zeros(args.num_envs, device='cuda:0')
             velocity_samples, tilt_samples = [], []
+            trace_rows = []
             nan_failures = 0
             writer = None
-            if args.video and name in ('forward', 'forward_fast'):
+            if args.video and (name in ('forward', 'forward_fast') or name.startswith('vx_')):
                 import imageio.v2 as imageio
                 writer = imageio.get_writer(str(args.output / f'{name}.mp4'), fps=25,
                                             codec='libx264', quality=7)
@@ -146,6 +159,11 @@ def main():
                         velocity_samples.append(v[valid].cpu().numpy())
                         tilt = torch.acos((-data.projected_gravity_b[:, 2]).clamp(-1, 1))
                         tilt_samples.append(torch.rad2deg(tilt[valid]).cpu().numpy())
+                    if args.trace:
+                        mean_vx = (float(data.root_link_lin_vel_b[valid, 0].mean().item())
+                                   if valid.any() else float('nan'))
+                        trace_rows.append((step * env.step_dt, float(command[0]), mean_vx,
+                                           float(alive.float().mean().item())))
                     if writer is not None and step % 2 == 0:
                         writer.append_data(env.render())
                     alive &= ~done & finite
@@ -153,14 +171,18 @@ def main():
                         env.reset(env_ids=done.nonzero().flatten())
             if writer is not None:
                 writer.close()
+            if args.trace:
+                np.savetxt(args.output / f'{name}_trace.csv', np.asarray(trace_rows),
+                           delimiter=',', header='time_s,target_vx_m_s,actual_vx_m_s,survival_fraction',
+                           comments='')
             velocities = np.concatenate(velocity_samples) if velocity_samples else np.empty((0, 3))
             tilts = np.concatenate(tilt_samples) if tilt_samples else np.empty(0)
             result = {
-                'command_vx_vy_wz': list(COMMANDS[name]),
+                'command_vx_vy_wz': list(commands[name]),
                 'survival_fraction': float(alive.float().mean().item()),
                 'mean_first_episode_seconds': float(survived_steps.mean().item() * env.step_dt),
                 'mean_actual_vx_vy_wz': velocities.mean(0).tolist() if len(velocities) else None,
-                'mean_abs_error_vx_vy_wz': np.abs(velocities - COMMANDS[name]).mean(0).tolist() if len(velocities) else None,
+                'mean_abs_error_vx_vy_wz': np.abs(velocities - commands[name]).mean(0).tolist() if len(velocities) else None,
                 'tilt_p95_deg': float(np.percentile(tilts, 95)) if len(tilts) else None,
                 'nonfinite_first_episode_states': nan_failures,
                 'valid_tracking_samples': len(velocities),

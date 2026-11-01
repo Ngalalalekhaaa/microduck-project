@@ -22,6 +22,17 @@ class _FeetechGoalHistory:
 
     def initialize(self, mj_model, model, data, device) -> None:
         super().initialize(mj_model, model, data, device)
+        # Robust HD1910 tasks vary the response of each physical servo. The
+        # base BAM tensors are (world, 1); its voltage law also broadcasts
+        # (world, joint) tensors, so opt into that shape only for these tasks.
+        if self.cfg.per_joint_randomization:
+            self.kp_scale = torch.ones_like(self._prev_motor_torque)
+            self.kd_scale = torch.ones_like(self._prev_motor_torque)
+            self.default_kp_scale = self.kp_scale.clone()
+            self.default_kd_scale = self.kd_scale.clone()
+            self.friction_scale = torch.ones_like(self._prev_motor_torque)
+            self.default_friction_scale = self.friction_scale.clone()
+            self.voltage_floor = torch.full_like(self.kp_scale[:, :1], self.cfg.vin_min)
         self._bam_model.actuator.q_target_smooth = torch.zeros_like(self._prev_motor_torque)
         self._goal_reset_pending = torch.ones(
             (data.nworld, 1), dtype=torch.bool, device=device
@@ -42,6 +53,15 @@ class _FeetechGoalHistory:
             self._goal_reset_pending, cmd.pos, actuator.q_target_smooth
         )
         self._goal_reset_pending.zero_()
+        if self.cfg.per_joint_randomization:
+            # BAM accepts a broadcast tensor in clamp(). Keep the serialized
+            # config scalar while using a per-world floor during the solve.
+            nominal_floor = self.cfg.vin_min
+            self.cfg.vin_min = self.voltage_floor
+            try:
+                return super().compute(cmd)
+            finally:
+                self.cfg.vin_min = nominal_floor
         return super().compute(cmd)
 
 
@@ -55,6 +75,8 @@ class FeetechBacklashBamActuator(_FeetechGoalHistory, BacklashEncoderBamActuator
 
 @dataclass(kw_only=True)
 class FeetechBamActuatorCfg(FrictionDRBamActuatorCfg):
+    per_joint_randomization: bool = False
+
     def build(self, entity, target_ids, target_names) -> FeetechBamActuator:
         return FeetechBamActuator(self, entity, target_ids, target_names)
 

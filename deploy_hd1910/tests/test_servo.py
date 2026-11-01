@@ -5,7 +5,11 @@ SPDX-License-Identifier: Apache-2.0
 
 import math
 import struct
+import socket
 import unittest
+from unittest.mock import patch
+import os
+import time
 
 from microduck_deploy.servo import (
     PING, READ, SYNC_READ, SYNC_WRITE, BROADCAST,
@@ -305,6 +309,72 @@ class ServoTests(unittest.TestCase):
         for angle, zero, direction in ((math.nan, 2048, 1), (5, 2048, 1), (0, 2048, 0)):
             with self.assertRaises(ValueError):
                 radians_to_ticks(angle, zero, direction)
+
+
+class SocketSerial(MemorySerial):
+    """Exercise the real descriptor parser with coalesced Linux input."""
+    def __init__(self, ids=range(1,15)):
+        super().__init__(ids)
+        self.client, self.server = socket.socketpair()
+        self.client.setblocking(False)
+
+    def fileno(self):
+        return self.client.fileno()
+
+    def read(self, size):
+        raise AssertionError('descriptor path must not call Serial.read')
+
+    def reset_input_buffer(self):
+        super().reset_input_buffer()
+        while True:
+            try:
+                if not self.client.recv(4096): break
+            except BlockingIOError:
+                break
+
+    def write(self, packet):
+        count = super().write(packet)
+        if self.pending:
+            self.server.sendall(self.pending)
+            self.pending.clear()
+        return count
+
+    def close(self):
+        self.client.close()
+        self.server.close()
+        super().close()
+
+
+class DescriptorReadTests(unittest.TestCase):
+    def test_fourteen_packets_share_one_read_and_next_request_discards_buffer(self):
+        serial = SocketSerial()
+        with ServoBus(None, transport=serial, timeout=.05) as bus:
+            with patch('microduck_deploy.servo.os.read', wraps=os.read) as read:
+                values = bus.read_feedback_many(range(1,15), sync=True)
+            self.assertEqual(list(values), list(range(1,15)))
+            self.assertEqual(read.call_count, 1)
+            # A cached extra packet must never satisfy the next transaction.
+            bus._rx_buffer.extend(status(1, feedback(position=1000)))
+            serial.memory[1][56:71] = feedback(position=2100)
+            self.assertEqual(bus.read_feedback(1).position_ticks, 2100)
+
+    def test_fragmented_descriptor_reads_and_echo(self):
+        serial = SocketSerial()
+        serial.echo = True
+        original_read = os.read
+        with ServoBus(None, transport=serial, timeout=.05, discard_echo=True) as bus:
+            with patch('microduck_deploy.servo.os.read',
+                       side_effect=lambda fd,size: original_read(fd,min(size,7))):
+                self.assertEqual(len(bus.read_feedback_many(range(1,15),sync=True)),14)
+
+    def test_descriptor_timeout_bad_checksum_and_status_still_fail(self):
+        for filter_reply, exception in ((lambda _: b'',ServoTimeout),
+                (lambda reply:reply[:-1]+bytes([reply[-1]^1]),ServoProtocolError),
+                (lambda _:status(1,error=4),ServoStatusError)):
+            serial = SocketSerial((1,))
+            serial.reply_filter = filter_reply
+            with ServoBus(None, transport=serial,timeout=.01) as bus:
+                with self.assertRaises(exception):bus.read_feedback(1)
 
 
 if __name__ == "__main__":

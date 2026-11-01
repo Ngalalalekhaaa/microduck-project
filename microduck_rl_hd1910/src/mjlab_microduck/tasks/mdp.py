@@ -17,7 +17,7 @@ from mjlab.tasks.velocity.mdp.velocity_command import UniformVelocityCommand, Un
 from mjlab.tasks.velocity.mdp import observations as _velocity_obs
 from mjlab.managers.command_manager import CommandTerm
 from mjlab.managers import CommandTermCfg
-from mjlab.managers.event_manager import requires_model_fields
+from mjlab.managers.event_manager import RecomputeLevel, requires_model_fields
 from mjlab.utils.lab_api.math import matrix_from_quat, wrap_to_pi, quat_apply, quat_from_angle_axis
 from rsl_rl.algorithms.ppo import PPO as _PPO
 
@@ -7389,3 +7389,525 @@ def roulade_lateral_velocity_penalty(
     """Body-frame lateral (y) linear velocity² — keeps the roll straight."""
     asset: Entity = env.scene[asset_cfg.name]
     return torch.nan_to_num(asset.data.root_link_lin_vel_b[:, 1].pow(2), nan=0.0)
+
+
+# ==============================================================================
+# HOME calibration: synthetic current sensing and a hidden, consistent zero bias
+# ==============================================================================
+
+def _home_calibration_action(env, action_name="home_calibration"):
+    return env.action_manager.get_term(action_name)
+
+
+def reset_home_calibration(
+    env: ManagerBasedRlEnv,
+    env_ids: torch.Tensor | slice | None,
+    action_name: str = "home_calibration",
+    initial_position_noise_rad: float = math.radians(0.2),
+    current_gain_range: tuple[float, float] = (0.85, 1.15),
+    current_bias_range_a: tuple[float, float] = (-0.01, 0.01),
+    current_noise_std_range_a: tuple[float, float] = (0.003, 0.015),
+    current_quantization_range_a: tuple[float, float] = (0.0065, 0.0065),
+    imu_mounting_error_deg: float = 1.0,
+    gravity_noise_std: float = 0.002,
+    gyro_noise_std: float = 0.01,
+) -> None:
+    """Sample one robot's unknown zero bias and synthetic sensor errors.
+
+    The physical start is HOME-bias+jitter, so its reported encoder position
+    is HOME+jitter, independent of the privileged bias. The root pose is reset
+    by the task's separate root-reset event. This event must replace generic
+    joint-reset and encoder-bias events, not run alongside them.
+
+    Current is a BAM motor-torque/kt proxy in amperes. Gain, offset, noise and
+    quantization ranges are experiment assumptions, not identified HD1910
+    feedback characteristics; 6.5 mA only mirrors the current parser's step.
+    """
+    term = _home_calibration_action(env, action_name)
+    selected = torch.arange(env.num_envs, device=env.device)
+    if env_ids is not None:
+        selected = selected[env_ids]
+    if not len(selected):
+        return
+    for name, bounds in (
+        ("current_gain_range", current_gain_range),
+        ("current_bias_range_a", current_bias_range_a),
+        ("current_noise_std_range_a", current_noise_std_range_a),
+        ("current_quantization_range_a", current_quantization_range_a),
+    ):
+        lo, hi = bounds
+        if not math.isfinite(lo) or not math.isfinite(hi) or lo > hi:
+            raise ValueError(f"{name} must be a finite ordered pair")
+    if current_gain_range[0] <= 0:
+        raise ValueError("current_gain_range must stay positive")
+    if current_noise_std_range_a[0] < 0 or current_quantization_range_a[0] < 0:
+        raise ValueError("current noise and quantization must be nonnegative")
+    for name, value in (
+        ("initial_position_noise_rad", initial_position_noise_rad),
+        ("imu_mounting_error_deg", imu_mounting_error_deg),
+        ("gravity_noise_std", gravity_noise_std), ("gyro_noise_std", gyro_noise_std),
+    ):
+        if not math.isfinite(value) or value < 0:
+            raise ValueError(f"{name} must be finite and nonnegative")
+
+    shape = (len(selected), term.action_dim)
+
+    def sample(bounds):
+        return torch.empty(shape, device=env.device).uniform_(*bounds)
+
+    term.bias[selected] = sample(term.cfg.bias_range_rad)
+    if term.cfg.zero_bias_probability > 0:
+        # Include already-correct robots explicitly; a continuous uniform
+        # distribution never samples an exactly correct 14-joint HOME.
+        zero_bias = torch.rand(len(selected), device=env.device) < term.cfg.zero_bias_probability
+        term.bias[selected[zero_bias]] = 0.0
+    term.current_gain[selected] = sample(current_gain_range)
+    term.current_bias_a[selected] = sample(current_bias_range_a)
+    term.current_noise_std_a[selected] = sample(current_noise_std_range_a)
+    term.current_quantization_a[selected] = sample(current_quantization_range_a)
+    term.gravity_noise_std[selected] = gravity_noise_std
+    term.gyro_noise_std[selected] = gyro_noise_std
+    # Reset must preserve the bias just sampled: mjlab calls it once more
+    # after reset events when clearing the ActionManager's histories.
+    term.reset(selected)
+    target = term.processed_actions[selected]
+    position = target + sample((-initial_position_noise_rad, initial_position_noise_rad))
+    asset = env.scene[term.cfg.entity_name]
+    # The new task owns its zero-bias transform. Do not subtract a stock
+    # encoder_bias a second time in observations or action conversion.
+    if hasattr(asset.data, "encoder_bias"):
+        asset.data.encoder_bias[selected] = 0.0
+    asset.write_joint_state_to_sim(
+        position, torch.zeros_like(position), joint_ids=term.joint_ids, env_ids=selected
+    )
+    asset.set_joint_position_target(
+        target, joint_ids=term.joint_ids, env_ids=selected[:, None]
+    )
+
+    # Reuse the common IMU rotation helpers, but resample only reset worlds.
+    if getattr(env, "_imu_misalign_quat", None) is None:
+        env._imu_misalign_quat = torch.zeros(env.num_envs, 4, device=env.device)
+        env._imu_misalign_quat[:, 0] = 1.0
+    axis = torch.randn(len(selected), 3, device=env.device)
+    axis /= axis.norm(dim=-1, keepdim=True).clamp_min(1e-8)
+    angle = torch.rand(len(selected), device=env.device) * math.radians(imu_mounting_error_deg)
+    env._imu_misalign_quat[selected] = quat_from_angle_axis(angle, axis)
+
+
+def home_calibration_motor_current_proxy(
+    env: ManagerBasedRlEnv, action_name: str = "home_calibration"
+) -> torch.Tensor:
+    """Signed BAM motor torque / kt, before sensor errors; not a real register.
+
+    BAM stores the most recent physics-step motor torque separately from its
+    native MuJoCo friction constraint. Reading that value avoids conflating
+    output external-load torque, friction torque and motor-current torque.
+    Actuator names explicitly map every column into the policy's joint order.
+    """
+    term = _home_calibration_action(env, action_name)
+    asset = env.scene[term.cfg.entity_name]
+    current = torch.zeros_like(term.home)
+    policy_columns = {name: i for i, name in enumerate(term.joint_names)}
+    covered = set()
+    for actuator in asset.actuators:
+        model = getattr(actuator, "_bam_model", None)
+        torque = getattr(actuator, "_prev_motor_torque", None)
+        if model is None or torque is None:
+            raise TypeError("HOME current observations require initialized BAM actuators")
+        kt = float(model.kt.value)
+        if not math.isfinite(kt) or kt <= 0:
+            raise ValueError("BAM kt must be finite and positive")
+        source, destination = [], []
+        for index, name in enumerate(actuator.target_names):
+            if name in policy_columns:
+                if name in covered:
+                    raise ValueError(f"Multiple BAM actuators drive HOME joint {name}")
+                source.append(index)
+                destination.append(policy_columns[name])
+                covered.add(name)
+        if source:
+            current[:, destination] = torque[:, source] / kt
+    if covered != set(term.joint_names):
+        raise ValueError("Every HOME joint must have a BAM current proxy")
+    return torch.nan_to_num(current, nan=0.0, posinf=0.0, neginf=0.0)
+
+
+def home_calibration_observation(
+    env: ManagerBasedRlEnv,
+    action_name: str = "home_calibration",
+    encoder_ticks: int = 4096,
+    current_normalization_epsilon_a: float = 0.02,
+) -> torch.Tensor:
+    """One cached 49D actor frame, with no privileged geometry or zero bias.
+
+    Order: biased quantized encoder-HOME (14), signed normalized synthetic
+    current (14), total absolute synthetic current in A (1), IMU gravity (3),
+    IMU gyro rad/s (3), cumulative commanded correction rad (14). The
+    observation manager stacks whole frames in time order. Noise is sampled
+    once per controller step and reset world; repeated actor/critic calls
+    cannot obtain independent noisy measurements or stale pre-reset frames.
+    """
+    if type(encoder_ticks) is not int or encoder_ticks < 2:
+        raise ValueError("encoder_ticks must be an integer of at least 2")
+    if (not math.isfinite(current_normalization_epsilon_a)
+            or current_normalization_epsilon_a <= 0):
+        raise ValueError("current_normalization_epsilon_a must be finite and positive")
+    term = _home_calibration_action(env, action_name)
+    step = int(env.common_step_counter)
+    fresh = ~term.observation_valid | (term.observation_step != step)
+    selected = fresh.nonzero(as_tuple=False).flatten()
+    if not len(selected):
+        return term.observation_cache.clone()
+    asset = env.scene[term.cfg.entity_name]
+    reported = asset.data.joint_pos[:, term.joint_ids] + term.bias
+    resolution = math.tau / encoder_ticks
+    position = torch.round(reported[selected] / resolution) * resolution - term.home[selected]
+
+    current = home_calibration_motor_current_proxy(env, action_name)[selected]
+    current = current * term.current_gain[selected] + term.current_bias_a[selected]
+    current += torch.randn_like(current) * term.current_noise_std_a[selected]
+    quantum = term.current_quantization_a[selected]
+    current = torch.where(
+        quantum > 0, torch.round(current / quantum.clamp_min(1e-12)) * quantum, current
+    )
+    total = current.abs().sum(dim=-1, keepdim=True)
+    normalized_current = current / total.clamp_min(current_normalization_epsilon_a)
+    asset_cfg = SceneEntityCfg(term.cfg.entity_name)
+    gravity = projected_gravity_imu_misaligned(env, asset_cfg=asset_cfg)[selected]
+    gyro = base_ang_vel_imu_misaligned(env, asset_cfg=asset_cfg)[selected]
+    gravity += torch.randn_like(gravity) * term.gravity_noise_std[selected]
+    gyro += torch.randn_like(gyro) * term.gyro_noise_std[selected]
+    frame = torch.cat((position, normalized_current, total, gravity, gyro,
+                       term.command_offset[selected]), dim=-1)
+    term.observation_cache[selected] = torch.nan_to_num(
+        frame, nan=0.0, posinf=0.0, neginf=0.0
+    )
+    term.observation_step[selected] = step
+    term.observation_valid[selected] = True
+    return term.observation_cache.clone()
+
+
+def home_calibration_no_current_observation(
+    env: ManagerBasedRlEnv,
+    action_name: str = "home_calibration",
+    encoder_ticks: int = 4096,
+) -> torch.Tensor:
+    """One 34D encoder/IMU frame, without reading any motor load signal.
+
+    Order: quantized reported encoder-HOME (14), IMU gravity (3), body gyro
+    rad/s (3), known cumulative command offset rad (14). This separate path
+    never calls the current proxy, including for the critic's sensor frame.
+    As in v1, samples are shared within a control step and invalidated only
+    for reset worlds. The hidden calibration bias is used solely to simulate
+    the reported encoder; neither true angles nor that bias are exposed.
+    """
+    if type(encoder_ticks) is not int or encoder_ticks < 2:
+        raise ValueError("encoder_ticks must be an integer of at least 2")
+    term = _home_calibration_action(env, action_name)
+    if term.observation_cache.shape[-1] != 34:
+        raise ValueError("No-current HOME observation requires a 34D action observation cache")
+    step = int(env.common_step_counter)
+    selected = (~term.observation_valid | (term.observation_step != step)).nonzero(
+        as_tuple=False
+    ).flatten()
+    if not len(selected):
+        return term.observation_cache.clone()
+    asset = env.scene[term.cfg.entity_name]
+    reported = asset.data.joint_pos[:, term.joint_ids] + term.bias
+    resolution = math.tau / encoder_ticks
+    position = torch.round(reported[selected] / resolution) * resolution - term.home[selected]
+    asset_cfg = SceneEntityCfg(term.cfg.entity_name)
+    gravity = projected_gravity_imu_misaligned(env, asset_cfg=asset_cfg)[selected]
+    gyro = base_ang_vel_imu_misaligned(env, asset_cfg=asset_cfg)[selected]
+    gravity += torch.randn_like(gravity) * term.gravity_noise_std[selected]
+    gyro += torch.randn_like(gyro) * term.gyro_noise_std[selected]
+    frame = torch.cat((position, gravity, gyro, term.command_offset[selected]), dim=-1)
+    term.observation_cache[selected] = torch.nan_to_num(
+        frame, nan=0.0, posinf=0.0, neginf=0.0
+    )
+    term.observation_step[selected] = step
+    term.observation_valid[selected] = True
+    return term.observation_cache.clone()
+
+
+def home_calibration_true_joint_error(
+    env: ManagerBasedRlEnv, action_name: str = "home_calibration"
+) -> torch.Tensor:
+    """Privileged physical joint error in radians; never an actor input."""
+    term = _home_calibration_action(env, action_name)
+    asset = env.scene[term.cfg.entity_name]
+    return torch.nan_to_num(asset.data.joint_pos[:, term.joint_ids] - term.home,
+                            nan=math.pi, posinf=math.pi, neginf=-math.pi)
+
+
+def home_calibration_bias(
+    env: ManagerBasedRlEnv, action_name: str = "home_calibration"
+) -> torch.Tensor:
+    """Privileged sampled encoder zero bias, for the critic only."""
+    return _home_calibration_action(env, action_name).bias.clone()
+
+
+def home_calibration_joint_velocity(
+    env: ManagerBasedRlEnv, action_name: str = "home_calibration"
+) -> torch.Tensor:
+    """Privileged physical velocity; the actor receives encoder frame history."""
+    term = _home_calibration_action(env, action_name)
+    asset = env.scene[term.cfg.entity_name]
+    return torch.nan_to_num(asset.data.joint_vel[:, term.joint_ids],
+                            nan=0.0, posinf=0.0, neginf=0.0)
+
+
+def home_calibration_pose_error(
+    env: ManagerBasedRlEnv,
+    action_name: str = "home_calibration",
+    scale_rad: float = math.radians(3.0),
+) -> torch.Tensor:
+    """Positive normalized TRUE pose MSE; configure a negative reward weight."""
+    if not math.isfinite(scale_rad) or scale_rad <= 0:
+        raise ValueError("scale_rad must be finite and positive")
+    error = home_calibration_true_joint_error(env, action_name).clamp(-math.pi, math.pi)
+    error_deg = torch.rad2deg(error.detach())
+    logs = env.extras.setdefault("log", {})
+    logs["Home/joint_mae_deg"] = error_deg.abs().mean()
+    logs["Home/joint_rmse_deg"] = error_deg.square().mean().sqrt()
+    logs["Home/joint_max_deg"] = error_deg.abs().amax()
+    return (error / scale_rad).square().mean(dim=-1)
+
+
+def home_calibration_support_cost(
+    env: ManagerBasedRlEnv,
+    action_name: str = "home_calibration",
+    sensor_name: str = "feet_ground_contact",
+    settle_seconds: float = 0.5,
+) -> torch.Tensor:
+    """Positive missing-foot fraction after actual settling time; weight < 0."""
+    term = _home_calibration_action(env, action_name)
+    found = env.scene.sensors[sensor_name].data.found[:, :2]
+    contact = found.reshape(env.num_envs, 2, -1).any(dim=-1)
+    ready = term.control_steps * env.step_dt >= settle_seconds - 1e-8
+    return (~contact).float().mean(dim=-1) * ready
+
+
+def home_calibration_body_motion_cost(
+    env: ManagerBasedRlEnv, action_name: str = "home_calibration"
+) -> torch.Tensor:
+    """Positive base linear/angular speed cost; configure a negative weight."""
+    term = _home_calibration_action(env, action_name)
+    data = env.scene[term.cfg.entity_name].data
+    velocity = torch.cat((data.root_link_lin_vel_b, data.root_link_ang_vel_b), dim=-1)
+    velocity = torch.nan_to_num(velocity, nan=10.0, posinf=10.0, neginf=-10.0)
+    return velocity.square().sum(dim=-1)
+
+
+def home_calibration_action_cost(
+    env: ManagerBasedRlEnv, action_name: str = "home_calibration"
+) -> torch.Tensor:
+    """Positive bounded cost of the actually applied command delta; weight < 0."""
+    term = _home_calibration_action(env, action_name)
+    return (term.applied_delta / term.cfg.delta_limit_rad).square().mean(dim=-1)
+
+
+def _home_force_target(env, target_ratio: tuple[float, ...]) -> torch.Tensor:
+    """Validate and cache an immutable target, never a measured force signal."""
+    if (len(target_ratio) != 14
+            or any(not math.isfinite(value) or value < 0 for value in target_ratio)
+            or not math.isclose(sum(target_ratio), 1.0, rel_tol=0., abs_tol=1e-6)):
+        raise ValueError("target_ratio must contain 14 finite nonnegative fractions summing to one")
+    key = tuple(target_ratio)
+    if getattr(env, "_home_force_target_key", None) != key:
+        env._home_force_target_key = key
+        env._home_force_target_tensor = torch.tensor(
+            key, device=env.device, dtype=torch.float32
+        ).repeat(env.num_envs, 1)
+    return env._home_force_target_tensor
+
+
+def home_force_ratio_observation(
+    env: ManagerBasedRlEnv,
+    target_ratio: tuple[float, ...],
+    action_name: str = "home_calibration",
+    encoder_ticks: int = 4096,
+) -> torch.Tensor:
+    """48D frame: 34 encoder/IMU/command values and a fixed target ratio.
+
+    The last 14 values are a simulation-derived desired distribution, never
+    current measured torque. This first task trains only one fixed reference;
+    exposing its target does not establish generalization to other targets.
+    """
+    frame = home_calibration_no_current_observation(env, action_name, encoder_ticks)
+    return torch.cat((frame, _home_force_target(env, target_ratio)), dim=-1)
+
+
+def _home_force_ratio_state(env, action_name):
+    term = _home_calibration_action(env, action_name)
+    torque = env.scene[term.cfg.entity_name].data.qfrc_actuator[:, term.joint_ids]
+    finite = torch.isfinite(torque).all(dim=-1)
+    magnitude = torch.nan_to_num(torque, nan=0., posinf=0., neginf=0.).abs()
+    total = magnitude.sum(dim=-1)
+    finite &= torch.isfinite(total)
+    ratio = torch.nan_to_num(magnitude / total[:, None].clamp_min(1e-12),
+                             nan=0., posinf=0., neginf=0.)
+    return ratio, torch.nan_to_num(total, nan=0., posinf=0., neginf=0.), finite
+
+
+def home_force_ratio_actual(
+    env: ManagerBasedRlEnv, action_name: str = "home_calibration"
+) -> torch.Tensor:
+    """Privileged absolute generalized actuator-torque fractions, shape N×14."""
+    return _home_force_ratio_state(env, action_name)[0]
+
+
+def home_force_ratio_total_torque(
+    env: ManagerBasedRlEnv, action_name: str = "home_calibration"
+) -> torch.Tensor:
+    """Privileged sum of absolute actuated joint torques in N·m, shape N."""
+    return _home_force_ratio_state(env, action_name)[1]
+
+
+def _home_force_ratio_error_and_valid(
+    env, target_ratio, action_name, scale, minimum_total_torque_nm, sensor_name,
+):
+    if not math.isfinite(scale) or scale <= 0:
+        raise ValueError("force-ratio scale must be finite and positive")
+    if not math.isfinite(minimum_total_torque_nm) or minimum_total_torque_nm <= 0:
+        raise ValueError("minimum_total_torque_nm must be finite and positive")
+    actual, total, finite = _home_force_ratio_state(env, action_name)
+    error = ((actual - _home_force_target(env, target_ratio)) / scale).square().mean(dim=-1)
+    found = env.scene.sensors[sensor_name].data.found[:, :2]
+    double_support = found.reshape(env.num_envs, 2, -1).any(dim=-1).all(dim=-1)
+    valid = finite & (total >= minimum_total_torque_nm) & double_support
+    return error, valid, total
+
+
+def home_force_ratio_tracking(
+    env: ManagerBasedRlEnv,
+    target_ratio: tuple[float, ...],
+    action_name: str = "home_calibration",
+    scale: float = .03,
+    minimum_total_torque_nm: float = .02,
+    sensor_name: str = "feet_ground_contact",
+) -> torch.Tensor:
+    """Positive exp(-normalized ratio MSE), gated by load and double support."""
+    error, valid, _ = _home_force_ratio_error_and_valid(
+        env, target_ratio, action_name, scale, minimum_total_torque_nm, sensor_name,
+    )
+    return torch.exp(-error) * valid
+
+
+def home_force_ratio_error(
+    env: ManagerBasedRlEnv,
+    target_ratio: tuple[float, ...],
+    action_name: str = "home_calibration",
+    scale: float = .03,
+    minimum_total_torque_nm: float = .02,
+    sensor_name: str = "feet_ground_contact",
+) -> torch.Tensor:
+    """Positive normalized ratio MSE; invalid load/support has cost at least 1."""
+    error, valid, total = _home_force_ratio_error_and_valid(
+        env, target_ratio, action_name, scale, minimum_total_torque_nm, sensor_name,
+    )
+    logs = env.extras.setdefault("log", {})
+    logs["HomeForce/ratio_rmse"] = error.mean().sqrt() * scale
+    logs["HomeForce/total_abs_torque_nm"] = total.mean()
+    logs["HomeForce/valid_double_support_fraction"] = valid.float().mean()
+    return torch.where(valid, error, error.clamp_min(1.))
+
+
+# =============================================================================
+# HD1910 sit/stand continuation: coupled inertial DR and whole-motion tilt cost.
+# =============================================================================
+
+@requires_model_fields(
+    "body_mass", "body_inertia", "body_ipos", recompute=RecomputeLevel.set_const,
+)
+def randomize_hd1910_sitstand_inertia(
+    env, env_ids, mass_range, head_mass_range, trunk_com_range, head_com_range,
+    asset_cfg=SceneEntityCfg("robot"),
+) -> None:
+    """One robot-wide mass multiplier plus an independent head multiplier.
+
+    Scale principal moments WITH mass; translate the CoM while preserving the
+    inertia about that CoM. Every reset starts from compiled defaults. Head
+    parts share a mass multiplier; the right hip's bearing_roll is not head.
+    These ranges describe uncertainty, not an identified replica model.
+    """
+    if env_ids is None:
+        env_ids = torch.arange(env.num_envs, device=env.device)
+    env_ids = env_ids.to(device=env.device, dtype=torch.long)
+    if not len(env_ids):
+        return
+    asset = env.scene[asset_cfg.name]
+    body_ids = asset.indexing.body_ids
+    default_mass = env.sim.get_default_field("body_mass")[body_ids]
+    positive = default_mass > 0
+    ids = body_ids[positive]
+    names = [n for n, keep in zip(asset.body_names, positive.tolist()) if keep]
+    head = torch.tensor(
+        [n in ("neck", "neck_pitch", "yaw_roll_motion", "jaw_soft", "bottom_head_shell")
+         for n in names], device=env.device,
+    )
+    trunk = torch.tensor([n == "trunk_base" for n in names], device=env.device)
+    scale = torch.empty((len(env_ids), 1), device=env.device).uniform_(*mass_range)
+    head_scale = torch.empty_like(scale).uniform_(*head_mass_range)
+    scale = scale * torch.where(head[None, :], head_scale, 1.)
+    selection = (env_ids[:, None], ids)
+    env.sim.model.body_mass[selection] = env.sim.get_default_field("body_mass")[ids] * scale
+    env.sim.model.body_inertia[selection] = (
+        env.sim.get_default_field("body_inertia")[ids] * scale[..., None]
+    )
+    offset = torch.zeros((len(env_ids), len(ids), 3), device=env.device)
+    for mask, ranges in ((trunk, trunk_com_range), (head, head_com_range)):
+        extent = torch.tensor(ranges, device=env.device)
+        samples = torch.rand((len(env_ids), int(mask.sum()), 3), device=env.device)
+        offset[:, mask] = (2. * samples - 1.) * extent
+    env.sim.model.body_ipos[selection] = env.sim.get_default_field("body_ipos")[ids] + offset
+
+
+@requires_model_fields("actuator_forcerange")
+def randomize_hd1910_sitstand_response(
+    env, env_ids, ankle_kp_range, kp_range, friction_range, effort_range,
+    voltage_range, voltage_drop_range, voltage_floor, lag_range,
+    asset_cfg=SceneEntityCfg("robot"),
+) -> None:
+    """Physical BAM gain/friction/voltage DR, with independently softer ankles.
+
+    Ankle scales are absolute relative to nominal P=5, not multiplied again
+    by the other joints' gain randomization. BAM back-EMF is not firmware D.
+    """
+    from .hd1910_robust_mdp import randomize_hd1910_response
+
+    if env_ids is None:
+        env_ids = torch.arange(env.num_envs, device=env.device)
+    env_ids = env_ids.to(device=env.device, dtype=torch.long)
+    randomize_hd1910_response(
+        env, env_ids, kp_range, friction_range, effort_range, voltage_range,
+        voltage_drop_range, voltage_floor, lag_range, asset_cfg,
+    )
+    for actuator in env.scene["robot"].actuators:
+        columns = [i for i, name in enumerate(actuator._target_names)
+                   if name in ("left_ankle", "right_ankle")]
+        if columns:
+            indices = torch.tensor(columns, device=env.device)
+            actuator.kp_scale[env_ids[:, None], indices] = torch.empty(
+                (len(env_ids), len(columns)), device=env.device,
+            ).uniform_(*ankle_kp_range)
+
+
+def hd1910_sitstand_tilt_cost(
+    env, threshold_deg=15., scale_deg=10., asset_cfg=SceneEntityCfg("robot"),
+) -> torch.Tensor:
+    """Nonnegative cost EVERY control step, including descent/rise and holds.
+
+    No height, command, contact or phase gate. Critic/reward use true trunk
+    orientation; actor IMU mounting/noise DR cannot hide a physical violation.
+    """
+    if not 0 < threshold_deg < 180 or scale_deg <= 0:
+        raise ValueError("Invalid sitstand tilt threshold/scale")
+    gravity = env.scene[asset_cfg.name].data.projected_gravity_b
+    angle = torch.acos((-gravity[:, 2]).clamp(-1., 1.))
+    excess = torch.relu((angle - math.radians(threshold_deg)) / math.radians(scale_deg))
+    logs = env.extras.setdefault("log", {})
+    logs["SitStand/tilt_mean_deg"] = torch.rad2deg(angle).mean()
+    logs["SitStand/tilt_max_deg"] = torch.rad2deg(angle).max()
+    logs["SitStand/tilt_violation_fraction"] = (excess > 0).float().mean()
+    return excess + excess.square()

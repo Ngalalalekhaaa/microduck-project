@@ -18,18 +18,37 @@ def recovery_config():
     return cfg
 
 
-def test_reported_right_knee_109_degree_recovery_is_planned_slowly():
+def test_reported_right_knee_109_degree_recovery_extends_six_second_move():
     cfg = recovery_config()
     home = q_to_ticks(HOME, *calibration_arrays(cfg))
     start = home.copy()
     start[12] = 1758
     plan = plan_straight_recovery(cfg, start, target='home')
-    assert plan['duration_s'] > 20
-    assert plan['peak_target_speed_deg_s'] <= 8
+    assert 10 < plan['duration_s'] < 11
+    assert plan['peak_target_speed_deg_s'] <= 16
     path = np.stack([start, *path_ticks(start, home, plan['steps'])])
     assert np.max(np.abs(np.diff(path, axis=0))) <= 4
     np.testing.assert_array_equal(path[-1], home)
     assert np.all(np.diff(path[:, 12]) >= 0)
+
+
+def test_nearby_home_uses_six_seconds_and_keeps_four_tick_steps():
+    cfg = recovery_config()
+    home = q_to_ticks(HOME, *calibration_arrays(cfg))
+    start = home.copy()
+    start[3] += 300
+    plan = plan_straight_recovery(cfg, start, target='home')
+    assert plan['duration_s'] == 6
+    path = np.stack([start, *path_ticks(start, home, plan['steps'])])
+    assert np.max(np.abs(np.diff(path, axis=0))) <= 4
+    np.testing.assert_array_equal(path[-1], home)
+
+
+def test_straight_reference_recovery_keeps_original_timing():
+    cfg = recovery_config()
+    start = np.array(cfg['calibration']['captured_ticks'])
+    plan = plan_straight_recovery(cfg, start, target='straight')
+    assert plan['duration_s'] == 12
 
 
 @pytest.mark.parametrize('tick', [0, 4095])

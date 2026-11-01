@@ -9,15 +9,71 @@ from pathlib import Path
 
 import numpy as np
 
-from .policy import JOINT_NAMES, DEFAULT_SERVO_IDS, HOME, policy_calibration_reference
+from .policy import JOINT_NAMES, JOINT_LIMITS, DEFAULT_SERVO_IDS, HOME, policy_calibration_reference
 
 ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_ROULADE_HEAD_PITCH_MAX_DEG = math.degrees(
+    JOINT_LIMITS[JOINT_NAMES.index('head_pitch'), 1] + .12)
+
+
+def roulade_head_pitch_max_deg(control):
+    """Explicit positive feedback bound for head_pitch during a roll only.
+
+    This software observation bound does not establish a measured physical
+    travel limit or change the model, servo EEPROM, zero, or target commands.
+    Missing configuration preserves the established model bound + 0.12 rad.
+    """
+    value = control.get('roulade_head_pitch_max_deg', DEFAULT_ROULADE_HEAD_PITCH_MAX_DEG)
+    if (isinstance(value, bool) or not isinstance(value, (int, float))
+            or not math.isfinite(value)
+            or not DEFAULT_ROULADE_HEAD_PITCH_MAX_DEG <= value <= 110.):
+        raise ValueError('control.roulade_head_pitch_max_deg 必须为 '
+                         f'[{DEFAULT_ROULADE_HEAD_PITCH_MAX_DEG:.6f},110] 度内的有限数字')
+    return float(value)
+
+
+def policy_timing_limits(control):
+    """Optional policy budgets, separate from servo/HOME max_cycle_s.
+
+    Absent keys retain the original budgets, including older configurations.
+    Explicit policy overrides are bounded and must allow a full policy cycle.
+    """
+    cycle = control.get('max_policy_cycle_s', float(control['max_cycle_s']))
+    gap = control.get('max_policy_sample_gap_s', float(control['max_cycle_s']) + .01)
+    for key, value, upper in (
+            ('max_policy_cycle_s', cycle, .10),
+            ('max_policy_sample_gap_s', gap, .12)):
+        if (isinstance(value, bool) or not isinstance(value, (int, float))
+                or not math.isfinite(value) or value <= 0
+                or (key in control and value > upper)):
+            raise ValueError(f'control.{key} 必须为(0,{upper}]内的有限数字')
+    if gap < cycle:
+        raise ValueError('control.max_policy_sample_gap_s 不得小于 max_policy_cycle_s')
+    return float(cycle), float(gap)
+
+
+def policy_overrun_threshold(control):
+    """Consecutive policy overrun threshold; the 50 Hz schedule is unchanged."""
+    if 'policy_overrun_threshold_s' not in control:
+        return .020
+    value = control['policy_overrun_threshold_s']
+    if (isinstance(value, bool) or not isinstance(value, (int, float))
+            or not math.isfinite(value) or not .020 <= value <= .040):
+        raise ValueError('control.policy_overrun_threshold_s 必须为[0.020,0.040]内的有限数字')
+    if value > policy_timing_limits(control)[0]:
+        raise ValueError('control.policy_overrun_threshold_s 不得大于策略单周期时限')
+    return float(value)
 
 
 def default_config():
     return {
         "schema": 1,
         "model": "models/hd1910_flat.onnx",
+        "sitstand_model": "models/hd1910_sitstand_20261015.onnx",
+        "roulade_model": None,
+        "updated_walking_model": None,
+        "sitstand_friction_model": None,
+        "sitstand_com_model": None,
         "serial": {"port": "/dev/ttyS2", "baudrate": 1000000, "timeout": 0.015,
                    "discard_echo": False, "register_profile": "hls_2"},
         "imu": {"transport": "i2c", "i2c_bus": None, "i2c_address": None,
@@ -34,9 +90,12 @@ def default_config():
             "max_start_distance_rad": 0.60, "home_tolerance_rad": 0.15,
             "tilt_limit_deg": 35.0, "imu_max_age_s": 0.06,
             "max_cycle_s": 0.04, "max_overruns": 5,
-            "servo_voltage_range": [7.0, 8.4], "servo_max_temperature_c": 60,
+            "servo_voltage_range": [4.0, 8.4], "servo_max_temperature_c": 60,
             "max_target_jump_rad": 0.6,
             "ram_p": 5, "ram_d": 0, "ram_i": 0,
+            "roulade_enabled": False,
+            "model_suite_buttons_enabled": False,
+            "roulade_head_pitch_max_deg": DEFAULT_ROULADE_HEAD_PITCH_MAX_DEG,
         },
     }
 
@@ -48,6 +107,42 @@ def load_config(path):
     cfg = json.loads(path.read_text())
     if cfg.get("schema") != 1:
         raise ValueError("不支持的配置版本")
+    for key in ('sitstand_model', 'ground_pick_model', 'roulade_model',
+                'updated_walking_model', 'sitstand_friction_model', 'sitstand_com_model'):
+        model = cfg.get(key)
+        if model is not None and (not isinstance(model, str) or not model.strip()
+                                  or Path(model).suffix.lower() != '.onnx'):
+            raise ValueError(f'{key} 须为 ONNX 文件路径或 null')
+    if cfg.get('ground_pick_model') and not cfg.get('sitstand_model'):
+        raise ValueError('俯身动作需要 sitstand_model 用于完成后的站立保持')
+    if not isinstance(cfg['control'].get('log_only_target_angles', False), bool):
+        raise ValueError('control.log_only_target_angles 必须为布尔值')
+    enabled = cfg['control'].get('roulade_enabled', False)
+    if not isinstance(enabled, bool):
+        raise ValueError('control.roulade_enabled 必须为布尔值')
+    if enabled and (not cfg.get('roulade_model') or not cfg.get('sitstand_model')):
+        raise ValueError('滚翻启用需要 roulade_model 和 sitstand_model')
+    suite_enabled = cfg['control'].get('model_suite_buttons_enabled', False)
+    if not isinstance(suite_enabled, bool):
+        raise ValueError('control.model_suite_buttons_enabled 必须为布尔值')
+    if suite_enabled:
+        required = ('updated_walking_model', 'sitstand_friction_model',
+                    'sitstand_com_model', 'sitstand_model', 'roulade_model')
+        missing = [key for key in required if not cfg.get(key)]
+        if missing or not enabled:
+            raise ValueError('方向键模型切换需要配置 ' + ', '.join(required)
+                             + '，并启用 control.roulade_enabled')
+    for key, default, minimum, maximum in (
+        ('roulade_timeout_s', 5., 0., 10.),
+        ('roulade_lateral_limit_deg', 35., 0., 60.),
+        ('roulade_max_angular_speed_rad_s', 12., 0., 20.),
+        ('roulade_completion_tilt_deg', 25., 0., 35.),
+        ('roulade_settle_seconds', .25, 0., 2.),
+    ):
+        value = float(cfg['control'].get(key, default))
+        if not math.isfinite(value) or not minimum < value <= maximum:
+            raise ValueError(f'control.{key} 必须在({minimum},{maximum}]内')
+    roulade_head_pitch_max_deg(cfg['control'])
     joints = cfg.get("joints", [])
     if [x.get("name") for x in joints] != list(JOINT_NAMES):
         raise ValueError("joints 顺序/名称与模型不匹配；不能删除嘴部之外的14个关节。")
@@ -64,6 +159,11 @@ def load_config(path):
         v = float(cfg["control"][key])
         if not math.isfinite(v) or v <= 0:
             raise ValueError(f"control.{key} 必须为正有限数")
+    ground_tilt = float(cfg['control'].get('ground_pick_tilt_limit_deg', 50.))
+    if not math.isfinite(ground_tilt) or not 0 < ground_tilt <= 90:
+        raise ValueError('control.ground_pick_tilt_limit_deg 必须在(0,90]内')
+    policy_timing_limits(cfg['control'])
+    policy_overrun_threshold(cfg['control'])
     return cfg
 
 
@@ -110,10 +210,13 @@ def require_mapping(cfg):
 def require_calibration(cfg, *, imu=True):
     require_mapping(cfg)
     if not cfg.get("calibration"):
-        raise ValueError("尚未标定；按已知姿态摆好，再运行 calibrate --pose straight、zero 或 home。")
+        raise ValueError("尚未标定；运行 calibrate --pose straight/zero/home，或按已核对几何运行 assembly-calibrate --apply。")
     z = np.asarray([j.get("zero_tick") for j in cfg["joints"]], dtype=float)
     if not np.all(np.isfinite(z)):
         raise ValueError("关节零位缺失或不是有限数")
+    if cfg['calibration'].get('pose') == 'assembly':
+        from .assembly import assembly_reference
+        assembly_reference(cfg)
     if imu and not cfg.get("imu_mount_verified"):
         raise ValueError("先用 imu 检查前后/左右倾斜方向，再用 imu-map 保存已核对的轴映射。")
 

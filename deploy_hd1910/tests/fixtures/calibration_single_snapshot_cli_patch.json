@@ -1,0 +1,20 @@
+{
+  "expected_source_sha256": "190982c00726f4c1d794d9aba65a333e09ac7d1b6206a6dbf3e97a75aca08756",
+  "replacements": [
+    {
+      "label": "calibrate_parser",
+      "old": "    calibration.add_argument('--pose', choices=('zero', 'home', 'straight'), required=True)\n",
+      "new": "    calibration.add_argument('--pose', choices=('zero', 'home', 'straight'), required=True)\n    calibration.add_argument('--samples', type=int, choices=(1, 12), default=12,\n                             help='1: 单次读取14关节；12: 多次平均并检查稳定性（默认12）')\n"
+    },
+    {
+      "label": "calibrate_sample_loop",
+      "old": "            for _ in range(12):\n                readings=bus.read_feedback_many(ids,sync=True)\n                samples.append([readings[sid].position_ticks for sid in ids])\n                time.sleep(.02)\n",
+      "new": "            for _ in range(args.samples):\n                readings=bus.read_feedback_many(ids,sync=True)\n                samples.append([readings[sid].position_ticks for sid in ids])\n                if args.samples == 12:\n                    time.sleep(.02)\n"
+    },
+    {
+      "label": "calibrate_stability_guard",
+      "old": "                if np.max(np.ptp(samples,axis=0)) > 8:\n",
+      "new": "                if args.samples == 12 and np.max(np.ptp(samples,axis=0)) > 8:\n"
+    }
+  ]
+}

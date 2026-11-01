@@ -1,0 +1,30 @@
+{
+  "iteration": 30000,
+  "variant": "backlash",
+  "checkpoint": "/home/luckysir/文档/xwechat_files/wxid_s317mgfyvs8k22_37de/msg/file/2026-10/model_30000_backlash.pt",
+  "checkpoint_sha256": "e42b3bba5968a1f0daf255feab0a57da9d5b31055a814d9016ad656ab9bce3ee",
+  "file": "models/hd1910_backlash_30000.onnx",
+  "sha256": "2208a7647b29cdda7a7400f46bb750240338448a796caaff5062d1fb03e96f38",
+  "export_task": "Mjlab-Velocity-Flat-Backlash-MicroDuck-HD1910",
+  "export_method": "mjlab_microduck.export: runner.export_policy_to_onnx with observation normalizer and metadata",
+  "original_training_config_verified": false,
+  "export_configuration": "Existing HD-1910 HOME, joint order, 61 observations, 14 actions, ELU, action scale 1.0; original training configuration not supplied",
+  "onnx_parity": {
+    "passed": true,
+    "samples": 128,
+    "input_shape": [
+      1,
+      61
+    ],
+    "output_shape": [
+      1,
+      14
+    ],
+    "max_abs_error": 8.344650268554688e-07,
+    "observation_normalizer_included": true,
+    "checkpoint": "/home/luckysir/文档/xwechat_files/wxid_s317mgfyvs8k22_37de/msg/file/2026-10/model_30000_backlash.pt",
+    "onnx": "/home/luckysir/microduck/deploy_hd1910/models/hd1910_backlash_30000.onnx"
+  },
+  "hardware_access": false,
+  "deployment_change": "Select new model only; retain existing robot.json calibration, serial, IMU, control settings and Xbox service speed/duration settings"
+}

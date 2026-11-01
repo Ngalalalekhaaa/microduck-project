@@ -1,0 +1,16 @@
+{
+  "source_log": "motion_20261101_102638_313889",
+  "ground_pick_start_s": 81.316860813,
+  "ground_pick_end_s": 85.320798623,
+  "implicit_return_model": "models/hd1910_sitstand_robust_4999.onnx",
+  "logged_stand_frames": 18,
+  "last_logged_time_s": 85.660439421,
+  "left_hip_yaw_fault_deg": 37.27,
+  "allowed_left_hip_yaw_max_deg": 36.88,
+  "final_tilt_deg": 4.998927154162268,
+  "turn_command_after_ground_seen": false,
+  "post_ground_commands_all_zero": true,
+  "stop_reason": "Actual left hip yaw exceeded feedback bound; controller stopped and relaxed",
+  "fix": "Keyboard ground completion returns to selected walking session at zero for 3 seconds; no implicit sitstand session; prior raw action preserved",
+  "hardware_motion_started_by_agent": false
+}

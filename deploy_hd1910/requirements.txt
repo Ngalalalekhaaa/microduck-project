@@ -2,3 +2,4 @@ numpy>=1.26,<3
 onnxruntime==1.24.4
 pyserial==3.5
 smbus2==0.6.0
+evdev>=1.9,<2

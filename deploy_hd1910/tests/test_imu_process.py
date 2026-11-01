@@ -10,7 +10,8 @@ from microduck_deploy.imu import ImuState, ImuError
 from microduck_deploy.imu_process import _worker, ProcessImuReader
 
 
-def test_worker_publishes_complete_sample_and_bias_then_closes():
+@pytest.mark.parametrize('sample_count', [240, 360])
+def test_worker_publishes_complete_sample_and_bias_then_closes(sample_count):
     samples=mp.Array('d',10);bias=mp.Array('d',3)
     ready,stop=threading.Event(),threading.Event();errors=queue.Queue()
     sensor=Mock();sensor.gyro_bias_rad_s=np.array([.01,.02,.03])
@@ -18,12 +19,24 @@ def test_worker_publishes_complete_sample_and_bias_then_closes():
     def read(**kwargs):stop.set();return state
     sensor.read_state.side_effect=read
     with patch('microduck_deploy.imu_process.open_imu',return_value=sensor):
-        _worker({},True,samples,bias,ready,stop,errors)
+        _worker({},True,samples,bias,ready,stop,errors,calibration_samples=sample_count)
     assert ready.is_set() and errors.empty()
     assert samples[:]==[state.timestamp,1.,2.,3.,0.,0.,-1.,0.,0.,9.81]
     assert bias[:]==[.01,.02,.03]
-    sensor.calibrate_gyro.assert_called_once_with(sample_count=240)
+    sensor.calibrate_gyro.assert_called_once_with(sample_count=sample_count)
     sensor.close.assert_called_once()
+
+
+@pytest.mark.parametrize('odr', [120, 240])
+def test_three_second_calibration_uses_configured_sensor_sample_rate(odr):
+    context = Mock()
+    context.Array.side_effect = lambda typecode, size: [0.] * size
+    context.Event.return_value.wait.return_value = True
+    with patch('microduck_deploy.imu_process.mp.get_context', return_value=context), patch.object(
+            ProcessImuReader, 'latest'):
+        reader = ProcessImuReader({'imu': {'odr_hz': odr}}, calibration_seconds=3.)
+        assert context.Process.call_args.kwargs['args'][-1] == odr * 3
+        reader.close()
 
 
 def test_worker_error_is_reported_and_closed():

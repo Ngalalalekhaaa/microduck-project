@@ -23,6 +23,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 import math
 import numbers
+import os
+import select
 import struct
 import threading
 import time
@@ -163,6 +165,11 @@ class ServoBus:
             except (OSError, serial.SerialException) as exc:
                 raise ServoError(f"Cannot open serial port {port}: {exc}") from exc
         self._serial = transport
+        self._rx_buffer = bytearray()
+        try:
+            self._read_fd = transport.fileno()
+        except (AttributeError, OSError):
+            self._read_fd = None
 
     def __enter__(self):
         if self._closed:
@@ -179,6 +186,30 @@ class ServoBus:
                 self._serial.close()
 
     def _read_exact(self, size: int, deadline: float) -> bytes:
+        if self._read_fd is not None:
+            # POSIX serial reads use the existing descriptor and deadline. Do
+            # not change Serial.timeout: its setter reconfigures termios.
+            # Read all currently arriving bytes and parse subsequent replies
+            # from this transaction's buffer, rather than doing tiny syscalls.
+            while len(self._rx_buffer) < size:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise ServoTimeout(f'Reply incomplete: wanted {size} bytes, received {len(self._rx_buffer)}')
+                try:
+                    readable, _, _ = select.select([self._read_fd], [], [], remaining)
+                    if not readable:
+                        raise ServoTimeout(f'Reply incomplete: wanted {size} bytes, received {len(self._rx_buffer)}')
+                    chunk = os.read(self._read_fd, max(4096, size-len(self._rx_buffer)))
+                except BlockingIOError:
+                    continue
+                except OSError as exc:
+                    raise ServoError(f'Serial read failed: {exc}') from exc
+                if not chunk:
+                    raise ServoError('Serial descriptor closed while reading')
+                self._rx_buffer.extend(chunk)
+            data = bytes(self._rx_buffer[:size])
+            del self._rx_buffer[:size]
+            return data
         data = bytearray()
         while len(data) < size:
             remaining = deadline - time.monotonic()
@@ -199,6 +230,7 @@ class ServoBus:
         if self._closed:
             raise ServoError("Serial bus is closed")
         try:
+            self._rx_buffer.clear()
             self._serial.reset_input_buffer()
             written = self._serial.write(packet)
         except OSError as exc:

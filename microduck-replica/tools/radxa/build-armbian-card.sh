@@ -6,8 +6,8 @@
 #      换成瑞莎 u-boot-rk2410 包里的 idbloader.img + u-boot.itb（扇区 64 / 16384）
 #   2. 瑞莎 U-Boot 走 extlinux：写 /boot/extlinux/extlinux.conf，挂 uart2-m0（舵机串口 /dev/ttyS2）
 #      和 dwc3-peripheral（OTG 口插电脑就是串口）两个 overlay，内核控制台放 tty1，不占舵机串口
-#   3. 首次开机预设：用户名密码、locale、时区；WiFi 用 Armbian 标准 netplan 写法，
-#      官方 migrate-network.sh 能接手
+#   3. 首次开机预设：用户名密码、locale、时区；WiFi 用 wpa_supplicant，
+#      systemd-networkd 为 wlan0 获取 IPv4 DHCP 地址
 #   4. USB 串口控制台：g_serial + serial-getty@ttyGS0，板子插电脑多出一个 COM 口，救命用
 #   5. 把登录控制台从舵机串口上拿掉：mask serial-getty@ttyS2 / ttyFIQ0
 set -euo pipefail
@@ -132,7 +132,7 @@ chmod 644 "$R/root/先连WiFi.txt"
 else
 # WiFi 用 wpa_supplicant（V1.12 + AIC8800 实测能连的那套；netplan 的写法没在这块板上验证过）。
 # pairwise=CCMP + ieee80211w=0 是绕开 AIC8800 不支持 GCMP-256 的关键，路由器开 WPA2/WPA3 混合时缺了就握不上手。
-# DHCP 交给 Armbian 自带的 /etc/netplan/10-dhcp-all-interfaces.yaml。
+# 基线镜像自带的 netplan 只匹配有线接口，必须单独为 wlan0 启用 DHCP。
 mkdir -p "$R/etc/wpa_supplicant"
 cat > "$R/etc/wpa_supplicant/wpa_supplicant-wlan0.conf" <<CONF
 ctrl_interface=DIR=/run/wpa_supplicant GROUP=netdev
@@ -151,6 +151,19 @@ network={
 CONF
 chmod 600 "$R/etc/wpa_supplicant/wpa_supplicant-wlan0.conf"
 ln -sf /lib/systemd/system/wpa_supplicant@.service "$R/etc/systemd/system/multi-user.target.wants/wpa_supplicant@wlan0.service"
+mkdir -p "$R/etc/systemd/network"
+cat > "$R/etc/systemd/network/25-wlan0.network" <<'NETWORK'
+[Match]
+Name=wlan0
+
+[Network]
+DHCP=ipv4
+
+[DHCPv4]
+SendHostname=yes
+NETWORK
+chmod 644 "$R/etc/systemd/network/25-wlan0.network"
+ln -sf /lib/systemd/system/systemd-networkd.service "$R/etc/systemd/system/multi-user.target.wants/systemd-networkd.service"
 fi
 if [ -n "${HTTP_PROXY:-}" ]; then
   printf 'http_proxy=%s\nhttps_proxy=%s\nHTTP_PROXY=%s\nHTTPS_PROXY=%s\nno_proxy=localhost,127.0.0.1,192.168.0.0/16\nNO_PROXY=localhost,127.0.0.1,192.168.0.0/16\n' "$HTTP_PROXY" "$HTTP_PROXY" "$HTTP_PROXY" "$HTTP_PROXY" >> "$R/etc/environment"
@@ -165,6 +178,7 @@ rm -f "$R/etc/systemd/system/getty.target.wants/serial-getty@ttyFIQ0.service"
 sync; umount "$R"
 cp "$WORK/card.img" "$OUT"
 echo; echo "好了，用 Rufus / Armbian Imager 烧这个： $OUT"
+echo "若预设账户暂不能登录，先通过 USB 串口以 root/1234 完成首次初始化。"
 if [ "$PUBLIC" = 1 ]; then
   echo "公开镜像：没写 WiFi。插电脑的 USB 线就是串口（COM 口，115200），登录 ${USER_NAME:-duck}/${USER_PASSWORD:-duck1234} 后按 /root/先连WiFi.txt 连网，第一件事改密码。"
 else

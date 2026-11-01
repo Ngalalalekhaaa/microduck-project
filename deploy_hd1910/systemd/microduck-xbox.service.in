@@ -1,0 +1,25 @@
+[Unit]
+Description=Microduck Xbox A HOME / Menu walk / B torque off
+Wants=bluetooth.service
+After=bluetooth.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=@USER@
+WorkingDirectory=@ROOT@
+Environment=PYTHONUNBUFFERED=1
+Environment=OPENBLAS_NUM_THREADS=1
+Environment=OMP_NUM_THREADS=1
+EnvironmentFile=-/etc/default/microduck-xbox
+ExecStart="@PYTHON@" "@SCRIPT@"
+Restart=on-failure
+RestartSec=3
+KillMode=mixed
+TimeoutStopSec=25
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=microduck-xbox
+
+[Install]
+WantedBy=multi-user.target

@@ -394,8 +394,13 @@ class RuntimeGuardTests(unittest.TestCase):
             feedback = r.bus.read_feedback_many(r.bus.ids, sync=True)
             runtime.check_feedback(feedback, r.cfg)
             sid = r.bus.ids[0]
+            for voltage in (5.0, 6.4, 8.4):
+                accepted = dict(feedback)
+                accepted[sid] = dataclasses.replace(accepted[sid], voltage_v=voltage)
+                runtime.check_feedback(accepted, r.cfg)
             for change in ({"received_at": r.clock.now - 1}, {"status": 4},
-                           {"voltage_v": 6.0}, {"temperature_c": 60}, {"position_ticks": 4096}):
+                           {"voltage_v": 4.9}, {"voltage_v": 8.5},
+                           {"temperature_c": 60}, {"position_ticks": 4096}):
                 bad = dict(feedback)
                 bad[sid] = dataclasses.replace(bad[sid], **change)
                 with self.subTest(change=change), self.assertRaises(runtime.StopRequested):

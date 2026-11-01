@@ -1,0 +1,27 @@
+{
+  "checkpoint_iteration": 4999,
+  "checkpoint_sha256": "e80783ff0a27806dad7e993bd9f76ce519a4dcad4177b65579e9318279e653e9",
+  "parent_model": "hd1910_sitstand_1699.onnx",
+  "model_sha256": "3eca03930849f171b7a9b34b496250effbf83217611647a1cb2475b5a4674783",
+  "deployment_kind": "user_requested_experimental_trial",
+  "trained_task_execution_passed": false,
+  "known_limitation": "Nominal closed-loop SIT flag keeps trunk near standing height; sit/stand skill regressed.",
+  "onnx_numeric_parity_passed": true,
+  "onnx_parity_max_abs_error": 1.0728836059570312e-06,
+  "cpu_nominal_max_tilt_deg": 8.670110702514648,
+  "cpu_sit_mean_height_m": 0.11557530233101439,
+  "cpu_target_sit_height_m": 0.06,
+  "gpu_nominal_successful_cycles": 0,
+  "gpu_nominal_worlds": 32,
+  "hardware_motion_tested": false,
+  "control_frequency_hz": 50,
+  "actor_input_dim": 61,
+  "action_dim": 14,
+  "requires_current_observation": false,
+  "ram_gains": {
+    "p": 5,
+    "d": 0,
+    "i": 0
+  },
+  "tilt_failure_deg": 35
+}

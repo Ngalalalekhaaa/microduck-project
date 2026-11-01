@@ -7,9 +7,10 @@ from unittest.mock import Mock
 import numpy as np
 import pytest
 
-from microduck_deploy.config import load_config, calibration_arrays
+from microduck_deploy.config import calibration_arrays
 from microduck_deploy.policy import HOME, q_to_ticks, PolicyContractError
 from microduck_deploy.runtime import validate_targets, target_angle_warnings, StopRequested
+from test_runtime import calibrated_config
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_recorded_rejected_frame_passes_unchanged_only_when_enabled():
     path = ROOT.parent / 'reports/xgoduck_deploy_40000/trials/motion_20260930_111651_499457.session.json'
     recorded = json.loads(path.read_text())['rejected_policy_step']
-    cfg = load_config(ROOT / 'robot.json')
+    cfg = calibrated_config()
     target, previous = recorded['target'], recorded['previous_target']
     with pytest.raises(StopRequested, match='right_hip_yaw'):
         validate_targets(target, previous, cfg)
@@ -30,7 +31,7 @@ def test_recorded_rejected_frame_passes_unchanged_only_when_enabled():
 
 
 def test_large_target_jump_logged_without_clipping_but_invalid_targets_rejected():
-    cfg = load_config(ROOT / 'robot.json')
+    cfg = calibrated_config()
     cfg['control']['log_only_target_angles'] = True
     target = HOME.copy()
     target[3] += np.deg2rad(60)

@@ -18,8 +18,11 @@ REFERENCE_MAX_SPEED_RAD_S = float(np.deg2rad(12.0))
 
 
 def validate_reference_calibration(cfg, from_pose):
+    if from_pose == "assembly":
+        from .assembly import assembly_reference
+        return assembly_reference(cfg)
     if from_pose != "straight":
-        raise ValueError("参考姿态入口只支持 --from-pose straight")
+        raise ValueError("参考姿态入口只支持 --from-pose straight 或 assembly")
     require_calibration(cfg, imu=False)
     saved = cfg["calibration"]
     ids = [j["id"] for j in cfg["joints"]]
@@ -33,6 +36,7 @@ def validate_reference_calibration(cfg, from_pose):
             or not np.allclose(ref, STRAIGHT_REFERENCE, rtol=0, atol=1e-10)
             or not np.allclose(ticks_to_q(ticks, zero, direction), ref, rtol=0, atol=1e-10)):
         raise ValueError("直腿参考角、记录刻度与软件零位不一致；重新标定，不要手改记录")
+    return ticks, ref
 
 
 def plan_home(cfg, q, *, from_pose=None, move_seconds=None):
@@ -41,18 +45,19 @@ def plan_home(cfg, q, *, from_pose=None, move_seconds=None):
     if q.shape != (14,) or not np.all(np.isfinite(q)):
         raise ValueError("当前位置必须是14个有限角度")
     if from_pose is not None:
-        validate_reference_calibration(cfg, from_pose)
-        distance = np.abs(q - STRAIGHT_REFERENCE)
+        _, reference = validate_reference_calibration(cfg, from_pose)
+        reference_name = "装配" if from_pose == "assembly" else "直腿"
+        distance = np.abs(q - reference)
         bad = np.flatnonzero(distance > REFERENCE_TOLERANCE_RAD)
         if len(bad):
-            raise ValueError("当前姿态偏离直腿标定参考超过5°：" + ", ".join(
+            raise ValueError(f"当前姿态偏离{reference_name}标定参考超过5°：" + ", ".join(
                 f"{JOINT_NAMES[i]} {np.rad2deg(distance[i]):.2f}°" for i in bad))
         duration = REFERENCE_MIN_SECONDS if move_seconds is None else float(move_seconds)
         if not math.isfinite(duration) or not REFERENCE_MIN_SECONDS <= duration <= 30:
-            raise ValueError("从直腿移到HOME的 --move-seconds 必须在8..30秒之间")
+            raise ValueError(f"从{reference_name}移到HOME的 --move-seconds 必须在8..30秒之间")
     else:
         if np.max(np.abs(q - HOME)) > cfg["control"]["max_start_distance_rad"]:
-            raise ValueError("启动姿态离HOME太远；摆到接近HOME，或使用已标定的 --from-pose straight")
+            raise ValueError("启动姿态离HOME太远；摆到接近HOME，或使用已标定的 --from-pose straight/assembly")
         duration = float(cfg["control"]["home_duration_s"] if move_seconds is None else move_seconds)
         if not math.isfinite(duration) or not 0 < duration <= 30:
             raise ValueError("回HOME时长必须在0..30秒之间")

@@ -263,7 +263,12 @@ def run_export(task_id: str, cfg: ExportConfig) -> ExportResult:
 
     runner.export_policy_to_onnx(path, filename)
 
-    metadata = get_base_metadata(runner.env.unwrapped, run_path=cfg.checkpoint_file)
+    if "home_calibration" in runner.env.unwrapped.action_manager.active_terms:
+        from mjlab_microduck.tasks.home_calibration_runner import home_calibration_metadata
+
+        metadata = home_calibration_metadata(runner.env.unwrapped, str(resume_path))
+    else:
+        metadata = get_base_metadata(runner.env.unwrapped, run_path=cfg.checkpoint_file)
     attach_metadata_to_onnx(onnx_path, metadata)
 
     print(f"Written {onnx_path}")

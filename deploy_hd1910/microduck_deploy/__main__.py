@@ -103,8 +103,16 @@ def main(argv=None):
     mapping.add_argument('--direction', type=int, choices=(-1, 1), required=True)
     calibration = sub.add_parser('calibrate', help='在已知物理姿态记录软件零位，不写舵机EEPROM')
     calibration.add_argument('--pose', choices=('zero', 'home', 'straight'), required=True)
+    calibration.add_argument('--samples', type=int, choices=(1, 12), default=12,
+                             help='1: 单次读取14关节；12: 多次平均并检查稳定性（默认12）')
+    assembly_template_cmd = sub.add_parser('assembly-template', help='离线生成待填写的45°孔位装配表，不猜测中位孔型')
+    assembly_template_cmd.add_argument('--output', type=Path, required=True)
+    assembly_calibration = sub.add_parser('assembly-calibrate', help='按已确认装配几何计算零偏及HOME；默认离线预览')
+    assembly_calibration.add_argument('--profile', type=Path, required=True)
+    assembly_calibration.add_argument('--output', type=Path, help='保存计算报告JSON；不允许覆盖配置或装配表')
+    assembly_calibration.add_argument('--apply', action='store_true', help='保存软件标定并备份原robot.json；不连接硬件')
     planning = sub.add_parser('home-plan', help='只读当前刻度并预览回HOME目标/角差；不需IMU、不发动作')
-    planning.add_argument('--from-pose', choices=('straight',))
+    planning.add_argument('--from-pose', choices=('straight', 'assembly'))
     planning.add_argument('--move-seconds', type=float)
     sub.add_parser('pose', help='显示14关节HOME/零姿正转轴及姿态图路径')
     imu = sub.add_parser('imu', help='只读IMU，静止校偏后显示gyro/gravity')
@@ -124,8 +132,8 @@ def main(argv=None):
             cmd.add_argument('--enable-motion', action='store_true', required=True,
                              help='明确请求本次命令上力；不保存为自动启动设置')
         if name == 'home':
-            cmd.add_argument('--from-pose', choices=('straight',),
-                             help='仅从已标定且当前接近的直腿参考姿态进入HOME')
+            cmd.add_argument('--from-pose', choices=('straight', 'assembly'),
+                             help='从已标定且当前接近的直腿/装配参考姿态进入HOME')
             cmd.add_argument('--move-seconds', type=float,
                              help='移动时长；直腿参考默认8秒，允许8..30秒；seconds为到位后保持时长')
     args = parser.parse_args(argv)
@@ -147,6 +155,43 @@ def main(argv=None):
         print(f"姿态图: {ROOT/'docs/姿态与零位.md'}")
         return 0
     cfg = load_config(args.config)
+    if args.command == 'assembly-template':
+        from .assembly import assembly_template
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        with args.output.open('x', encoding='utf-8') as stream:
+            json.dump(assembly_template(cfg), stream, ensure_ascii=False, indent=2)
+            stream.write('\n')
+        print(f'装配表已生成：{args.output.resolve()}。null为待核对数据；不能直接用于标定。未连接硬件。')
+        return 0
+    if args.command == 'assembly-calibrate':
+        from .assembly import compile_assembly, record_assembly
+        if args.profile.resolve() == args.config.resolve():
+            raise ValueError('装配表必须与robot.json分开保存')
+        if args.output is not None and args.output.resolve() in (args.config.resolve(), args.profile.resolve()):
+            raise ValueError('计算报告不能覆盖robot.json或装配几何表')
+        profile = json.loads(args.profile.read_text(encoding='utf-8'))
+        report = compile_assembly(cfg, profile)
+        if args.output is not None:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            with args.output.open('w', encoding='utf-8') as stream:
+                json.dump(report, stream, ensure_ascii=False, indent=2, allow_nan=False)
+                stream.write('\n')
+        print('关节                    ID  档位   中立模型角   软件零点    HOME角  HOME刻度   转动角')
+        for row in report['joints']:
+            print(f"{row['name']:<23} {row['id']:>3} {row['hole_steps']:>5}"
+                  f" {row['reference_deg']:>11.3f} {row['zero_tick']:>10.3f}"
+                  f" {row['home_deg']:>9.3f} {row['home_tick']:>9} {row['move_deg']:>9.3f}")
+        if args.apply:
+            record_assembly(cfg, profile)
+            save_config(args.config, cfg)
+            print(f'已保存assembly软件标定并备份原配置：{args.config.resolve()}')
+            print('下一步：./run.sh home-plan --from-pose assembly --move-seconds 12')
+        else:
+            print('仅计算预览，robot.json未改动；确认装配表后追加 --apply 保存。')
+        print('未读取硬件、未发目标/扭矩/EEPROM指令；数值一致不证明实物姿态正确。')
+        if args.output is not None:
+            print(f'计算报告：{args.output.resolve()}')
+        return 0
     if args.command == 'map-ids':
         changed = apply_joint_ids(cfg, json.loads(args.profile.read_text(encoding='utf-8')))
         if changed:
@@ -301,15 +346,32 @@ def main(argv=None):
                 if conf['torque'] != 0 or conf['angle_resolution'] != 1:
                     raise ValueError(f'ID{sid}需先托住并relax，分辨率应为1；当前{conf}')
             samples=[]
-            for _ in range(12):
+            for _ in range(args.samples):
                 readings=bus.read_feedback_many(ids,sync=True)
                 samples.append([readings[sid].position_ticks for sid in ids])
-                time.sleep(.02)
+                if args.samples == 12:
+                    time.sleep(.02)
             samples=np.asarray(samples)
-            if np.max(np.ptp(samples,axis=0)) > 8:
-                raise ValueError('标定期间关节移动超过8刻度，请固定已知姿态后重试')
-            ticks=np.rint(np.mean(samples,axis=0)).astype(int)
-            record_reference(cfg,ticks,args.pose,policy_calibration_reference(args.pose))
+            from datetime import datetime, timezone
+            from .calibration_capture import capture_report, describe_issues
+            capture = capture_report(cfg, samples, args.pose)
+            captured_at = datetime.now(timezone.utc)
+            capture['utc'] = captured_at.isoformat()
+            capture_path = args.config.parent / 'logs' / (
+                'calibration_capture_' + captured_at.strftime('%Y%m%d_%H%M%S_%f') + '.json')
+            capture_path.parent.mkdir(parents=True, exist_ok=True)
+            with capture_path.open('x', encoding='utf-8') as capture_file:
+                json.dump(capture, capture_file, ensure_ascii=False, indent=2, allow_nan=False)
+                capture_file.write('\n')
+            print(f'原始标定采样已保存：{capture_path}', flush=True)
+            try:
+                if args.samples == 12 and np.max(np.ptp(samples,axis=0)) > 8:
+                    raise ValueError('标定期间关节移动超过8刻度，请固定已知姿态后重试')
+                ticks=np.rint(np.mean(samples,axis=0)).astype(int)
+                record_reference(cfg,ticks,args.pose,policy_calibration_reference(args.pose))
+            except ValueError as exc:
+                details = describe_issues(capture)
+                raise ValueError(f'{exc} {details} 原始采样保存在 {capture_path}') from exc
             save_config(args.config,cfg)
             output(cfg['calibration'])
             if args.pose == 'straight':

@@ -1,0 +1,31 @@
+{
+  "evaluation_report": "runs/20261001_hd1910_velocity_eval/README.md",
+  "control_hz": 50,
+  "observation_size": 61,
+  "action_size": 14,
+  "ranking_scope": "Latest evaluated checkpoints; simulation results, not real robot validation",
+  "models": {
+    "flat": {
+      "iteration": 9750,
+      "task": "Mjlab-Velocity-Flat-MicroDuck-HD1910",
+      "file": "models/hd1910_flat_9750.onnx",
+      "sha256": "71ebffece153a443ea481996cddf04b4b7ef1eadbfecff40f4cd62dc5b552061",
+      "checkpoint": "microduck_rl_hd1910/logs/rsl_rl/local_hd1910_flat_train/2026-10-01_09-32-10_continuous_flat_20261001_093200/model_9750.pt",
+      "checkpoint_sha256": "89acea43901aa8dd4c630edb48bfed2baa11311f9d3e8b433d4026827237a1db",
+      "onnx_checkpoint_max_abs_difference": 4.76837158203125e-07,
+      "validation_observations": 1000,
+      "metadata_contract_passed": true
+    },
+    "backlash": {
+      "iteration": 9729,
+      "task": "Mjlab-Velocity-Flat-Backlash-MicroDuck-HD1910",
+      "file": "models/hd1910_backlash_9729.onnx",
+      "sha256": "3617202bb946aacb957e251597ba1073d037482f4c93710aa9491b9cae204743",
+      "checkpoint": "microduck_rl_hd1910/logs/rsl_rl/local_hd1910_backlash_train/2026-10-01_09-21-13_continuous_backlash_20261001_092103/model_9729.pt",
+      "checkpoint_sha256": "dc6ecbcc3e85a14b7693a2034511ff9a6034bcbda435366b75ec92045c6a075e",
+      "onnx_checkpoint_max_abs_difference": 5.811452865600586e-07,
+      "validation_observations": 1000,
+      "metadata_contract_passed": true
+    }
+  }
+}

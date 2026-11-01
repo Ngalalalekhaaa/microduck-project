@@ -21,7 +21,7 @@ if [[ ! -x .venv/bin/python ]] || ! .venv/bin/python -m pip --version >/dev/null
     exit 1
   }
 fi
-.venv/bin/python -m pip install --no-cache-dir --only-binary=:all: -r requirements.txt
+.venv/bin/python -m pip install --no-cache-dir --only-binary=:all: --no-binary=evdev -r requirements.txt
 chmod +x run.sh
 .venv/bin/python -m microduck_deploy self-test
 echo '安装完成。下一步: ./run.sh init，再 ./run.sh map-ids --profile servo_ids.user.json，然后 ./run.sh doctor'

@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "scope": "Public source and deployment model snapshot; robot calibration and training checkpoints excluded",
+  "checks": {
+    "hd1910_deployment": {
+      "passed": 1583,
+      "subtests_passed": 375,
+      "seconds": 207.8
+    },
+    "xgoduck_deployment": {
+      "passed": 47,
+      "subtests_passed": 22
+    },
+    "hd1910_training_configs": {
+      "passed": 80,
+      "skipped": 2,
+      "seconds": 92.99
+    },
+    "workflow_script_tests_summary": "21 passed in 81.41s (0:01:21)",
+    "deployment_onnx_contracts_and_finite_cpu_output": 17,
+    "public_keyboard_model_hashes": 11,
+    "python_syntax_and_json_parsing": "passed"
+  },
+  "training_started": false,
+  "robot_motion_started": false,
+  "experimental_sitstand_4999_task_passed": false
+}

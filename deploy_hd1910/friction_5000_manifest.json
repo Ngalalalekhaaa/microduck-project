@@ -1,0 +1,23 @@
+{
+  "training_config_verified": false,
+  "assumption": "Current HD-1910 HOME, joint order, observation layout, ELU activation and action scale; original training configuration not supplied",
+  "control_hz": 50,
+  "observation_size": 61,
+  "action_size": 14,
+  "models": {
+    "flat": {
+      "iteration": 5000,
+      "file": "models/hd1910_friction_flat_5000.onnx",
+      "sha256": "002611b46ac0995d1d89cbed4deaee55701da2f4e8ecdab2bb688bd1203c14cd",
+      "checkpoint": "/home/luckysir/文档/xwechat_files/wxid_s317mgfyvs8k22_37de/msg/file/2026-10/model_5000_flat.pt",
+      "checkpoint_sha256": "f6ae02f7b11f55ffd73486d7d1e0231809c6d3484438c2c62987ff491eac11c9"
+    },
+    "backlash": {
+      "iteration": 5000,
+      "file": "models/hd1910_friction_backlash_5000.onnx",
+      "sha256": "f7c6b937f340e5777b55dbdecdfbd665d66eca91adac9b7210dc19bb66055414",
+      "checkpoint": "/home/luckysir/文档/xwechat_files/wxid_s317mgfyvs8k22_37de/msg/file/2026-10/model_5000_backlash.pt",
+      "checkpoint_sha256": "42f24d84012976f0454cbc8f00f23e83035e5c32e621f289f9f109d944432573"
+    }
+  }
+}

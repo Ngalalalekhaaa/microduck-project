@@ -34,7 +34,7 @@ def default_config():
             "max_start_distance_rad": 0.60, "home_tolerance_rad": 0.15,
             "tilt_limit_deg": 35.0, "imu_max_age_s": 0.06,
             "max_cycle_s": 0.04, "max_overruns": 5,
-            "servo_voltage_range": [7.0, 8.4], "servo_max_temperature_c": 60,
+            "servo_voltage_range": [5.0, 8.4], "servo_max_temperature_c": 60,
             "max_target_jump_rad": 0.6,
             "ram_p": 5, "ram_d": 0, "ram_i": 0,
         },

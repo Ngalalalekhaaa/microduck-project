@@ -1,5 +1,6 @@
 """Isolate Linux IMU polling from the foreground controller's Python thread."""
 import multiprocessing as mp
+import math
 from queue import Empty
 import time
 from types import SimpleNamespace
@@ -7,13 +8,13 @@ import numpy as np
 from .imu import ImuConfig, ImuError, ImuState, open_imu
 
 
-def _worker(values, calibrate, samples, bias, ready, stop, errors, failed=None):
+def _worker(values, calibrate, samples, bias, ready, stop, errors, failed=None, calibration_samples=240):
     sensor = None
     try:
         sensor = open_imu(ImuConfig.from_dict(values))
         sensor.initialize()
         if calibrate:
-            sensor.calibrate_gyro(sample_count=240)
+            sensor.calibrate_gyro(sample_count=calibration_samples)
         bias[:] = sensor.gyro_bias_rad_s.tolist()
         while not stop.is_set():
             state = sensor.read_state(timeout_s=.05)
@@ -32,7 +33,13 @@ def _worker(values, calibrate, samples, bias, ready, stop, errors, failed=None):
 
 
 class ProcessImuReader:
-    def __init__(self, cfg, *, calibrate=True):
+    def __init__(self, cfg, *, calibrate=True, calibration_seconds=None):
+        sensor_config = ImuConfig.from_dict(cfg['imu'])
+        calibration_samples = 240
+        if calibration_seconds is not None:
+            if not math.isfinite(calibration_seconds) or not .5 <= calibration_seconds <= 5:
+                raise ValueError('IMU校偏采样时长须在0.5..5秒之间')
+            calibration_samples = math.ceil(sensor_config.odr_hz * calibration_seconds)
         context = mp.get_context('spawn')
         self.samples = context.Array('d', 10)
         bias = context.Array('d', 3)
@@ -40,13 +47,13 @@ class ProcessImuReader:
         self.stop = context.Event()
         self.errors = context.Queue(maxsize=1)
         self.failed = context.Event()
-        self.process = context.Process(target=_worker, args=(cfg['imu'],calibrate,self.samples,bias,ready,self.stop,self.errors,self.failed), daemon=True)
+        self.process = context.Process(target=_worker, args=(cfg['imu'],calibrate,self.samples,bias,ready,self.stop,self.errors,self.failed,calibration_samples), daemon=True)
         self.process.start()
         try:
             if not ready.wait(8):
                 raise ImuError('IMU process startup timed out')
             self.latest(.2)
-            self.imu = SimpleNamespace(config=ImuConfig.from_dict(cfg['imu']), gyro_bias_rad_s=np.array(bias[:]))
+            self.imu = SimpleNamespace(config=sensor_config, gyro_bias_rad_s=np.array(bias[:]))
         except BaseException:
             self.close()
             raise

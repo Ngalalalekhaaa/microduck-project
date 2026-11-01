@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "samples": 128,
+  "input_shape": [
+    1,
+    61
+  ],
+  "output_shape": [
+    1,
+    14
+  ],
+  "max_abs_error": 8.344650268554688e-07,
+  "observation_normalizer_included": true,
+  "checkpoint": "/home/luckysir/\u6587\u6863/xwechat_files/wxid_s317mgfyvs8k22_37de/msg/file/2026-10/model_30000_backlash.pt",
+  "onnx": "/home/luckysir/microduck/deploy_hd1910/models/hd1910_backlash_30000.onnx"
+}

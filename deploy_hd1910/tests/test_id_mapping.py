@@ -66,6 +66,27 @@ class IdMappingTests(unittest.TestCase):
             self.assertIsNone(joint['zero_tick'])
             self.assertFalse(joint['mapping_verified'])
 
+    def test_duck1_profile_excludes_mouth_and_invalidates_changed_leg_calibration(self):
+        cfg = calibrated_config()
+        apply_joint_ids(cfg, self.profile)
+        for joint in cfg['joints']:
+            joint.update(direction=1, mapping_verified=True)
+        record_reference(cfg, [2000] * 14, 'home', HOME)
+        before = copy.deepcopy(cfg)
+        profile = json.loads((ROOT / 'servo_ids.duck1.json').read_text())
+        changed = apply_joint_ids(cfg, profile)
+        self.assertEqual(changed, list(JOINT_NAMES[9:]))
+        self.assertEqual([j['id'] for j in cfg['joints']],
+                         list(range(1, 10)) + list(range(11, 16)))
+        self.assertEqual(cfg['joints'][:9], before['joints'][:9])
+        self.assertEqual(cfg['imu'], before['imu'])
+        self.assertEqual(cfg['imu_mount_verified'], before['imu_mount_verified'])
+        for joint in cfg['joints'][9:]:
+            self.assertIsNone(joint['direction'])
+            self.assertIsNone(joint['zero_tick'])
+            self.assertFalse(joint['mapping_verified'])
+        self.assertIsNone(cfg['calibration'])
+
     def test_cli_saves_with_backup_and_never_opens_hardware(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / 'robot.json'

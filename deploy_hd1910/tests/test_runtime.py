@@ -188,7 +188,9 @@ def rig(*, owned=False, cfg=None):
         stack.enter_context(patch.object(runtime, "log_path", return_value=Path(directory) / "run.jsonl"))
         stack.enter_context(patch.object(ctl, "_install_signals"))
         stack.enter_context(patch.object(runtime.sys, "stdin", SimpleNamespace(isatty=lambda: False)))
-        stack.enter_context(patch.object(runtime.threading, "Thread"))  # no background/hardware threads
+        stack.enter_context(patch.object(runtime, "threading", SimpleNamespace(
+            Thread=Mock(), current_thread=threading.current_thread,
+            main_thread=threading.main_thread)))  # no hardware/watchdog threads
         factory = stack.enter_context(patch.object(runtime, "ServoBus", return_value=bus))
         stack.enter_context(patch.object(runtime, "ImuReader", return_value=imu))
         stack.enter_context(redirect_stdout(io.StringIO()))
@@ -260,7 +262,61 @@ def test_voltage_trial_bound_and_fault_batch_are_preserved():
         assert not any(e[0] in ('positions', 'torque', 'gains') for e in r.bus.events)
 
 
+def test_imu_fault_preserves_current_voltage_and_propagates_without_retry_or_writes():
+    from microduck_deploy.imu import ImuError
+    with rig() as r:
+        r.ctl._read()
+        previous = r.ctl.session['last_measurement']
+        r.imu.latest = Mock(side_effect=ImuError('IMU register 0x1e: [Errno 6]'))
+        with unittest.TestCase().assertRaises(ImuError):
+            r.ctl._read()
+        fault = r.ctl.session['imu_fault']
+        assert fault['feedback']
+        assert fault['observed_at_monotonic_s'] == r.clock.monotonic()
+        assert r.ctl.session['last_measurement'] is previous
+        r.imu.latest.assert_called_once()
+        assert not any(e[0] in ('positions', 'torque', 'gains') for e in r.bus.events)
+
+
+def test_voltage4_accepts_47_and_boundaries_rejects_under_and_over_voltage():
+    with rig() as r:
+        assert r.cfg['control']['servo_voltage_range'] == [4.0, 8.4]
+        original = r.bus.read_feedback_many
+        voltage = [4.7]
+        def feedback(ids, sync):
+            values = original(ids, sync)
+            sid = ids[-1]
+            values[sid] = dataclasses.replace(values[sid], voltage_v=voltage[0])
+            return values
+        r.bus.read_feedback_many = feedback
+        for value in (4.7, 4.0, 8.4):
+            voltage[0] = value
+            r.ctl._read()
+        for value in (3.9, 8.5):
+            voltage[0] = value
+            with unittest.TestCase().assertRaises(runtime.StopRequested):
+                r.ctl._read()
+            assert r.ctl.session['fault_feedback'][r.bus.ids[-1]].voltage_v == value
+        assert not any(e[0] in ('positions', 'torque', 'gains') for e in r.bus.events)
+
+
 class CalibrationConfigTests(unittest.TestCase):
+    def test_unlimited_policy_runs_past_sixty_seconds_then_b_stops_and_unloads(self):
+        from microduck_deploy.gamepad import GamepadStop
+        with rig() as r:
+            finish = r.clock.now + 61.5
+            def commands():
+                if r.clock.now >= finish:
+                    raise GamepadStop('Xbox B')
+                return (.1, 0, 0)
+            with self.assertRaisesRegex(GamepadStop, 'Xbox B'):
+                r.ctl.execute(seconds=0, motion=True, command_ramp_s=3,
+                              command_provider=commands)
+            self.assertGreater(r.policy.times[-1]-r.policy.times[0], 60)
+            self.assertTrue(r.ctl.session['unlimited_duration'])
+            self.assertFalse(r.ctl.enabled)
+            self.assertTrue(any(e[0] == 'torque' and e[2] is False for e in r.bus.events))
+
     def test_command_ramp_reaches_request_without_scaling_actions(self):
         with rig() as r:
             r.policy.output[:] = .01
@@ -394,8 +450,13 @@ class RuntimeGuardTests(unittest.TestCase):
             feedback = r.bus.read_feedback_many(r.bus.ids, sync=True)
             runtime.check_feedback(feedback, r.cfg)
             sid = r.bus.ids[0]
+            for voltage in (4.0, 4.7, 5.0, 6.4, 8.4):
+                accepted = dict(feedback)
+                accepted[sid] = dataclasses.replace(accepted[sid], voltage_v=voltage)
+                runtime.check_feedback(accepted, r.cfg)
             for change in ({"received_at": r.clock.now - 1}, {"status": 4},
-                           {"voltage_v": 6.0}, {"temperature_c": 60}, {"position_ticks": 4096}):
+                           {"voltage_v": 3.9}, {"voltage_v": 8.5},
+                           {"temperature_c": 60}, {"position_ticks": 4096}):
                 bad = dict(feedback)
                 bad[sid] = dataclasses.replace(bad[sid], **change)
                 with self.subTest(change=change), self.assertRaises(runtime.StopRequested):
@@ -421,6 +482,44 @@ class RuntimeGuardTests(unittest.TestCase):
             r.cfg["joints"][0]["zero_tick"] = 5000
             with self.assertRaises(ValueError):
                 runtime.validate_targets(HOME, HOME, r.cfg)
+
+    def test_target_logging_records_ankle_overshoot_and_jump_without_clipping(self):
+        with rig() as r:
+            r.cfg['control']['log_only_target_angles'] = True
+            target = HOME.copy()
+            target[4] = np.deg2rad(91.59)
+            warnings = runtime.target_angle_warnings(target, HOME, r.cfg)
+            self.assertEqual(len(warnings), 2)
+            self.assertIn('left_ankle', warnings[0])
+            self.assertIn('91.59', warnings[0])
+            zero, direction = config.calibration_arrays(r.cfg)
+            np.testing.assert_array_equal(runtime.validate_targets(target, HOME, r.cfg),
+                                          q_to_ticks(target, zero, direction))
+            self.assertAlmostEqual(target[4], np.deg2rad(91.59))
+            with self.assertRaises(runtime.StopRequested):
+                runtime.validate_targets(np.full(14, np.nan), HOME, r.cfg)
+            with self.assertRaises(runtime.StopRequested):
+                runtime.validate_targets(HOME, np.full(14, np.nan), r.cfg)
+            r.cfg['joints'][0]['zero_tick'] = 5000
+            with self.assertRaises(ValueError):
+                runtime.validate_targets(HOME, HOME, r.cfg)
+
+    def test_target_logging_sends_raw_policy_target_and_records_warning(self):
+        with rig() as r:
+            r.cfg['control']['log_only_target_angles'] = True
+            r.policy.output[4] = np.deg2rad(91.59) - HOME[4]
+            result = r.ctl.execute(seconds=.03, motion=True)
+            self.assertEqual(result['samples'], 1)
+            samples = [json.loads(line) for line in r.path.read_text().splitlines()
+                       if json.loads(line).get('kind') == 'sample']
+            self.assertEqual(len(samples), 1)
+            self.assertIn('91.59', samples[0]['target_check'])
+            self.assertIn('单周期目标变化过大', samples[0]['target_check'])
+            target = HOME + r.policy.output
+            np.testing.assert_allclose(samples[0]['target'], target)
+            zero, direction = config.calibration_arrays(r.cfg)
+            last_command = [e[2] for e in r.bus.events if e[0] == 'positions'][-1]
+            self.assertEqual(list(last_command.values()), q_to_ticks(target, zero, direction).tolist())
 
     def test_posture_rejects_nonfinite_nonunit_and_tilted_input(self):
         cfg = calibrated_config()
@@ -584,6 +683,8 @@ class ControllerTests(unittest.TestCase):
             enabled = next(i for i, event in enumerate(r.bus.events) if event[0] == "torque" and event[2])
             self.assertFalse(any(event[0] == "positions" for event in r.bus.events[enabled + 1:]))
             self.assertFalse([event for event in r.bus.events if event[0] == "torque"][-1][2])
+            self.assertAlmostEqual(r.ctl.session['servo_read_timing_fault']['read_ms'],60)
+            self.assertEqual(r.ctl.session['servo_read_timing_fault']['reply_ids'],r.bus.ids)
 
     def test_stop_request_prevents_further_goal_writes(self):
         with rig() as r:
@@ -636,6 +737,10 @@ class ControllerTests(unittest.TestCase):
             with self.assertRaisesRegex(runtime.StopRequested, "20ms"):
                 r.ctl.execute(seconds=0.5, motion=True)
             self.assertEqual(len(r.policy.times), 2)
+            fault = r.ctl.session['control_timing_fault']
+            self.assertEqual(fault['consecutive_overruns'],2)
+            self.assertAlmostEqual(fault['inference_ms'],25)
+            self.assertTrue(fault['policy_target_sent_this_step'])
             self.assertFalse([event for event in r.bus.events if event[0] == "torque"][-1][2])
 
     def test_policy_failure_closes_owned_resources_after_unloading(self):
@@ -671,3 +776,60 @@ class ControllerTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_sampling_gap_records_read_and_prior_delay_separately():
+    with rig() as r:
+        wait = r.ctl.stop.wait
+        delayed = False
+        def delayed_wait(timeout=None):
+            nonlocal delayed
+            result = wait(timeout)
+            if r.ctl.session.get('status') == 'running' and not delayed:
+                r.clock.advance(.04)
+                delayed = True
+            return result
+        r.ctl.stop.wait = delayed_wait
+        with unittest.TestCase().assertRaisesRegex(runtime.StopRequested, '采样间隔异常'):
+            r.ctl.execute(seconds=.2, motion=False)
+        fault = r.ctl.session['sampling_timing_fault']
+        assert fault['sample_gap_ms'] > fault['limit_ms']
+        assert fault['gap_before_this_read_ms'] >= 59
+        assert fault['this_read_ms'] < 5
+        assert not fault['policy_target_sent_this_step']
+        assert abs(fault['sample_gap_ms'] - fault['gap_before_this_read_ms'] - fault['this_read_ms']) < .001
+        assert r.policy.observations == []
+
+
+def test_sampling_fault_identifies_delayed_log_serialization():
+    with rig() as r:
+        dumps = runtime.json.dumps
+        delayed = False
+        def delayed_dumps(value, *args, **kwargs):
+            nonlocal delayed
+            if isinstance(value, dict) and value.get('kind') == 'sample' and not delayed:
+                r.clock.advance(.09)
+                delayed = True
+            return dumps(value, *args, **kwargs)
+        with patch.object(runtime.json, 'dumps', side_effect=delayed_dumps):
+            with unittest.TestCase().assertRaisesRegex(runtime.StopRequested, '采样间隔异常'):
+                r.ctl.execute(seconds=.3, motion=False)
+        fault = r.ctl.session['sampling_timing_fault']
+        timing = fault['previous_loop_timing']
+        assert timing['serialize_and_write_ms'] > 89
+        assert timing['wait_requested_ms'] == 0
+        assert timing['wait_elapsed_ms'] == 0
+        assert fault['this_read_ms'] < 5
+        assert len(r.policy.observations) == 1  # no second target sent
+
+
+def test_log_drain_wait_happens_after_torque_release():
+    with rig() as r:
+        finish = runtime.BackgroundLineLog.finish
+        def checked_finish(log, *args, **kwargs):
+            torque = [e for e in r.bus.events if e[0] == 'torque']
+            assert torque and torque[-1][2] is False
+            return finish(log, *args, **kwargs)
+        with patch.object(runtime.BackgroundLineLog, 'finish', checked_finish):
+            r.ctl.execute(seconds=.06, motion=True)
+        assert r.ctl.session['log_writer']['dropped_lines'] == 0

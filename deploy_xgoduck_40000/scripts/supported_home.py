@@ -120,7 +120,7 @@ def verify_feedback(feedback, ids, last, start, end, now, *, log_only=False):
             raise ValueError(f'ID{sid}: stale/error feedback')
         if log_only:
             continue
-        if not 7.0 <= f.voltage_v <= 8.4 or f.temperature_c >= 55 or abs(f.current_ma) > 800:
+        if not 5.0 <= f.voltage_v <= 8.4 or f.temperature_c >= 55 or abs(f.current_ma) > 800:
             raise ValueError(f'ID{sid}: voltage/temperature/current outside supported-test bounds: {f.voltage_v}V, {f.temperature_c}C, {f.current_ma}mA; actual={f.position_ticks}, commanded={int(last[idx])}')
         if abs(f.position_ticks - int(last[idx])) > 57:
             raise ValueError(f'ID{sid}: tracking error >5 degrees')

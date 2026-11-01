@@ -73,10 +73,25 @@ OBSERVATION_NAMES = (
     "command", "head_command", "body_command",
 )
 COMMAND_NAMES = ("twist", "head_pose", "body_pose")
+SITSTAND_COMMAND_NAMES = ("twist", "head_pose")
+GROUND_PICK_COMMAND_NAMES = ("twist",)
+ROULADE_COMMAND_NAMES = ("twist",)
 
 
 class PolicyContractError(ValueError):
     """A value or model does not satisfy the trained policy's contract."""
+
+
+def _policy_command_names(policy_kind: str) -> tuple[str, ...]:
+    if policy_kind == "walking":
+        return COMMAND_NAMES
+    if policy_kind == "sitstand":
+        return SITSTAND_COMMAND_NAMES
+    if policy_kind == "ground_pick":
+        return GROUND_PICK_COMMAND_NAMES
+    if policy_kind == "roulade":
+        return ROULADE_COMMAND_NAMES
+    raise PolicyContractError("policy_kind must be 'walking', 'sitstand', 'ground_pick' or 'roulade'")
 
 
 def _finite(value, name: str, shape: tuple[int, ...] | None = None) -> np.ndarray:
@@ -157,7 +172,9 @@ def build_obs61(
     6:20  q - exact HOME, rad, ordered as JOINT_NAMES.
     20:34 qd, rad/s, same order.
     34:48 previous raw policy action; initialize to zero after control reset.
-    48:51 twist [forward m/s, left m/s, yaw rad/s].
+    48:51 walking twist [forward m/s, left m/s, yaw rad/s], or sitstand
+          posture [sit_flag, 0, 0] (0 = stand, 1 = sit), or ground-pick
+          phase [cos(2*pi*phase), sin(2*pi*phase), 0], or roulade [0, 0, 0].
     51:55 head offsets [neck_pitch, head_pitch, head_yaw, head_roll], rad.
     55:61 body offsets [x, y, z, roll, pitch, yaw], metres/radians.
 
@@ -205,15 +222,20 @@ def action_to_targets(action, *, limits=None) -> np.ndarray:
     return target
 
 
-def validate_metadata(metadata: Mapping[str, str]) -> None:
+def validate_metadata(metadata: Mapping[str, str], *, policy_kind: str = "walking") -> None:
     """Refuse reordered, differently scaled or incompatible observation models."""
+    command_names = _policy_command_names(policy_kind)
     for key, expected in (
         ("joint_names", JOINT_NAMES), ("observation_names", OBSERVATION_NAMES),
-        ("command_names", COMMAND_NAMES),
+        ("command_names", command_names),
     ):
         actual = tuple(part.strip() for part in metadata.get(key, "").split(","))
         if actual != expected:
             raise PolicyContractError(f"ONNX {key} does not match the HD-1910 policy contract")
+    # Both ground-pick and roulade export only "twist". Their slot semantics
+    # differ, so the rollout loader also requires the supplied training tag.
+    if policy_kind == "roulade" and "roulade" not in metadata.get("run_path", "").lower():
+        raise PolicyContractError("ONNX run_path must identify a roulade training run")
     try:
         home = _finite([float(v) for v in metadata["default_joint_pos"].split(",")],
                        "ONNX default_joint_pos", (ACTION_SIZE,))
@@ -235,12 +257,16 @@ class OnnxPolicy:
     No automatic previous_action state: the controller stores infer()'s raw
     result only after its safety checks and successful command write. A reset
     starts history at zero. Only numpy and onnxruntime are needed on the robot.
+    Behavior policies must be selected explicitly: sitstand uses a posture
+    flag, ground_pick uses a phase vector, and roulade uses zero twist.
     """
 
-    def __init__(self, model_path: str | Path = DEFAULT_MODEL_PATH):
+    def __init__(self, model_path: str | Path = DEFAULT_MODEL_PATH, *, policy_kind: str = "walking"):
+        _policy_command_names(policy_kind)
         import onnxruntime as ort
 
         self.model_path = Path(model_path)
+        self.policy_kind = policy_kind
         options = ort.SessionOptions()
         options.intra_op_num_threads = 1
         options.inter_op_num_threads = 1
@@ -248,7 +274,7 @@ class OnnxPolicy:
             str(self.model_path), sess_options=options, providers=["CPUExecutionProvider"]
         )
         self.metadata = dict(self.session.get_modelmeta().custom_metadata_map)
-        validate_metadata(self.metadata)
+        validate_metadata(self.metadata, policy_kind=policy_kind)
         for items, name, width in (
             (self.session.get_inputs(), "obs", OBS_SIZE),
             (self.session.get_outputs(), "actions", ACTION_SIZE),
