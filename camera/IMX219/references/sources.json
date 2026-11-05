@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "assets": [
+    {
+      "path": "packages/camera_engine_rkaiq_rk3568_arm64-fixed.deb",
+      "url": "https://radxa-repo.github.io/bullseye/pool/main/c/camera-engine-rkaiq/camera_engine_rkaiq_rk3568_arm64-fixed.deb",
+      "sha256": "5c03ca9b857d53a3c6917402efc3e37e130d0e0cfad701b9b2b96a31eaf01081",
+      "description": "Radxa RK3566/RK3568 ISP engine 5.0x1.2-rc2, arm64"
+    },
+    {
+      "path": "packages/rockchip-iqfiles-rk356x_0.1.16_all.deb",
+      "url": "https://radxa-repo.github.io/bullseye/pool/main/r/rockchip-iqfiles/rockchip-iqfiles-rk356x_0.1.16_all.deb",
+      "sha256": "9a52cff23f336ba0671588edcaf803f1ffb3f695e466137622316ffceeda8eda",
+      "description": "Radxa IQ profiles 0.1.16, including imx219_rpi-camera-v2_default.json"
+    },
+    {
+      "path": "references/IMX219DS.PDF",
+      "url": "https://cdn.arducam.com/downloads/modules/RaspberryPi_camera/IMX219DS.PDF",
+      "sha256": "49250b153d55fe91a5a184651ef0eeab4316a195f7f6c2d42c068b336f237219",
+      "description": "Sony IMX219 datasheet, hosted by Arducam; retain original copyright"
+    },
+    {
+      "path": "references/imx219.c",
+      "url": "https://raw.githubusercontent.com/armbian/linux-rockchip/rk-6.1-rkr5.1/drivers/media/i2c/imx219.c",
+      "sha256": "c98f6e38b1efa41cd8eccb05815a838a2d7ceca945ff23084115ca306a93be63",
+      "description": "Matching vendor driver reference, GPL-2.0; downloaded for inspection, not installed"
+    }
+  ]
+}

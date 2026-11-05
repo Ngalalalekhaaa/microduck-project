@@ -1,0 +1,188 @@
+{
+  "date": "2026-11-05",
+  "hardware": {
+    "board": "Radxa ZERO 3W",
+    "soc": "RK3566",
+    "sensor": "IMX219 / Camera V2 compatible",
+    "os": "Armbian / Debian Trixie",
+    "kernel": "6.1.115-vendor-rk35xx",
+    "architecture": "aarch64"
+  },
+  "installation_success": true,
+  "service_running_after_capture": true,
+  "service_restart_count": 0,
+  "sensor_mode": [
+    1920,
+    1080
+  ],
+  "iq_sha256": "2cf410aca8051810369eac2c52717be2889c4a7329fc229ea5e36c2cbf77f53b",
+  "capture": {
+    "success": true,
+    "width": 640,
+    "height": 360,
+    "format": "NV12",
+    "bytes": 345600,
+    "sha256": "78389e59b93683bc773ba499b0c6c4e51ce7bb5825cb62f911817a25a426d714",
+    "color_range": "pc",
+    "target_y": 96.9,
+    "requested_controls": {
+      "exposure": 1760,
+      "analogue_gain": 1130
+    },
+    "ae_converged": true,
+    "ae_stop_reason": "converged",
+    "y_mean": 98.77386284722222,
+    "clipped_high_ratio": 0.0,
+    "ae_history": [
+      {
+        "stage": "ae_0",
+        "frame": 66,
+        "seconds": 2.705,
+        "requested_controls": {
+          "exposure": 500,
+          "analogue_gain": 256
+        },
+        "y_min": 0,
+        "y_max": 55,
+        "y_mean": 15.286788194444444,
+        "centre_y_mean": 11.848090277777779,
+        "metered_y": 12.879699652777777,
+        "clipped_high_ratio": 0.0,
+        "clipped_low_ratio": 0.3039279513888889
+      },
+      {
+        "stage": "ae_1",
+        "frame": 88,
+        "seconds": 3.297,
+        "requested_controls": {
+          "exposure": 1250,
+          "analogue_gain": 256
+        },
+        "y_min": 0,
+        "y_max": 102,
+        "y_mean": 31.26580729166667,
+        "centre_y_mean": 25.28370949074074,
+        "metered_y": 27.078338831018517,
+        "clipped_high_ratio": 0.0,
+        "clipped_low_ratio": 0.23292534722222222
+      },
+      {
+        "stage": "ae_2",
+        "frame": 105,
+        "seconds": 3.891,
+        "requested_controls": {
+          "exposure": 1760,
+          "analogue_gain": 455
+        },
+        "y_min": 2,
+        "y_max": 165,
+        "y_mean": 58.49799479166666,
+        "centre_y_mean": 50.3951099537037,
+        "metered_y": 52.82597540509259,
+        "clipped_high_ratio": 0.0,
+        "clipped_low_ratio": 0.001935763888888889
+      },
+      {
+        "stage": "ae_3",
+        "frame": 123,
+        "seconds": 4.484,
+        "requested_controls": {
+          "exposure": 1760,
+          "analogue_gain": 1130
+        },
+        "y_min": 7,
+        "y_max": 241,
+        "y_mean": 98.66593315972223,
+        "centre_y_mean": 89.81471836419753,
+        "metered_y": 92.47008280285493,
+        "clipped_high_ratio": 0.0,
+        "clipped_low_ratio": 0.0
+      },
+      {
+        "stage": "final",
+        "frame": 148,
+        "seconds": 5.336,
+        "requested_controls": {
+          "exposure": 1760,
+          "analogue_gain": 1130
+        },
+        "y_min": 8,
+        "y_max": 241,
+        "y_mean": 98.77386284722222,
+        "centre_y_mean": 89.85199652777777,
+        "metered_y": 92.52855642361111,
+        "clipped_high_ratio": 0.0,
+        "clipped_low_ratio": 0.0
+      }
+    ]
+  },
+  "exposure_register_evidence": [
+    {
+      "event": "snapshot",
+      "label": "before_streamoff",
+      "raw_register_values": {
+        "0x0000": 537,
+        "0x0157": 8388864,
+        "0x015a": 1575,
+        "0x0160": 2500
+      },
+      "exposure_lines": 1575,
+      "cached_exposure": 1575
+    },
+    {
+      "event": "snapshot",
+      "label": "after_set_before_streamon",
+      "raw_register_values": {
+        "0x0000": 537,
+        "0x0157": 8388864,
+        "0x015a": 2460,
+        "0x0160": 2500
+      },
+      "exposure_lines": 2460,
+      "cached_exposure": 2460
+    },
+    {
+      "event": "snapshot",
+      "label": "after_streamon_before_reapply",
+      "raw_register_values": {
+        "0x0000": 537,
+        "0x0157": 8388864,
+        "0x015a": 500,
+        "0x0160": 2500
+      },
+      "exposure_lines": 500,
+      "cached_exposure": 2460
+    },
+    {
+      "event": "snapshot",
+      "label": "after_streamon_reapply",
+      "raw_register_values": {
+        "0x0000": 537,
+        "0x0157": 8388864,
+        "0x015a": 2460,
+        "0x0160": 2500
+      },
+      "exposure_lines": 2460,
+      "cached_exposure": 2460
+    },
+    {
+      "event": "snapshot",
+      "label": "restored_streamoff",
+      "raw_register_values": {
+        "0x0000": 537,
+        "0x0157": 8388864,
+        "0x015a": 1575,
+        "0x0160": 2500
+      },
+      "exposure_lines": 1575,
+      "cached_exposure": 1575
+    }
+  ],
+  "acceptance": {
+    "frame_transfer": "passed on existing robot",
+    "auto_exposure": "converged in the successful recorded scene; not guaranteed for every scene",
+    "colour_and_sharpness": "not accepted: close subject/occlusion/direct light limited the tests",
+    "last_capture": "retained white-paper shot; user paused further capture",
+    "second_robot": "not connected; portable package checked offline only"
+  }
+}

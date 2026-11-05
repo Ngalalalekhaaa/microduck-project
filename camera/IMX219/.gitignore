@@ -1,0 +1,12 @@
+# Original room photographs, machine logs, obsolete experiments: local only.
+/archive/
+/captures/
+/logs/
+/diagnostics/
+/dist/
+__pycache__/
+*.py[cod]
+# Download from pinned official URLs; included in the local transfer bundle.
+/packages/*.deb
+/references/IMX219DS.PDF
+/references/imx219.c

@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-05",
+  "test": "fetch all four pinned assets into an initially empty standalone directory, then run --check",
+  "returncode": 0,
+  "all_sha256_verified": true,
+  "elapsed_seconds": 7.19,
+  "resources": [
+    {
+      "path": "packages/camera_engine_rkaiq_rk3568_arm64-fixed.deb",
+      "bytes": 2781508,
+      "sha256": "5c03ca9b857d53a3c6917402efc3e37e130d0e0cfad701b9b2b96a31eaf01081",
+      "expected_sha256": "5c03ca9b857d53a3c6917402efc3e37e130d0e0cfad701b9b2b96a31eaf01081"
+    },
+    {
+      "path": "packages/rockchip-iqfiles-rk356x_0.1.16_all.deb",
+      "bytes": 53168,
+      "sha256": "9a52cff23f336ba0671588edcaf803f1ffb3f695e466137622316ffceeda8eda",
+      "expected_sha256": "9a52cff23f336ba0671588edcaf803f1ffb3f695e466137622316ffceeda8eda"
+    },
+    {
+      "path": "references/IMX219DS.PDF",
+      "bytes": 2237503,
+      "sha256": "49250b153d55fe91a5a184651ef0eeab4316a195f7f6c2d42c068b336f237219",
+      "expected_sha256": "49250b153d55fe91a5a184651ef0eeab4316a195f7f6c2d42c068b336f237219"
+    },
+    {
+      "path": "references/imx219.c",
+      "bytes": 30476,
+      "sha256": "c98f6e38b1efa41cd8eccb05815a838a2d7ceca945ff23084115ca306a93be63",
+      "expected_sha256": "c98f6e38b1efa41cd8eccb05815a838a2d7ceca945ff23084115ca306a93be63"
+    }
+  ],
+  "network_findings": [
+    {
+      "resource": "references/IMX219DS.PDF",
+      "confirmed": "Python default User-Agent returned HTTP 403; Mozilla/5.0 returned HTTP 200 and the pinned SHA256."
+    },
+    {
+      "resource": "packages/camera_engine_rkaiq_rk3568_arm64-fixed.deb",
+      "observed_issue": "An earlier download during packaging had a SHA256 mismatch.",
+      "follow_up": "Independent downloads with both default and Mozilla/5.0 User-Agents returned HTTP 200, 2781508 bytes, and the same pinned SHA256.",
+      "cause": "Not determined; the mismatch was not reproduced. No claim that User-Agent alone caused it."
+    }
+  ],
+  "fixes": [
+    "Use browser-compatible User-Agent only for cdn.arducam.com; retain urllib default requests for the other vendors.",
+    "Require a full HTTP 200 response, check Content-Length when present, and always verify the original pinned SHA256 before atomically installing a file.",
+    "At most three attempts for transient network failures, incomplete responses, or hash mismatches; retries request cache revalidation and never change the expected hash.",
+    "Permanent HTTP errors such as 403 fail without repeated requests. Failed temporary downloads are removed; existing mismatched local assets are preserved and rejected."
+  ],
+  "offline_failure_checks": {
+    "bad_hash_then_valid_response": "passed",
+    "persistent_bad_hash_rejected_without_asset": "passed",
+    "partial_response_then_valid_response": "passed",
+    "arducam_only_browser_user_agent": "passed",
+    "http_403_no_repeated_requests": "passed",
+    "failed_temporary_files_removed": "passed"
+  },
+  "hardware_access": false
+}

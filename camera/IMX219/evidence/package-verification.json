@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-05",
+  "offline_tests": {
+    "passed": 20,
+    "failed": 0,
+    "skipped": 0,
+    "command": "python3 -m unittest discover -s tests -v",
+    "included": [
+      "real dtc/fdtoverlay merge with synthetic DT",
+      "UART2 and J5 preservation and conflict rejection",
+      "existing systemd drop-in conflicts and effective service verification",
+      "IQ source symlink preservation",
+      "simulated SSH/SCP with real ffmpeg decode and frame checksum",
+      "complete failure log retrieval",
+      "existing capture output protection",
+      "standalone path with spaces"
+    ]
+  },
+  "independent_bundle_review": {
+    "tar_build_extract_and_all_internal_checksums": "passed",
+    "standalone_asset_check_and_isp_preview": "passed",
+    "local_markdown_links": "passed"
+  },
+  "hardware_operations_during_packaging": "none",
+  "limits": [
+    "second robot not connected or tested",
+    "sensor AE loop previously tested on existing robot, offline tests do not emulate sensor hardware",
+    "colour and sharpness acceptance pending"
+  ]
+}

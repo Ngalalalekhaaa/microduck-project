@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/pollen-robotics/microduck",
+  "revision": "a9ec4b2079ef8ee7904014089c885bb07d57d63c",
+  "path": "scripts/rkaiq-modinfo-shim.c",
+  "url": "https://github.com/pollen-robotics/microduck/blob/a9ec4b2079ef8ee7904014089c885bb07d57d63c/scripts/rkaiq-modinfo-shim.c",
+  "license": "Apache-2.0 (repository LICENSE; the file has no alternative license notice)",
+  "sha256": "f78344c0346bf3a67890d3c01197995cc76fbce554c59da1ea7f651a2290cb6b",
+  "changes": "none"
+}
