@@ -1,0 +1,48 @@
+{
+  "verified_on": "2026-11-10",
+  "hardware": "Radxa ZERO 3W + HAT C1",
+  "kernel": "6.1.115-vendor-rk35xx",
+  "boot_configuration_applied": true,
+  "reboot_verified": true,
+  "bus": "/dev/i2c-10",
+  "bus_name": "i2c-j6",
+  "device_tree_node": "/i2c-j6",
+  "i2c_functionality": "0xfff801f",
+  "full_i2c_supported": true,
+  "sda": {
+    "j6_pin": 3,
+    "physical_header_pin": 7,
+    "gpio": "GPIO3_C4",
+    "offset": 20,
+    "flags": 6,
+    "idle_logic": "high"
+  },
+  "scl": {
+    "j6_pin": 4,
+    "physical_header_pin": 29,
+    "gpio": "GPIO3_B3",
+    "offset": 11,
+    "flags": 6,
+    "idle_logic": "high"
+  },
+  "delay_us": 10,
+  "timeout_ms": 100,
+  "bus_speed_measured": false,
+  "old_device_tree_nodes_preserved": 958,
+  "original_i2c3_present": true,
+  "aic3104_card_present": true,
+  "pcm_playback_raw": [
+    116,
+    116
+  ],
+  "camera_isp_service_active": true,
+  "xbox_service_enabled": true,
+  "xbox_service_active": false,
+  "dynamic_hdmi_i2c_bus_before": 6,
+  "dynamic_hdmi_i2c_bus_after": 11,
+  "hardware_sensor_probe_performed": false,
+  "hardware_distance_measurements_obtained": false,
+  "local_tests_passed": 5,
+  "radxa_tests_passed": 5,
+  "backup_directory": "/var/backups/microduck-j6-i2c/20261109_163033_969443"
+}

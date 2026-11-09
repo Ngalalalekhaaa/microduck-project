@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | [IMX219](IMX219/README.md) | IMX219 摄像头 → Radxa CSI | 已验证抓帧、ISP 与曝光收敛；标准光照画质尚未验收 |
 | [Speaker](Speaker/README.md) | 扬声器 → HAT J1；TLV320AIC3104 + PAM8406 | 音乐已由使用者确认音量够用、声音清楚；中文语音播放程序成功，尚待单独试听确认 |
-| [VL53L8CX](VL53L8CX/README.md) | 测距模块 → HAT J5 / I²C3 | 按 ST ULD 与手册准备；J5 已损坏，未连接、未读到距离 |
+| [VL53L8CX](VL53L8CX/README.md) | 测距模块 → HAT J6 软件 I²C，或原 J5 / I²C3 | 按 ST ULD 与手册准备；J5 已损坏，未连接、未读到距离 |
 
 测试不需要启动行走或 Xbox 控制程序。`camera/IMX219` 在仓库中保留为兼容符号链接，新命令统一使用 `sensors/IMX219`。
 
@@ -49,7 +49,7 @@ aplay -D plughw:CARD=aic3104,DEV=0 \
 
 语音文件峰值已调整为 0.60，并在头尾留有静音。不要直接把全部增益调到最大；任意其他 WAV 的响度可能不同。新板安装声卡、播放音乐和生成其他语句见 [Speaker 说明](Speaker/README.md)。
 
-## 激光测距：先准备，修好 J5 后再测试
+## 激光测距：J6 替代接口
 
 现在可以在 Radxa 安装编译工具并编译，以下命令不会访问 I²C：
 
@@ -61,17 +61,18 @@ make
 ./build/vl53l8cx_test --help
 ```
 
-**仅在 J5 修复、模块供电和使能接法确认后执行：**
+J5 插座损坏时，可按 [HAT_I2C 说明](HAT_I2C/README.md) 配置 J6；J6 信号顺序与 J5 相同，但使用独立的 `/dev/i2c-10`。**配置生效、断电接线并确认模块供电和使能接法后执行：**
 
 ```bash
 cd ~/sensors/VL53L8CX
-sudo ./build/vl53l8cx_test probe --bus /dev/i2c-3 --address 0x29
-sudo ./build/vl53l8cx_test range --bus /dev/i2c-3 --address 0x29 --frames 10 --hz 5
+sudo ./build/vl53l8cx_test probe --bus /dev/i2c-10 --address 0x29
+sudo ./build/vl53l8cx_test range --bus /dev/i2c-10 --address 0x29 \
+  --frames 10 --hz 2 --init-timeout-ms 120000
 ```
 
 `probe` 核对芯片身份；`range` 上传 ST 固件、初始化并读取 8×8 距离矩阵，单位为 mm。不能用一个 `i2cget` 命令代替完整初始化。上述是待实测命令，不是已经获得距离数据的记录。
 
-HAT J5 按引脚编号为 **1=GND、2=3.3V、3=SDA、4=SCL**；软件默认使用 Linux 7 位地址 `0x29`。用户的红色转接板虽有电平转换芯片，但尚无准确载板原理图，VIN 允许范围、LPn 与接口选择脚的默认电平仍需确认，不能直接套裸芯片供电。详见 [VL53L8CX 接线前提与来源](VL53L8CX/README.md)。
+HAT J5，以及按本方案配置的 J6，按引脚编号为 **1=GND、2=3.3V、3=SDA、4=SCL**；软件默认使用 Linux 7 位地址 `0x29`。用户的红色转接板虽有电平转换芯片，但尚无准确载板原理图，VIN 允许范围、LPn 与接口选择脚的默认电平仍需确认，不能直接套裸芯片供电。详见 [VL53L8CX 接线前提与来源](VL53L8CX/README.md)。
 
 ## 摄像头
 

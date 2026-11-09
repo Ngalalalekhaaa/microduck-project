@@ -24,7 +24,8 @@ static void usage(FILE *out)
           "  --help                 no hardware access\n"
           "probe checks only the specified address using ST's ID check; it writes\n"
           "the register-page selector. range uploads firmware and emits 8x8 frames.\n"
-          "Run only after repairing J5 and confirming module power/I2C/control pins.\n",
+          "Confirm the chosen connector, module power/I2C/control pins before use.\n"
+          "Configured HAT J6 uses --bus /dev/i2c-10; original J5 uses /dev/i2c-3.\n",
           out);
 }
 

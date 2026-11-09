@@ -1,0 +1,44 @@
+/dts-v1/;
+/plugin/;
+
+/* HAT C1: default R18/R19 fitted, R16/R17 not fitted.
+ * J6 pin 3 SDA -> header physical 7  -> GPIO3_C4 (bank 3, offset 20).
+ * J6 pin 4 SCL -> header physical 29 -> GPIO3_B3 (bank 3, offset 11).
+ * 6 = GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN. Keep SCL readable for stretching.
+ * Existing HAT pull-ups are 10 kOhm to 3.3 V; do not enable internal pulls.
+ */
+/ {
+    compatible = "radxa,zero3", "rockchip,rk3566";
+
+    fragment@0 {
+        target-path = "/";
+        __overlay__ {
+            aliases {
+                i2c10 = "/i2c-j6";
+            };
+            i2c_j6: i2c-j6 {
+                compatible = "i2c-gpio";
+                status = "okay";
+                pinctrl-names = "default";
+                pinctrl-0 = <&j6_i2c_pins>;
+                sda-gpios = <&gpio3 20 6>;
+                scl-gpios = <&gpio3 11 6>;
+                i2c-gpio,delay-us = <10>;
+                i2c-gpio,timeout-ms = <100>;
+                #address-cells = <1>;
+                #size-cells = <0>;
+            };
+        };
+    };
+    fragment@1 {
+        target = <&pinctrl>;
+        __overlay__ {
+            j6-i2c-gpio {
+                j6_i2c_pins: pins {
+                    rockchip,pins = <3 20 0 &pcfg_pull_none>,
+                                    <3 11 0 &pcfg_pull_none>;
+                };
+            };
+        };
+    };
+};
