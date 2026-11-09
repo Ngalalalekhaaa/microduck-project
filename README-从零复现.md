@@ -1,6 +1,8 @@
 # Microduck 从零复现：下载、装机、HOME、训练与部署
 
-**2026-11-05：**[IMX219 摄像头部署全流程](camera/IMX219/README.md)，包含官方 ISP/IQ、自动曝光抓帧回传和完整问题记录；目录可单独交给另一台 Radxa。
+**2026-11-09：**[传感器与扬声器统一目录](sensors/README.md)：IMX219 摄像头、HAT 语音/音乐播放、VL53L8CX 测距工具。扬声器音乐已试听通过；测距工具尚未实机验证。
+
+**2026-11-05：**[IMX219 摄像头部署全流程](sensors/IMX219/README.md)，包含官方 ISP/IQ、自动曝光抓帧回传和完整问题记录；目录可单独交给另一台 Radxa。
 
 核对日期：**2026-10-28**。适用：**Radxa Zero 3W + Robot HAT + 14 颗 HD-1910 + HAT J5 直连 LSM6DSV16XTR I²C IMU**；嘴部可另加 ID 15。
 

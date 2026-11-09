@@ -1,6 +1,8 @@
 # HD-1910 Microduck：Radxa 首次试机包
 
-**2026-11-05：**[IMX219 摄像头独立部署](../camera/IMX219/README.md)，包含官方 ISP/IQ、自动曝光抓帧回传和完整问题记录；目录可单独交给另一台 Radxa。
+**2026-11-09：**[传感器与扬声器统一目录](../sensors/README.md)：IMX219 摄像头、HAT 语音/音乐播放、VL53L8CX 测距工具。扬声器音乐已试听通过；测距工具尚未实机验证。
+
+**2026-11-05：**[IMX219 摄像头独立部署](../sensors/IMX219/README.md)，包含官方 ISP/IQ、自动曝光抓帧回传和完整问题记录；目录可单独交给另一台 Radxa。
 
 **2026-10-30：新增按装配几何标定。** 全新舵机从脚向上装配的完整流程、14关节 HOME 和45°孔位记录见[从脚装配与几何标定](docs/从脚装配与几何标定.md)。`assembly-template` 生成空白表，`assembly-calibrate --profile 表.json` 离线预览，追加 `--apply` 保存并备份软件标定；不写舵机。`home-plan/home --from-pose assembly`、支撑 HOME 脚本和 Xbox A 已兼容该参考，不要求再做 straight 标定。工厂中位孔型相位不能从八孔等分或旧装配图推定，未知参数保持空白。
 

@@ -1,0 +1,14 @@
+{
+  "source": "https://github.com/pollen-robotics/microduck",
+  "local_source": "microduck/deploy/audio",
+  "note": "Snapshot of local upstream sources; kernel driver C/H files GPL-2.0-only, overlay sources under repository Apache-2.0. Preserve SPDX and copyright headers.",
+  "sha256": {
+    "aic3104-i2c3.dts": "5fab9e696f835c77f6dd1d923a910e49a8bf7572ba9bad51203f27af6730c696",
+    "i2c3-pihat.dts": "39c89da24a5a717aff1716a0c095af676828c3a3d8ebafb808f77c518965cb92",
+    "aic3x-dkms/Makefile": "c0425be7424dc69b5f9b973b7bc849c83e6ea2fa40be227fb5d5c8a2fc626244",
+    "aic3x-dkms/dkms.conf": "8f2fccf94b2bf29d41e5f78f45de1a6b60e7db991561d247b98f7c2a7c07c102",
+    "aic3x-dkms/tlv320aic3x.c": "d828977826122524fa05e91dcb3c9597b876c60cfe3309254e0e571f24c60b80",
+    "aic3x-dkms/tlv320aic3x.h": "0c1db577de263b7c8161ed9069973385fbf45a0b4a075a582d4dea21ccfde186",
+    "aic3x-dkms/tlv320aic3x-i2c.c": "216466b6990ddb5a07f867053bb3d459a31152a4e6dd08585bbff4c149323955"
+  }
+}

@@ -1,6 +1,6 @@
 # IMX219 摄像头：另一台 Microduck 的部署全流程
 
-整理日期：2026-11-05。**把本 `IMX219` 目录完整交给同事即可使用，不依赖父级机器人代码。**
+整理日期：2026-11-05；2026-11-09 统一到 `sensors/IMX219/`。**把本 `IMX219` 目录完整交给同事即可使用，不依赖父级机器人代码。**
 本方案完成 CSI 接入、ISP 白平衡/颜色处理、有限轮自动曝光、单帧拍摄、原始数据与 PNG 回传。
 不需要训练环境、ONNX 模型或舵机标定文件。
 
@@ -66,8 +66,8 @@ python3 scripts/fetch_assets.py --check
 ```bash
 git clone --depth 1 --filter=blob:none --sparse \
   https://github.com/Ngalalalekhaaa/microduck-project.git ~/microduck-camera-source
-git -C ~/microduck-camera-source sparse-checkout set camera
-cd ~/microduck-camera-source/camera/IMX219
+git -C ~/microduck-camera-source sparse-checkout set sensors/IMX219
+cd ~/microduck-camera-source/sensors/IMX219
 python3 scripts/fetch_assets.py
 ```
 
@@ -81,9 +81,9 @@ python3 scripts/fetch_assets.py
 
 ```bash
 RADXA_HOST='你的用户名@你的Radxa_IP'   # 必须修改
-ssh "$RADXA_HOST" 'mkdir -p ~/camera/IMX219'
-scp README.md "$RADXA_HOST:~/camera/IMX219/"
-scp -r scripts vendor docs references packages "$RADXA_HOST:~/camera/IMX219/"
+ssh "$RADXA_HOST" 'mkdir -p ~/sensors/IMX219'
+scp README.md "$RADXA_HOST:~/sensors/IMX219/"
+scp -r scripts vendor docs references packages "$RADXA_HOST:~/sensors/IMX219/"
 ssh "$RADXA_HOST"
 ```
 
@@ -93,7 +93,7 @@ ssh "$RADXA_HOST"
 ## 4. 安装工具、启用 CSI
 
 ```bash
-cd ~/camera/IMX219
+cd ~/sensors/IMX219
 cat /proc/device-tree/model
 uname -m
 uname -r
@@ -133,7 +133,7 @@ ssh "$RADXA_HOST"
 ## 5. 在 Radxa 安装 ISP 与官方 IQ 参数
 
 ```bash
-cd ~/camera/IMX219
+cd ~/sensors/IMX219
 mkdir -p logs
 id
 v4l2-ctl --list-devices
@@ -233,7 +233,7 @@ bash scripts/capture_frame.sh "$RADXA_HOST" "$HOME/Pictures/microduck-$(date +%Y
 排障先收集只读信息（Radxa）：
 
 ```bash
-cd ~/camera/IMX219
+cd ~/sensors/IMX219
 python3 scripts/doctor.py --output "logs/doctor-$(date +%Y%m%d_%H%M%S).json"
 sudo journalctl -k -b --no-pager > logs/kernel-current-boot.txt
 sudo journalctl -u rkaiq_3A -b --no-pager > logs/rkaiq-current-boot.txt
@@ -243,7 +243,7 @@ sudo journalctl -u rkaiq_3A -b --no-pager > logs/rkaiq-current-boot.txt
 
 ```bash
 mkdir -p ./logs/radxa
-scp -r "$RADXA_HOST:~/camera/IMX219/logs/." ./logs/radxa/
+scp -r "$RADXA_HOST:~/sensors/IMX219/logs/." ./logs/radxa/
 ```
 
 完整原因和对应处理见 **[问题与排查](docs/问题与排查.md)**，包括：极暗但能出帧、开流覆盖曝光、偏绿、IQ/ABI 不匹配、`libdrm2` 缺失、服务假活、摄像头占用、EIO/NACK、格式与权限问题。

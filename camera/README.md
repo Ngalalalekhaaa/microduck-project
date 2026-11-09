@@ -1,6 +1,5 @@
-# Microduck 摄像头
+# 摄像头兼容入口
 
-- **[IMX219 / Radxa ZERO 3 部署完整步骤](IMX219/README.md)**：独立目录，可单独复制给另一台机器。
-- [实测问题与排查](IMX219/docs/问题与排查.md)、[资料来源](IMX219/docs/资料来源.md)。
+摄像头现统一放在 [sensors/IMX219](../sensors/IMX219/README.md)，与 [扬声器和 VL53L8CX](../sensors/README.md) 并列。
 
-本目录处理机器人上的 CSI 摄像头；仿真渲染相机和外部动捕相机不在此范围。
+`camera/IMX219` 保留为指向新目录的符号链接，原本地命令仍可使用。新部署、Git sparse checkout 和文档链接请使用 `sensors/IMX219`。在不支持符号链接的平台上也直接使用新目录。

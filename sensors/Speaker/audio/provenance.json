@@ -1,0 +1,17 @@
+{
+  "text": "你好，我是 microduck。",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "source_peak_fraction": 0.4393310546875,
+  "output_peak_fraction": 0.5999755859375,
+  "speech_rms_fraction": 0.10244873321247588,
+  "single_seconds": 3.568,
+  "twice_seconds": 8.136,
+  "mixer_raw": 116,
+  "generated_on": "2026-11-09",
+  "generator": "edge-tts 7.3.1",
+  "engine": "Microsoft Edge online TTS",
+  "format": "PCM signed 16-bit little-endian, stereo, 48000 Hz",
+  "padding_seconds_each_end": 0.5,
+  "sha256": "eea57ef45f3a7b0aad888f19f23e0f0b70b0ddd4963f7a02f64a743177425d95",
+  "status": "Playback command completed; user listening confirmation not yet recorded."
+}
